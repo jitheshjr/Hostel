@@ -1,0 +1,59 @@
+{% extends 'hostel/base.html' %}
+
+{% block title %}
+Hostel | Home
+{% endblock %}
+
+{% block style %}
+<style>
+    h4{
+        text-align: center;
+        padding-top: 0px;
+    }
+    .text-box{
+        width: 90%;
+        color: #071952;
+        position: absolute;
+        top: 52%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        text-align: center;
+    }
+    .text-box h4{
+        font-size: 20px;
+        text-transform: uppercase;
+        padding: 10px 0;
+    }
+    .text-box h3{
+        font-size: 25px;
+    }
+    .hero-btn{
+        margin-top: 50px;
+        display: inline-block;
+        text-decoration: none;
+        color: #071952;
+        border: 1px solid #071952;
+        padding: 12px 34px;
+        font-size: 13px;
+        background: transparent;
+        position: relative;
+        cursor: pointer;
+        text-transform: uppercase;
+    }
+    .hero-btn:hover{
+        border: 1px solid #071952;
+        background: #071952;
+        transition: 1s;
+        color: white;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="text-box">
+    <h4>K. V. Kunhambu Memorial Women's Hostel</h4>
+    <h3>NASC-HMS</h3>
+    <a href="{% url 'mark_attendance' %}" class="hero-btn">Add attendance</a>
+    <a href="{% url 'generate_mess_bill' %}" class="hero-btn">generate mess bill</a>
+</div>
+{% endblock %}

@@ -1,0 +1,163 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}
+        {% endblock %}
+    </title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+            box-sizing: border-box;
+        }
+        .header{
+            min-height: 100vh;
+            width: 100%;
+            background-position: center;
+            background-size: cover;
+            position: relative;
+        }
+        nav{
+            display: flex;
+            padding: 2% 6%;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav ul{
+            display: inline-flex;
+            list-style: none;
+            color: #071952;
+        }
+
+        nav ul li{
+            list-style: none;
+            display: inline-block;
+            padding: 8px 12px;
+            position: relative;
+        }
+        nav ul li a{
+            text-decoration: none;
+            color: #071952;
+            font-size: 12px;
+            font-weight: bolder;
+        }
+        .submenu1{
+            display: none;
+        }
+
+        nav ul li:hover .submenu1{
+            display: block;
+            position: absolute;
+            margin-left: 0;
+            margin-top: 0;
+        }
+        nav ul li:hover .submenu1 ul{
+            display: block;
+            margin: 10px;
+            padding: 0;
+        
+        }
+        nav ul li:hover .submenu1 ul li{
+            width: 100px;
+            padding: 5px 5px;
+            border-radius: 0;
+            text-align: center;
+            background-color: #071952;
+            border: 1px solid #fff;
+        }
+        nav ul li:hover .submenu1 ul li a{
+            font-size: 7px;
+            color: white;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        nav img{
+            width: 40px;
+            margin-left: auto;
+        }
+        .nav-links{
+            flex: 1;
+            text-align: right;  
+        }
+
+        .logout-btn{
+            border: none;
+            text-transform: uppercase;
+            margin-left: 80px;
+            padding: 0;
+            background-color: transparent;
+            color: #071952;
+            font-weight: bolder;
+            font-size: 12px;
+        }
+        .logout-btn:hover{
+            opacity: 0.7;
+        }
+        .nav-links ul li::after{
+            content: "";
+            width: 0;
+            height: 2px;
+            background:#071952;
+            display: block;
+            margin: auto;
+            transition: 0.5s;
+        }
+        .nav-links ul li:hover::after{
+            width: 100%;
+        }
+    </style>
+    {% block style %}
+    {% endblock %}
+</head>
+<body>
+    <section class="header">
+        <nav>
+            <a href="{% url 'home' %}"><img src="{% static 'logo.png' %}"></a>
+            <div class="nav-links" id="navLinks">
+                <ul>
+                    <li><a href="{% url 'home' %}">HOME</a></li>
+                    <li><a href="">STUDENT</a>
+                        <div class="submenu1">
+                            <ul>
+                                <li><a href="{% url 'add_student' %}">ADD STUDENT</a></li>
+                                <li><a href="{% url 'view_student' %}">VIEW STUDENTS</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    
+                    <li><a href="">ALLOCATION</a>
+                        <div class="submenu1">
+                            <ul>
+                                <li><a href="{% url 'allot_student' %}">Allocate room</a></li>
+                                <li><a href="{% url 'view_allotement' %}">View Allocation</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="{% url 'view_bill' %}">BILLs</a></li>
+                </ul>
+            </div>
+            <form action="{% url 'logout' %}" method="post" class="logout-form">
+                {% csrf_token %}
+                <button type="submit" value="Logout" class="logout-btn">Logout</button>
+            </form>
+        </nav>
+            {% block content %}
+            {% endblock %}
+    </section>
+</body>
+</html>
+
+
+
+
+
+
+
+

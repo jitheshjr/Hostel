@@ -1,0 +1,126 @@
+{% extends 'hostel/base.html' %}
+
+{% block title %}
+Hostel | Students
+{% endblock %}
+
+{% block style %}
+<style>
+    .main-block{
+        margin-top: 70px;
+        margin-right: 20px;
+        margin-left: 20px;
+    }
+    .student-layout {
+        width: 100px;
+        height: 140px;
+        padding: 20px 10px;
+        margin: 5px;
+        background: #EDF4F2;
+        display: inline-block;
+        vertical-align: top;
+        text-align: center;
+        flex-basis: 31%;
+        border-radius: 2px;
+    }
+    .student-layout:hover{
+        box-shadow: 0 0 20px 0px rgba(0,0,0,2);
+    }
+    .image-container{
+        width: 50px; 
+        height: 50px;
+        overflow: hidden;
+        position: relative;
+        margin-left: 20%;
+        margin-bottom: 10px;
+        border: 2px solid white;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        
+    }
+    .img-stud {
+        width: 100%;
+        height: auto;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+    }
+    .student-name {
+        font-size: 15px;
+        margin-bottom: 0;
+        color: #31473A;
+        text-transform: uppercase;
+        font-size: 10px;
+        font-weight: bolder;
+    }
+    .link{
+        font-size: 8px;
+        color: #31473A;
+        text-decoration: none;
+        text-transform: uppercase;
+        font-weight: 600;
+        margin-bottom: 2px;
+    }
+    .link:hover{
+        text-decoration: underline;
+        opacity: 0.5;
+    }
+    h5{
+        color: #071952;
+        text-align: center;
+        margin-bottom: 25px;
+        text-transform: uppercase;
+    }
+    .messages{
+        list-style-type: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 10vh;
+        font-size: 16px;
+        text-transform: uppercase;
+        font-weight: bolder;
+    }
+    mark{
+        background: linear-gradient(#b3d9ff 0%, #ffffff 100%);
+        padding: 6px;
+        border-radius: 5px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="main-block">
+    <h5>Students</h5>
+    {% if messages %}
+        <ul class="messages" >
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}><mark>{{ message }}</mark></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    {% for student in stud %}
+        <div class="student-layout">
+            <div class="image-container">
+                {% if student.photo %}
+                <img src="{{student.photo.url}}" alt="{{student.name}}" class="img-stud">
+                {% else %}
+                    <span>No photo available</span>
+                {% endif %}
+            </div>
+            <div class="student-name">{{student.name}}</div>
+            <div>
+                <a href="{% url 'edit_student' student.id %}" class="link">Edit</a>  <a href="{% url 'delete_student' student.id %}" class="link" onclick="return confirmDelete();">delete</a>
+                <a href="{% url 'view_details' student.id %}" class="link">Details</a>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+<script>
+    function confirmDelete(){
+        let result = confirm("Are you sure you want to delete this student?");
+        return result;
+    }
+</script>
+{% endblock %}

@@ -1,0 +1,99 @@
+{% extends 'hostel/base.html' %}
+
+{% block title %}
+Hostel | Allocate
+{% endblock %}
+
+{% block style %}
+    <style>
+        .main{
+            margin-top: 70px;
+            margin-bottom: 100px;
+        }
+        .main-block {
+            margin-top: 70px;
+            width: 40%;
+            margin: 0 auto;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+            background-color: #EDF4F2;
+        }
+        .form-fields {
+            margin-bottom: 20px;
+        }
+        .form-field {
+            margin-bottom: 15px;
+        }
+        .form-field select {
+            width: 70%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            background-color: #fff;
+            cursor: pointer;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .form-field select:hover {
+            border-color: #aaa;
+        }
+        .form-field label {
+            display: block;
+            margin-bottom: 5px;
+            color: #31473A;
+        }
+        .form-field input[type="text"],
+        .form-field input[type="email"],
+        .form-field input[type="number"],
+        .form-field input[type="file"] {
+            width: 70%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .submit-input input[type="submit"] {
+            background-color: #071952;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .submit-input input[type="submit"]:hover {
+            opacity: 0.5;
+        }
+        h5{
+            color: #071952;
+            text-align: center;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+<div class="main">
+    <div class="main-block">
+        <h5>Room Allocation</h5>
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="form-fields">
+                <div class="form-field">
+                    <label for="{{ form.room_number.id_for_label }}">Room Number:</label>
+                    {{ form.room_number }}
+                </div>
+        
+                <div class="form-field">
+                    <label for="{{ form.name.id_for_label }}">Name:</label>
+                    {{ form.name }}
+                </div>
+            </div>
+            <div class="submit-input">
+                <input type="submit" value="Submit">
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

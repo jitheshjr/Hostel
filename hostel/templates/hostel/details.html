@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hostel | Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            margin-top: 5%;
+            margin-bottom: 100px;
+        }
+        #name{
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 8px;
+        }
+        .student-details .back-link{
+            margin-left: 99%;
+            color: #31473A;
+            text-decoration: none;
+        }
+        .back-link:hover{
+            opacity: 0.6;
+        }
+        .student-details {
+            background-color: #EDF4F2;
+            padding: 20px;
+            padding-top: 10px;
+            border-radius: 8px;
+            max-width: 400px;
+            margin: 0 auto;
+            text-align: center;
+            font-family: 'Times New Roman', Times, serif;
+            box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.7);
+            font-size: 10px;
+            color: black;
+        }
+        .student-details:hover{
+            box-shadow: 0 0 20px 0px rgba(0,0,0,2);
+        }
+        .image-container{
+            width: 100px; 
+            height: 100px;
+            overflow: hidden;
+            position: relative;
+            border: 2px solid white;
+            margin-left: 37%;
+            margin-top: 15px;
+            box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.4);
+            border-radius: 2px;
+            
+        }
+        .student-photo {
+            width: 100%;
+            height: auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .other-details{
+            text-align: left;
+            font-family: 'Times New Roman', Times, serif;
+        }
+    </style>
+</head>
+<body>
+    <div class="student-details">
+        <a href="{% url 'view_student' %}" class="back-link">&#10006;</a>
+        <div class="image-container">
+            {% if student_image_url %}
+                <img src="{{ student_image_url }}" alt="Student Image" class="student-photo">
+            {% else %}
+                <p>No image available</p>
+            {% endif %}
+        </div>
+        <p id="name"><strong>{{student.name}}</strong></p>
+        <p> {{student.pgm}}</p>
+        <div class="other-details">
+            <p><strong>ADMISSION NUMBER: </strong>{{student.admn_no}}</p>
+            <p><strong>YEAR OF ADMISSION: </strong>{{student.year_of_admn}}</p>
+            <p><strong>DOB: </strong> {{student.dob}}</p>
+            <p><strong>PHONE: </strong> {{student.contact}}</p>
+            <p><strong>ADDRESS: </strong> {{student.house_name}},{{student.place}},{{student.dist}},{{student.state}},{{student.pincode}}</p>
+            <p><strong>DATE JOINED: </strong>{{student.date_joined}}</p>
+            <p><strong>NAME OF GUARDIAN: </strong>{{student.parent_name}}</p>
+            {% if room %}
+                <p><strong>ALLOCATED ROOM: </strong>{{room.room_number}} ( {{room.room_number.floor}} )</p>
+            {% else %}
+                <p><strong>ALLOCATED ROOM: </strong>Currently not allocated any room</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

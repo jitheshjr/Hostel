@@ -1,0 +1,69 @@
+{% extends 'hostel/base.html' %}
+
+{% block title %}
+Hostel | Attendance
+{% endblock %}
+
+{% block style %}
+<style>
+    .main{
+        margin-top: 70px;
+        margin-bottom: 100px;
+    }
+    .main-block{
+        margin: 0 auto;
+        width: 80%;
+        height: auto;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+        background-color: #EDF4F2;
+        font-size: smaller;
+    }
+    .absents table {
+        border-collapse: collapse;
+        width: 100%;
+        margin: 10px;
+    }
+    .absents th, .absents td {
+        border: none;
+        text-align: left;
+        padding: 8px;
+    }
+    .absents th, .absents td{
+        background-color: #EDF4F2;
+        color: #31473A;
+    }
+
+    h5{
+        color: #071952;
+        text-align: center;
+        margin-bottom: 25px;
+        text-transform: uppercase;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="main">
+    <div class="main-block">
+        <h5>Attendance Report</h5>
+        <div class="absents">
+            <table>
+                <tr>
+                    <th>Name</th><th>Date</th>
+                </tr>
+                <tr class="ignore-row-summary">
+                    <td></td><td></td>
+                </tr>
+                {% for a in summary %}
+                <tr>
+                    <td>{{a.name}}</td>
+                    <td>{{a.date}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

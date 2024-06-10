@@ -1,0 +1,82 @@
+{% extends 'hostel/base.html' %}
+
+{% block title %}
+Hostel | Allocations
+{% endblock %}
+
+{% block style %}
+<style>
+    .main{
+        margin-top: 70px;
+        margin-bottom: 100px;
+    }
+    .main-block{
+        margin: 0 auto;
+        width: 80%;
+        height: auto;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+        background-color: #EDF4F2;
+        font-size: smaller;
+    }
+    .allot {
+        width: 70%;
+        margin: 0 auto;
+    }
+    .allot table {
+        border-collapse: collapse;
+        width: 100%;
+        margin: 10px;
+    }
+    .allot th, .allot td {
+        border: none;
+        text-align: left;
+        padding: 8px;
+    }
+    .allot th ,.allot td{
+        background-color: #EDF4F2;
+        color: #31473A;
+    }
+    .allot tr td a {
+        color: black;
+        text-decoration: none;
+    }
+    .allot tr td a:hover{
+        opacity: 0.5;
+        text-decoration: underline;
+    }
+    h5{
+        color: #071952;
+        text-align: center;
+        margin-bottom: 25px;
+        text-transform: uppercase;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="main">
+    <div class="main-block">
+        <h5>Room Details</h5>
+        <div class="allot">
+            <table>
+                <tr>
+                    <th>Room Number</th><th>Students</th><th>Floor</th><th>Action</th>
+                </tr>
+                <tr class="ignore-row">
+                    <td></td><td></td><td></td><td></td>
+                </tr>
+                {% for a in alloted %}
+                <tr>
+                    <td>{{a.room_number}}</td>
+                    <td>{{a.name}}</td>
+                    <td>{{a.room_number.floor}}</td>
+                    <td><a href="{% url 'edit_allocation' a.name %}">Edit</a>/<a href="{% url 'delete_allocation' a.name %}">Delete</a></td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

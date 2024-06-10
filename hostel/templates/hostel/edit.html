@@ -1,0 +1,208 @@
+{% extends 'hostel/base.html' %}
+
+{% block title %}
+Hostel | EditStudent
+{% endblock %}
+{% block style %}
+<style>
+    .main{
+        margin-top: 70px;
+        margin-bottom: 100px;
+    }
+    .main-block {
+        width: 40%;
+        margin: 0 auto;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+        background-color: #EDF4F2;
+        font-size: smaller;
+    }
+    .form-fields {
+        margin-bottom: 20px;
+    }
+    .form-field {
+        margin-bottom: 15px;
+    }
+    .form-field select {
+        width: 70%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 16px;
+        background-color: #fff;
+        cursor: pointer;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .form-field select:hover {
+        border-color: #aaa;
+    }
+    .form-field label {
+        display: block;
+        margin-bottom: 5px;
+        color: #31473A;
+    }
+    .form-field input[type="text"],
+    .form-field input[type="email"],
+    .form-field input[type="number"],
+    .form-field input[type="file"] {
+        width: 70%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+    .submit-input input[type="submit"] {
+        background-color: #071952;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    .submit-input input[type="submit"]:hover {
+        opacity: 0.5;
+    }
+    h5{
+        color: #071952;
+        text-align: center;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+    }
+    .messages{
+        list-style-type: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 10vh;
+        font-size: 16px;
+        text-transform: uppercase;
+        font-weight: bolder;
+    }
+    mark{
+        background: linear-gradient(#b3d9ff 0%, #ffffff 100%);
+        padding: 6px;
+        border-radius: 5px;
+    }
+</style>
+{% endblock %}
+    
+{% block content %}
+<div class="main">
+    {% if messages %}
+        <ul class="messages" >
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}><mark>{{ message }}</mark></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <div class="main-block">
+        <h5>Edit Details</h5>
+        <form method="post" action="" enctype="multipart/form-data" onsubmit="return confirmData();">
+            {% csrf_token %}
+            <div class="form-fields">
+                
+                <div class="form-field">
+                    <label for="{{ form.admn_no.id_for_label }}">{{ form.admn_no.label }}:</label>
+                    {{ form.admn_no }}
+                </div>
+
+                <div class="form-field">
+                    <label for="{{form.name.id_for_label}}">Name:</label>
+                    {{form.name}}
+                </div>
+                
+                <div class="form-field">
+                    <label for="{{ form.year_of_admn.id_for_label }}">{{ form.year_of_admn.label }}:</label>
+                    {{ form.year_of_admn }}
+                </div>
+                
+                <div class="form-field">
+                    <label for="{{ form.dob.id_for_label }}">{{ form.dob.label }}:</label>
+                    {{ form.dob }}
+                </div>
+                
+                <div class="form-field">
+                    <label for="{{ form.email.id_for_label }}">Email:</label>
+                    {{ form.email }}
+                </div>
+
+                <div class="form-field">
+                    <label for="{{ form.photo.id_for_label }}" class="file-label">Image:</label>
+                    {{ form.photo }}
+                </div>
+
+                <div class="form-field">
+                    <label for="{{ form.contact.id_for_label }}">{{ form.contact.label }}:</label>
+                    {{ form.contact }}
+                </div>
+
+                <div class="form-field">
+                    <label for="{{ form.house_name.id_for_label }}">House:</label>
+                    {{ form.house_name }}
+                </div>
+
+                <div class="form-field">
+                    <label for="{{ form.place.id_for_label }}">Place:</label>
+                    {{ form.place }}
+                </div>
+
+                <div class="form-field">
+                    <label for="{{ form.dist.id_for_label }}">District:</label>
+                    {{ form.dist }}
+                </div>
+
+                <div class="form-field">
+                    <label for="{{ form.state.id_for_label }}">State:</label>
+                    {{ form.state }}
+                </div>
+
+                <div class="form-field">
+                    <label for="{{ form.pincode.id_for_label }}">Pin code:</label>
+                    {{ form.pincode }}
+                </div>
+
+                <div class="form-field">
+                    <label for="{{ form.parent_name.id_for_label }}">Guardian Name:</label>
+                    {{ form.parent_name }}
+                </div>
+
+                <div class="form-field">
+                    <label for="{{ form.parent_occupation.id_for_label }}">Occupation:</label>
+                    {{ form.parent_occupation }}
+                </div>
+
+                <div class="form-field">
+                    <label for="{{ form.annual_income.id_for_label }}">Annual Income:</label>
+                    {{ form.annual_income }}
+                </div>
+
+                <div class="form-field">
+                    <label for="{{ form.pgm.id_for_label }}">Course:</label>
+                    {{ form.pgm }}
+                </div>
+
+                <div class="form-field">
+                    <label for="{{ form.category.id_for_label }}">Category:</label>
+                    {{ form.category }}
+                </div>
+
+                <div class="form-field">
+                    <label for="{{ form.E_Grantz.id_for_label }}">E-Grantz:</label>
+                    {{ form.E_Grantz }}
+                </div>
+            </div>
+            <div class="submit-input">
+                <input type="submit" value="Submit">
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    function confirmData(){
+        let result = confirm("Make sure everything is right!");
+        return result;
+    }
+</script>
+{% endblock %}
+
