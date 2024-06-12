@@ -72,11 +72,20 @@ Hostel | Allocations
                     <td>{{a.room_number}}</td>
                     <td>{{a.name}}</td>
                     <td>{{a.room_number.floor}}</td>
-                    <td><a href="{% url 'edit_allocation' a.name %}">Edit</a>/<a href="{% url 'delete_allocation' a.name %}">Delete</a></td>
+                    <td><a href="{% url 'edit_allocation' a.name %}" onsubmit="return confirmData();">Edit</a>/<a href="{% url 'delete_allocation' a.name %}" onclick="return confirmDelete();">Delete</a></td>
                 </tr>
                 {% endfor %}
             </table>
         </div>
     </div>
 </div>
+<script>
+    function confirmData(){
+        let result = confirm("Make sure everything is right!");
+        return result;
+    }
+    function confirmDelete() {
+        return confirm("Are you sure you want to delete this student?");
+    }
+</script>
 {% endblock %}

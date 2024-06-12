@@ -73,6 +73,25 @@ Hostel | BillForm
         padding: 6px;
         border-radius: 5px;
     }
+    .header-links {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+        top: 0;
+        width: 100%;
+        padding: 0;
+        margin-bottom: 20px;
+    }
+    .header-links .back-link {
+        font-size: 25px;
+        color: #31473A;
+        text-decoration: none;
+        display: inline-block;
+    }
+    .header-links .back-link:hover {
+        opacity: 0.6;
+    }
 </style>
 {% endblock %}
 
@@ -87,6 +106,9 @@ Hostel | BillForm
         </ul>
     {% endif %}
     <div class="billform">
+        <div class="header-links">
+            <a href="#" class="back-link" id="closeBtn">&#10006;</a>
+        </div>
         <h5>Generate Mess Bill</h5>
         <form method="post">
             {% csrf_token %}
@@ -132,4 +154,10 @@ Hostel | BillForm
         </form>
     </div>
 </div>
+<script>
+    document.getElementById('closeBtn').addEventListener('click', function(event){
+        event.preventDefault(); // Prevent the default anchor click behavior
+        window.history.back(); // redirect to the previous page
+    });
+</script>
 {% endblock %}

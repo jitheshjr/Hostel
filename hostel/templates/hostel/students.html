@@ -12,15 +12,13 @@ Hostel | Students
         margin-left: 20px;
     }
     .student-layout {
-        width: 100px;
-        height: 140px;
+        width: 130px;
+        height: 120px;
         padding: 20px 10px;
-        margin: 5px;
+        margin: 15px;
         background: #EDF4F2;
         display: inline-block;
-        vertical-align: top;
         text-align: center;
-        flex-basis: 31%;
         border-radius: 2px;
     }
     .student-layout:hover{
@@ -29,9 +27,10 @@ Hostel | Students
     .image-container{
         width: 50px; 
         height: 50px;
+        display: flex;
         overflow: hidden;
         position: relative;
-        margin-left: 20%;
+        margin-left: 26%;
         margin-bottom: 10px;
         border: 2px solid white;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
@@ -47,12 +46,17 @@ Hostel | Students
 
     }
     .student-name {
+        position: relative;
+        top: 10px;
         font-size: 15px;
         margin-bottom: 0;
         color: #31473A;
         text-transform: uppercase;
         font-size: 10px;
         font-weight: bolder;
+        text-decoration: none;
+        word-wrap: break-word;
+        width: 100%;
     }
     .link{
         font-size: 8px;
@@ -60,7 +64,7 @@ Hostel | Students
         text-decoration: none;
         text-transform: uppercase;
         font-weight: 600;
-        margin-bottom: 2px;
+        margin-bottom:2px;
     }
     .link:hover{
         text-decoration: underline;
@@ -87,6 +91,40 @@ Hostel | Students
         padding: 6px;
         border-radius: 5px;
     }
+    @media (max-width: 480px) {
+    .main-block {
+        margin-right: 5px;
+        margin-left: 5px;
+    }
+    
+    .student-layout {
+        width: 80px;
+        height: 80px;
+        padding: 10px 5px;
+        margin: 5px;
+    }
+    
+    .student-name {
+        font-size: 7px;
+    }
+    
+    .image-container {
+        width: 30px;
+        height: 30px;
+    }
+    
+    h5 {
+        font-size: 14px;
+    }
+    
+    .messages {
+        font-size: 14px;
+    }
+    
+    .link {
+        font-size: 6px;
+    }
+}
 </style>
 {% endblock %}
 
@@ -94,33 +132,25 @@ Hostel | Students
 <div class="main-block">
     <h5>Students</h5>
     {% if messages %}
-        <ul class="messages" >
+        <ul class="messages">
             {% for message in messages %}
                 <li{% if message.tags %} class="{{ message.tags }}"{% endif %}><mark>{{ message }}</mark></li>
             {% endfor %}
         </ul>
     {% endif %}
     {% for student in stud %}
+    <a href="{% url 'view_details' student.id %}" class="link">
         <div class="student-layout">
-            <div class="image-container">
+            <div class="image-container">   
                 {% if student.photo %}
-                <img src="{{student.photo.url}}" alt="{{student.name}}" class="img-stud">
+                <img src="{{student.photo.url}}" alt="No image" class="img-stud">
                 {% else %}
                     <span>No photo available</span>
                 {% endif %}
             </div>
             <div class="student-name">{{student.name}}</div>
-            <div>
-                <a href="{% url 'edit_student' student.id %}" class="link">Edit</a>  <a href="{% url 'delete_student' student.id %}" class="link" onclick="return confirmDelete();">delete</a>
-                <a href="{% url 'view_details' student.id %}" class="link">Details</a>
-            </div>
         </div>
+    </a>
     {% endfor %}
 </div>
-<script>
-    function confirmDelete(){
-        let result = confirm("Are you sure you want to delete this student?");
-        return result;
-    }
-</script>
 {% endblock %}

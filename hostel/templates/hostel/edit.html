@@ -25,7 +25,7 @@ Hostel | EditStudent
         margin-bottom: 15px;
     }
     .form-field select {
-        width: 70%;
+        width: 100%;
         padding: 10px;
         border: 1px solid #ddd;
         border-radius: 4px;
@@ -47,12 +47,14 @@ Hostel | EditStudent
     .form-field input[type="email"],
     .form-field input[type="number"],
     .form-field input[type="file"] {
-        width: 70%;
+        background-color: #fff;
+        width: 100%;
         padding: 8px;
         border: 1px solid #ccc;
         border-radius: 4px;
     }
     .submit-input input[type="submit"] {
+        width: 100%;
         background-color: #071952;
         color: white;
         padding: 10px 20px;
@@ -84,6 +86,25 @@ Hostel | EditStudent
         padding: 6px;
         border-radius: 5px;
     }
+    .header-links {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+        top: 0;
+        width: 100%;
+        padding: 0;
+        margin-bottom: 30px;
+    }
+    .header-links .back-link {
+        font-size: 25px;
+        color: #31473A;
+        text-decoration: none;
+        display: inline-block;
+    }
+    .header-links .back-link:hover {
+        opacity: 0.6;
+    }
 </style>
 {% endblock %}
     
@@ -97,6 +118,9 @@ Hostel | EditStudent
         </ul>
     {% endif %}
     <div class="main-block">
+        <div class="header-links">
+            <a href="{% url 'view_student' %}" class="back-link" id="closeBtn" onclick="">&#10006;</a>
+        </div>
         <h5>Edit Details</h5>
         <form method="post" action="" enctype="multipart/form-data" onsubmit="return confirmData();">
             {% csrf_token %}
@@ -203,6 +227,11 @@ Hostel | EditStudent
         let result = confirm("Make sure everything is right!");
         return result;
     }
+
+    document.getElementById('closeBtn').addEventListener('click', function(event){
+        event.preventDefault();
+        window.history.back();
+    });
 </script>
 {% endblock %}
 

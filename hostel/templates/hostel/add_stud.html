@@ -47,6 +47,7 @@ Hostel | AddStudent
     .form-field input[type="email"],
     .form-field input[type="number"],
     .form-field input[type="file"] {
+        background-color: #fff;
         width: 100%;
         padding: 8px;
         border: 1px solid #ccc;
@@ -85,6 +86,25 @@ Hostel | AddStudent
         padding: 6px;
         border-radius: 5px;
     }
+    .header-links {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+        top: 0;
+        width: 100%;
+        padding: 0;
+        margin-bottom: 20px;
+    }
+    .header-links .back-link {
+        font-size: 25px;
+        color: #31473A;
+        text-decoration: none;
+        display: inline-block;
+    }
+    .header-links .back-link:hover {
+        opacity: 0.6;
+    }
 </style>
 {% endblock %}
     
@@ -98,6 +118,9 @@ Hostel | AddStudent
     </ul>
     {% endif %}
     <div class="main-block">
+        <div class="header-links">
+            <a href="#" class="back-link" id="closeBtn">&#10006;</a>
+        </div>
         <h5>Add Student</h5>
         <form method="post" action="" enctype="multipart/form-data" onsubmit="return confirmData();">
             {% csrf_token %}
@@ -204,6 +227,11 @@ Hostel | AddStudent
         let result = confirm("Make sure everything is right!");
         return result;
     }
+
+    document.getElementById('closeBtn').addEventListener('click', function(event){
+        event.preventDefault();
+        window.history.back();
+    }); 
 </script>
 {% endblock %}
 

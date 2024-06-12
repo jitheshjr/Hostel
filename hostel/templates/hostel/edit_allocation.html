@@ -70,12 +70,56 @@ Hostel | EditAllocation
             margin-bottom: 20px;
             text-transform: uppercase;
         }
-    </style>
+        .header-links {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            top: 0;
+            width: 100%;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+        .header-links .back-link {
+            font-size: 25px;
+            color: #31473A;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .header-links .back-link:hover {
+            opacity: 0.6;
+        }
+        .messages{
+            list-style-type: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 10vh;
+            font-size: 16px;
+            text-transform: uppercase;
+            font-weight: bolder;
+        }
+        mark{
+            background: linear-gradient(#b3d9ff 0%, #ffffff 100%);
+            padding: 6px;
+            border-radius: 5px;
+        }
+      </style>
 {% endblock %}
 
 {% block content %}
 <div class="main">
+    {% if messages %}
+        <ul class="messages" >
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}><mark>{{ message }}</mark></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
     <div class="main-block">
+        <div class="header-links">
+            <a href="#" class="back-link" id="closeBtn">&#10006;</a>
+        </div>
         <h5>Room Allocation</h5>
         <form action="" method="post">
             {% csrf_token %}
@@ -96,4 +140,10 @@ Hostel | EditAllocation
         </form>
     </div>
 </div>
+<script>
+    document.getElementById('closeBtn').addEventListener('click',function(event){
+        event.preventDefault();
+        window.history.back();
+    });
+</script>
 {% endblock %}

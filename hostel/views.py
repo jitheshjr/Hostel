@@ -66,7 +66,7 @@ def edit_student(request, student_id):
         form = StudentForm(request.POST, request.FILES, instance=student)  # Include request.FILES to handle file uploads
         new_admn_no = request.POST.get('admn_no')
         print(new_admn_no)
-        if prev_admn_no == new_admn_no:
+        if int(prev_admn_no) == int(new_admn_no):
             print("hello")
             if form.is_valid():
                 if 'image' in form.changed_data:
@@ -119,7 +119,7 @@ def allot_student(request):
 def edit_allocation(request,student_name):
 
     Alloted_object = Allotment.objects.get(name__name=student_name)
-    #name is a OneToOneField to the Student model. The double underscore is used to access fields within related models.
+    # name is a OneToOneField to the Student model. The double underscore is used to access fields within related models.
     alloc_form = AllotementForm(instance=Alloted_object)
 
     if request.method == "POST":

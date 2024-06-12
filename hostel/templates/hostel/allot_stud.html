@@ -70,12 +70,34 @@ Hostel | Allocate
             margin-bottom: 20px;
             text-transform: uppercase;
         }
+        .header-links {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            top: 0;
+            width: 100%;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+        .header-links .back-link {
+            font-size: 25px;
+            color: #31473A;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .header-links .back-link:hover {
+            opacity: 0.6;
+        }
     </style>
 {% endblock %}
 
 {% block content %}
 <div class="main">
     <div class="main-block">
+        <div class="header-links">
+            <a href="#" class="back-link" id="closeBtn">&#10006;</a>
+        </div>
         <h5>Room Allocation</h5>
         <form action="" method="post">
             {% csrf_token %}
@@ -96,4 +118,10 @@ Hostel | Allocate
         </form>
     </div>
 </div>
+<script>
+    document.getElementById('closeBtn').addEventListener('click', function(event){
+        event.preventDefault();
+        window.history.back();
+    }); 
+</script>
 {% endblock %}

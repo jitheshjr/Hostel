@@ -68,13 +68,30 @@ Hostel | Attendance
         padding: 6px;
         border-radius: 5px;
     }
-
+    .header-links {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+        top: 0;
+        width: 100%;
+        padding: 0;
+        margin-bottom: 20px;
+    }
+    .header-links .back-link {
+        font-size: 25px;
+        color: #31473A;
+        text-decoration: none;
+        display: inline-block;
+    }
+    .header-links .back-link:hover {
+        opacity: 0.6;
+    }
 </style>
 {% endblock %}
 
 {% block content %}
 <div class="main">
-    
     <div class="attendance-validation">
         {% if messages %}
         <ul class="messages" >
@@ -84,6 +101,9 @@ Hostel | Attendance
         </ul>
         {% endif %}
         <div class="attendance-form">
+            <div class="header-links">
+                <a href="#" id="closeBtn" class="back-link">&#10006;</a>
+            </div>
             <h5>Attendance Form</h5>
             <form action="" method="post">
                 {% csrf_token %}
@@ -93,5 +113,10 @@ Hostel | Attendance
         </div>
     </div>
 </div>
-
+<script>
+    document.getElementById('closeBtn').addEventListener('click', function(event){
+        event.preventDefault();
+        window.history.back();
+    }); 
+</script>
 {% endblock %}
