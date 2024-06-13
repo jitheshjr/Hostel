@@ -15,12 +15,44 @@
             font-family: sans-serif;
             box-sizing: border-box;
         }
+        .nasc{
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo-heading {
+            display: flex;
+            align-items: center;
+        }
+
+        .nasc h1{
+            padding-left: 10px;
+            color: #071952; 
+        }
+
         .header{
             min-height: 100vh;
             width: 100%;
             background-position: center;
             background-size: cover;
             position: relative;
+        }
+
+        .logout-form{
+            margin-left: auto;
+        }
+        .logout-btn{
+            border: none;
+            text-transform: uppercase;
+            padding: 5px 10px;
+            background-color: transparent;
+            color: #071952;
+            font-weight: bolder;
+            font-size: 20px;
+        }
+        .logout-btn:hover{
+            opacity: 0.7;
         }
         nav{
             display: flex;
@@ -78,7 +110,7 @@
             text-transform: uppercase;
         }
 
-        nav img{
+        #logo{
             width: 90px;
             margin-left: auto;
         }
@@ -87,19 +119,6 @@
             text-align: right;  
         }
 
-        .logout-btn{
-            border: none;
-            text-transform: uppercase;
-            margin-left: 80px;
-            padding: 0;
-            background-color: transparent;
-            color: #071952;
-            font-weight: bolder;
-            font-size: 20px;
-        }
-        .logout-btn:hover{
-            opacity: 0.7;
-        }
         .nav-links ul li::after{
             content: "";
             width: 0;
@@ -118,8 +137,17 @@
 </head>
 <body>
     <section class="header">
+        <div class="nasc">
+            <div class="logo-heading">
+                <a href="{% url 'home' %}"><img src="{% static 'logo.png' %}" id="logo"></a>
+                <h1>NEHRU ARTS AND SCIENCE COLLEGE KANHANGAD <br> K. V. Kunhambu Memorial Women's Hostel <br> NASC-HMS </h1>
+            </div>
+            <form action="{% url 'logout' %}" method="post" class="logout-form">
+                {% csrf_token %}
+                <button type="submit" value="Logout" class="logout-btn">Logout</button>
+            </form>
+        </div>
         <nav>
-            <a href="{% url 'home' %}"><img src="{% static 'logo.png' %}"></a>
             <div class="nav-links" id="navLinks">
                 <ul>
                     <li><a href="{% url 'home' %}">HOME</a></li>
@@ -144,10 +172,6 @@
                     <li><a href="{% url 'view_attendance' %}">SUMMARY</a></li>
                 </ul>
             </div>
-            <form action="{% url 'logout' %}" method="post" class="logout-form">
-                {% csrf_token %}
-                <button type="submit" value="Logout" class="logout-btn">Logout</button>
-            </form>
         </nav>
             {% block content %}
             {% endblock %}

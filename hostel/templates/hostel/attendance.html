@@ -68,6 +68,21 @@ Hostel | Attendance
         padding: 6px;
         border-radius: 5px;
     }
+    #studentSearch {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    #studentSearch:focus {
+        border-color: #007bff;
+        outline: none;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    }
     .header-links {
         display: flex;
         justify-content: space-between;
@@ -105,9 +120,12 @@ Hostel | Attendance
                 <a href="#" id="closeBtn" class="back-link">&#10006;</a>
             </div>
             <h5>Attendance Form</h5>
+            <input type="text" id="studentSearch" placeholder="Search by student name" onkeyup="filterStudents()">
             <form action="" method="post">
                 {% csrf_token %}
-                {{form.as_p}}
+                <div id="student-container">
+                    {{form.as_p}}
+                </div>
                 <input type="submit" value="submit">
             </form>
         </div>
@@ -118,5 +136,22 @@ Hostel | Attendance
         event.preventDefault();
         window.history.back();
     }); 
+
+    function filterStudents(){
+        let input = document.getElementById('studentSearch');
+        let filter = input.value.toLowerCase();
+        let studentContainer = document.getElementById('student-container');
+        let students = studentContainer.getElementsByTagName('label');
+
+        for (let i = 0; i < students.length; i++) {
+            let label = students[i];
+            let text = label.textContent || label.innerText;
+            if (text.toLowerCase().includes(filter)) {
+                label.style.display = '';
+            } else {
+                label.style.display = 'none';
+            }
+        }
+    }
 </script>
 {% endblock %}

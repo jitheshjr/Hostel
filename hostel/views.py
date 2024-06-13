@@ -168,7 +168,8 @@ def mark_attendance(request):
                 return redirect('view_attendance')
     else:
         form=AttendanceForm()
-    return render(request,"hostel/attendance.html",{'form':form})
+    students = Student.objects.all()
+    return render(request,"hostel/attendance.html",{'form':form,'students':students})
 
 
 @login_required()
