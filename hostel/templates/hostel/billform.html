@@ -1,98 +1,13 @@
 {% extends 'hostel/base.html' %}
 
+{% load static %}
+
 {% block title %}
 Hostel | BillForm
 {% endblock %}
 
 {% block style %}
-<style>
-    .main{
-        margin-top: 70px;
-        margin-bottom: 100px;
-    }
-    .billform {
-        width: 40%;
-        margin: 0 auto;
-        padding: 20px;
-        border-radius: 5px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
-        background-color: #EDF4F2;
-        font-size: smaller;
-    }
-    .form-fields {
-        margin-bottom: 20px;
-    }
-    .form-field {
-        margin-bottom: 15px;
-    }
-    .form-field label {
-        display: block;
-        margin-bottom: 5px;
-        color: #31473A;
-    }
-
-    .form-field input[type="number"],
-    .form-field input[type="date"] {
-        width: 100%;
-        padding: 8px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-    }
-
-    .submit-input input[type="submit"] {
-        background-color: #071952;
-        color: white;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        width: 100%;
-    }
-    .submit-input input[type="submit"]:hover {
-        opacity: 0.5;
-    }
-
-    h5{
-        color: #071952;
-        text-align: center;
-        margin-bottom: 25px;
-        text-transform: uppercase;
-    }
-    .messages{
-        list-style-type: none;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 10vh;
-        font-size: 16px;
-        text-transform: uppercase;
-        font-weight: bolder;
-    }
-    mark{
-        background: linear-gradient(#b3d9ff 0%, #ffffff 100%);
-        padding: 6px;
-        border-radius: 5px;
-    }
-    .header-links {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        position: relative;
-        top: 0;
-        width: 100%;
-        padding: 0;
-        margin-bottom: 20px;
-    }
-    .header-links .back-link {
-        font-size: 25px;
-        color: #31473A;
-        text-decoration: none;
-        display: inline-block;
-    }
-    .header-links .back-link:hover {
-        opacity: 0.6;
-    }
-</style>
+<link rel="stylesheet" href="{% static 'styles/billform.css' %}">
 {% endblock %}
 
 {% block content %}

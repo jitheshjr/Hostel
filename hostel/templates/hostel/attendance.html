@@ -1,108 +1,13 @@
 {% extends 'hostel/base.html' %}
 
+{% load static %}
+
 {% block title %}
 Hostel | Attendance
 {% endblock %}
 
 {% block style %}
-<style>
-    .main{
-        margin-top: 150px;
-        margin-bottom: 100px;
-    }
-    .attendance-form {
-        width: 25%;
-        margin: 0 auto;
-        padding: 10px;
-        border-radius: 5px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
-        background-color: #EDF4F2;
-    }
-    .attendance-form label {
-        margin-bottom: 8px;
-        color: #31473A;
-        margin-left: 5px;
-    }
-
-    .attendance-form input[type="date"]{
-        margin-bottom: 15px;
-    }
-
-    .attendance-form input[type="checkbox"]{
-        margin-bottom: 5px;
-    }
-
-    .attendance-form input[type="submit"] {
-        padding: 5px 5px 5px 5px;
-        background-color: #071952;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        margin-top: 8px;
-        width: 100%;
-    }
-
-    .attendance-form input[type="submit"]:hover {
-        opacity: 0.5;
-    }
-    
-    h5{
-        color: #071952;
-        text-align: center;
-        margin-bottom: 20px;
-        text-transform: uppercase;
-    }
-    .messages{
-        list-style-type: none;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 10vh;
-        font-size: 16px;
-        text-transform: uppercase;
-        font-weight: bolder;
-    }
-    mark{
-        background: linear-gradient(#b3d9ff 0%, #ffffff 100%);
-        padding: 6px;
-        border-radius: 5px;
-    }
-    #studentSearch {
-        width: 100%;
-        padding: 10px;
-        margin-bottom: 15px;
-        font-size: 16px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        box-sizing: border-box;
-    }
-
-    #studentSearch:focus {
-        border-color: #007bff;
-        outline: none;
-        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-    }
-    .header-links {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        position: relative;
-        top: 0;
-        width: 100%;
-        padding: 0;
-        margin-bottom: 20px;
-    }
-    .header-links .back-link {
-        font-size: 25px;
-        color: #31473A;
-        text-decoration: none;
-        display: inline-block;
-    }
-    .header-links .back-link:hover {
-        opacity: 0.6;
-    }
-</style>
+<link rel="stylesheet" href="{% static 'styles/attendance.css' %}">
 {% endblock %}
 
 {% block content %}

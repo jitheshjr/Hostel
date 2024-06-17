@@ -1,54 +1,13 @@
 {% extends 'hostel/base.html' %}
 
+{% load static %}
+
 {% block title %}
 Hostel | Bill
 {% endblock %}
 
 {% block style %}
-<style>
-    .main{
-        margin-top: 70px;
-        margin-bottom: 100px;
-    }
-    .main-block{
-        margin: 0 auto;
-        width: 80%;
-        height: auto;
-        padding: 10px;
-        border-radius: 5px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
-        background-color: #EDF4F2;
-        font-size: smaller;
-    }
-    .bill {
-        width: 70%;
-        margin: 0 auto;
-    }
-    .bill table {
-        border-collapse: collapse;
-        width: 100%;
-        margin: 10px;
-    }
-    .bill th, .bill td {
-        border: none;
-        text-align: left;
-        padding: 8px;
-    }
-    .bill th, .bill td{
-        background-color: #EDF4F2;
-        color: #31473A;
-    }
-
-    .ignore td{
-        background-color: #31473A;
-    }
-    h5{
-        color: #071952;
-        text-align: center;
-        margin-bottom: 25px;
-        text-transform: uppercase;
-    }
-</style>
+<link rel="stylesheet" href="{% static 'styles/month_bill.css' %}">
 {% endblock %}
 
 {% block content %}
