@@ -3,13 +3,12 @@ from django.http import HttpResponse
 from .models import *
 from .forms import *
 from django.contrib.auth.decorators import login_required
-from datetime import timedelta,date
+from datetime import timedelta
 from django.contrib import messages
-from decimal import Decimal
 from django.core.files.storage import default_storage
 from django.conf import settings
-from django.http import Http404
 from collections import defaultdict
+from .decorators import group_required
 # Create your views here.
 
 @login_required()
@@ -19,7 +18,7 @@ def home(request):
 
 # Student manipulating functions
 
-@login_required()
+@group_required('admin')
 def add_student(request):
     if request.method == "POST":
         form = StudentForm(request.POST, request.FILES)
@@ -37,7 +36,7 @@ def add_student(request):
     return render(request,'hostel/add_stud.html',{'form':form})
 
 
-@login_required()
+@group_required('admin')
 def view_students(request):
     stud = Student.objects.select_related('pgm').all().order_by('pgm')
     if not stud.exists():
@@ -45,7 +44,7 @@ def view_students(request):
     return render(request,'hostel/students.html',{'stud':stud})
 
 
-@login_required()
+@group_required('admin')
 def view_details(request, student_id):
     student = Student.objects.filter(id=student_id).select_related('pgm').first()
     room = Allotment.objects.filter(name_id=student_id).select_related('room_number').first()
@@ -55,7 +54,7 @@ def view_details(request, student_id):
     return render(request, "hostel/details.html", {'student': student, 'student_image_url': student_image_url,'room':room})
 
 
-@login_required()
+@group_required('admin')
 def edit_student(request, student_id):
     student = get_object_or_404(Student, id=student_id)
     prev_admn_no = student.admn_no
@@ -93,7 +92,7 @@ def edit_student(request, student_id):
     return render(request, 'hostel/edit.html', {'form': form})
 
 
-@login_required()
+@group_required('admin')
 def delete_student(request,student_id):
     if request.method == 'GET':
         student = Student.objects.get(id=student_id)
