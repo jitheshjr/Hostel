@@ -3,6 +3,31 @@
     margin-right: 20px;
     margin-left: 20px;
 }
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 50px;
+}
+td {
+    padding: 10px;
+    background-color: #EDF4F2;
+}
+label {
+    font-weight: bold;
+}
+#search{
+    padding: 10px 20px;
+    background-color: #071952;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+#search:hover {
+    opacity: 0.5;
+}
+
 .student-layout {
     width: 130px;
     height: 120px;

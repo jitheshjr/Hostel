@@ -63,31 +63,6 @@ Hostel | AddStudent
                 </div>
 
                 <div class="form-field">
-                    <label for="{{ form.house_name.id_for_label }}">House:</label>
-                    {{ form.house_name }}
-                </div>
-
-                <div class="form-field">
-                    <label for="{{ form.place.id_for_label }}">Place:</label>
-                    {{ form.place }}
-                </div>
-
-                <div class="form-field">
-                    <label for="{{ form.dist.id_for_label }}">District:</label>
-                    {{ form.dist }}
-                </div>
-
-                <div class="form-field">
-                    <label for="{{ form.state.id_for_label }}">State:</label>
-                    {{ form.state }}
-                </div>
-
-                <div class="form-field">
-                    <label for="{{ form.pincode.id_for_label }}">Pin code:</label>
-                    {{ form.pincode }}
-                </div>
-
-                <div class="form-field">
                     <label for="{{ form.parent_name.id_for_label }}">Guardian Name:</label>
                     {{ form.parent_name }}
                 </div>
@@ -105,6 +80,11 @@ Hostel | AddStudent
                 <div class="form-field">
                     <label for="{{ form.pgm.id_for_label }}">Course:</label>
                     {{ form.pgm }}
+                </div>
+
+                <div class="form-field">
+                    <label for="id_year">Year:</label>
+                    {{form.year}}
                 </div>
 
                 <div class="form-field">
@@ -135,4 +115,3 @@ Hostel | AddStudent
     }); 
 </script>
 {% endblock %}
-

@@ -9,6 +9,8 @@ from django.core.files.storage import default_storage
 from django.conf import settings
 from collections import defaultdict
 from .decorators import group_required
+from .filters import studentFilter
+from django.utils import timezone
 # Create your views here.
 
 @login_required()
@@ -38,10 +40,11 @@ def add_student(request):
 
 @group_required('admin')
 def view_students(request):
-    stud = Student.objects.select_related('pgm').all().order_by('pgm')
+    stud = Student.objects.filter(status=True).select_related('pgm').all().order_by('pgm')
+    students_filter = studentFilter(request.GET, queryset=stud)
     if not stud.exists():
         messages.error(request,"Currently there are no students")
-    return render(request,'hostel/students.html',{'stud':stud})
+    return render(request,'hostel/students.html',{'filter':students_filter})
 
 
 @group_required('admin')
@@ -95,8 +98,10 @@ def edit_student(request, student_id):
 @group_required('admin')
 def delete_student(request,student_id):
     if request.method == 'GET':
-        student = Student.objects.get(id=student_id)
-        student.delete()
+        student = get_object_or_404(Student, id=student_id)
+        student.status = False  # Mark the status as False
+        student.date_exited = timezone.now()  # Set the date_exited to the current date
+        student.save()  # Save the changes to the database
         return redirect('view_student')
     else:
         return render(request,'hostel/error.html')

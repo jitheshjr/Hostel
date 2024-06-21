@@ -1,0 +1,48 @@
+{% extends 'hostel/base.html' %}
+
+{% load static %}
+
+{% block title %}
+Hostel | Students
+{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'styles/bill.css' %}">
+<style>
+    
+</style>
+{% endblock %}
+
+{% block content %}
+<form method="get">
+    {{ filter.form.as_table }}
+    <button type="submit">Search</button>
+</form>
+<div class="main-block">
+    <h5>Students</h5>
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}><mark>{{ message }}</mark></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    
+    <div class="bill">
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th> <th>Admission Number</th><th>DOB</th><th>Programme</th><th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for student in filter.qs %}
+                    <tr>
+                        <td>{{ student.name}}</td> <td>{{student.admn_no}}</td><td>{{student.dob}}</td><td>{{student.pgm}}</td>
+                    </tr>
+                {% endfor %}    
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

@@ -25,21 +25,23 @@ class Student(models.Model):
     admn_no = models.PositiveIntegerField(unique=True)
     name = models.CharField(max_length=50)
     year_of_admn = models.PositiveSmallIntegerField()
+    pgm = models.ForeignKey(Programme, on_delete=models.CASCADE)
+    year_choices = [
+        ('1','1'),('2','2'),('3','3'),('4','4'),('5','5'),
+    ]
+    year = models.IntegerField(choices=year_choices)
     dob = models.DateField()
     email = models.EmailField()
     photo = models.ImageField(upload_to="images/")
     contact_regex = RegexValidator(regex=r'^\d{10}$',message="Contact number must be a 10-digit number.")
     contact = models.CharField(validators=[contact_regex], max_length=10)  # Using CharField for contact with max length 10
-    house_name = models.CharField(max_length=50)
-    place = models.CharField(max_length=50)
-    dist = models.CharField(max_length=50)
-    state = models.CharField(max_length=50)
-    pincode = models.PositiveIntegerField()
     parent_name = models.CharField(max_length=50)
     parent_occupation = models.CharField(max_length=100)
+    address = models.TextField(max_length=200)
     annual_income = models.PositiveIntegerField()
-    pgm = models.ForeignKey(Programme, on_delete=models.CASCADE)
     date_joined = models.DateField(auto_now_add=True)
+    date_exited = models.DateField(null=True,blank=True)
+    status = models.BooleanField(default=True)
     
     CATEGORY_CHOICES = [
         ('GENERAL', 'GENERAL'),

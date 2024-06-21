@@ -17,13 +17,14 @@
         <div class="nasc">
             <div class="logo-heading">
                 <a href="{% url 'home' %}"><img src="{% static 'logo.png' %}" id="logo"></a>
-                <h1>NEHRU ARTS AND SCIENCE COLLEGE KANHANGAD <br> K. V. Kunhambu Memorial Women's Hostel <br> NASC-HMS </h1>
+                <h1>NEHRU ARTS AND SCIENCE COLLEGE KANHANGAD <br> K. V. Kunhambu Memorial Women's Hostel <br> NASC-Hostel Management System </h1>
             </div>
             <form action="{% url 'logout' %}" method="post" class="logout-form">
                 {% csrf_token %}
                 <button type="submit" value="Logout" class="logout-btn">Logout</button>
             </form>
         </div>
+        {% if is_admin_group %}
         <nav>
             <div class="nav-links" id="navLinks">
                 <ul>
@@ -50,6 +51,7 @@
                 </ul>
             </div>
         </nav>
+        {% endif %}
             {% block content %}
             {% endblock %}
     </section>
