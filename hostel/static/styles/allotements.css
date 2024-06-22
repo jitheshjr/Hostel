@@ -12,6 +12,30 @@
     background-color: #EDF4F2;
     font-size: smaller;
 }
+#filter-table {
+    margin: auto;
+    width: 20%;
+    border-collapse: collapse;
+    margin-bottom: 50px;
+}
+.filter-td {
+    padding: 10px;
+    background-color: #EDF4F2;
+}
+label {
+    font-weight: bold;
+}
+#search{
+    padding: 10px 20px;
+    background-color: #071952;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+#search:hover {
+    opacity: 0.5;
+}
 .allot {
     width: 80%;
     margin: 0 auto;

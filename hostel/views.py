@@ -9,7 +9,7 @@ from django.core.files.storage import default_storage
 from django.conf import settings
 from collections import defaultdict
 from .decorators import group_required
-from .filters import studentFilter
+from .filters import *
 from django.utils import timezone
 # Create your views here.
 
@@ -108,7 +108,7 @@ def delete_student(request,student_id):
 
 # Room allocation functions
 
-@login_required()
+@group_required('admin')
 def allot_student(request):
     if request.method == "POST":
         form = AllotementForm(request.POST)
@@ -119,7 +119,7 @@ def allot_student(request):
         form = AllotementForm()
     return render(request,'hostel/allot_stud.html',{'form':form})
 
-@login_required()
+@group_required('admin')
 def edit_allocation(request,student_name):
 
     Alloted_object = Allotment.objects.get(name__name=student_name)
@@ -133,7 +133,7 @@ def edit_allocation(request,student_name):
             return redirect('view_allotement')
     return render(request,'hostel/edit_allocation.html',{'form':alloc_form})
 
-@login_required()
+@group_required('admin')
 def delete_allocation(request,student_name):
     if request.method == "GET":
         allot_obj = Allotment.objects.get(name__name=student_name)
@@ -142,10 +142,11 @@ def delete_allocation(request,student_name):
     else:
         return HttpResponse("Error Occured")
 
-@login_required()
+@group_required('admin')
 def view_allotement(request):
-    alloted_list = Allotment.objects.select_related('room_number','name').all().order_by('room_number')
-    return render(request,'hostel/allotements.html',{'alloted':alloted_list})
+    filter = roomFilter(request.GET, queryset=Allotment.objects.select_related('room_number', 'name').order_by('room_number'))
+    alloted_list = filter.qs
+    return render(request, 'hostel/allotements.html', {'alloted': alloted_list, 'filter': filter})
 
 
 
@@ -230,7 +231,7 @@ def find_continuous_absences(start_date, end_date):
     return dict(continuous_absences)
 
 
-@login_required()
+@group_required('admin')
 def generate_mess_bill(request):
     if request.method == "POST":
         form = BillForm(request.POST)
@@ -329,8 +330,11 @@ def generate_mess_bill(request):
 
 @login_required()
 def view_bill(request):
-    context = StudentBill.objects.all().select_related('name')
-    return render(request,"hostel/bill.html",{'bills':context})
+    bills = StudentBill.objects.all().select_related('name')
+
+    bill_filter = billFilter(request.GET, queryset=bills)
+    filtered_bills = bill_filter.qs
+    return render(request,"hostel/bill.html",{'filter':bill_filter,'bills':filtered_bills})
 
 @login_required()
 def view_monthly_bill(request,month,year):

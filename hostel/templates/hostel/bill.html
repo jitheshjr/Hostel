@@ -12,6 +12,26 @@ Hostel | Bill
 
 {% block content %}
 <div class="main">
+    <form method="get" class="filter-form">
+        <table id="filter-table">
+            <tr>
+                <td class="filter-td">
+                    <label for="id_name">Name:</label>
+                    {{filter.form.name}}
+                </td>
+                <td class="filter-td">
+                    <label for="id_month">Month:</label>
+                    {{filter.form.month}}
+                </td>
+                <td class="filter-td">
+                    <label for="id_year">Year:</label>
+                    {{filter.form.year}}
+                </td>
+                <td class="filter-td">
+                    <button type="submit" id="search">Search</button>
+                </td>
+            </tr>
+        </table>
     <div class="main-block">
         <div class="header-links">
             <a href="#" class="back-link" id="closeBtn">&#10006;</a>

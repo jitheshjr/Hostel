@@ -71,6 +71,7 @@ TEMPLATES = [
     },
 ]
 
+
 WSGI_APPLICATION = 'MAIN.wsgi.application'
 
 

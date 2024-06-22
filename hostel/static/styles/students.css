@@ -5,7 +5,8 @@
 }
 
 table {
-    width: 100%;
+    margin: auto;
+    width: 90%;
     border-collapse: collapse;
     margin-bottom: 50px;
 }

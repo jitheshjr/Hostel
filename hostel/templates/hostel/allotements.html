@@ -12,6 +12,19 @@ Hostel | Allocations
 
 {% block content %}
 <div class="main">
+    <form method="get" class="filter-form">
+        <table id="filter-table">
+            <tr>
+                <td class="filter-td">
+                    <label for="id_room_number">Room Number:</label>
+                    {{filter.form.room_number}}
+                </td>
+                <td class="filter-td">
+                    <button type="submit" id="search">Search</button>
+                </td>
+            </tr>
+        </table>
+    </form>
     <div class="main-block">
         <div class="header-links">
             <a href="#" class="back-link" id="closeBtn">&#10006;</a>
