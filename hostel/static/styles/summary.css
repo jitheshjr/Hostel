@@ -4,7 +4,7 @@
 }
 .main-block{
     margin: 0 auto;
-    width: 80%;
+    width: 40%;
     height: auto;
     padding: 10px;
     border-radius: 5px;
@@ -27,6 +27,13 @@
     color: #31473A;
 }
 
+.absents td a{
+    color: #071952;
+}
+.absents td a:hover{
+    opacity: 0.5;
+}
+
 h5{
     color: #071952;
     text-align: center;
@@ -45,10 +52,21 @@ h5{
 }
 .header-links .back-link {
     font-size: 25px;
-    color: #31473A;
+    color: #071952;
     text-decoration: none;
     display: inline-block;
 }
 .header-links .back-link:hover {
     opacity: 0.6;
+}
+.messages{
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10vh;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: bolder;
+    color: #071952;
 }

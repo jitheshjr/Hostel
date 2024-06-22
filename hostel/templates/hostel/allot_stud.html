@@ -14,7 +14,7 @@ Hostel | Allocate
 <div class="main">
     <div class="main-block">
         <div class="header-links">
-            <a href="#" class="back-link" id="closeBtn">&#10006;</a>
+            <a href="{% url 'home' %}" class="back-link" id="closeBtn">&#10006;</a>
         </div>
         <h5>Room Allocation</h5>
         <form action="" method="post">
@@ -36,10 +36,4 @@ Hostel | Allocate
         </form>
     </div>
 </div>
-<script>
-    document.getElementById('closeBtn').addEventListener('click', function(event){
-        event.preventDefault();
-        window.history.back();
-    }); 
-</script>
 {% endblock %}

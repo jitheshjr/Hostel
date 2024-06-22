@@ -20,7 +20,7 @@ Hostel | AddStudent
     {% endif %}
     <div class="main-block">
         <div class="header-links">
-            <a href="#" class="back-link" id="closeBtn">&#10006;</a>
+            <a href="{% url 'home' %}" class="back-link" id="closeBtn">&#10006;</a>
         </div>
         <h5>Add Student</h5>
         <form method="post" action="" enctype="multipart/form-data" onsubmit="return confirmData();">
@@ -108,10 +108,5 @@ Hostel | AddStudent
         let result = confirm("Make sure everything is right!");
         return result;
     }
-
-    document.getElementById('closeBtn').addEventListener('click', function(event){
-        event.preventDefault();
-        window.history.back();
-    }); 
 </script>
 {% endblock %}

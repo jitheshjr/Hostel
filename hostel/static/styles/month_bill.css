@@ -40,3 +40,22 @@ h5{
     margin-bottom: 25px;
     text-transform: uppercase;
 }
+.header-links {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    top: 0;
+    width: 100%;
+    padding: 0;
+    margin-bottom: 20px;
+}
+.header-links .back-link {
+    font-size: 25px;
+    color: #071952;
+    text-decoration: none;
+    display: inline-block;
+}
+.header-links .back-link:hover {
+    opacity: 0.6;
+}

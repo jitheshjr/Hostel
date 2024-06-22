@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-Hostel | Attendance
+Hostel | Report
 {% endblock %}
 
 {% block style %}
@@ -11,23 +11,32 @@ Hostel | Attendance
 
 {% block content %}
 <div class="main">
+    {% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+    {% endif %}
     <div class="main-block">
         <div class="header-links">
-            <a href="#" class="back-link" id="closeBtn">&#10006;</a>
+            <a href="{% url 'home' %}" class="back-link" id="closeBtn">&#10006;</a>
         </div>
         <h5>Attendance Report</h5>
         <div class="absents">
             <table>
                 <tr>
-                    <th>Name</th><th>Date</th>
+                    <th>Date</th><th>Delete</th>
                 </tr>
                 <tr class="ignore-row-summary">
-                    <td></td><td></td>
+                    <td></td>
                 </tr>
                 {% for a in summary %}
                 <tr>
-                    <td>{{a.name}}</td>
-                    <td>{{a.date}}</td>
+                    <td><a href="{% url 'attendance_detail' a.id %}">{{a.date}}</a></td>
+                    <td><a href="{% url 'delete_attendance' a.id %}" onclick="return confirmDelete();">Delete</a></td>
                 </tr>
                 {% endfor %}
             </table>
@@ -35,9 +44,8 @@ Hostel | Attendance
     </div>
 </div>
 <script>
-    document.getElementById('closeBtn').addEventListener('click',function(event){
-        event.preventDefault();
-        window.history.back();
-    });
+    function confirmDelete() {
+        return confirm("Are you sure you want to delete this student?");
+    }
 </script>
 {% endblock %}

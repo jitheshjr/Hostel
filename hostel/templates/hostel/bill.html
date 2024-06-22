@@ -34,7 +34,7 @@ Hostel | Bill
         </table>
     <div class="main-block">
         <div class="header-links">
-            <a href="#" class="back-link" id="closeBtn">&#10006;</a>
+            <a href="{% url 'home' %}" class="back-link" id="closeBtn">&#10006;</a>
         </div>
         <h5>Bill details of students</h5>
         <div class="bill">
@@ -55,10 +55,4 @@ Hostel | Bill
         </div>
     </div>
 </div>
-<script>
-    document.getElementById('closeBtn').addEventListener('click', function(event){
-        event.preventDefault();
-        window.history.back();
-    }); 
-</script>
 {% endblock %}

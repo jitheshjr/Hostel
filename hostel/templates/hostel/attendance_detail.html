@@ -1,0 +1,30 @@
+{% extends 'hostel/base.html' %}
+
+{% load static %}
+
+{% block title %}
+Hostel | Absentees
+{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'styles/attendance_detail.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="main">
+    <div class="main-block">
+        <div class="header-links">
+            <a href="{% url 'view_attendance' %}" class="back-link" id="closeBtn">&#10006;</a>
+        </div>
+        <h5>Datewise Report</h5>
+        <h3>Attendance report for {{ date.date }}</h3>
+
+        <ul>
+            {% for absentee in absentees %}
+                <li>{{ absentee.name }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}
+

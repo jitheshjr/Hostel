@@ -22,7 +22,7 @@ Hostel | BillForm
     {% endif %}
     <div class="billform">
         <div class="header-links">
-            <a href="#" class="back-link" id="closeBtn">&#10006;</a>
+            <a href="{% url 'home' %}" class="back-link" id="closeBtn">&#10006;</a>
         </div>
         <h5>Generate Mess Bill</h5>
         <form method="post">
@@ -69,10 +69,4 @@ Hostel | BillForm
         </form>
     </div>
 </div>
-<script>
-    document.getElementById('closeBtn').addEventListener('click', function(event){
-        event.preventDefault(); // Prevent the default anchor click behavior
-        window.history.back(); // redirect to the previous page
-    });
-</script>
 {% endblock %}

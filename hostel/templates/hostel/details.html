@@ -15,7 +15,7 @@ Hostel | Details
         <div class="header-links">
             <a href="{% url 'view_student' %}" class="back-link" id="closeBtn">&#10006;</a>
             <a href="{% url 'edit_student' student.id %}"><img src="{% static 'edit.png' %}" alt="edit" class="menu"></a>
-            <a href="{% url 'delete_student' student.id %}"><img src="{% static 'delete.png' %}" alt="edit" class="menu"></a>
+            <a href="{% url 'delete_student' student.id %}"><img src="{% static 'delete.png' %}" alt="edit" class="menu" onclick="return confirmDelete();"></a>
         </div>
         <div class="image-container">
             {% if student_image_url %}
@@ -44,15 +44,6 @@ Hostel | Details
     <script>
     function confirmDelete() {
         return confirm("Are you sure you want to delete this student?");
-    }
-
-    function toggleModifyLinks() {
-        var modifyLinks = document.getElementById("modifyLinks");
-        if (modifyLinks.style.display === "none" || modifyLinks.style.display === "") {
-            modifyLinks.style.display = "flex";
-        } else {
-            modifyLinks.style.display = "none";
-        }
     }
 
     document.getElementById('closeBtn').addEventListener('click', function(event){

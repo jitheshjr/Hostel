@@ -17,6 +17,7 @@
     width: 20%;
     border-collapse: collapse;
     margin-bottom: 50px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
 }
 .filter-td {
     padding: 10px;
@@ -80,7 +81,7 @@ h5{
 }
 .header-links .back-link {
     font-size: 25px;
-    color: #31473A;
+    color: #071952;
     text-decoration: none;
     display: inline-block;
 }

@@ -176,13 +176,30 @@ def mark_attendance(request):
     students = Student.objects.all()
     return render(request,"hostel/attendance.html",{'form':form,'students':students})
 
-
 @login_required()
 def view_attendance(request):
-    attendance_list = Attendance.objects.all().select_related('name').order_by('name')
-    return render(request,"hostel/summary.html",{'summary':attendance_list})
+    attendance_list = AttendanceDate.objects.all().order_by('date')
+    success_message = messages.get_messages(request)
 
+    return render(request,"hostel/summary.html",{'summary':attendance_list,'success_message': success_message})
 
+@login_required()
+def detailed_attendance(request, date_id):
+    print(date_id)
+    attendance_date = get_object_or_404(AttendanceDate, id=date_id)
+    absentees = Attendance.objects.filter(date=attendance_date)
+    return render(request, "hostel/attendance_detail.html", {'date': attendance_date, 'absentees': absentees})
+
+@login_required()
+def delete_attendance(request, date_id):
+    attendance_instance = get_object_or_404(AttendanceDate, id=date_id)
+    if request.method == "GET":
+        attendance_instance.delete()
+        messages.success(request, f"Deleted successfully.")
+        return redirect('view_attendance')
+    else:
+        messages.error(request,f"Something went wrong.")
+    return redirect('view_attendance')
 
 # mess bill functions
 

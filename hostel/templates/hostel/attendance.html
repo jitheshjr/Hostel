@@ -22,7 +22,7 @@ Hostel | Attendance
         {% endif %}
         <div class="attendance-form">
             <div class="header-links">
-                <a href="#" id="closeBtn" class="back-link">&#10006;</a>
+                <a href="{% url 'home' %}" id="closeBtn" class="back-link">&#10006;</a>
             </div>
             <h5>Attendance Form</h5>
             <input type="text" id="studentSearch" placeholder="Search by student name" onkeyup="filterStudents()">
@@ -37,11 +37,6 @@ Hostel | Attendance
     </div>
 </div>
 <script>
-    document.getElementById('closeBtn').addEventListener('click', function(event){
-        event.preventDefault();
-        window.history.back();
-    }); 
-
     function filterStudents(){
         let input = document.getElementById('studentSearch');
         let filter = input.value.toLowerCase();
