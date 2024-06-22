@@ -13,6 +13,7 @@ Hostel | Allocations
 {% block content %}
 <div class="main">
     <form method="get" class="filter-form">
+
         <table id="filter-table">
             <tr>
                 <td class="filter-td">
@@ -25,11 +26,15 @@ Hostel | Allocations
             </tr>
         </table>
     </form>
+
     <div class="main-block">
+
         <div class="header-links">
             <a href="{% url 'home' %}" class="back-link" id="closeBtn">&#10006;</a>
         </div>
+
         <h5>Room Details</h5>
+
         <div class="allot">
             <table>
                 <tr>
@@ -47,6 +52,23 @@ Hostel | Allocations
                 </tr>
                 {% endfor %}
             </table>
+        </div>
+        <div class="pagination">
+            <span class="step-links">
+                {% if alloted.has_previous %}
+                    <a href="?page=1">&laquo; first</a>
+                    <a href="?page={{ alloted.previous_page_number }}">previous</a>
+                {% endif %}
+
+                <span class="current">
+                    Page {{ alloted.number }} of {{ alloted.paginator.num_pages }}.
+                </span>
+
+                {% if alloted.has_next %}
+                    <a href="?page={{ alloted.next_page_number }}">next</a>
+                    <a href="?page={{ alloted.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            </span>
         </div>
     </div>
 </div>

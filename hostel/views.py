@@ -11,6 +11,7 @@ from collections import defaultdict
 from .decorators import group_required
 from .filters import *
 from django.utils import timezone
+from django.core.paginator import Paginator
 # Create your views here.
 
 @login_required()
@@ -146,7 +147,12 @@ def delete_allocation(request,student_name):
 def view_allotement(request):
     filter = roomFilter(request.GET, queryset=Allotment.objects.select_related('room_number', 'name').order_by('room_number'))
     alloted_list = filter.qs
-    return render(request, 'hostel/allotements.html', {'alloted': alloted_list, 'filter': filter})
+
+    paginator = Paginator(alloted_list,10)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    return render(request, 'hostel/allotements.html', {'alloted': page_obj, 'filter': filter})
 
 
 
@@ -179,9 +185,15 @@ def mark_attendance(request):
 @login_required()
 def view_attendance(request):
     attendance_list = AttendanceDate.objects.all().order_by('date')
+
+    #pagination
+    paginator = Paginator(attendance_list,10)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
     success_message = messages.get_messages(request)
 
-    return render(request,"hostel/summary.html",{'summary':attendance_list,'success_message': success_message})
+    return render(request,"hostel/summary.html",{'page_obj': page_obj,'success_message': success_message})
 
 @login_required()
 def detailed_attendance(request, date_id):
@@ -351,7 +363,13 @@ def view_bill(request):
 
     bill_filter = billFilter(request.GET, queryset=bills)
     filtered_bills = bill_filter.qs
-    return render(request,"hostel/bill.html",{'filter':bill_filter,'bills':filtered_bills})
+
+    paginator = Paginator(filtered_bills,10)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+
+    return render(request,"hostel/bill.html",{'filter':bill_filter,'bills':page_obj})
 
 @login_required()
 def view_monthly_bill(request,month,year):
