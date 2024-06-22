@@ -13,6 +13,9 @@ Hostel | Allocations
 {% block content %}
 <div class="main">
     <div class="main-block">
+        <div class="header-links">
+            <a href="#" class="back-link" id="closeBtn">&#10006;</a>
+        </div>
         <h5>Room Details</h5>
         <div class="allot">
             <table>
@@ -42,5 +45,9 @@ Hostel | Allocations
     function confirmDelete() {
         return confirm("Are you sure you want to delete this student?");
     }
+    document.getElementById('closeBtn').addEventListener('click', function(event){
+        event.preventDefault();
+        window.history.back();
+    }); 
 </script>
 {% endblock %}

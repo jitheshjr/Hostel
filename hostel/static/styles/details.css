@@ -10,7 +10,6 @@
 }
 .header-links {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     position: relative;
     top: 0;
@@ -20,13 +19,15 @@
 }
 .header-links .back-link {
     font-size: 25px;
+    margin-right: 80%;
     color: #31473A;
     text-decoration: none;
     display: inline-block;
 }
-.header-links .menu {
+.header-links .menu{
     width: 20px; /* Adjust the size to match the font size of the back-link */
     height: 20px;
+    margin-left: 10px;
     cursor: pointer;
 }
 .header-links .menu:hover,

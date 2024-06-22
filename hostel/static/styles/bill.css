@@ -4,7 +4,7 @@
 }
 .main-block{
     margin: 0 auto;
-    width: 80%;
+    width: 40%;
     height: auto;
     padding: 10px;
     border-radius: 5px;
@@ -13,7 +13,7 @@
     font-size: smaller;
 }
 .bill {
-    width: 70%;
+    width: 80%;
     margin: 0 auto;
 }
 .bill table {
@@ -39,4 +39,23 @@ h5{
     text-align: center;
     margin-bottom: 25px;
     text-transform: uppercase;
+}
+.header-links {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    top: 0;
+    width: 100%;
+    padding: 0;
+    margin-bottom: 20px;
+}
+.header-links .back-link {
+    font-size: 25px;
+    color: #31473A;
+    text-decoration: none;
+    display: inline-block;
+}
+.header-links .back-link:hover {
+    opacity: 0.6;
 }
