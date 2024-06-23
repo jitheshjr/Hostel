@@ -45,7 +45,7 @@
 }
 nav{
     display: flex;
-    padding: 2% 6%;
+    padding: 0 30px;
     justify-content: space-between;
     align-items: center;
 }
