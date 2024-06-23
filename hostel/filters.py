@@ -16,3 +16,13 @@ class roomFilter(django_filters.FilterSet):
     class Meta:
         model = Allotment
         fields = ['room_number']
+
+class streakFilter(django_filters.FilterSet):
+    class Meta:
+        model = ContinuousAbsence
+        fields = ['name','month','year']
+
+class monthbillFilter(django_filters.FilterSet):
+    class Meta:
+        model = MessBill
+        fields = ['month','year']

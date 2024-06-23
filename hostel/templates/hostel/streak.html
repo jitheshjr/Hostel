@@ -1,0 +1,76 @@
+{% extends 'hostel/base.html' %}
+
+{% load static %}
+
+{% block title %}
+Hostel | Streak
+{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'styles/streak.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="main">
+
+        <form method="get" class="filter-form">
+            <table id="filter-table">
+                <tr>
+                    <td class="filter-td">
+                        <label for="id_name">Name:</label>
+                        {{filter.form.name}}
+                    </td>
+                    <td class="filter-td">
+                        <label for="id_month">Month:</label>
+                        {{filter.form.month}}
+                    </td>
+                    <td class="filter-td">
+                        <label for="id_year">Year:</label>
+                        {{filter.form.year}}
+                    </td>
+                    <td class="filter-td">
+                        <button type="submit" id="search">Search</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+        <div class="main-block">
+
+            <div class="header-links">
+                <a href="{% url 'home' %}" class="back-link" id="closeBtn">&#10006;</a>
+            </div>
+
+            <h5>Continuous Absence Details</h5>
+
+            <div class="streak">
+                <ul>
+
+                    {% for streak in page_obj %}
+                        <li>{{streak.name}} : {{ streak.streak }} days in {{ streak.month }},{{streak.year}}</li>
+                    {% endfor %}
+
+                </ul>
+            </div>
+
+            <!-- Pagination Controls -->
+            <div class="pagination">
+                <span class="step-links">
+                    {% if page_obj.has_previous %}
+                        <a href="?page=1{{ filter.form.data.urlencode }}">First</a>
+                        <a href="?page={{ page_obj.previous_page_number }}{{ filter.form.data.urlencode }}">Previous</a>
+                    {% endif %}
+
+                    <span class="current">
+                        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                    </span>
+
+                    {% if page_obj.has_next %}
+                        <a href="?page={{ page_obj.next_page_number }}{{ filter.form.data.urlencode }}">Next</a>
+                        <a href="?page={{ page_obj.paginator.num_pages }}{{ filter.form.data.urlencode }}">Last</a>
+                    {% endif %}
+                </span>
+            </div>
+        </div>
+    </div>
+{% endblock %}

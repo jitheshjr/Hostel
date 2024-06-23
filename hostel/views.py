@@ -47,6 +47,13 @@ def view_students(request):
         messages.error(request,"Currently there are no students")
     return render(request,'hostel/students.html',{'filter':students_filter})
 
+def inactive_students(request):
+    stud = Student.objects.filter(status=False).select_related('pgm').all().order_by('pgm')
+    students_filter = studentFilter(request.GET, queryset=stud)
+    if not stud.exists():
+        messages.error(request,"Currently there are no students")
+    return render(request,'hostel/students.html',{'filter':students_filter})
+
 
 @group_required('admin')
 def view_details(request, student_id):
@@ -213,6 +220,17 @@ def delete_attendance(request, date_id):
         messages.error(request,f"Something went wrong.")
     return redirect('view_attendance')
 
+@login_required()
+def streak(request):
+    streak_filter = streakFilter(request.GET, queryset=ContinuousAbsence.objects.all().select_related('name'))
+    streak_list = streak_filter.qs
+
+    paginator = Paginator(streak_list,10)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    return render(request,"hostel/streak.html",{'filter':streak_filter,'page_obj':page_obj})
+
 # mess bill functions
 
 #function to find continuous absences
@@ -370,6 +388,17 @@ def view_bill(request):
 
 
     return render(request,"hostel/bill.html",{'filter':bill_filter,'bills':page_obj})
+
+@login_required()
+def total_bill(request):
+    bill_filter = monthbillFilter(request.GET, queryset = MessBill.objects.all())
+    bill_list = bill_filter.qs
+
+    paginator = Paginator(bill_list,10)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    return render(request,"hostel/totalbill.html",{'filter':bill_filter,'page_obj':page_obj})
 
 @login_required()
 def view_monthly_bill(request,month,year):

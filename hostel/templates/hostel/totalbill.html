@@ -1,0 +1,91 @@
+{% extends 'hostel/base.html' %}
+
+{% load static %}
+
+{% block title %}
+Hostel | Month Bill
+{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'styles/monthbill.css' %}">
+{% endblock %}
+
+{% block content %} 
+    <div class="main">
+
+        <form method="get" class="filter-form">
+            <table id="filter-table">
+                <tr>
+                    <td class="filter-td">
+                        <label for="id_month">Month:</label>
+                        {{filter.form.month}}
+                    </td>
+                    <td class="filter-td">
+                        <label for="id_year">Year:</label>
+                        {{filter.form.year}}
+                    </td>
+                    <td class="filter-td">
+                        <button type="submit" id="search">Search</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+        <div class="main-block">
+            <div class="header-links">
+                <a href="{% url 'home' %}" class="back-link" id="closeBtn">&#10006;</a>
+            </div>
+
+            <h5>Monthly Bills</h5>
+
+            <div class="bill">
+                <table>
+                    <tr>
+                        <th>Students</th><th>Working Days</th><th>Total Mess Amount</th><th>Room Rent</th>
+                        <th>Electricity Bill</th><th>Staff Salary</th><th>Month</th><th>Year</th>
+                    </tr>
+                    <tr>
+                        <td></td>
+                    </tr>
+                    {% for bill in page_obj %}
+                        <tr>
+                            <td>{{bill.no_of_students}}</td>
+                            <td>{{bill.mess_days}}</td>
+                            <td>{{bill.mess_amount}}</td>
+                            <td>{{bill.room_rent}}</td>
+                            <td>{{bill.electricity_bill}}</td>
+                            <td>{{bill.staff_salary}}</td>
+                            <td>{{bill.month}}</td>
+                            <td>{{bill.year}}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+
+            <!-- Pagination Controls -->
+            <div class="pagination">
+                <span class="step-links">
+                    {% if page_obj.has_previous %}
+                        <a href="?page=1{{ filter.form.data.urlencode }}">First</a>
+                        <a href="?page={{ page_obj.previous_page_number }}{{ filter.form.data.urlencode }}">Previous</a>
+                    {% endif %}
+
+                    <span class="current">
+                        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                    </span>
+
+                    {% if page_obj.has_next %}
+                        <a href="?page={{ page_obj.next_page_number }}{{ filter.form.data.urlencode }}">Next</a>
+                        <a href="?page={{ page_obj.paginator.num_pages }}{{ filter.form.data.urlencode }}">Last</a>
+                    {% endif %}
+                </span>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+
+
+
+    
