@@ -39,7 +39,8 @@
 .form-field input[type="text"],
 .form-field input[type="email"],
 .form-field input[type="number"],
-.form-field input[type="file"] {
+.form-field input[type="file"],
+.form-field input[type="date"] {
     background-color: #fff;
     width: 100%;
     padding: 8px;

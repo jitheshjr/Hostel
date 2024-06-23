@@ -27,7 +27,7 @@ class Student(models.Model):
     year_of_admn = models.PositiveSmallIntegerField()
     pgm = models.ForeignKey(Programme, on_delete=models.CASCADE)
     year_choices = [
-        ('1','1'),('2','2'),('3','3'),('4','4'),('5','5'),
+        (1,'First'),(2,'Second'),(3,'Third'),(4,'Fourth'),(5,'Fifth'),
     ]
     year = models.IntegerField(choices=year_choices)
     dob = models.DateField()
@@ -40,8 +40,7 @@ class Student(models.Model):
     address = models.TextField(max_length=200)
     annual_income = models.PositiveIntegerField()
     date_joined = models.DateField(auto_now_add=True)
-    date_exited = models.DateField(null=True,blank=True)
-    status = models.BooleanField(default=True)
+
     
     CATEGORY_CHOICES = [
         ('GENERAL', 'GENERAL'),
@@ -60,6 +59,44 @@ class Student(models.Model):
     
     def __str__(self):
         return self.name
+    
+
+class Trash(models.Model):
+    admn_no = models.PositiveIntegerField(unique=True)
+    name = models.CharField(max_length=50)
+    year_of_admn = models.PositiveSmallIntegerField()
+    pgm = models.ForeignKey(Programme, on_delete=models.CASCADE)
+    dob = models.DateField()
+    email = models.EmailField()
+    photo = models.ImageField(upload_to="images/")
+    contact_regex = RegexValidator(regex=r'^\d{10}$',message="Contact number must be a 10-digit number.")
+    contact = models.CharField(validators=[contact_regex], max_length=10)  # Using CharField for contact with max length 10
+    parent_name = models.CharField(max_length=50)
+    parent_occupation = models.CharField(max_length=100)
+    address = models.TextField(max_length=200)
+    annual_income = models.PositiveIntegerField()
+    date_joined = models.DateField()
+    date_exited = models.DateField(null=True,blank=True)
+    room_no = models.TextField(null=True, blank=True)
+    
+    CATEGORY_CHOICES = [
+        ('GENERAL', 'GENERAL'),
+        ('OBC', 'OBC'),
+        ('OEC', 'OEC'),
+        ('SC', 'SC'),
+        ('ST', 'ST'),
+    ]
+    category = models.CharField(max_length=20, choices=CATEGORY_CHOICES, default='GENERAL')
+    
+    EGRANTZ_CHOICES = [
+        (True, 'Yes'),
+        (False, 'No'),
+    ]
+    E_Grantz = models.BooleanField(choices=EGRANTZ_CHOICES)
+
+    def __str__(self):
+        return self.name
+    
 
     
 class Room(models.Model):
@@ -96,7 +133,21 @@ class Attendance(models.Model):
 
 class MessBill(models.Model):
     no_of_students = models.SmallIntegerField()
-    month = models.CharField(max_length=42)
+    MONTH_CHOICES = [
+        ('January', 'January'),
+        ('February', 'February'),
+        ('March', 'March'),
+        ('April', 'April'),
+        ('May', 'May'),
+        ('June', 'June'),
+        ('July', 'July'),
+        ('August', 'August'),
+        ('September', 'September'),
+        ('October', 'October'),
+        ('November', 'November'),
+        ('December', 'December'),
+    ]
+    month = models.CharField(max_length=42,choices=MONTH_CHOICES)
     mess_days = models.SmallIntegerField()
     mess_amount = models.DecimalField(max_digits=10,decimal_places=2)
     room_rent = models.DecimalField(max_digits=10,decimal_places=2)
@@ -114,7 +165,21 @@ class StudentBill(models.Model):
     bill_id = models.ForeignKey(MessBill,on_delete=models.CASCADE)
     name = models.ForeignKey(Student,on_delete=models.CASCADE)
     total = models.DecimalField(max_digits=10,decimal_places=2)
-    month = models.CharField(max_length=20)
+    MONTH_CHOICES = [
+        ('January', 'January'),
+        ('February', 'February'),
+        ('March', 'March'),
+        ('April', 'April'),
+        ('May', 'May'),
+        ('June', 'June'),
+        ('July', 'July'),
+        ('August', 'August'),
+        ('September', 'September'),
+        ('October', 'October'),
+        ('November', 'November'),
+        ('December', 'December'),
+    ]
+    month = models.CharField(max_length=20,choices=MONTH_CHOICES)
     year = models.SmallIntegerField()
 
     class Meta:
@@ -127,7 +192,21 @@ class ContinuousAbsence(models.Model):
     bill_id = models.ForeignKey(MessBill,on_delete=models.CASCADE)
     name = models.ForeignKey(Student,on_delete=models.CASCADE)
     streak = models.IntegerField()
-    month = models.CharField(max_length=20)
+    MONTH_CHOICES = [
+        ('January', 'January'),
+        ('February', 'February'),
+        ('March', 'March'),
+        ('April', 'April'),
+        ('May', 'May'),
+        ('June', 'June'),
+        ('July', 'July'),
+        ('August', 'August'),
+        ('September', 'September'),
+        ('October', 'October'),
+        ('November', 'November'),
+        ('December', 'December'),
+    ]
+    month = models.CharField(max_length=20,choices=MONTH_CHOICES)
     year = models.IntegerField()
 
     class Meta:

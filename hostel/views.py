@@ -26,14 +26,17 @@ def add_student(request):
     if request.method == "POST":
         form = StudentForm(request.POST, request.FILES)
         admn_no = request.POST.get('admn_no')
+        print(admn_no)
         if Student.objects.filter(admn_no=admn_no).exists():
             messages.error(request,f"Sorry, a student with admission number {admn_no} already exists")
-    
-        elif form.is_valid():
-            form.save()
-            return redirect('view_student')
         else:
-            messages.error(request,"Something went wrong...")
+            if form.is_valid():
+                form.save()
+                return redirect('view_student')
+            else:
+                # Debugging: Print form errors
+                print("Form errors:", form.errors)
+                messages.error(request, "Something went wrong...")
     else:
         form = StudentForm()
     return render(request,'hostel/add_stud.html',{'form':form})
@@ -41,19 +44,11 @@ def add_student(request):
 
 @group_required('admin')
 def view_students(request):
-    stud = Student.objects.filter(status=True).select_related('pgm').all().order_by('pgm')
+    stud = Student.objects.all().select_related('pgm').all().order_by('pgm')
     students_filter = studentFilter(request.GET, queryset=stud)
     if not stud.exists():
         messages.error(request,"Currently there are no students")
     return render(request,'hostel/students.html',{'filter':students_filter})
-
-def inactive_students(request):
-    stud = Student.objects.filter(status=False).select_related('pgm').all().order_by('pgm')
-    students_filter = studentFilter(request.GET, queryset=stud)
-    if not stud.exists():
-        messages.error(request,"Currently there are no students")
-    return render(request,'hostel/students.html',{'filter':students_filter})
-
 
 @group_required('admin')
 def view_details(request, student_id):
@@ -63,6 +58,23 @@ def view_details(request, student_id):
     if student and student.photo:
         student_image_url = settings.MEDIA_URL + str(student.photo)
     return render(request, "hostel/details.html", {'student': student, 'student_image_url': student_image_url,'room':room})
+
+
+def inactive_students(request):
+    stud = Trash.objects.all().select_related('pgm').all().order_by('pgm')
+    students_filter = studentFilter(request.GET, queryset=stud)
+    if not stud.exists():
+        messages.error(request,"Currently there are no students")
+    return render(request,'hostel/inact_students.html',{'filter':students_filter})
+
+
+@group_required('admin')
+def view_inactive_details(request, student_id):
+    student = Trash.objects.filter(id=student_id).select_related('pgm').first()
+    student_image_url = None
+    if student and student.photo:
+        student_image_url = settings.MEDIA_URL + str(student.photo)
+    return render(request, "hostel/inact_details.html", {'student': student, 'student_image_url': student_image_url})
 
 
 @group_required('admin')
@@ -107,12 +119,42 @@ def edit_student(request, student_id):
 def delete_student(request,student_id):
     if request.method == 'GET':
         student = get_object_or_404(Student, id=student_id)
-        student.status = False  # Mark the status as False
-        student.date_exited = timezone.now()  # Set the date_exited to the current date
-        student.save()  # Save the changes to the database
+
+        # Get room number if allotted
+        room_no = None
+        allotment = Allotment.objects.filter(name=student).first()
+        if allotment:
+            room_no = allotment.room_number
+            allotment.delete()
+
+        # Move student data to Trash
+        trash_obj = Trash(
+            admn_no=student.admn_no,
+            name=student.name,
+            year_of_admn=student.year_of_admn,
+            pgm=student.pgm,
+            dob=student.dob,
+            email=student.email,
+            photo=student.photo,
+            contact=student.contact,
+            parent_name=student.parent_name,
+            parent_occupation=student.parent_occupation,
+            address=student.address,
+            annual_income=student.annual_income,
+            date_joined=student.date_joined,
+            date_exited=timezone.now(),
+            room_no=room_no,
+            category=student.category,
+            E_Grantz=student.E_Grantz,
+        )
+        trash_obj.save()
+
+        # Delete the student
+        student.delete()
+
         return redirect('view_student')
     else:
-        return render(request,'hostel/error.html')
+        return render(request, 'hostel/error.html')
 
 # Room allocation functions
 
