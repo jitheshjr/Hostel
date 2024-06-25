@@ -13,10 +13,14 @@
     {% endblock %}
 </head>
 <body>
+
+    <!-- header -->
     <section class="header">
         <div class="nasc">
             <div class="logo-heading">
-                <a href="{% url 'home' %}"><img src="{% static 'logo.png' %}" id="logo"></a>
+                <img src="{% static 'logo.png' %}" class="logo-image">
+            </div>
+            <div class="institution-name">
                 <h1>NEHRU ARTS AND SCIENCE COLLEGE KANHANGAD <br> K. V. Kunhambu Memorial Women's Hostel <br> NASC-Hostel Management System </h1>
             </div>
             <form action="{% url 'logout' %}" method="post" class="logout-form">
@@ -48,9 +52,6 @@
                         </div>
                     </li>
 
-                    <li><a href="{% url 'view_attendance' %}">SUMMARY</a></li>
-                    <li><a href="{% url 'streak' %}">STREAKS</a></li>
-
                     <li><a href="">BILL</a>
                         <div class="submenu1">
                             <ul>
@@ -59,13 +60,39 @@
                             </ul>
                         </div>
                     </li>
+
+                    <li><a href="{% url 'view_attendance' %}">SUMMARY</a></li>
+                    <li><a href="{% url 'streak' %}">STREAKS</a></li>
                 </ul>
             </div>
         </nav>
         {% endif %}
-            {% block content %}
-            {% endblock %}
     </section>
+
+    <!-- Body -->
+    {% block content %}
+    {% endblock %}
+        
+    <!-- Footer -->
+    <footer>
+        <div class="footer-section">
+            <h4>Contact Us</h4>
+            <p>Email: info@example.com</p>
+            <p>Phone: (123) 456-7890</p>
+        </div>
+        <div class="footer-section">
+            <h4>Support</h4>
+            <p>Email: support@example.com</p>
+            <p>Phone: (987) 654-3210</p>
+        </div>
+        <div class="footer-section">
+            <h4>About Us</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum.</p>
+        </div>
+        <div class="footer-section">
+            <p>&copy; 2024 Your Company. All rights reserved.</p>
+        </div>
+    </footer>     
 </body>
 </html>
 

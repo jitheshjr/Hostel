@@ -11,47 +11,51 @@ Hostel | Attendance
 {% endblock %}
 
 {% block content %}
-<div class="main">
-    <div class="attendance-validation">
-        {% if messages %}
-        <ul class="messages" >
-            {% for message in messages %}
-                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}><mark>{{ message }}</mark></li>
-            {% endfor %}
-        </ul>
-        {% endif %}
-        <div class="attendance-form">
-            <div class="header-links">
-                <a href="{% url 'home' %}" id="closeBtn" class="back-link">&#10006;</a>
-            </div>
-            <h5>Attendance Form</h5>
-            <input type="text" id="studentSearch" placeholder="Search by student name" onkeyup="filterStudents()">
-            <form action="" method="post">
-                {% csrf_token %}
-                <div id="student-container">
-                    {{form.as_p}}
+    <section class="main">
+
+    <div class="main-body">
+        <div class="attendance-validation">
+            {% if messages %}
+            <ul class="messages" >
+                {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}><mark>{{ message }}</mark></li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <div class="attendance-form">
+                <div class="header-links">
+                    <a href="{% url 'home' %}" id="closeBtn" class="back-link">&#10006;</a>
                 </div>
-                <input type="submit" value="submit">
-            </form>
+                <h5>Attendance Form</h5>
+                <input type="text" id="studentSearch" placeholder="Search by student name" onkeyup="filterStudents()">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <div id="student-container">
+                        {{form.as_p}}
+                    </div>
+                    <input type="submit" value="submit">
+                </form>
+            </div>
         </div>
     </div>
-</div>
-<script>
-    function filterStudents(){
-        let input = document.getElementById('studentSearch');
-        let filter = input.value.toLowerCase();
-        let studentContainer = document.getElementById('student-container');
-        let students = studentContainer.getElementsByTagName('label');
 
-        for (let i = 0; i < students.length; i++) {
-            let label = students[i];
-            let text = label.textContent || label.innerText;
-            if (text.toLowerCase().includes(filter)) {
-                label.style.display = '';
-            } else {
-                label.style.display = 'none';
+    </section>
+    <script>
+        function filterStudents(){
+            let input = document.getElementById('studentSearch');
+            let filter = input.value.toLowerCase();
+            let studentContainer = document.getElementById('student-container');
+            let students = studentContainer.getElementsByTagName('label');
+
+            for (let i = 0; i < students.length; i++) {
+                let label = students[i];
+                let text = label.textContent || label.innerText;
+                if (text.toLowerCase().includes(filter)) {
+                    label.style.display = '';
+                } else {
+                    label.style.display = 'none';
+                }
             }
         }
-    }
-</script>
+    </script>
 {% endblock %}

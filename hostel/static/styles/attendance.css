@@ -1,14 +1,20 @@
 .main{
-    margin-top: 150px;
-    margin-bottom: 100px;
+    height: 80vh;
 }
+
+.main-body{
+    margin-top: 15vh;
+}
+
 .attendance-form {
     width: 25%;
     margin: 0 auto;
     padding: 10px;
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
-    background-color: #EDF4F2;
+    border-radius: 10px;
+    background:#EDF4F2;
+    border: 2px solid rgb(10, 148, 208);
+    box-shadow: 0 8px 32px rgba(0, 238, 255, 0.6);
 }
 .attendance-form label {
     margin-bottom: 8px;
@@ -24,23 +30,28 @@
     margin-bottom: 5px;
 }
 
-.attendance-form input[type="submit"] {
-    padding: 5px 5px 5px 5px;
-    background-color: #071952;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 8px;
+input[type="submit"] {
     width: 100%;
+    background-color: rgb(10, 148, 208);
+    color: white;
+    font-weight: bolder;
+    font-size: larger;
+    padding: 10px 20px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, opacity 0.3s;
 }
 
-.attendance-form input[type="submit"]:hover {
-    opacity: 0.5;
+input[type="submit"]:hover {
+    background: #203A43;
+    color: white;
 }
+
 
 h5{
-    color: #071952;
+    color: #203A43;
     text-align: center;
     margin-bottom: 20px;
     text-transform: uppercase;
@@ -87,10 +98,10 @@ mark{
 }
 .header-links .back-link {
     font-size: 25px;
-    color: #071952;
+    color: #203A43;
     text-decoration: none;
     display: inline-block;
 }
 .header-links .back-link:hover {
-    opacity: 0.6;
+    color: #0ef;
 }

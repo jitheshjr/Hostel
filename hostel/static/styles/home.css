@@ -1,10 +1,13 @@
+.main-body{
+    height: 80vh;
+}
 h4{
     text-align: center;
     padding-top: 0px;
 }
 .text-box{
     width: 90%;
-    color: #071952;
+    color: #FFFFFF;
     position: absolute;
     top: 52%;
     left: 50%;
@@ -12,19 +15,19 @@ h4{
     text-align: center;
 }
 .text-box h4{
-    font-size: 20px;
+    font-size: 30px;
     text-transform: uppercase;
     padding: 10px 0;
 }
 .text-box h3{
-    font-size: 25px;
+    font-size: 30px;
 }
 .hero-btn{
     margin-top: 50px;
     display: inline-block;
     text-decoration: none;
-    color: #071952;
-    border: 1px solid #071952;
+    color: #ffffff;
+    border: 1px solid #ffffff;
     padding: 12px 34px;
     font-size: 13px;
     background: transparent;
@@ -33,8 +36,25 @@ h4{
     text-transform: uppercase;
 }
 .hero-btn:hover{
-    border: 1px solid #071952;
-    background: #071952;
+    background: rgba(8, 27, 41, 0.7);
+    border-top: 2px solid rgb(10, 148, 208);
+    border-bottom: 2px solid rgb(10, 148, 208);
+    box-shadow: 0 1px 4px rgba(0, 238, 255, 0.6), 0 -1px 4px rgba(0, 238, 255, 0.6);
+    backdrop-filter: blur(10px);
     transition: 1s;
     color: white;
+}
+
+@media (min-width: 360px) and (max-width: 450px){
+    .text-box {
+        width: 90%;
+        max-width: 100%; 
+    }
+    .text-box h4 {
+        font-size: 22px;
+    }
+    .hero-btn {
+        padding: 8px 16px; /* Adjust padding for smaller buttons */
+        font-size: 11px; /* Further decrease font size */
+    }
 }

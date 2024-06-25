@@ -4,56 +4,84 @@
     font-family: sans-serif;
     box-sizing: border-box;
 }
-.nasc{
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.logo-heading {
-    display: flex;
-    align-items: center;
+body{
+    background: linear-gradient(to bottom, #0F2027, #203A43, #2C5364);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.nasc h1{
-    padding-left: 10px;
-    color: #071952; 
-}
-
+/* Header section */
 .header{
-    min-height: 100vh;
+    min-height: 28vh;
     width: 100%;
     background-position: center;
     background-size: cover;
     position: relative;
 }
 
+.nasc {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    color: white;
+}
+.logo-heading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    padding: 10px;
+    margin-right: 20px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.logo-image {
+    width: 80px;
+    height: 80px;
+}
+
+.institution-name h1 {
+    font-size: 1.2em;
+    line-height: 1.5;
+}
+
 .logout-form{
     margin-left: auto;
+    margin-top: 20px;
 }
 .logout-btn{
-    border: none;
+    background-color: white;
+    color: #2C5364;
+    font-size: 16px;
     text-transform: uppercase;
-    padding: 5px 10px;
-    background-color: transparent;
-    color: #071952;
     font-weight: bolder;
-    font-size: 20px;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 .logout-btn:hover{
-    opacity: 0.7;
+    background-color: #2C5364;
+    color: white;
 }
+
+/* Nav bar */
 nav{
+    width: 100%;
     display: flex;
     padding: 0 100px;
     justify-content: space-between;
     align-items: center;
+    background: rgba(8, 27, 41, 0.7);
+    border-top: 2px solid rgb(10, 148, 208);
+    border-bottom: 2px solid rgb(10, 148, 208);
+    box-shadow: 0 2px 8px rgba(0, 238, 255, 0.6), 0 -2px 8px rgba(0, 238, 255, 0.6);
+    backdrop-filter: blur(10px);
 }
 
 nav ul{
     display: inline-flex;
     list-style: none;
-    color: #071952;
 }
 
 nav ul li{
@@ -64,7 +92,7 @@ nav ul li{
 }
 nav ul li a{
     text-decoration: none;
-    color: #071952;
+    color: white;
     font-size: 20px;
     font-weight: bolder;
 }
@@ -89,12 +117,15 @@ nav ul li:hover .submenu1 ul li{
     padding: 5px 5px;
     border-radius: 0;
     text-align: center;
-    background-color: #071952;
-    border: 1px solid #fff;
+    background: rgba(8, 27, 41, 0.7);
+    border-top: 2px solid rgb(10, 148, 208);
+    border-bottom: 2px solid rgb(10, 148, 208);
+    box-shadow: 0 1px 4px rgba(0, 238, 255, 0.6), 0 -1px 4px rgba(0, 238, 255, 0.6);
+    backdrop-filter: blur(10px);
 }
 nav ul li:hover .submenu1 ul li a{
     font-size: 7px;
-    color: white;
+    color: #fff;
     text-decoration: none;
     text-transform: uppercase;
 }
@@ -112,11 +143,81 @@ nav ul li:hover .submenu1 ul li a{
     content: "";
     width: 0;
     height: 2px;
-    background:#071952;
+    background: #0ef;
     display: block;
     margin: auto;
     transition: 0.5s;
 }
 .nav-links ul li:hover::after{
     width: 100%;
+}
+
+/* footer section */
+footer {
+    background-color: black;
+    color: white;
+    padding: 20px 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    border-top: 2px solid rgb(10, 148, 208);
+    box-shadow: 0 -8px 32px rgba(0, 238, 255, 0.6), 0 8px 32px rgba(0, 238, 255, 0.6); /* Shadow equally distributed on top and bottom */
+}
+
+.footer-section {
+    flex: 1 1 200px; /* Flex basis to ensure sections are responsive */
+    margin: 10px;
+}
+
+.footer-section h4 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    text-align: left;
+}
+
+.footer-section p {
+    margin: 5px 0;
+}
+
+.footer-section:last-child {
+    flex: 1 1 100%;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* responsive */
+@media (min-width: 360px) and (max-width: 450px) {
+    .logo-heading {
+        display: none;
+    }
+    .institution-name h1 {
+        font-size: 10px; /* Adjust font size */
+        line-height: 20px; /* Adjust line height */
+    }
+    .logout-btn {
+        font-size: 10px; /* Further decrease font size */
+        padding: 6px 12px; /* Adjust padding */
+    }
+    nav{
+        width: 100%;
+        padding: 0;
+    }
+    nav ul{
+        display: flex;
+        justify-content: space-around; /* Distribute space evenly */
+        align-items: center;
+        padding: 0;
+        margin: 0;
+    }
+    nav ul li{
+        flex: 1; /* Each item will grow to take up an equal amount of space */
+        text-align: center;
+        padding: 8px 10px;
+    }
+    nav ul li a{
+        font-size: 8px;
+        padding: 0;
+        display: block; /* Ensure the link takes up the full height of the li */
+    }
 }
