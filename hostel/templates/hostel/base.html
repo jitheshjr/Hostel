@@ -25,7 +25,7 @@
             </div>
             <form action="{% url 'logout' %}" method="post" class="logout-form">
                 {% csrf_token %}
-                <button type="submit" value="Logout" class="logout-btn">Logout</button>
+                <button type="submit" value="Logout" class="logout-btn"><img src="{% static 'exit.png' %}" id="exit"><div id="log-text">Logout</div></button>
             </form>
         </div>
         {% if is_admin_group %}
@@ -52,7 +52,7 @@
                         </div>
                     </li>
 
-                    <li><a href="">BILL</a>
+                    <li><a href="">MESSBILL</a>
                         <div class="submenu1">
                             <ul>
                                 <li><a href="{% url 'view_bill' %}">Student bill</a></li>

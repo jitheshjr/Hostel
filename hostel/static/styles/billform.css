@@ -1,13 +1,17 @@
 .main{
-    margin-top: 70px;
-    margin-bottom: 100px;
+    min-height: 64vh;
+}
+.main{
+    margin-top: 15vh;
+    margin-bottom: 10vh;
 }
 .billform {
     width: 40%;
     margin: 0 auto;
     padding: 20px;
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+    border: 2px solid black;
+    box-shadow: 0 16px 64px rgba(0, 0, 0, 0.6); 
     background-color: #EDF4F2;
     font-size: smaller;
 }
@@ -20,7 +24,7 @@
 .form-field label {
     display: block;
     margin-bottom: 5px;
-    color: #31473A;
+    color: black;
 }
 
 .form-field input[type="number"],
@@ -32,20 +36,22 @@
 }
 
 .submit-input input[type="submit"] {
-    background-color: #071952;
-    color: white;
+    width: 100%;
     padding: 10px 20px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    width: 100%;
+    background-color: rgb(10, 148, 208);
+    color: white;
+    transition: background-color 0.3s, opacity 0.3s;
 }
 .submit-input input[type="submit"]:hover {
-    opacity: 0.5;
+    background: #203A43;
+    color: white;
 }
 
 h5{
-    color: #071952;
+    color: black;
     text-align: center;
     margin-bottom: 25px;
     text-transform: uppercase;
@@ -59,11 +65,7 @@ h5{
     font-size: 16px;
     text-transform: uppercase;
     font-weight: bolder;
-}
-mark{
-    background: linear-gradient(#b3d9ff 0%, #ffffff 100%);
-    padding: 6px;
-    border-radius: 5px;
+    color: white;
 }
 .header-links {
     display: flex;
@@ -77,10 +79,21 @@ mark{
 }
 .header-links .back-link {
     font-size: 25px;
-    color: #071952;
+    color: black;
     text-decoration: none;
     display: inline-block;
 }
 .header-links .back-link:hover {
     opacity: 0.6;
+}
+@media (min-width: 360px) and (max-width: 450px){
+    .main-body{
+        min-height: 72vh;
+    }
+    .billform{
+        width: 80%;
+    }
+    .messages{
+        font-size: 12px;
+    }
 }

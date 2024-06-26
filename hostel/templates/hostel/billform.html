@@ -11,62 +11,64 @@ Hostel | BillForm
 {% endblock %}
 
 {% block content %}
+<section class="main">
+    <div class="main-body">
+        {% if messages %}
+            <ul class="messages" >
+                {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        <div class="billform">
+            <div class="header-links">
+                <a href="{% url 'home' %}" class="back-link" id="closeBtn">&#10006;</a>
+            </div>
+            <h5>Mess Bill Form</h5>
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-fields">
+                    <div class="form-field">
+                        <label for="{{ form.start_date.id_for_label }}">Start Date:</label>
+                        {{ form.start_date }}
+                    </div>
 
-<div class="main">
-    {% if messages %}
-        <ul class="messages" >
-            {% for message in messages %}
-                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}><mark>{{ message }}</mark></li>
-            {% endfor %}
-        </ul>
-    {% endif %}
-    <div class="billform">
-        <div class="header-links">
-            <a href="{% url 'home' %}" class="back-link" id="closeBtn">&#10006;</a>
+                    <div class="form-field">
+                        <label for="{{ form.end_date.id_for_label }}">End Date:</label>
+                        {{ form.end_date }}
+                    </div>
+                    
+                    <div class="form-field">
+                        <label for="{{ form.number_of_students.id_for_label }}">Total Students:</label>
+                        {{ form.number_of_students }}
+                    </div>
+                    
+                    <div class="form-field">
+                        <label for="{{ form.total_mess_amount.id_for_label }}">Total Mess Amount:</label>
+                        {{ form.total_mess_amount }}
+                    </div>
+
+                    <div class="form-field">
+                        <label for="{{ form.room_rent.id_for_label }}">Room Rent:</label>
+                        {{ form.room_rent }}
+                    </div>
+
+                    <div class="form-field">
+                        <label for="{{ form.staff_salary.id_for_label }}">Staff Salary:</label>
+                        {{ form.staff_salary }}
+                    </div>
+
+                    <div class="form-field">
+                        <label for="{{ form.electricity_bill.id_for_label }}">Electricity Bill:</label>
+                        {{ form.electricity_bill }}
+                    </div>
+                </div>
+                <div class="submit-input">
+                    <input type="submit" value="Submit">
+                </div>
+            </form>
         </div>
-        <h5>Generate Mess Bill</h5>
-        <form method="post">
-            {% csrf_token %}
-            <div class="form-fields">
-                <div class="form-field">
-                    <label for="{{ form.start_date.id_for_label }}">Start Date:</label>
-                    {{ form.start_date }}
-                </div>
-
-                <div class="form-field">
-                    <label for="{{ form.end_date.id_for_label }}">End Date:</label>
-                    {{ form.end_date }}
-                </div>
-                
-                <div class="form-field">
-                    <label for="{{ form.number_of_students.id_for_label }}">Total Students:</label>
-                    {{ form.number_of_students }}
-                </div>
-                
-                <div class="form-field">
-                    <label for="{{ form.total_mess_amount.id_for_label }}">Total Mess Amount:</label>
-                    {{ form.total_mess_amount }}
-                </div>
-
-                <div class="form-field">
-                    <label for="{{ form.room_rent.id_for_label }}">Room Rent:</label>
-                    {{ form.room_rent }}
-                </div>
-
-                <div class="form-field">
-                    <label for="{{ form.staff_salary.id_for_label }}">Staff Salary:</label>
-                    {{ form.staff_salary }}
-                </div>
-
-                <div class="form-field">
-                    <label for="{{ form.electricity_bill.id_for_label }}">Electricity Bill:</label>
-                    {{ form.electricity_bill }}
-                </div>
-            </div>
-            <div class="submit-input">
-                <input type="submit" value="Submit">
-            </div>
-        </form>
     </div>
-</div>
+</section>
+
 {% endblock %}

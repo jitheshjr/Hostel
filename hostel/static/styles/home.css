@@ -1,5 +1,5 @@
 .main-body{
-    height: 80vh;
+    min-height: 80vh;
 }
 h4{
     text-align: center;
@@ -46,6 +46,9 @@ h4{
 }
 
 @media (min-width: 360px) and (max-width: 450px){
+    .main-body{
+        min-height: 87vh;
+    }
     .text-box {
         width: 90%;
         max-width: 100%; 

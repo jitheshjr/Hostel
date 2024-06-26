@@ -1,13 +1,17 @@
 .main{
-    margin-top: 70px;
-    margin-bottom: 100px;
+    min-height: 64vh;
+}
+.main{
+    margin-top: 15vh;
+    margin-bottom: 10vh;
 }
 .main-block {
     width: 40%;
     margin: 0 auto;
     padding: 20px;
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+    border: 2px solid black;
+    box-shadow: 0 16px 64px rgba(0, 0, 0, 0.6); 
     background-color: #EDF4F2;
     font-size: smaller;
 }
@@ -34,13 +38,21 @@
 .form-field label {
     display: block;
     margin-bottom: 5px;
-    color: #31473A;
+    color: black;
 }
 .form-field input[type="text"],
 .form-field input[type="email"],
 .form-field input[type="number"],
 .form-field input[type="file"],
-.form-field input[type="date"] {
+.form-field input[type="date"]{
+    background-color: #fff;
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+textarea{
     background-color: #fff;
     width: 100%;
     padding: 8px;
@@ -48,8 +60,9 @@
     border-radius: 4px;
 }
 .submit-input input[type="submit"] {
-    background-color: #071952;
+    background-color: rgb(10, 148, 208);
     color: white;
+    transition: background-color 0.3s, opacity 0.3s;
     padding: 10px 20px;
     border: none;
     border-radius: 4px;
@@ -57,28 +70,14 @@
     width: 100%;
 }
 .submit-input input[type="submit"]:hover {
-    opacity: 0.5;
+    background: #203A43;
+    color: white;
 }
 h5{
-    color: #071952;
+    color: black;
     text-align: center;
     margin-bottom: 20px;
     text-transform: uppercase;
-}
-.messages{
-    list-style-type: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 10vh;
-    font-size: 16px;
-    text-transform: uppercase;
-    font-weight: bolder;
-}
-mark{
-    background: linear-gradient(#b3d9ff 0%, #ffffff 100%);
-    padding: 6px;
-    border-radius: 5px;
 }
 .header-links {
     display: flex;
@@ -92,10 +91,18 @@ mark{
 }
 .header-links .back-link {
     font-size: 25px;
-    color: #071952;
+    color: black;
     text-decoration: none;
     display: inline-block;
 }
 .header-links .back-link:hover {
     opacity: 0.6;
+}
+@media (min-width: 360px) and (max-width: 450px){
+    .main-body{
+        min-height: 72vh;
+    }
+    .main-block{
+        width: 80%;
+    }
 }

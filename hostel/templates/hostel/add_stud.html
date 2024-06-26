@@ -3,111 +3,113 @@
 {% load static %}
 
 {% block title %}
-Hostel | AddStudent
+Hostel | StudentForm
 {% endblock %}
 {% block style %}
 <link rel="stylesheet" href="{% static 'styles/add_stud.css' %}">
 {% endblock %}
     
 {% block content %}
-<div class="main">
-    {% if messages %}
-    <ul class="messages" >
-        {% for message in messages %}
-            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}><mark>{{ message }}</mark></li>
-        {% endfor %}
-    </ul>
-    {% endif %}
-    <div class="main-block">
-        <div class="header-links">
-            <a href="{% url 'home' %}" class="back-link" id="closeBtn">&#10006;</a>
+<section class="main">
+    <div class="main-body">
+        {% if messages %}
+        <ul class="messages" >
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <div class="main-block">
+            <div class="header-links">
+                <a href="{% url 'home' %}" class="back-link" id="closeBtn">&#10006;</a>
+            </div>
+            <h5>Student Form</h5>
+            <form method="post" action="" enctype="multipart/form-data" onsubmit="return confirmData();">
+                {% csrf_token %}
+                <div class="form-fields">
+                    
+                    <div class="form-field">
+                        <label for="{{ form.admn_no.id_for_label }}">{{ form.admn_no.label }}:</label>
+                        {{ form.admn_no }}
+                    </div>
+
+                    <div class="form-field">
+                        <label for="{{form.name.id_for_label}}">Name:</label>
+                        {{form.name}}
+                    </div>
+                    
+                    <div class="form-field">
+                        <label for="{{ form.year_of_admn.id_for_label }}">{{ form.year_of_admn.label }}:</label>
+                        {{ form.year_of_admn }}
+                    </div>
+                    
+                    <div class="form-field">
+                        <label for="{{ form.dob.id_for_label }}">{{ form.dob.label }}:</label>
+                        {{ form.dob }}
+                    </div>
+                    
+                    <div class="form-field">
+                        <label for="{{ form.email.id_for_label }}">Email:</label>
+                        {{ form.email }}
+                    </div>
+
+                    <div class="form-field">
+                        <label for="{{ form.photo.id_for_label }}" class="file-label">Image:</label>
+                        {{ form.photo }}
+                    </div>
+
+                    <div class="form-field">
+                        <label for="{{ form.contact.id_for_label }}">{{ form.contact.label }}:</label>
+                        {{ form.contact }}
+                    </div>
+
+                    <div class="form-field">
+                        <label for="{{ form.parent_name.id_for_label }}">Guardian Name:</label>
+                        {{ form.parent_name }}
+                    </div>
+                    
+                    <div class="form-field">
+                        <label for="id_address">Address:</label>
+                        {{ form.address }}
+                    </div>
+
+                    <div class="form-field">
+                        <label for="{{ form.parent_occupation.id_for_label }}">Occupation:</label>
+                        {{ form.parent_occupation }}
+                    </div>
+
+                    <div class="form-field">
+                        <label for="{{ form.annual_income.id_for_label }}">Annual Income:</label>
+                        {{ form.annual_income }}
+                    </div>
+
+                    <div class="form-field">
+                        <label for="{{ form.pgm.id_for_label }}">Course:</label>
+                        {{ form.pgm }}
+                    </div>
+
+                    <div class="form-field">
+                        <label for="id_year">Year:</label>
+                        {{form.year}}
+                    </div>
+
+                    <div class="form-field">
+                        <label for="{{ form.category.id_for_label }}">Category:</label>
+                        {{ form.category }}
+                    </div>
+
+                    <div class="form-field">
+                        <label for="{{ form.E_Grantz.id_for_label }}">E-Grantz:</label>
+                        {{ form.E_Grantz }}
+                    </div>
+                </div>
+                <div class="submit-input">
+                    <input type="submit" value="Submit">
+                </div>
+            </form>
         </div>
-        <h5>Add Student</h5>
-        <form method="post" action="" enctype="multipart/form-data" onsubmit="return confirmData();">
-            {% csrf_token %}
-            <div class="form-fields">
-                
-                <div class="form-field">
-                    <label for="{{ form.admn_no.id_for_label }}">{{ form.admn_no.label }}:</label>
-                    {{ form.admn_no }}
-                </div>
-
-                <div class="form-field">
-                    <label for="{{form.name.id_for_label}}">Name:</label>
-                    {{form.name}}
-                </div>
-                
-                <div class="form-field">
-                    <label for="{{ form.year_of_admn.id_for_label }}">{{ form.year_of_admn.label }}:</label>
-                    {{ form.year_of_admn }}
-                </div>
-                
-                <div class="form-field">
-                    <label for="{{ form.dob.id_for_label }}">{{ form.dob.label }}:</label>
-                    {{ form.dob }}
-                </div>
-                
-                <div class="form-field">
-                    <label for="{{ form.email.id_for_label }}">Email:</label>
-                    {{ form.email }}
-                </div>
-
-                <div class="form-field">
-                    <label for="{{ form.photo.id_for_label }}" class="file-label">Image:</label>
-                    {{ form.photo }}
-                </div>
-
-                <div class="form-field">
-                    <label for="{{ form.contact.id_for_label }}">{{ form.contact.label }}:</label>
-                    {{ form.contact }}
-                </div>
-
-                <div class="form-field">
-                    <label for="{{ form.parent_name.id_for_label }}">Guardian Name:</label>
-                    {{ form.parent_name }}
-                </div>
-                
-                <div class="form-field">
-                    <label for="id_address">Address:</label>
-                    {{ form.address }}
-                </div>
-
-                <div class="form-field">
-                    <label for="{{ form.parent_occupation.id_for_label }}">Occupation:</label>
-                    {{ form.parent_occupation }}
-                </div>
-
-                <div class="form-field">
-                    <label for="{{ form.annual_income.id_for_label }}">Annual Income:</label>
-                    {{ form.annual_income }}
-                </div>
-
-                <div class="form-field">
-                    <label for="{{ form.pgm.id_for_label }}">Course:</label>
-                    {{ form.pgm }}
-                </div>
-
-                <div class="form-field">
-                    <label for="id_year">Year:</label>
-                    {{form.year}}
-                </div>
-
-                <div class="form-field">
-                    <label for="{{ form.category.id_for_label }}">Category:</label>
-                    {{ form.category }}
-                </div>
-
-                <div class="form-field">
-                    <label for="{{ form.E_Grantz.id_for_label }}">E-Grantz:</label>
-                    {{ form.E_Grantz }}
-                </div>
-            </div>
-            <div class="submit-input">
-                <input type="submit" value="Submit">
-            </div>
-        </form>
     </div>
-</div>
+</section>
 <script>
     function confirmData(){
         let result = confirm("Make sure everything is right!");

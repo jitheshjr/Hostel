@@ -11,7 +11,7 @@ body{
 
 /* Header section */
 .header{
-    min-height: 28vh;
+    min-height: 18vh;
     width: 100%;
     background-position: center;
     background-size: cover;
@@ -44,9 +44,12 @@ body{
     line-height: 1.5;
 }
 
+#exit{
+    display: none;
+}
+
 .logout-form{
     margin-left: auto;
-    margin-top: 20px;
 }
 .logout-btn{
     background-color: white;
@@ -73,9 +76,9 @@ nav{
     justify-content: space-between;
     align-items: center;
     background: rgba(8, 27, 41, 0.7);
-    border-top: 2px solid rgb(10, 148, 208);
+    border-top: 1px solid rgb(10, 148, 208);
     border-bottom: 2px solid rgb(10, 148, 208);
-    box-shadow: 0 2px 8px rgba(0, 238, 255, 0.6), 0 -2px 8px rgba(0, 238, 255, 0.6);
+    box-shadow: 0 2px 8px rgba(0, 238, 255, 0.6);
     backdrop-filter: blur(10px);
 }
 
@@ -117,11 +120,10 @@ nav ul li:hover .submenu1 ul li{
     padding: 5px 5px;
     border-radius: 0;
     text-align: center;
-    background: rgba(8, 27, 41, 0.7);
+    background: linear-gradient(to bottom, #0F2027, #203A43, #2C5364);
     border-top: 2px solid rgb(10, 148, 208);
     border-bottom: 2px solid rgb(10, 148, 208);
     box-shadow: 0 1px 4px rgba(0, 238, 255, 0.6), 0 -1px 4px rgba(0, 238, 255, 0.6);
-    backdrop-filter: blur(10px);
 }
 nav ul li:hover .submenu1 ul li a{
     font-size: 7px;
@@ -188,6 +190,9 @@ footer {
 
 /* responsive */
 @media (min-width: 360px) and (max-width: 450px) {
+    .header{
+        min-height: 13vh;
+    }
     .logo-heading {
         display: none;
     }
@@ -196,8 +201,15 @@ footer {
         line-height: 20px; /* Adjust line height */
     }
     .logout-btn {
-        font-size: 10px; /* Further decrease font size */
-        padding: 6px 12px; /* Adjust padding */
+        padding: 10px;
+        background: transparent;
+    }
+    #exit{
+        display: block;
+        width: 30px;
+    }
+    #log-text{
+        display: none;
     }
     nav{
         width: 100%;

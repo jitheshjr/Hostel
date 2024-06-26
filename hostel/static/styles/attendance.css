@@ -1,5 +1,5 @@
 .main{
-    height: 80vh;
+    min-height: 64vh;
 }
 
 .main-body{
@@ -13,12 +13,12 @@
     border-radius: 5px;
     border-radius: 10px;
     background:#EDF4F2;
-    border: 2px solid rgb(10, 148, 208);
-    box-shadow: 0 8px 32px rgba(0, 238, 255, 0.6);
+    border: 2px solid black;
+    box-shadow: 0 16px 64px rgba(0, 0, 0, 0.6);    
 }
 .attendance-form label {
     margin-bottom: 8px;
-    color: #31473A;
+    color: black;
     margin-left: 5px;
 }
 
@@ -48,10 +48,8 @@ input[type="submit"]:hover {
     background: #203A43;
     color: white;
 }
-
-
 h5{
-    color: #203A43;
+    color: black;
     text-align: center;
     margin-bottom: 20px;
     text-transform: uppercase;
@@ -65,12 +63,9 @@ h5{
     font-size: 16px;
     text-transform: uppercase;
     font-weight: bolder;
+    color: white;
 }
-mark{
-    background: linear-gradient(#b3d9ff 0%, #ffffff 100%);
-    padding: 6px;
-    border-radius: 5px;
-}
+
 #studentSearch {
     width: 100%;
     padding: 10px;
@@ -98,10 +93,22 @@ mark{
 }
 .header-links .back-link {
     font-size: 25px;
-    color: #203A43;
+    color: black;
     text-decoration: none;
     display: inline-block;
 }
 .header-links .back-link:hover {
-    color: #0ef;
+    opacity: 0.5;
+}
+
+@media (min-width: 360px) and (max-width: 450px){
+    .main-body{
+        min-height: 72vh;
+    }
+    .attendance-form{
+        width: 70%;
+    }
+    .messages{
+        font-size: 12px;
+    }
 }
