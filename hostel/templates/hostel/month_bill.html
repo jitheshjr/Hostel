@@ -11,28 +11,31 @@ Hostel | Bill
 {% endblock %}
 
 {% block content %}
-<div class="main">
-    <div class="main-block">
-        <div class="header-links">
-            <a href="{% url 'home' %}" class="back-link" id="closeBtn">&#10006;</a>
-        </div>
-        <h5>Bill details of students</h5>
-        <div class="bill">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Name</th> <th>Amount</th><th>Month</th><th>Year</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for bill in bills %}
+
+<section class="main">
+    <div class="main-body">
+        <div class="main-block">
+            <div class="header-links">
+                <a href="{% url 'home' %}" class="back-link" id="closeBtn">&#10006;</a>
+            </div>
+            <h5>Bill details of students</h5>
+            <div class="bill">
+                <table>
+                    <thead>
                         <tr>
-                            <td>{{ bill.name.name}}</td> <td>{{bill.total}}</td><td>{{bill.month}}</td><td>{{bill.year}}</td>
+                            <th>Name</th> <th>Amount</th><th>Month</th><th>Year</th>
                         </tr>
-                    {% endfor %}    
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {% for bill in bills %}
+                            <tr>
+                                <td>{{ bill.name.name}}</td> <td>{{bill.total}}</td><td>{{bill.month}}</td><td>{{bill.year}}</td>
+                            </tr>
+                        {% endfor %}    
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-</div>
+</section>
 {% endblock %}

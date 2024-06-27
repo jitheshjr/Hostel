@@ -11,67 +11,69 @@ Hostel | Allocations
 {% endblock %}
 
 {% block content %}
-<div class="main">
-    <form method="get" class="filter-form">
-
-        <table id="filter-table">
-            <tr>
-                <td class="filter-td">
-                    <label for="id_room_number">Room Number:</label>
-                    {{filter.form.room_number}}
-                </td>
-                <td class="filter-td">
-                    <button type="submit" id="search">Search</button>
-                </td>
-            </tr>
-        </table>
-    </form>
-
-    <div class="main-block">
-
-        <div class="header-links">
-            <a href="{% url 'home' %}" class="back-link" id="closeBtn">&#10006;</a>
-        </div>
-
-        <h5>Room Details</h5>
-
-        <div class="allot">
-            <table>
+<section class="main">
+    <div class="main-body">
+        <form method="get" class="filter-form">
+            <table id="filter-table">
                 <tr>
-                    <th>Room Number</th><th>Students</th><th>Floor</th><th>Action</th>
+                    <td class="filter-td">
+                        <label for="id_room_number">Room Number:</label>
+                        {{filter.form.room_number}}
+                    </td>
+                    <td class="filter-td">
+                        <button type="submit" id="search">Search</button>
+                    </td>
                 </tr>
-                <tr class="ignore-row">
-                    <td></td><td></td><td></td><td></td>
-                </tr>
-                {% for a in alloted %}
-                <tr>
-                    <td>{{a.room_number}}</td>
-                    <td>{{a.name}}</td>
-                    <td>{{a.room_number.floor}}</td>
-                    <td><a href="{% url 'edit_allocation' a.name %}" onsubmit="return confirmData();">Edit</a>/<a href="{% url 'delete_allocation' a.name %}" onclick="return confirmDelete();">Delete</a></td>
-                </tr>
-                {% endfor %}
             </table>
-        </div>
-        <div class="pagination">
-            <span class="step-links">
-                {% if alloted.has_previous %}
-                    <a href="?page=1">&laquo; first</a>
-                    <a href="?page={{ alloted.previous_page_number }}">previous</a>
-                {% endif %}
+        </form>
 
-                <span class="current">
-                    Page {{ alloted.number }} of {{ alloted.paginator.num_pages }}.
+        <div class="main-block">
+            <div class="header-links">
+                <a href="{% url 'home' %}" class="back-link" id="closeBtn">&#10006;</a>
+            </div>
+
+            <h5>Room Details</h5>
+
+            <div class="allot">
+                <div class="table-resposive">
+                    <table>
+                        <tr>
+                            <th>Room Number</th><th>Students</th><th>Floor</th><th>Action</th>
+                        </tr>
+                        <tr class="ignore-row">
+                            <td></td><td></td><td></td><td></td>
+                        </tr>
+                        {% for a in alloted %}
+                        <tr>
+                            <td>{{a.room_number}}</td>
+                            <td>{{a.name}}</td>
+                            <td>{{a.room_number.floor}}</td>
+                            <td><a href="{% url 'edit_allocation' a.name %}" onsubmit="return confirmData();">Edit</a>/<a href="{% url 'delete_allocation' a.name %}" onclick="return confirmDelete();">Delete</a></td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+            <div class="pagination">
+                <span class="step-links">
+                    {% if alloted.has_previous %}
+                        <a href="?page=1">&laquo; first</a>
+                        <a href="?page={{ alloted.previous_page_number }}">previous</a>
+                    {% endif %}
+
+                    <span class="current">
+                        Page {{ alloted.number }} of {{ alloted.paginator.num_pages }}.
+                    </span>
+
+                    {% if alloted.has_next %}
+                        <a href="?page={{ alloted.next_page_number }}">next</a>
+                        <a href="?page={{ alloted.paginator.num_pages }}">last &raquo;</a>
+                    {% endif %}
                 </span>
-
-                {% if alloted.has_next %}
-                    <a href="?page={{ alloted.next_page_number }}">next</a>
-                    <a href="?page={{ alloted.paginator.num_pages }}">last &raquo;</a>
-                {% endif %}
-            </span>
+            </div>
         </div>
     </div>
-</div>
+</section>
 <script>
     function confirmData(){
         let result = confirm("Make sure everything is right!");

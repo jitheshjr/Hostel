@@ -1,6 +1,9 @@
 .main{
-    margin-top: 70px;
-    margin-bottom: 100px;
+    min-height: 64vh;
+}
+.main-body{
+    margin-top: 15vh;
+    margin-bottom: 10vh;
 }
 .main-block{
     margin: 0 auto;
@@ -18,7 +21,8 @@
     width: 50%;
     border-collapse: collapse;
     margin-bottom: 50px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+    border: 2px solid black;
+    box-shadow: 0 16px 64px rgba(0, 0, 0, 0.6);
 }
 .filter-td {
     padding: 10px;
@@ -27,18 +31,25 @@
 label {
     font-weight: bold;
 }
+
 #search{
     padding: 10px 20px;
-    background-color: #071952;
+    background-color: rgb(10, 148, 208);
     color: white;
+    transition: background-color 0.3s, opacity 0.3s;
     border: none;
     border-radius: 4px;
     cursor: pointer;
 }
+
 #search:hover {
-    opacity: 0.5;
+    background: #203A43;
+    color: white;
 }
 
+.table-responsive{
+    overflow-x: auto;
+}
 .bill {
     width: 80%;
     margin: 0 auto;
@@ -55,18 +66,21 @@ label {
 }
 .bill th, .bill td{
     background-color: #EDF4F2;
-    color: #31473A;
+    color: black;
 }
 
 .ignore td{
     background-color: #31473A;
 }
+
 h5{
-    color: #071952;
+    color: black;
     text-align: center;
     margin-bottom: 25px;
     text-transform: uppercase;
 }
+
+
 .header-links {
     display: flex;
     justify-content: space-between;
@@ -79,13 +93,15 @@ h5{
 }
 .header-links .back-link {
     font-size: 25px;
-    color: #071952;
+    color: black;
     text-decoration: none;
     display: inline-block;
 }
-.header-links .back-link:hover {
+.header-linblueks .table-resposiveback-link:hover {
     opacity: 0.6;
 }
+
+
 .pagination {
     display: flex;
     justify-content: center;
@@ -104,7 +120,18 @@ h5{
 .pagination .step-links .current {
     margin: 0 5px;
     padding: 5px 10px;
-    background: #fff;
+    background: rgb(134, 205, 236);
     border: 1px solid #ccc;
-    color: #071952;
+    color: black;
+}
+@media (min-width: 360px) and (max-width: 450px){
+    .main-body{
+        min-height: 72vh;
+    }
+    #filter-table{
+        width: 90%;
+    }
+    .main-block{
+        width: 80%;
+    }
 }

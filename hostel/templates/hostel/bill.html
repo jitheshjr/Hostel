@@ -11,71 +11,75 @@ Hostel | Bill
 {% endblock %}
 
 {% block content %}
-<div class="main">
-    <form method="get" class="filter-form">
-        <table id="filter-table">
-            <tr>
-                <td class="filter-td">
-                    <label for="id_name">Name:</label>
-                    {{filter.form.name}}
-                </td>
-                <td class="filter-td">
-                    <label for="id_month">Month:</label>
-                    {{filter.form.month}}
-                </td>
-                <td class="filter-td">
-                    <label for="id_year">Year:</label>
-                    {{filter.form.year}}
-                </td>
-                <td class="filter-td">
-                    <button type="submit" id="search">Search</button>
-                </td>
-            </tr>
-        </table>
-    </form>
-    <div class="main-block">
-
-        <div class="header-links">
-            <a href="{% url 'home' %}" class="back-link" id="closeBtn">&#10006;</a>
-        </div>
-        
-        <h5>Bill details of students</h5>
-
-        <div class="bill">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Name</th> <th>Amount</th><th>Month</th><th>Year</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for bill in bills %}
-                        <tr>
-                            <td>{{ bill.name.name}}</td> <td>{{bill.total}}</td><td>{{bill.month}}</td><td>{{bill.year}}</td>
-                        </tr>
-                    {% endfor %}    
-                </tbody>
+<section class="main">
+    <div class="main-body">
+        <form method="get" class="filter-form">
+            <table id="filter-table">
+                <tr>
+                    <td class="filter-td">
+                        <label for="id_name">Name:</label>
+                        {{filter.form.name}}
+                    </td>
+                    <td class="filter-td">
+                        <label for="id_month">Month:</label>
+                        {{filter.form.month}}
+                    </td>
+                    <td class="filter-td">
+                        <label for="id_year">Year:</label>
+                        {{filter.form.year}}
+                    </td>
+                    <td class="filter-td">
+                        <button type="submit" id="search">Search</button>
+                    </td>
+                </tr>
             </table>
-        </div>
+        </form>
+        <div class="main-block">
 
-        <div class="pagination">
-            <span class="step-links">
-                {% if bills.has_previous %}
-                    <a href="?page=1">&laquo; first</a>
-                    <a href="?page={{ bills.previous_page_number }}">previous</a>
-                {% endif %}
+            <div class="header-links">
+                <a href="{% url 'home' %}" class="back-link" id="closeBtn">&#10006;</a>
+            </div>
+            
+            <h5>Bill details of students</h5>
 
-                <span class="current">
-                    Page {{ bills.number }} of {{ bills.paginator.num_pages }}.
+            <div class="bill">
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th> <th>Amount</th><th>Month</th><th>Year</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for bill in bills %}
+                                <tr>
+                                    <td>{{ bill.name.name}}</td> <td>{{bill.total}}</td><td>{{bill.month}}</td><td>{{bill.year}}</td>
+                                 </tr>
+                            {% endfor %}    
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="pagination">
+                <span class="step-links">
+                    {% if bills.has_previous %}
+                        <a href="?page=1">&laquo; first</a>
+                        <a href="?page={{ bills.previous_page_number }}">previous</a>
+                    {% endif %}
+
+                    <span class="current">
+                        Page {{ bills.number }} of {{ bills.paginator.num_pages }}.
+                    </span>
+
+                    {% if bills.has_next %}
+                        <a href="?page={{ bills.next_page_number }}">next</a>
+                        <a href="?page={{ bills.paginator.num_pages }}">last &raquo;</a>
+                    {% endif %}
                 </span>
+            </div>
 
-                {% if bills.has_next %}
-                    <a href="?page={{ bills.next_page_number }}">next</a>
-                    <a href="?page={{ bills.paginator.num_pages }}">last &raquo;</a>
-                {% endif %}
-            </span>
         </div>
-
     </div>
-</div>
+</section>
 {% endblock %}

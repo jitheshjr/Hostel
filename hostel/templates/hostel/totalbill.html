@@ -11,7 +11,9 @@ Hostel | Month Bill
 {% endblock %}
 
 {% block content %} 
-    <div class="main">
+
+<section class="main">
+    <div class="main-body">
 
         <form method="get" class="filter-form">
             <table id="filter-table">
@@ -39,27 +41,29 @@ Hostel | Month Bill
             <h5>Monthly Bills</h5>
 
             <div class="bill">
-                <table>
-                    <tr>
-                        <th>Students</th><th>Working Days</th><th>Total Mess Amount</th><th>Room Rent</th>
-                        <th>Electricity Bill</th><th>Staff Salary</th><th>Month</th><th>Year</th>
-                    </tr>
-                    <tr>
-                        <td></td>
-                    </tr>
-                    {% for bill in page_obj %}
+                <div class="table-responsive">
+                    <table>
                         <tr>
-                            <td>{{bill.no_of_students}}</td>
-                            <td>{{bill.mess_days}}</td>
-                            <td>{{bill.mess_amount}}</td>
-                            <td>{{bill.room_rent}}</td>
-                            <td>{{bill.electricity_bill}}</td>
-                            <td>{{bill.staff_salary}}</td>
-                            <td>{{bill.month}}</td>
-                            <td>{{bill.year}}</td>
+                            <th>Students</th><th>Working Days</th><th>Total Mess Amount</th><th>Room Rent</th>
+                            <th>Electricity Bill</th><th>Staff Salary</th><th>Month</th><th>Year</th>
                         </tr>
-                    {% endfor %}
-                </table>
+                        <tr>
+                            <td></td>
+                        </tr>
+                        {% for bill in page_obj %}
+                            <tr>
+                                <td>{{bill.no_of_students}}</td>
+                                <td>{{bill.mess_days}}</td>
+                                <td>{{bill.mess_amount}}</td>
+                                <td>{{bill.room_rent}}</td>
+                                <td>{{bill.electricity_bill}}</td>
+                                <td>{{bill.staff_salary}}</td>
+                                <td>{{bill.month}}</td>
+                                <td>{{bill.year}}</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
             </div>
 
             <!-- Pagination Controls -->
@@ -82,6 +86,8 @@ Hostel | Month Bill
             </div>
         </div>
     </div>
+</section>
+    
 {% endblock %}
 
 
