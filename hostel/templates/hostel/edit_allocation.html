@@ -3,44 +3,39 @@
 {% load static %}
 
 {% block title %}
-Hostel | EditAllocation
+Hostel | Edit
 {% endblock %}
 
 {% block style %}
-    <link rel="stylesheet" href="{% static 'styles/edit_allocation.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/allot_stud.css' %}">
 {% endblock %}
 
 {% block content %}
-<div class="main">
-    {% if messages %}
-        <ul class="messages" >
-            {% for message in messages %}
-                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}><mark>{{ message }}</mark></li>
-            {% endfor %}
-        </ul>
-    {% endif %}
-    <div class="main-block">
-        <div class="header-links">
-            <a href="{% url 'home' %}" class="back-link" id="closeBtn">&#10006;</a>
+<section class="main">
+    <div class="main-body">
+        <div class="main-block">
+            <div class="header-links">
+                <a href="{% url 'home' %}" class="back-link" id="closeBtn">&#10006;</a>
+            </div>
+            <h5>Room Allocation</h5>
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="form-fields">
+                    <div class="form-field">
+                        <label for="{{ form.room_number.id_for_label }}">Room Number:</label>
+                        {{ form.room_number }}
+                    </div>
+            
+                    <div class="form-field">
+                        <label for="{{ form.name.id_for_label }}">Name:</label>
+                        {{ form.name }}
+                    </div>
+                </div>
+                <div class="submit-input">
+                    <input type="submit" value="Submit">
+                </div>
+            </form>
         </div>
-        <h5>Room Allocation</h5>
-        <form action="" method="post">
-            {% csrf_token %}
-            <div class="form-fields">
-                <div class="form-field">
-                    <label for="{{ form.room_number.id_for_label }}">Room Number:</label>
-                    {{ form.room_number }}
-                </div>
-        
-                <div class="form-field">
-                    <label for="{{ form.name.id_for_label }}">Name:</label>
-                    {{ form.name }}
-                </div>
-            </div>
-            <div class="submit-input">
-                <input type="submit" value="Submit">
-            </div>
-        </form>
     </div>
-</div>
+</section>
 {% endblock %}

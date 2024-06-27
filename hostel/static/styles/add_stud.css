@@ -15,6 +15,17 @@
     background-color: #EDF4F2;
     font-size: smaller;
 }
+.messages{
+    color: white;
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10vh;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: bolder;
+}
 .form-fields {
     margin-bottom: 20px;
 }
@@ -73,6 +84,7 @@ textarea{
     background: #203A43;
     color: white;
 }
+
 h5{
     color: black;
     text-align: center;

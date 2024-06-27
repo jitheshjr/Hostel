@@ -1,6 +1,9 @@
 .main{
-    margin-top: 70px;
-    margin-bottom: 100px;
+    min-height: 64vh;
+}
+.main-body{
+    margin-top: 15vh;
+    margin-bottom: 10vh;
 }
 .main-block {
     margin-top: 70px;
@@ -8,38 +11,40 @@
     margin: 0 auto;
     padding: 20px;
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+    border: 2px solid black;
+    box-shadow: 0 16px 64px rgba(0, 0, 0, 0.6);
     background-color: #EDF4F2;
 }
 h5,h3{
-    color: #071952;
+    color: black;
     text-align: center;
     margin-bottom: 20px;
     text-transform: uppercase;
 }
 
-ul{
+.absent-list{
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-li {
+.list-items {
     position: relative;
     padding-left: 20px;
     margin-bottom: 10px;
-    color: #071952;
+    color: black;
 }
 
-li::before {
+.list-items::before {
     content: "•"; /* Custom bullet point */
-    color: #071952; /* Color of the bullet point */
+    color: black; /* Color of the bullet point */
     font-size: 1.2em; /* Size of the bullet point */
     position: absolute;
     left: 0;
     top: 0;
     transform: translateY(-2px); /* Adjust bullet position */
 }
+
 .header-links {
     display: flex;
     justify-content: space-between;
@@ -52,10 +57,10 @@ li::before {
 }
 .header-links .back-link {
     font-size: 25px;
-    color: #071952;
+    color: black;
     text-decoration: none;
     display: inline-block;
 }
-.header-links .back-link:hover {
+.header-linblueks .table-resposiveback-link:hover {
     opacity: 0.6;
 }

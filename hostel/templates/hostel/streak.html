@@ -11,8 +11,8 @@ Hostel | Streak
 {% endblock %}
 
 {% block content %}
-    <div class="main">
-
+<section class="main">
+    <div class="main-body">
         <form method="get" class="filter-form">
             <table id="filter-table">
                 <tr>
@@ -44,10 +44,9 @@ Hostel | Streak
             <h5>Continuous Absence Details</h5>
 
             <div class="streak">
-                <ul>
-
+                <ul class="streak-list">
                     {% for streak in page_obj %}
-                        <li>{{streak.name}} : {{ streak.streak }} days in {{ streak.month }},{{streak.year}}</li>
+                        <li class="streak-items">{{streak.name}} : {{ streak.streak }} days in {{ streak.month }},{{streak.year}}</li>
                     {% endfor %}
 
                 </ul>
@@ -73,4 +72,5 @@ Hostel | Streak
             </div>
         </div>
     </div>
+</section>
 {% endblock %}

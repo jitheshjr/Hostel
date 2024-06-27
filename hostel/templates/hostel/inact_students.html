@@ -14,64 +14,67 @@ Hostel | Students
 {% endblock %}
 
 {% block content %}
-<div class="main-block">
-    <form method="get" class="filter-form">
-
-        <table>
-            <tr>
-                <td>
-                    <label for="id_year_of_admn">Year of Admission:</label>
-                    {{ filter.form.year_of_admn }}
-                </td>
-
-                <td>
-                    <label for="id_year_of_admn">Year:</label>
-                    {{ filter.form.year }}
-                </td>
-
-                <td>
-                    <label for="id_pgm">Programme:</label>
-                    {{ filter.form.pgm }}
-                </td>
-
-                <td>
-                    <label for="id_category">Category:</label>
-                    {{ filter.form.category }}
-                </td>
-
-                <td>
-                    <label for="id_E_Grantz">E-Grantz:</label>
-                    {{ filter.form.E_Grantz }}
-                </td>
-
-                <td>
-                    <button type="submit" id="search">Search</button>
-                </td>
-            </tr>
-        </table>
-
-    <h5>Students</h5>
-    {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}><mark>{{ message }}</mark></li>
-            {% endfor %}
-        </ul>
-    {% endif %}
+<section class="main">
+    <div class="main-block">
+        <form method="get" class="filter-form">
     
-    {% for student in filter.qs %}
-    <a href="{% url 'view_inactive_details' student.id %}" class="link">
-        <div class="student-layout">
-            <div class="image-container">   
-                {% if student.photo %}
-                <img src="{{student.photo.url}}" alt="No image" class="img-stud">
-                {% else %}
-                    <span>No photo available</span>
-                {% endif %}
+            <table id="filter-table">
+                <tr>
+                    <td class="filter-td">
+                        <label for="id_year_of_admn">Year of Admission:</label>
+                        {{ filter.form.year_of_admn }}
+                    </td>
+    
+                    <td class="filter-td">
+                        <label for="id_year_of_admn">Year:</label>
+                        {{ filter.form.year }}
+                    </td>
+    
+                    <td class="filter-td">
+                        <label for="id_pgm">Programme:</label>
+                        {{ filter.form.pgm }}
+                    </td>
+    
+                    <td class="filter-td">
+                        <label for="id_category">Category:</label>
+                        {{ filter.form.category }}
+                    </td>
+    
+                    <td class="filter-td">
+                        <label for="id_E_Grantz">E-Grantz:</label>
+                        {{ filter.form.E_Grantz }}
+                    </td>
+    
+                    <td class="filter-td">
+                        <button type="submit" id="search">Search</button>
+                    </td>
+                </tr>
+            </table>
+    
+        <h5>Students</h5>
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}><mark>{{ message }}</mark></li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        
+        {% for student in filter.qs %}
+        <a href="{% url 'view_inactive_details' student.id %}" class="link">
+            <div class="student-layout">
+                <div class="image-container">   
+                    {% if student.photo %}
+                    <img src="{{student.photo.url}}" alt="No image" class="img-stud">
+                    {% else %}
+                        <span>No photo available</span>
+                    {% endif %}
+                </div>
+                <div class="student-name">{{student.name}}</div>
             </div>
-            <div class="student-name">{{student.name}}</div>
-        </div>
-    </a>
-    {% endfor %}
-</div>
+        </a>
+        {% endfor %}
+    </div>
+    
+</section>
 {% endblock %}

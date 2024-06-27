@@ -129,7 +129,7 @@ h5{
         min-height: 72vh;
     }
     #filter-table{
-        width: 90%;
+        display: none;
     }
     .main-block{
         width: 80%;

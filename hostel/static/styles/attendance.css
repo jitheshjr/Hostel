@@ -4,20 +4,21 @@
 
 .main-body{
     margin-top: 15vh;
+    margin-bottom: 10vh;   
 }
 
 .attendance-form {
     width: 25%;
     margin: 0 auto;
-    padding: 10px;
+    padding: 20px 10px;
     border-radius: 5px;
     border-radius: 10px;
     background:#EDF4F2;
     border: 2px solid black;
-    box-shadow: 0 16px 64px rgba(0, 0, 0, 0.6);    
+    box-shadow: 0 16px 64px rgba(0, 0, 0, 0.6); 
 }
 .attendance-form label {
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     color: black;
     margin-left: 5px;
 }
@@ -65,7 +66,6 @@ h5{
     font-weight: bolder;
     color: white;
 }
-
 #studentSearch {
     width: 100%;
     padding: 10px;
