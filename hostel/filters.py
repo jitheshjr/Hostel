@@ -26,3 +26,8 @@ class monthbillFilter(django_filters.FilterSet):
     class Meta:
         model = MessBill
         fields = ['month','year']
+
+class attendanceFilter(django_filters.FilterSet):
+    class Meta:
+        model = AttendanceDate
+        fields = ['month','year']

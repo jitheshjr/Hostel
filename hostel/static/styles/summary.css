@@ -17,6 +17,35 @@
     font-size: smaller;
 }
 
+#filter-table {
+    margin: auto;
+    width: 45%;
+    border-collapse: collapse;
+    margin-bottom: 50px;
+    border: 2px solid black;
+    box-shadow: 0 16px 64px rgba(0, 0, 0, 0.6);
+}
+.filter-td {
+    padding: 10px;
+    background-color: #EDF4F2;
+}
+label {
+    font-weight: bold;
+}
+#search{
+    padding: 10px 20px;
+    background-color: rgb(10, 148, 208);
+    color: white;
+    transition: background-color 0.3s, opacity 0.3s;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+#search:hover {
+    background: #203A43;
+    color: white;
+}
+
 .table-resposive{
     overflow-x: auto;
 }

@@ -103,9 +103,15 @@ class Room(models.Model):
     room_number = models.SmallIntegerField(unique=True)
     floor_choices = [('Ground','Ground'),('First','First'),('Second','Second')]
     floor = models.CharField(max_length=50, choices=floor_choices)
+    capacity = models.PositiveIntegerField(default=3)
 
     def __str__(self):
         return str(self.room_number)
+    
+    def save(self, *args, **kwargs):
+        if self.room_number.allotment_set.count() >= self.room_number.capacity:
+            raise ValueError("Room capacity exceeded")
+        super().save(*args, **kwargs)
     
 class Allotment(models.Model):
     room_number = models.ForeignKey(Room,on_delete=models.CASCADE)
@@ -117,6 +123,22 @@ class Allotment(models.Model):
 
 class AttendanceDate(models.Model):
     date = models.DateField(unique=True)
+    MONTH_CHOICES = [
+        ('January', 'January'),
+        ('February', 'February'),
+        ('March', 'March'),
+        ('April', 'April'),
+        ('May', 'May'),
+        ('June', 'June'),
+        ('July', 'July'),
+        ('August', 'August'),
+        ('September', 'September'),
+        ('October', 'October'),
+        ('November', 'November'),
+        ('December', 'December'),
+    ]
+    month = models.CharField(max_length=10,choices=MONTH_CHOICES)
+    year = models.IntegerField()
 
     def __str__(self):
         return str(self.date)

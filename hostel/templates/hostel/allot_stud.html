@@ -13,6 +13,13 @@ Hostel | AllocationForm
 {% block content %}
 <section class="main">
     <div class="main-body">
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
         <div class="main-block">
             <div class="header-links">
                 <a href="{% url 'home' %}" class="back-link" id="closeBtn">&#10006;</a>

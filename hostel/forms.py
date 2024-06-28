@@ -24,10 +24,16 @@ class AllotementForm(forms.ModelForm):
         model = Allotment
         fields = '__all__'
 
+    def __init__(self, *args, **kwargs):
+        super(AllotementForm, self).__init__(*args, **kwargs)
+        allocated_students = Allotment.objects.values_list('name_id', flat=True)
+        self.fields['name'].queryset = Student.objects.exclude(id__in=allocated_students)
+
+
 class BillForm(forms.Form):
     start_date = forms.DateField(label='Start Date', widget=forms.DateInput(attrs={'type': 'date'}))
     end_date = forms.DateField(label='End Date', widget=forms.DateInput(attrs={'type': 'date'}))
-    number_of_students = forms.IntegerField(label='Total Students', min_value=0)
+    number_of_students = forms.IntegerField(label='Total Students', min_value=0,required=False)
     total_mess_amount = forms.DecimalField(label='Amount', min_value=0)
     room_rent = forms.DecimalField(label='Room Rent', min_value=0, initial=500)
     staff_salary = forms.DecimalField(label='Staff Salary', min_value=0, initial=10000)

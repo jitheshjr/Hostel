@@ -1,9 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Error</title>
+    <title>Unauthorized</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -14,7 +12,7 @@
             margin: 0;
             background-color: #f5f5f5;
         }
-        .error-container {
+        .unauthorized-container {
             text-align: center;
             background-color: white;
             padding: 40px;
@@ -24,8 +22,13 @@
         h1 {
             font-size: 24px;
             font-weight: bolder;
+            margin-bottom: 20px;
+            color: #d9534f;
+        }
+        p {
+            font-size: 18px;
             margin-bottom: 40px;
-            color: red;
+            color: #555;
         }
         a.button {
             text-decoration: none;
@@ -42,9 +45,10 @@
     </style>
 </head>
 <body>
-    <div class="error-container">
-        <h1>Something went wrong</h1>
-        <a href="{% url 'home' %}" class="button">Go to Home</a>
+    <div class="unauthorized-container">
+        <h1>Unauthorized Access</h1>
+        <p>You do not have permission to view this page.</p>
+        <a href="{% url 'login' %}" class="button">Go to Login</a>
     </div>
 </body>
 </html>
