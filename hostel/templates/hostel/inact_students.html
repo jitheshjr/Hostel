@@ -60,20 +60,22 @@ Hostel | Students
             </ul>
         {% endif %}
         
-        {% for student in filter.qs %}
-        <a href="{% url 'view_inactive_details' student.id %}" class="link">
-            <div class="student-layout">
-                <div class="image-container">   
-                    {% if student.photo %}
-                    <img src="{{student.photo.url}}" alt="No image" class="img-stud">
-                    {% else %}
-                        <span>No photo available</span>
-                    {% endif %}
+        <div class="student-boxes">
+            {% for student in filter.qs %}
+            <a href="{% url 'view_inactive_details' student.id %}" class="link">
+                <div class="student-layout">
+                    <div class="image-container">   
+                        {% if student.photo %}
+                        <img src="{{student.photo.url}}" alt="No image" class="img-stud">
+                        {% else %}
+                            <span>No photo available</span>
+                        {% endif %}
+                    </div>
+                    <div class="student-name">{{student.name}}</div>
                 </div>
-                <div class="student-name">{{student.name}}</div>
-            </div>
-        </a>
-        {% endfor %}
+            </a>
+            {% endfor %}
+        </div>
     </div>
     
 </section>

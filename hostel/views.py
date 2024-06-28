@@ -37,7 +37,8 @@ def add_student(request):
             else:
                 if form.is_valid():
                     form.save()
-                    return redirect('view_student')
+                    messages.success(request, "Student added successfully.")
+
                 else:
                     # Debugging: Print form errors
                     messages.error(request, "Something went wrong...")
@@ -116,7 +117,8 @@ def edit_student(request, student_id):
                 
                     # Save form data including the image field
                     student = form.save()
-                    return redirect('view_student')
+                    messages.success(request, "Student details edited successfully.")
+
             else:
                 if Student.objects.filter(admn_no=new_admn_no).exists():
                     messages.error(request,f"Sorry, a student with admission number {new_admn_no} already exists")
@@ -129,7 +131,7 @@ def edit_student(request, student_id):
                         
                         # Save form data including the image field
                         student = form.save()
-                        return redirect('view_student')
+                        messages.success(request, "Student details edited successfully.")
         return render(request, 'hostel/edit.html', {'form': form})
     except Exception:
         return render(request,'hostel/error.html') 
@@ -172,7 +174,6 @@ def delete_student(request,student_id):
 
             # Delete the student
             student.delete()
-
             return redirect('view_student')
     except Exception:
         return render(request,'hostel/error.html')
@@ -192,7 +193,6 @@ def allot_student(request):
                 if room.allotment_set.count() < room.capacity:
                     form.save()
                     messages.success(request, "Student successfully allotted to room.")
-                    return redirect('view_allotement')
                 else:
                     messages.error(request, "Room capacity exceeded. Please choose a different room.")
             else:
@@ -202,6 +202,7 @@ def allot_student(request):
         return render(request,'hostel/allot_stud.html',{'form':form})
     except Exception:
         return render(request,'hostel/error.html')
+
 
 @group_required('admin', login_url='access_denied')
 def edit_allocation(request,student_name):
@@ -214,7 +215,8 @@ def edit_allocation(request,student_name):
             alloc_form = AllotementForm(request.POST,instance=Alloted_object)
             if alloc_form.is_valid():
                 alloc_form.save()
-                return redirect('view_allotement')
+                messages.success(request, "Room allocation edited successfully.")
+
         return render(request,'hostel/edit_allocation.html',{'form':alloc_form})
     except Exception:
         return render(request,'hostel/error.html')
@@ -227,6 +229,7 @@ def delete_allocation(request,student_name):
             allot_obj = Allotment.objects.get(name__name=student_name)
             allot_obj.delete()
             return redirect('view_allotement')
+
     except Exception:
         return render(request,'hostel/error.html')
 

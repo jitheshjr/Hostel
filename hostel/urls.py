@@ -18,10 +18,10 @@ urlpatterns = [
     path('attendance/<int:date_id>/',views.detailed_attendance, name='attendance_detail'),
     path('delete_att/<int:date_id>/',views.delete_attendance,name='delete_attendance'),
     path('streak',views.streak,name='streak'),
-    path('edit_allocation/<str:student_name>/',views.edit_allocation,name='edit_allocation'),
     path('delete_allocation/<str:student_name>/',views.delete_allocation,name='delete_allocation'),
     path('messbill',views.generate_mess_bill,name='generate_mess_bill'),
     path('viewbill',views.view_bill,name='view_bill'),
     path('totalbill',views.total_bill,name='total_bill'),
     path('monthlybills/<str:month>/<int:year>/',views.view_monthly_bill,name='view_monthly_bill'),
+    path('edit_allocation/<str:student_name>/',views.edit_allocation,name='edit_allocation'),
 ]

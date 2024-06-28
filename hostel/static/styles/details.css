@@ -1,6 +1,21 @@
 .main{
-    margin-top: 70px;
-    margin-bottom: 100px;
+    min-height: 64vh;
+}
+.student-details {
+    background-color: #EDF4F2;
+    padding: 20px;
+    padding-top: 10px;
+    border-radius: 8px;
+    margin: 15vh auto;
+    width: 25%;
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.7);
+    font-size: 10px;
+    color: black;
+}
+.student-details:hover {
+    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 2);
 }
 .name-pgm {
     text-transform: uppercase;
@@ -15,7 +30,7 @@
     top: 0;
     width: 100%;
     padding: 0;
-    margin-bottom: 70px;
+    margin-bottom: 30px;
 }
 .header-links .back-link {
     font-size: 25px;
@@ -34,22 +49,7 @@
 .header-links .back-link:hover {
     opacity: 0.6;
 }
-.student-details {
-    background-color: #EDF4F2;
-    padding: 20px;
-    padding-top: 10px;
-    border-radius: 8px;
-    max-width: 400px;
-    margin: 0 auto;
-    text-align: center;
-    font-family: 'Times New Roman', Times, serif;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.7);
-    font-size: 10px;
-    color: black;
-}
-.student-details:hover {
-    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 2);
-}
+
 .image-container {
     width: 100px;
     height: 100px;
@@ -105,26 +105,11 @@
     text-decoration: none;
 }
 
-
-@media (max-width: 600px) {
-    .student-details {
-        width: 90%;
-        padding: 10px;
-        font-size: 8px;
+@media (min-width: 360px) and (max-width:450px){
+    .main{
+        min-height: 70vh;
     }
-    .header-links {
-        padding: 0 5px;
-    }
-    .header-links .back-link,
-    .header-links .menu {
-        font-size: 16px;
-    }
-    .header-links .menu {
-        width: 16px;
-        height: 16px;
-    }
-    .modify {
-        right: 5px;
-        top: 25px;
+    .student-details{
+        width: 80%;
     }
 }

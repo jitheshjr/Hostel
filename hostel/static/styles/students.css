@@ -56,6 +56,13 @@ label {
     color: white;
 }
 
+.student-boxes{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:start;
+}
+
 .student-layout {
     width: 130px;
     height: 120px;
@@ -63,6 +70,8 @@ label {
     margin: 15px;
     background: #EDF4F2;
     display: inline-block;
+    justify-content: center;
+    align-items: center;
     text-align: center;
     border-radius: 2px;
     border: 2px solid black;
@@ -118,3 +127,11 @@ label {
     opacity: 0.5;
 }
 
+@media (min-width: 360px) and (max-width:450px){
+    .main-body{
+        min-height: 72vh;
+    }
+    #filter-table{
+        display: none;
+    }
+}

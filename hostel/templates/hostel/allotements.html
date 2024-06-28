@@ -48,7 +48,7 @@ Hostel | Allocations
                             <td>{{a.room_number}}</td>
                             <td>{{a.name}}</td>
                             <td>{{a.room_number.floor}}</td>
-                            <td><a href="{% url 'edit_allocation' a.name %}" onsubmit="return confirmData();">Edit</a>/<a href="{% url 'delete_allocation' a.name %}" onclick="return confirmDelete();">Delete</a></td>
+                            <td><!-- <a href="{% url 'edit_allocation' a.name %}" onsubmit="return confirmData();">Edit</a>/ --><a href="{% url 'delete_allocation' a.name %}" onclick="return confirmDelete();">Delete</a></td>
                         </tr>
                         {% endfor %}
                     </table>
