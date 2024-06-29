@@ -322,7 +322,7 @@ def delete_attendance(request, date_id):
         return render(request,'hostel/error.html')
 
 
-@group_required('admin', login_url='access_denied')
+@login_required()
 def streak(request):
     try:
         streak_filter = streakFilter(request.GET, queryset=ContinuousAbsence.objects.all().select_related('name'))

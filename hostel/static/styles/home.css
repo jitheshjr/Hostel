@@ -7,7 +7,7 @@ h4{
 }
 .text-box{
     width: 90%;
-    color: #FFFFFF;
+    color: #151269;
     position: absolute;
     top: 52%;
     left: 50%;
@@ -26,21 +26,18 @@ h4{
     margin-top: 50px;
     display: inline-block;
     text-decoration: none;
-    color: #ffffff;
-    border: 1px solid #ffffff;
+    color: #151269;
+    border: 1px solid #151269;
     padding: 12px 34px;
     font-size: 13px;
     background: transparent;
     position: relative;
     cursor: pointer;
     text-transform: uppercase;
+    box-shadow: 0 4px 8px rgba(21, 18, 105, 0.5);
 }
 .hero-btn:hover{
-    background: rgba(8, 27, 41, 0.7);
-    border-top: 2px solid rgb(10, 148, 208);
-    border-bottom: 2px solid rgb(10, 148, 208);
-    box-shadow: 0 1px 4px rgba(0, 238, 255, 0.6), 0 -1px 4px rgba(0, 238, 255, 0.6);
-    backdrop-filter: blur(10px);
+    background: #151269;
     transition: 1s;
     color: white;
 }

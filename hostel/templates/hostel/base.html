@@ -25,7 +25,7 @@
             </div>
             <form action="{% url 'logout' %}" method="post" class="logout-form">
                 {% csrf_token %}
-                <button type="submit" value="Logout" class="logout-btn"><img src="{% static 'exit.png' %}" id="exit"><div id="log-text">Logout</div></button>
+                <button type="submit" value="Logout" class="logout-btn"><img src="{% static 'logout.png' %}" id="exit"><div id="log-text">Logout</div></button>
             </form>
         </div>
         {% if is_admin_group %}
@@ -67,6 +67,18 @@
             </div>
         </nav>
         {% endif %}
+
+        {% if is_guest_group %}
+        <nav>
+            <div class="nav-links" id="navLinks">
+                <ul>
+                    <li><a href="{% url 'home' %}">HOME</a></li>
+                    <li><a href="{% url 'view_attendance' %}">SUMMARY</a></li>
+                    <li><a href="{% url 'streak' %}">STREAKS</a></li>
+                </ul>
+            </div>
+        </nav>
+        {% endif %}
     </section>
 
     <!-- Body -->
@@ -76,21 +88,7 @@
     <!-- Footer -->
     <footer>
         <div class="footer-section">
-            <h4>Contact Us</h4>
-            <p>Email: info@example.com</p>
-            <p>Phone: (123) 456-7890</p>
-        </div>
-        <div class="footer-section">
-            <h4>Support</h4>
-            <p>Email: support@example.com</p>
-            <p>Phone: (987) 654-3210</p>
-        </div>
-        <div class="footer-section">
-            <h4>About Us</h4>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum.</p>
-        </div>
-        <div class="footer-section">
-            <p>&copy; 2024 Your Company. All rights reserved.</p>
+            <p>&copy; 2024 HMS. All rights reserved.</p>
         </div>
     </footer>     
 </body>

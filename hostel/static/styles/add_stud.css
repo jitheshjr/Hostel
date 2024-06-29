@@ -9,14 +9,13 @@
     width: 40%;
     margin: 0 auto;
     padding: 20px;
-    border-radius: 5px;
-    border: 2px solid black;
-    box-shadow: 0 16px 64px rgba(0, 0, 0, 0.6); 
+    border-radius: 5px; 
     background-color: #EDF4F2;
     font-size: smaller;
+    box-shadow: 0 8px 16px rgba(21, 18, 105, 0.5);
 }
 .messages{
-    color: white;
+    color: #151269;
     list-style-type: none;
     display: flex;
     justify-content: center;

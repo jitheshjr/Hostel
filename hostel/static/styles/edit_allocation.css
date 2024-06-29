@@ -8,7 +8,7 @@
     margin: 0 auto;
     padding: 20px;
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+    box-shadow: 0 8px 16px rgba(21, 18, 105, 0.5);
     background-color: #EDF4F2;
 }
 .form-fields {
@@ -82,7 +82,7 @@ h5{
     opacity: 0.6;
 }
 .messages{
-    color: white;
+    color: #151269;
     list-style-type: none;
     display: flex;
     justify-content: center;

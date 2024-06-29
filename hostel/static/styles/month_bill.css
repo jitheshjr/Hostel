@@ -8,7 +8,7 @@
     height: auto;
     padding: 10px;
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+    box-shadow: 0 8px 16px rgba(21, 18, 105, 0.5); 
     background-color: #EDF4F2;
     font-size: smaller;
 }
@@ -28,14 +28,14 @@
 }
 .bill th, .bill td{
     background-color: #EDF4F2;
-    color: #31473A;
+    color: black;
 }
 
 .ignore td{
     background-color: #31473A;
 }
 h5{
-    color: #071952;
+    color: black;
     text-align: center;
     margin-bottom: 25px;
     text-transform: uppercase;
@@ -52,7 +52,7 @@ h5{
 }
 .header-links .back-link {
     font-size: 25px;
-    color: #071952;
+    color: black;
     text-decoration: none;
     display: inline-block;
 }

@@ -14,7 +14,10 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background:linear-gradient(to bottom, #0F2027, #203A43, #2C5364);
+            background-image:linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.5) 100%),url('{% static "login.jpg" %}');
+            background-position: center;
+            background-size: cover;
+            position: relative;
         }
 
         .container {
@@ -26,10 +29,9 @@
             width: 300px;
             margin: auto;
             border-radius: 10px;
-            background: rgba(8, 27, 41, 0.7);
-            border: 2px solid rgb(10, 148, 208);
-            box-shadow: 0 8px 32px rgba(0, 238, 255, 0.6);
+            border: 2px solid rgba(255, 255, 255, .2);
             backdrop-filter: blur(10px);
+            background-color: transparent;
         }
 
         input[type="text"],
@@ -37,11 +39,11 @@
             width: 100%;
             padding: 12px;
             margin-bottom: 12px;
-            border: 1px solid rgb(10, 148, 208);
+            border: 1px solid white;
             border-radius: 4px;
             box-sizing: border-box;
             background: transparent;
-            color: #0ef;
+            color: white;
             transition: border-color 0.3s;
         }
 
@@ -53,8 +55,8 @@
 
         input[type="submit"] {
             width: 100%;
-            background-color: rgb(10, 148, 208);
-            color: #0ef;
+            background-color: white;
+            color: black;
             font-weight: bolder;
             font-size: larger;
             padding: 14px 20px;
@@ -66,18 +68,17 @@
         }
 
         input[type="submit"]:hover {
-            background: #0ef;
-            color: rgb(10, 148, 208);
+            opacity: 0.5;
         }
 
         label {
             margin-top: 10px;
             display: block;
             font-weight: bold;
-            color: #0ef;
+            color: white;
         }
         ul.errorlist.nonfield {
-            color: #0ef;
+            color: white;
         }
 
         @media (min-width: 360px) and (max-width: 450px){

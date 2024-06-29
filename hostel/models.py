@@ -73,7 +73,7 @@ class Trash(models.Model):
     address = models.TextField(max_length=200)
     date_joined = models.DateField()
     date_exited = models.DateField(null=True,blank=True)
-    room_no = models.TextField(null=True, blank=True)
+    room_no = models.SmallIntegerField(null=True, blank=True)
     
     CATEGORY_CHOICES = [
         ('GENERAL', 'GENERAL'),

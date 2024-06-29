@@ -1,7 +1,7 @@
 .main{
     min-height: 64vh;
 }
-.main{
+.main-body{
     margin-top: 15vh;
     margin-bottom: 10vh;
 }
@@ -10,8 +10,7 @@
     margin: 0 auto;
     padding: 20px;
     border-radius: 5px;
-    border: 2px solid black;
-    box-shadow: 0 16px 64px rgba(0, 0, 0, 0.6); 
+    box-shadow: 0 8px 16px rgba(21, 18, 105, 0.5); 
     background-color: #EDF4F2;
     font-size: smaller;
 }
@@ -65,7 +64,7 @@ h5{
     font-size: 16px;
     text-transform: uppercase;
     font-weight: bolder;
-    color: white;
+    color: #151269;
 }
 .header-links {
     display: flex;

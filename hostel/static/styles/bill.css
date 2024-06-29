@@ -10,8 +10,7 @@
     width: 40%;
     height: auto;
     padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+    box-shadow: 0 8px 16px rgba(21, 18, 105, 0.5);
     background-color: #EDF4F2;
     font-size: smaller;
 }
@@ -21,8 +20,7 @@
     width: 50%;
     border-collapse: collapse;
     margin-bottom: 50px;
-    border: 2px solid black;
-    box-shadow: 0 16px 64px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 4px 8px rgba(21, 18, 105, 0.5);
 }
 .filter-td {
     padding: 10px;

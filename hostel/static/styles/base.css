@@ -5,38 +5,39 @@
     box-sizing: border-box;
 }
 body{
-    background: linear-gradient(to bottom, #0F2027, #203A43, #2C5364);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+background: white;
 }
 
 /* Header section */
 .header{
+    background: white;
     min-height: 18vh;
     width: 100%;
     background-position: center;
     background-size: cover;
     position: relative;
+    box-shadow: 0 4px 8px rgba(21, 18, 105, 0.5);
 }
 
 .nasc {
     display: flex;
     align-items: center;
     padding: 20px;
-    color: white;
+    color: #151269;
 }
 .logo-heading {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: white;
-    padding: 10px;
-    margin-right: 20px;
+    background-color: transparent;
+    padding: 5px;
+    margin-right: 0;
     border-radius: 5px;
     overflow: hidden;
 }
 .logo-image {
-    width: 80px;
-    height: 80px;
+    width: 90px;
+    height: 90px;
 }
 
 .institution-name h1 {
@@ -52,8 +53,8 @@ body{
     margin-left: auto;
 }
 .logout-btn{
-    background-color: white;
-    color: #2C5364;
+    background-color: transparent;
+    color: #151269;
     font-size: 16px;
     text-transform: uppercase;
     font-weight: bolder;
@@ -64,7 +65,7 @@ body{
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 .logout-btn:hover{
-    background-color: #2C5364;
+    background-color: #151269;
     color: white;
 }
 
@@ -75,11 +76,8 @@ nav{
     padding: 0 100px;
     justify-content: space-between;
     align-items: center;
-    background: rgba(8, 27, 41, 0.7);
-    border-top: 1px solid rgb(10, 148, 208);
-    border-bottom: 2px solid rgb(10, 148, 208);
-    box-shadow: 0 2px 8px rgba(0, 238, 255, 0.6);
-    backdrop-filter: blur(10px);
+    background: #151269;
+    border-bottom: 2px solid white;
 }
 
 nav ul{
@@ -102,7 +100,6 @@ nav ul li a{
 .submenu1{
     display: none;
 }
-
 nav ul li:hover .submenu1{
     display: block;
     position: absolute;
@@ -120,10 +117,8 @@ nav ul li:hover .submenu1 ul li{
     padding: 5px 5px;
     border-radius: 0;
     text-align: center;
-    background: linear-gradient(to bottom, #0F2027, #203A43, #2C5364);
-    border-top: 2px solid rgb(10, 148, 208);
-    border-bottom: 2px solid rgb(10, 148, 208);
-    box-shadow: 0 1px 4px rgba(0, 238, 255, 0.6), 0 -1px 4px rgba(0, 238, 255, 0.6);
+    border: 1px solid white;
+    background: #151269;
 }
 nav ul li:hover .submenu1 ul li a{
     font-size: 7px;
@@ -145,7 +140,7 @@ nav ul li:hover .submenu1 ul li a{
     content: "";
     width: 0;
     height: 2px;
-    background: #0ef;
+    background: white;
     display: block;
     margin: auto;
     transition: 0.5s;
@@ -156,15 +151,13 @@ nav ul li:hover .submenu1 ul li a{
 
 /* footer section */
 footer {
-    background-color: black;
+    background-color: #151269;
     color: white;
     padding: 20px 100px;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
     flex-wrap: wrap;
-    border-top: 2px solid rgb(10, 148, 208);
-    box-shadow: 0 -8px 32px rgba(0, 238, 255, 0.6), 0 8px 32px rgba(0, 238, 255, 0.6); /* Shadow equally distributed on top and bottom */
 }
 
 .footer-section {
