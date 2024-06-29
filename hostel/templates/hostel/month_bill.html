@@ -7,7 +7,7 @@ Hostel | Bill
 {% endblock %}
 
 {% block style %}
-<link rel="stylesheet" href="{% static 'styles/month_bill.css' %}">
+<link rel="stylesheet" href="{% static 'styles/bill.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -34,6 +34,23 @@ Hostel | Bill
                         {% endfor %}    
                     </tbody>
                 </table>
+            </div>
+            <div class="pagination">
+                <span class="step-links">
+                    {% if bills.has_previous %}
+                        <a href="?page=1">&laquo; first</a>
+                        <a href="?page={{ bills.previous_page_number }}">previous</a>
+                    {% endif %}
+
+                    <span class="current">
+                        Page {{ bills.number }} of {{ bills.paginator.num_pages }}.
+                    </span>
+
+                    {% if bills.has_next %}
+                        <a href="?page={{ bills.next_page_number }}">next</a>
+                        <a href="?page={{ bills.paginator.num_pages }}">last &raquo;</a>
+                    {% endif %}
+                </span>
             </div>
         </div>
     </div>

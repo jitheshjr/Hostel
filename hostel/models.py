@@ -36,9 +36,7 @@ class Student(models.Model):
     contact_regex = RegexValidator(regex=r'^\d{10}$',message="Contact number must be a 10-digit number.")
     contact = models.CharField(validators=[contact_regex], max_length=10)  # Using CharField for contact with max length 10
     parent_name = models.CharField(max_length=50)
-    parent_occupation = models.CharField(max_length=100)
     address = models.TextField(max_length=200)
-    annual_income = models.PositiveIntegerField()
     date_joined = models.DateField(auto_now_add=True)
 
     
@@ -72,9 +70,7 @@ class Trash(models.Model):
     contact_regex = RegexValidator(regex=r'^\d{10}$',message="Contact number must be a 10-digit number.")
     contact = models.CharField(validators=[contact_regex], max_length=10)  # Using CharField for contact with max length 10
     parent_name = models.CharField(max_length=50)
-    parent_occupation = models.CharField(max_length=100)
     address = models.TextField(max_length=200)
-    annual_income = models.PositiveIntegerField()
     date_joined = models.DateField()
     date_exited = models.DateField(null=True,blank=True)
     room_no = models.TextField(null=True, blank=True)
@@ -175,6 +171,7 @@ class MessBill(models.Model):
     room_rent = models.DecimalField(max_digits=10,decimal_places=2)
     staff_salary = models.DecimalField(max_digits=10,decimal_places=2)
     electricity_bill = models.DecimalField(max_digits=10,decimal_places=2)
+    total = models.DecimalField(max_digits=10,decimal_places=2)
     year = models.SmallIntegerField()
 
     class Meta:

@@ -161,9 +161,7 @@ def delete_student(request,student_id):
                 photo=student.photo,
                 contact=student.contact,
                 parent_name=student.parent_name,
-                parent_occupation=student.parent_occupation,
                 address=student.address,
-                annual_income=student.annual_income,
                 date_joined=student.date_joined,
                 date_exited=timezone.now(),
                 room_no=room_no,
@@ -402,6 +400,8 @@ def generate_mess_bill(request):
                     staff_salary = form.cleaned_data['staff_salary']
                     electricity_bill = form.cleaned_data['electricity_bill']
 
+                    total = total_mess_amount + (room_rent*number_of_students) + staff_salary + electricity_bill
+
                     year = start_date.year
                     month = start_date.strftime('%B')
 
@@ -422,6 +422,7 @@ def generate_mess_bill(request):
                             room_rent=room_rent,
                             staff_salary=staff_salary,
                             electricity_bill=electricity_bill,
+                            total=total,
                             year=year
                         )
                         messbill.save()
@@ -526,7 +527,11 @@ def view_monthly_bill(request,month,year):
         current_month = month
         current_year = year
         bills = StudentBill.objects.filter(month=current_month,year=current_year).select_related('name')
-        return render(request,"hostel/month_bill.html",{'bills':bills})
+
+        paginator = Paginator(bills,10)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        return render(request,"hostel/month_bill.html",{'bills':page_obj})
     except Exception:
         return render(request,'hostel/error.html')
 
