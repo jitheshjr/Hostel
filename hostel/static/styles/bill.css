@@ -5,8 +5,17 @@
     margin-top: 15vh;
     margin-bottom: 10vh;
 }
-.main-block{
-    margin: 0 auto;
+.main-block-1{
+    margin: 50px auto;
+    width: 40%;
+    height: auto;
+    padding: 10px;
+    box-shadow: 0 8px 16px rgba(21, 18, 105, 0.5);
+    background-color: #EDF4F2;
+    font-size: smaller;
+}
+.main-block-2{
+    margin: 50px auto;
     width: 40%;
     height: auto;
     padding: 10px;
@@ -129,7 +138,7 @@ h5{
     #filter-table{
         display: none;
     }
-    .main-block{
+    .main-block-1, .main-block-2{
         width: 80%;
     }
 }

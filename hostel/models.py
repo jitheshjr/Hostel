@@ -104,18 +104,17 @@ class Room(models.Model):
     def __str__(self):
         return str(self.room_number)
     
-    def save(self, *args, **kwargs):
-        if self.room_number.allotment_set.count() >= self.room_number.capacity:
-            raise ValueError("Room capacity exceeded")
-        super().save(*args, **kwargs)
-    
 class Allotment(models.Model):
     room_number = models.ForeignKey(Room,on_delete=models.CASCADE)
     name = models.OneToOneField(Student,on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.name} in {self.room_number}" 
-
+    
+    def save(self, *args, **kwargs):
+        if self.room_number.allotment_set.count() >= self.room_number.capacity:
+            raise ValueError("Room capacity exceeded")
+        super().save(*args, **kwargs)
 
 class AttendanceDate(models.Model):
     date = models.DateField(unique=True)

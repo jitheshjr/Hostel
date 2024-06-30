@@ -490,20 +490,33 @@ def generate_mess_bill(request):
 
 @group_required('admin', login_url='access_denied')
 def view_bill(request):
-    try:
-        bills = StudentBill.objects.all().select_related('name')
+    students = Student.objects.all()
 
-        bill_filter = billFilter(request.GET, queryset=bills)
-        filtered_bills = bill_filter.qs
+    e_grantz_students = students.filter(E_Grantz=True)
+    non_e_grantz_students = students.filter(E_Grantz=False)
 
-        paginator = Paginator(filtered_bills,10)
-        page_number = request.GET.get('page')
-        page_obj = paginator.get_page(page_number)
+    true_bill_filter = billFilter(request.GET, queryset=StudentBill.objects.filter(name__in=e_grantz_students))
+    true_filtered_bills = true_bill_filter.qs
 
+    false_bill_filter = billFilter(request.GET, queryset=StudentBill.objects.filter(name__in=non_e_grantz_students))
+    false_filtered_bills = false_bill_filter.qs
 
-        return render(request,"hostel/bill.html",{'filter':bill_filter,'bills':page_obj})
-    except Exception:
-        return render(request,'hostel/error.html')
+    paginator_true = Paginator(true_filtered_bills, 10)
+    page_number_true = request.GET.get('page_true')
+    page_obj_true = paginator_true.get_page(page_number_true)
+
+    paginator_false = Paginator(false_filtered_bills, 10)
+    page_number_false = request.GET.get('page_false')
+    page_obj_false = paginator_false.get_page(page_number_false)
+
+    context = {
+        'page_obj_true': page_obj_true,
+        'page_obj_false': page_obj_false,
+        'true_bill_filter': true_bill_filter,
+        'false_bill_filter': false_bill_filter,
+    }
+
+    return render(request, 'hostel/bill.html', context)
 
 
 @group_required('admin', login_url='access_denied')

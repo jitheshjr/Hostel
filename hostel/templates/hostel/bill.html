@@ -18,15 +18,15 @@ Hostel | Bill
                 <tr>
                     <td class="filter-td">
                         <label for="id_name">Name:</label>
-                        {{filter.form.name}}
+                        {{true_bill_filter.form.name}}
                     </td>
                     <td class="filter-td">
                         <label for="id_month">Month:</label>
-                        {{filter.form.month}}
+                        {{true_bill_filter.form.month}}
                     </td>
                     <td class="filter-td">
                         <label for="id_year">Year:</label>
-                        {{filter.form.year}}
+                        {{true_bill_filter.form.year}}
                     </td>
                     <td class="filter-td">
                         <button type="submit" id="search">Search</button>
@@ -34,13 +34,13 @@ Hostel | Bill
                 </tr>
             </table>
         </form>
-        <div class="main-block">
+        <div class="main-block-1">
 
             <div class="header-links">
                 <a href="{% url 'home' %}" class="back-link" id="closeBtn">&#10006;</a>
             </div>
             
-            <h5>Bill details of students</h5>
+            <h5>Bill details of students with E-Grantz</h5>
 
             <div class="bill">
                 <div class="table-responsive">
@@ -51,9 +51,9 @@ Hostel | Bill
                             </tr>
                         </thead>
                         <tbody>
-                            {% for bill in bills %}
+                            {% for t in page_obj_true %}
                                 <tr>
-                                    <td>{{ bill.name.name}}</td> <td>{{bill.total}}</td><td>{{bill.month}}</td><td>{{bill.year}}</td>
+                                    <td>{{ t.name.name}}</td> <td>{{t.total}}</td><td>{{t.month}}</td><td>{{t.year}}</td>
                                  </tr>
                             {% endfor %}    
                         </tbody>
@@ -63,21 +63,67 @@ Hostel | Bill
 
             <div class="pagination">
                 <span class="step-links">
-                    {% if bills.has_previous %}
-                        <a href="?page=1">&laquo; first</a>
-                        <a href="?page={{ bills.previous_page_number }}">previous</a>
+                    {% if page_obj_true.has_previous %}
+                        <a href="?page_true=1">&laquo; first</a>
+                        <a href="?page_true={{ page_obj_true.previous_page_number }}">previous</a>
                     {% endif %}
-
+            
                     <span class="current">
-                        Page {{ bills.number }} of {{ bills.paginator.num_pages }}.
+                        Page {{ page_obj_true.number }} of {{ page_obj_true.paginator.num_pages }}.
                     </span>
-
-                    {% if bills.has_next %}
-                        <a href="?page={{ bills.next_page_number }}">next</a>
-                        <a href="?page={{ bills.paginator.num_pages }}">last &raquo;</a>
+            
+                    {% if page_obj_true.has_next %}
+                        <a href="?page_true={{ page_obj_true.next_page_number }}">next</a>
+                        <a href="?page_true={{ page_obj_true.paginator.num_pages }}">last &raquo;</a>
                     {% endif %}
                 </span>
             </div>
+        </div>
+        <div class="main-block-2">
+            <div class="header-links">
+                <a href="{% url 'home' %}" class="back-link" id="closeBtn">&#10006;</a>
+            </div>
+            
+            <h5>Bill details of students without E-Grantz</h5>
+
+            <div class="bill">
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th> <th>Amount</th><th>Month</th><th>Year</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for f in page_obj_false %}
+                                <tr>
+                                    <td>{{ f.name.name}}</td> <td>{{f.total}}</td><td>{{f.month}}</td><td>{{f.year}}</td>
+                                 </tr>
+                            {% endfor %}    
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="pagination">
+                <span class="step-links">
+                    {% if page_obj_false.has_previous %}
+                        <a href="?page_false=1">&laquo; first</a>
+                        <a href="?page_false={{ page_obj_false.previous_page_number }}">previous</a>
+                    {% endif %}
+            
+                    <span class="current">
+                        Page {{ page_obj_false.number }} of {{ page_obj_false.paginator.num_pages }}.
+                    </span>
+            
+                    {% if page_obj_false.has_next %}
+                        <a href="?page_false={{ page_obj_false.next_page_number }}">next</a>
+                        <a href="?page_false={{ page_obj_false.paginator.num_pages }}">last &raquo;</a>
+                    {% endif %}
+                </span>
+            </div>            
+
+        </div>
 
         </div>
     </div>
