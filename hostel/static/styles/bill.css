@@ -108,6 +108,21 @@ h5{
     opacity: 0.6;
 }
 
+#printBtn {
+    background: transparent;
+    color: #151269;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: bolder;
+    border: none; 
+    padding: 10px; 
+    cursor: pointer; 
+    border-radius: 5px; 
+}
+
+#printBtn:hover {
+    opacity: 0.6;
+}
 
 .pagination {
     display: flex;

@@ -38,26 +38,29 @@ Hostel | Bill
 
             <div class="header-links">
                 <a href="{% url 'home' %}" class="back-link" id="closeBtn">&#10006;</a>
+                <button id="printBtn" onclick="printDiv('print1')">Print</button>
             </div>
             
-            <h5>Bill details of students with E-Grantz</h5>
+            <div id="print1">
+                <h5>Bill details of students with E-Grantz</h5>
 
-            <div class="bill">
-                <div class="table-responsive">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Name</th> <th>Amount</th><th>Month</th><th>Year</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for t in page_obj_true %}
+                <div class="bill">
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
                                 <tr>
-                                    <td>{{ t.name.name}}</td> <td>{{t.total}}</td><td>{{t.month}}</td><td>{{t.year}}</td>
-                                 </tr>
-                            {% endfor %}    
-                        </tbody>
-                    </table>
+                                    <th>Name</th> <th>Amount</th><th>Month</th><th>Year</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for t in page_obj_true %}
+                                    <tr>
+                                        <td>{{ t.name.name}}</td> <td>{{t.total}}</td><td>{{t.month}}</td><td>{{t.year}}</td>
+                                    </tr>
+                                {% endfor %}    
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
 
@@ -82,26 +85,29 @@ Hostel | Bill
         <div class="main-block-2">
             <div class="header-links">
                 <a href="{% url 'home' %}" class="back-link" id="closeBtn">&#10006;</a>
+                <button id="printBtn" onclick="printDiv('print2')">Print</button>
             </div>
             
-            <h5>Bill details of students without E-Grantz</h5>
+            <div id="print2">
+                <h5>Bill details of students without E-Grantz</h5>
 
-            <div class="bill">
-                <div class="table-responsive">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Name</th> <th>Amount</th><th>Month</th><th>Year</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for f in page_obj_false %}
+                <div class="bill">
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
                                 <tr>
-                                    <td>{{ f.name.name}}</td> <td>{{f.total}}</td><td>{{f.month}}</td><td>{{f.year}}</td>
-                                 </tr>
-                            {% endfor %}    
-                        </tbody>
-                    </table>
+                                    <th>Name</th> <th>Amount</th><th>Month</th><th>Year</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for f in page_obj_false %}
+                                    <tr>
+                                        <td>{{ f.name.name}}</td> <td>{{f.total}}</td><td>{{f.month}}</td><td>{{f.year}}</td>
+                                    </tr>
+                                {% endfor %}    
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
 
@@ -128,4 +134,15 @@ Hostel | Bill
         </div>
     </div>
 </section>
+
+<script>
+    function printDiv(divId) {
+            var printContents = document.getElementById(divId).innerHTML;
+            var originalContents = document.body.innerHTML;
+
+            document.body.innerHTML = printContents;
+            window.print();
+            document.body.innerHTML = originalContents;
+        }
+</script>
 {% endblock %}

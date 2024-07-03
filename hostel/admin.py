@@ -12,5 +12,7 @@ admin.site.register(MessBill)
 admin.site.register(StudentBill)
 admin.site.register(AttendanceDate)
 admin.site.register(ContinuousAbsence)
+admin.site.register(Trash)
+
 
 

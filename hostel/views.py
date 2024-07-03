@@ -100,15 +100,12 @@ def edit_student(request, student_id):
     try:
         student = get_object_or_404(Student, id=student_id)
         prev_admn_no = student.admn_no
-        print(prev_admn_no)
         form = StudentForm(instance=student)
 
         if request.method == "POST":
             form = StudentForm(request.POST, request.FILES, instance=student)  # Include request.FILES to handle file uploads
             new_admn_no = request.POST.get('admn_no')
-            print(new_admn_no)
             if int(prev_admn_no) == int(new_admn_no):
-                print("hello")
                 if form.is_valid():
                     if 'image' in form.changed_data:
                     # Delete old image file if it exists
@@ -139,43 +136,40 @@ def edit_student(request, student_id):
 
 @group_required('admin', login_url='access_denied')
 def delete_student(request,student_id):
-    try:
-        if request.method == 'GET':
-            student = get_object_or_404(Student, id=student_id)
 
-            # Get room number if allotted
-            room_no = None
-            allotment = Allotment.objects.filter(name=student).first()
-            if allotment:
-                room_no = allotment.room_number
-                allotment.delete()
+    if request.method == 'GET':
+        student = get_object_or_404(Student, id=student_id)
 
-            # Move student data to Trash
-            trash_obj = Trash(
-                admn_no=student.admn_no,
-                name=student.name,
-                year_of_admn=student.year_of_admn,
-                pgm=student.pgm,
-                dob=student.dob,
-                email=student.email,
-                photo=student.photo,
-                contact=student.contact,
-                parent_name=student.parent_name,
-                address=student.address,
-                date_joined=student.date_joined,
-                date_exited=timezone.now(),
-                room_no=room_no,
-                category=student.category,
-                E_Grantz=student.E_Grantz,
-            )
-            trash_obj.save()
+        # Get room number if allotted
+        room_no = None
+        allotment = Allotment.objects.filter(name=student).first()
+        if allotment:
+            room_no = allotment.room_number.room_number
+            allotment.delete()
 
-            # Delete the student
-            student.delete()
-            return redirect('view_student')
-    except Exception:
-        return render(request,'hostel/error.html')
+        # Move student data to Trash
+        trash_obj = Trash(
+            admn_no=student.admn_no,
+            name=student.name,
+            year_of_admn=student.year_of_admn,
+            pgm=student.pgm,
+            dob=student.dob,
+            email=student.email,
+            photo=student.photo,
+            contact=student.contact,
+            parent_name=student.parent_name,
+            address=student.address,
+            date_joined=student.date_joined,
+            date_exited=timezone.now(),
+            room_no=room_no,
+            category=student.category,
+            E_Grantz=student.E_Grantz,
+        )
+        trash_obj.save()
 
+        # Delete the student
+        student.delete()
+        return redirect('view_student')
 
 
 

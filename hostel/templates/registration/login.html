@@ -14,10 +14,8 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-image:linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.5) 100%),url('{% static "login.jpg" %}');
-            background-position: center;
-            background-size: cover;
-            position: relative;
+            background-color: #0f0c29;
+            background-image: linear-gradient(to bottom right, #0f0c29, #302b63, #24243e);
         }
 
         .container {
@@ -31,7 +29,13 @@
             border-radius: 10px;
             border: 2px solid rgba(255, 255, 255, .2);
             backdrop-filter: blur(10px);
-            background-color: transparent;
+            background-color: white;
+            text-align: center; /* Center align content */
+        }
+
+        .container h2 {
+            color: #302b63; /* Header color */
+            margin-bottom: 20px; /* Space below header */
         }
 
         input[type="text"],
@@ -39,25 +43,25 @@
             width: 100%;
             padding: 12px;
             margin-bottom: 12px;
-            border: 1px solid white;
+            border: 1px solid #0f0c29;
             border-radius: 4px;
             box-sizing: border-box;
             background: transparent;
-            color: white;
+            color: #0f0c29;
             transition: border-color 0.3s;
         }
 
         input[type="text"]:focus,
         input[type="password"]:focus {
-            border-color: #fff;
+            border-color: #1f0cca;
             outline: none;
         }
 
         input[type="submit"] {
             width: 100%;
-            background-color: white;
-            color: black;
-            font-weight: bolder;
+            background-color: #302b63;
+            color: white;
+            font-weight: bold;
             font-size: larger;
             padding: 14px 20px;
             margin: 10px 0;
@@ -68,31 +72,34 @@
         }
 
         input[type="submit"]:hover {
-            opacity: 0.5;
+            opacity: 0.8;
         }
 
         label {
             margin-top: 10px;
             display: block;
             font-weight: bold;
-            color: white;
-        }
-        ul.errorlist.nonfield {
-            color: white;
+            color: #302b63;
+            text-align: left; /* Left align labels */
         }
 
-        @media (min-width: 360px) and (max-width: 450px){
-            .container{
-                width:70%;
+        ul.errorlist.nonfield {
+            color: #302b63;
+        }
+
+        @media (min-width: 360px) and (max-width: 450px) {
+            .container {
+                width: 70%;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
+        <h2>Welcome back!</h2> <!-- Added header -->
         <form action="" method="post">
             {% csrf_token %}
-            {{ form.as_p}}
+            {{ form.as_p }}
             <input type="submit" value="Login">
         </form>
     </div>
