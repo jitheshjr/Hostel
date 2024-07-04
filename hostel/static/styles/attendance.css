@@ -54,7 +54,18 @@ h5{
     margin-bottom: 20px;
     text-transform: uppercase;
 }
-.messages{
+li.error{
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10vh;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: bolder;
+    color: red;
+}
+li.success{
     list-style-type: none;
     display: flex;
     justify-content: center;

@@ -7,52 +7,73 @@ Hostel | Bill
 {% endblock %}
 
 {% block style %}
-<link rel="stylesheet" href="{% static 'styles/bill.css' %}">
+<link rel="stylesheet" href="{% static 'styles/month_bill.css' %}">
 {% endblock %}
 
 {% block content %}
 
 <section class="main">
     <div class="main-body">
-        <div class="main-block">
+        <div class="main-block-1">
             <div class="header-links">
                 <a href="{% url 'home' %}" class="back-link" id="closeBtn">&#10006;</a>
+                <button id="printBtn" onclick="printDiv('print1')">Print</button>
             </div>
-            <h5>Bill details of students</h5>
-            <div class="bill">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Name</th> <th>Amount</th><th>Month</th><th>Year</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for bill in bills %}
+            <div id="print1">
+                <h5>Bill details of students with E-Grantz</h5>
+                <div class="bill">
+                    <table>
+                        <thead>
                             <tr>
-                                <td>{{ bill.name.name}}</td> <td>{{bill.total}}</td><td>{{bill.month}}</td><td>{{bill.year}}</td>
+                                <th>Name</th> <th>Amount</th><th>Month</th><th>Year</th>
                             </tr>
-                        {% endfor %}    
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {% for t in true_bills %}
+                                <tr>
+                                    <td>{{ t.name.name}}</td> <td>{{t.total}}</td><td>{{t.month}}</td><td>{{t.year}}</td>
+                                </tr>
+                            {% endfor %}    
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <div class="pagination">
-                <span class="step-links">
-                    {% if bills.has_previous %}
-                        <a href="?page=1">&laquo; first</a>
-                        <a href="?page={{ bills.previous_page_number }}">previous</a>
-                    {% endif %}
-
-                    <span class="current">
-                        Page {{ bills.number }} of {{ bills.paginator.num_pages }}.
-                    </span>
-
-                    {% if bills.has_next %}
-                        <a href="?page={{ bills.next_page_number }}">next</a>
-                        <a href="?page={{ bills.paginator.num_pages }}">last &raquo;</a>
-                    {% endif %}
-                </span>
+        </div>
+        <div class="main-block-2">
+            <div class="header-links">
+                <a href="{% url 'home' %}" class="back-link" id="closeBtn">&#10006;</a>
+                <button id="printBtn" onclick="printDiv('print2')">Print</button>
+            </div>
+            <div id="print2">
+                <h5>Bill details of students without E-Grantz</h5>
+                <div class="bill">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th> <th>Amount</th><th>Month</th><th>Year</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for f in false_bills %}
+                                <tr>
+                                    <td>{{ f.name.name}}</td> <td>{{f.total}}</td><td>{{f.month}}</td><td>{{f.year}}</td>
+                                </tr>
+                            {% endfor %}    
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
 </section>
+<script>
+    function printDiv(divId) {
+            var printContents = document.getElementById(divId).innerHTML;
+            var originalContents = document.body.innerHTML;
+
+            document.body.innerHTML = printContents;
+            window.print();
+            document.body.innerHTML = originalContents;
+        }
+</script>
 {% endblock %}

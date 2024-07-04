@@ -51,7 +51,7 @@ def add_student(request):
 @group_required('admin', login_url='access_denied')
 def view_students(request):
     try:
-        stud = Student.objects.all().select_related('pgm').all().order_by('pgm')
+        stud = Student.objects.all().select_related('pgm').all().order_by('id')
         students_filter = studentFilter(request.GET, queryset=stud)
         if not stud.exists():
             messages.error(request,"Currently there are no students")
@@ -74,7 +74,7 @@ def view_details(request, student_id):
 
 def inactive_students(request, login_url='access_denied'):
     try:
-        stud = Trash.objects.all().select_related('pgm').all().order_by('pgm')
+        stud = Trash.objects.all().select_related('pgm').all().order_by('id')
         students_filter = studentFilter(request.GET, queryset=stud)
         if not stud.exists():
             messages.error(request,"Currently there are no students")
@@ -278,7 +278,7 @@ def mark_attendance(request):
 @login_required()
 def view_attendance(request):
     try:
-        filter = attendanceFilter(request.GET, queryset=AttendanceDate.objects.all().order_by('date'))
+        filter = attendanceFilter(request.GET, queryset=AttendanceDate.objects.all().order_by('-id'))
         attendance_list = filter.qs
 
         #pagination
@@ -319,7 +319,7 @@ def delete_attendance(request, date_id):
 @login_required()
 def streak(request):
     try:
-        streak_filter = streakFilter(request.GET, queryset=ContinuousAbsence.objects.all().select_related('name'))
+        streak_filter = streakFilter(request.GET, queryset=ContinuousAbsence.objects.all().select_related('name').order_by('-id'))
         streak_list = streak_filter.qs
 
         paginator = Paginator(streak_list,10)
@@ -489,7 +489,7 @@ def view_bill(request):
     e_grantz_students = students.filter(E_Grantz=True)
     non_e_grantz_students = students.filter(E_Grantz=False)
 
-    true_bill_filter = billFilter(request.GET, queryset=StudentBill.objects.filter(name__in=e_grantz_students))
+    true_bill_filter = billFilter(request.GET, queryset=StudentBill.objects.filter(name__in=e_grantz_students).order_by('-id'))
     true_filtered_bills = true_bill_filter.qs
 
     false_bill_filter = billFilter(request.GET, queryset=StudentBill.objects.filter(name__in=non_e_grantz_students))
@@ -516,7 +516,7 @@ def view_bill(request):
 @group_required('admin', login_url='access_denied')
 def total_bill(request):
     try:
-        bill_filter = monthbillFilter(request.GET, queryset = MessBill.objects.all())
+        bill_filter = monthbillFilter(request.GET, queryset = MessBill.objects.all().order_by('-id'))
         bill_list = bill_filter.qs
 
         paginator = Paginator(bill_list,10)
@@ -533,12 +533,16 @@ def view_monthly_bill(request,month,year):
     try:
         current_month = month
         current_year = year
-        bills = StudentBill.objects.filter(month=current_month,year=current_year).select_related('name')
 
-        paginator = Paginator(bills,10)
-        page_number = request.GET.get('page')
-        page_obj = paginator.get_page(page_number)
-        return render(request,"hostel/month_bill.html",{'bills':page_obj})
+        students = Student.objects.all()
+
+        e_grantz_students = students.filter(E_Grantz=True)
+        non_e_grantz_students = students.filter(E_Grantz=False)
+
+        true_bills = StudentBill.objects.filter(month=current_month,year=current_year,name__in=e_grantz_students).select_related('name')
+        false_bills = StudentBill.objects.filter(month=current_month,year=current_year,name__in=non_e_grantz_students).select_related('name')
+
+        return render(request,"hostel/month_bill.html",{'true_bills':true_bills,'false_bills':false_bills})
     except Exception:
         return render(request,'hostel/error.html')
 

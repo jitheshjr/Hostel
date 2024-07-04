@@ -1,17 +1,29 @@
 .main{
-    margin-top: 70px;
-    margin-bottom: 100px;
+    min-height: 64vh;
 }
-.main-block{
-    margin: 0 auto;
-    width: 80%;
+.main-body{
+    margin-top: 15vh;
+    margin-bottom: 10vh;
+}
+.main-block-1{
+    margin: 50px auto;
+    width: 40%;
     height: auto;
     padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 8px 16px rgba(21, 18, 105, 0.5); 
+    box-shadow: 0 8px 16px rgba(21, 18, 105, 0.5);
     background-color: #EDF4F2;
     font-size: smaller;
 }
+.main-block-2{
+    margin: 50px auto;
+    width: 40%;
+    height: auto;
+    padding: 10px;
+    box-shadow: 0 8px 16px rgba(21, 18, 105, 0.5);
+    background-color: #EDF4F2;
+    font-size: smaller;
+}
+
 .bill {
     width: 70%;
     margin: 0 auto;
@@ -58,4 +70,27 @@ h5{
 }
 .header-links .back-link:hover {
     opacity: 0.6;
+}
+#printBtn {
+    background: transparent;
+    color: #151269;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: bolder;
+    border: none; 
+    padding: 10px; 
+    cursor: pointer; 
+    border-radius: 5px; 
+}
+
+#printBtn:hover {
+    opacity: 0.6;
+}
+@media (min-width: 360px) and (max-width: 450px){
+    .main-body{
+        min-height: 72vh;
+    }
+    .main-block-1, .main-block-2{
+        width: 80%;
+    }
 }
