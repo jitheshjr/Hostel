@@ -127,6 +127,32 @@ h5{
     border: 1px solid #ccc;
     color: black;
 }
+.btn{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+.hero-btn{
+    margin-top: 50px;
+    display: inline-block;
+    text-decoration: none;
+    color: #151269;
+    border: 1px solid #151269;
+    padding: 12px 34px;
+    font-size: 13px;
+    background: transparent;
+    position: relative;
+    cursor: pointer;
+    text-transform: uppercase;
+    box-shadow: 0 4px 8px rgba(21, 18, 105, 0.5);
+}
+.hero-btn:hover{
+    background: #151269;
+    transition: 1s;
+    color: white;
+}
 
 @media (min-width: 360px) and (max-width: 450px){
     .main-body{
@@ -137,5 +163,13 @@ h5{
     }
     .main-block{
         width: 80%;
+    }
+    .hero-btn {
+        padding: 8px 16px; /* Adjust padding for smaller buttons */
+        font-size: 11px; /* Further decrease font size */
+    }
+    .btn{
+        width: 100%;
+        max-width: 100%; 
     }
 }

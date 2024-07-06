@@ -36,13 +36,13 @@ background: white;
     overflow: hidden;
 }
 .logo-image {
-    width: 90px;
-    height: 90px;
+    width: 100px;
+    height: 100px;
 }
 
 .institution-name h1 {
-    font-size: 1.2em;
-    line-height: 1.5;
+    font-size: 1.7em;
+    line-height: 1.1;
 }
 
 #exit{
@@ -182,7 +182,7 @@ footer {
 }
 
 /* responsive */
-@media (min-width: 360px) and (max-width: 450px) {
+@media (min-width: 360px) and (max-width: 480px) {
     .header{
         min-height: 13vh;
     }

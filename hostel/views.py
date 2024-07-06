@@ -241,6 +241,28 @@ def view_allotement(request):
         return render(request,'hostel/error.html')
 
 
+@group_required('admin', login_url='access_denied')
+def room_list(request):
+    rooms = Room.objects.all()
+    room_data = []
+
+    for room in rooms:
+        allotted_count = room.allotment_set.count()
+        available_count = room.capacity - allotted_count
+        print(available_count)
+        room_data.append({
+            'room_number':room.room_number,
+            'capacity':room.capacity,
+            'available':available_count
+        })
+
+    paginator = Paginator(room_data, 10)  # Show 10 rooms per page
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    context = {'page_obj':page_obj}
+    
+    return render(request,"hostel/roomList.html",context)
 
 
 # Attendance functions

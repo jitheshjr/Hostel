@@ -1,0 +1,66 @@
+{% extends 'hostel/base.html' %}
+
+{% load static %}
+
+{% block title %}
+Hostel | Allocations
+{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'styles/allotements.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="main">
+    <div class="main-body">
+        <div class="btn">
+            <a href="{% url 'allot_student' %}" class="hero-btn">Allocate Room</a>
+            <a href="{% url 'view_allotement' %}" class="hero-btn">View Allocations</a>
+        </div>
+        <div class="main-block">
+            <div class="header-links">
+                <a href="{% url 'home' %}" class="back-link" id="closeBtn">&#10006;</a>
+            </div>
+
+            <h5>Room Details</h5>
+
+            <div class="allot">
+                <div class="table-resposive">
+                    <table>
+                        <tr>
+                            <th>Room Number</th><th>Capacity</th><th>Available</th>
+                        </tr>
+                        <tr class="ignore-row">
+                            <td></td><td></td><td></td><td></td>
+                        </tr>
+                        {% for room in page_obj %}
+                        <tr>
+                            <td>{{room.room_number}}</td>
+                            <td>{{room.capacity}}</td>
+                            <td>{{room.available}}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+            <div class="pagination">
+                <span class="step-links">
+                    {% if page_obj.has_previous %}
+                        <a href="?page=1">&laquo; first</a>
+                        <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                    {% endif %}
+
+                    <span class="current">
+                        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                    </span>
+
+                    {% if page_obj.has_next %}
+                        <a href="?page={{ page_obj.next_page_number }}">next</a>
+                        <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                    {% endif %}
+                </span>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
