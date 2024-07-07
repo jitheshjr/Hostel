@@ -20,6 +20,12 @@ h5,h3{
     margin-bottom: 20px;
     text-transform: uppercase;
 }
+#null{
+    color: red;
+    text-transform: uppercase;
+    text-align: center;
+    margin: 10px;
+}
 
 .absent-list{
     list-style: none;
@@ -69,5 +75,8 @@ h5,h3{
     }
     .main-block{
         width: 80%;
+    }
+    h5,h3{
+        font-size: 12px;
     }
 }

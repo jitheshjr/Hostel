@@ -1,5 +1,5 @@
 .main{
-    min-height: 64vh;
+    min-height: 70vh;
 }
 
 .main-body{
@@ -8,46 +8,57 @@
 }
 
 .attendance-form {
-    width: 25%;
+    width: 80%;
     margin: 0 auto;
     padding: 20px 10px;
-    border-radius: 5px;
     border-radius: 10px;
-    background:#EDF4F2;
+    background: #EDF4F2;
     box-shadow: 0 8px 16px rgba(21, 18, 105, 0.5);
+    margin-bottom: 50px;
 }
-.attendance-form label {
-    margin-bottom: 10px;
-    color: black;
-    margin-left: 5px;
+#student-container {
+    margin-top: 20px;
+    margin-bottom: 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Creates columns with a minimum width */
+    gap: 20px; /* Space between grid items */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px 20px;
+    box-sizing: border-box;
+}
+.student-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px; /* Space between items within the column */
 }
 
-.attendance-form input[type="date"]{
-    margin-bottom: 15px;
+#id_date{
+    background-color: #fff;
+    width: 16.9%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
-
-.attendance-form input[type="checkbox"]{
-    margin-bottom: 5px;
-}
-
-input[type="submit"] {
-    width: 100%;
+form input[type="submit"] {
     background-color: rgb(10, 148, 208);
     color: white;
-    font-weight: bolder;
-    font-size: larger;
+    transition: background-color 0.3s, opacity 0.3s;
     padding: 10px 20px;
-    margin: 10px 0;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.3s, opacity 0.3s;
+    width: 50%; /* Desired width of the button */
+    display: block; /* Ensures the button takes up the width specified */
+    margin: 20px auto; 
 }
-
-input[type="submit"]:hover {
+form input[type="submit"]:hover {
     background: #203A43;
     color: white;
 }
+
+
+
 h5{
     color: black;
     text-align: center;
@@ -77,7 +88,7 @@ li.success{
     color: #151269;
 }
 #studentSearch {
-    width: 100%;
+    width: 20%;
     padding: 10px;
     margin-bottom: 15px;
     font-size: 16px;
@@ -120,5 +131,11 @@ li.success{
     }
     .messages{
         font-size: 12px;
+    }
+    #id_date{
+        width: 100%;
+    }
+    #studentSearch{
+        width: 100%;
     }
 }

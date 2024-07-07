@@ -25,7 +25,7 @@ def home(request):
 
 # Student manipulating functions
 
-@group_required('admin', login_url='access_denied')
+@group_required('warden', login_url='access_denied')
 def add_student(request):
     try:
         if request.method == "POST":
@@ -48,7 +48,7 @@ def add_student(request):
     except Exception:
         return render(request,'hostel/error.html')
 
-@group_required('admin', login_url='access_denied')
+@group_required('warden', login_url='access_denied')
 def view_students(request):
     try:
         stud = Student.objects.all().select_related('pgm').all().order_by('id')
@@ -59,7 +59,7 @@ def view_students(request):
     except Exception:
         return render(request,'hostel/error.html')
 
-@group_required('admin', login_url='access_denied')
+@group_required('warden', login_url='access_denied')
 def view_details(request, student_id):
     try:
         student = Student.objects.filter(id=student_id).select_related('pgm').first()
@@ -77,13 +77,13 @@ def inactive_students(request, login_url='access_denied'):
         stud = Trash.objects.all().select_related('pgm').all().order_by('id')
         students_filter = studentFilter(request.GET, queryset=stud)
         if not stud.exists():
-            messages.error(request,"Currently there are no students")
+            messages.error(request,"Trash is empty")
         return render(request,'hostel/inact_students.html',{'filter':students_filter})
     except Exception:
         return render(request,'hostel/error.html')
 
 
-@group_required('admin', login_url='access_denied')
+@group_required('warden', login_url='access_denied')
 def view_inactive_details(request, student_id):
     try:
         student = Trash.objects.filter(id=student_id).select_related('pgm').first()
@@ -95,7 +95,7 @@ def view_inactive_details(request, student_id):
         return render(request,'hostel/error.html')
 
 
-@group_required('admin', login_url='access_denied')
+@group_required('warden', login_url='access_denied')
 def edit_student(request, student_id):
     try:
         student = get_object_or_404(Student, id=student_id)
@@ -134,7 +134,7 @@ def edit_student(request, student_id):
         return render(request,'hostel/error.html') 
 
 
-@group_required('admin', login_url='access_denied')
+@group_required('warden', login_url='access_denied')
 def delete_student(request,student_id):
 
     if request.method == 'GET':
@@ -175,7 +175,7 @@ def delete_student(request,student_id):
 
 # Room allocation functions
 
-@group_required('admin', login_url='access_denied')
+@group_required('warden', login_url='access_denied')
 def allot_student(request):
     try:
         if request.method == "POST":
@@ -196,7 +196,7 @@ def allot_student(request):
         return render(request,'hostel/error.html')
 
 
-@group_required('admin', login_url='access_denied')
+@group_required('warden', login_url='access_denied')
 def edit_allocation(request,student_name):
     try:
         Alloted_object = Allotment.objects.get(name__name=student_name)
@@ -214,7 +214,7 @@ def edit_allocation(request,student_name):
         return render(request,'hostel/error.html')
 
 
-@group_required('admin', login_url='access_denied')
+@group_required('warden', login_url='access_denied')
 def delete_allocation(request,student_name):
     try:
         if request.method == "GET":
@@ -226,7 +226,7 @@ def delete_allocation(request,student_name):
         return render(request,'hostel/error.html')
 
 
-@group_required('admin', login_url='access_denied')
+@group_required('warden', login_url='access_denied')
 def view_allotement(request):
     try:
         filter = roomFilter(request.GET, queryset=Allotment.objects.select_related('room_number', 'name').order_by('room_number'))
@@ -241,7 +241,7 @@ def view_allotement(request):
         return render(request,'hostel/error.html')
 
 
-@group_required('admin', login_url='access_denied')
+@group_required('warden', login_url='access_denied')
 def room_list(request):
     rooms = Room.objects.all()
     room_data = []
@@ -249,7 +249,6 @@ def room_list(request):
     for room in rooms:
         allotted_count = room.allotment_set.count()
         available_count = room.capacity - allotted_count
-        print(available_count)
         room_data.append({
             'room_number':room.room_number,
             'capacity':room.capacity,
@@ -288,7 +287,7 @@ def mark_attendance(request):
                         att = AttendanceDate.objects.get(date=date)
                         absenti = Attendance(date=att,name=stud)
                         absenti.save()
-                    return redirect('view_attendance')
+                    messages.success(request, f"Attendance for {date} recorded successfully.")
         else:
             form=AttendanceForm()
         students = Student.objects.all()
@@ -400,7 +399,7 @@ def find_continuous_absences(start_date, end_date):
     return dict(continuous_absences)
 
 
-@group_required('admin', login_url='access_denied')
+@group_required('warden', login_url='access_denied')
 def generate_mess_bill(request):
     try:
         if request.method == "POST":
@@ -504,7 +503,7 @@ def generate_mess_bill(request):
 
 
 
-@group_required('admin', login_url='access_denied')
+@group_required('warden', login_url='access_denied')
 def view_bill(request):
     students = Student.objects.all()
 
@@ -535,7 +534,7 @@ def view_bill(request):
     return render(request, 'hostel/bill.html', context)
 
 
-@group_required('admin', login_url='access_denied')
+@group_required('warden', login_url='access_denied')
 def total_bill(request):
     try:
         bill_filter = monthbillFilter(request.GET, queryset = MessBill.objects.all().order_by('-id'))
@@ -550,7 +549,7 @@ def total_bill(request):
         return render(request,'hostel/error.html')
 
 
-@group_required('admin', login_url='access_denied')
+@group_required('warden', login_url='access_denied')
 def view_monthly_bill(request,month,year):
     try:
         current_month = month

@@ -28,7 +28,7 @@
                 <button type="submit" value="Logout" class="logout-btn"><img src="{% static 'logout.png' %}" id="exit"><div id="log-text">Logout</div></button>
             </form>
         </div>
-        {% if is_admin_group %}
+        {% if is_warden_group %}
         <nav>
             <div class="nav-links" id="navLinks">
                 <ul>
@@ -61,13 +61,12 @@
         </nav>
         {% endif %}
 
-        {% if is_guest_group %}
+        {% if is_secretary_group %}
         <nav>
             <div class="nav-links" id="navLinks">
                 <ul>
                     <li><a href="{% url 'home' %}">HOME</a></li>
                     <li><a href="{% url 'view_attendance' %}">SUMMARY</a></li>
-                    <li><a href="{% url 'streak' %}">STREAKS</a></li>
                 </ul>
             </div>
         </nav>

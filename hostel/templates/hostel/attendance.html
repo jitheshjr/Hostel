@@ -29,10 +29,16 @@ Hostel | AttendanceForm
                     <input type="text" id="studentSearch" placeholder="Search by student name" onkeyup="filterStudents()">
                     <form action="" method="post">
                         {% csrf_token %}
+                        <label for="{{form.date.id_for_label}}">Date:</label>
+                        {{ form.date }}
                         <div id="student-container">
-                            {{form.as_p}}
+                            {% for checkbox in form.absentees %}
+                                <div class="student-item">
+                                    {{ checkbox }}
+                                </div>
+                            {% endfor %}
                         </div>
-                        <input type="submit" value="submit">
+                        <input type="submit" value="Submit">
                     </form>
                 </div>
             </div>

@@ -19,12 +19,16 @@ Hostel | Absentees
             </div>
             <h5>Datewise Report</h5>
             <h3>Attendance report for {{ date.date }}</h3>
-    
-            <ul class="absent-list">
-                {% for absentee in absentees %}
-                    <li class="list-items">{{ absentee.name }}</li>
-                {% endfor %}
-            </ul>
+            {% if absentees %}
+                <ul class="absent-list">
+                    {% for absentee in absentees %}
+                        <li class="list-items">{{ absentee.name }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p id="null">No absent students</p>
+            {% endif %}
+
         </div>
     </div>
 </section>
