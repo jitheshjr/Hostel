@@ -13,15 +13,12 @@ Hostel | Report
 <section class="main">
     <div class="main-body">
         {% if messages %}
-        <div class="messages">
+        <ul class="messages" >
             {% for message in messages %}
-                <div class="alert alert-{{ message.tags }}">
-                    {{ message }}
-                </div>
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
             {% endfor %}
-        </div>
+        </ul>
         {% endif %}
-        
         <form method="get" class="filter-form">
             <table id="filter-table">
                 <tr>

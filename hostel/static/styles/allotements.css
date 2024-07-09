@@ -82,7 +82,28 @@ h5{
     margin-bottom: 25px;
     text-transform: uppercase;
 }
-
+li.error{
+    color: red;
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10vh;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: bolder;
+}
+li.success{
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10vh;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: bolder;
+    color: #151269;
+}
 
 .header-links {
     display: flex;

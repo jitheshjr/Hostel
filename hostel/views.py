@@ -220,6 +220,7 @@ def delete_allocation(request,student_name):
         if request.method == "GET":
             allot_obj = Allotment.objects.get(name__name=student_name)
             allot_obj.delete()
+            messages.success(request,f"Deleted successfully")
             return redirect('view_allotement')
 
     except Exception:
@@ -298,18 +299,17 @@ def mark_attendance(request):
 
 @login_required()
 def view_attendance(request):
-    try:
-        filter = attendanceFilter(request.GET, queryset=AttendanceDate.objects.all().order_by('-id'))
-        attendance_list = filter.qs
+    filter = attendanceFilter(request.GET, queryset=AttendanceDate.objects.all().order_by('-id'))
+    attendance_list = filter.qs
 
-        #pagination
-        paginator = Paginator(attendance_list,10)
-        page_number = request.GET.get('page')
-        page_obj = paginator.get_page(page_number)
+    #pagination
+    paginator = Paginator(attendance_list,10)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
 
-        return render(request,"hostel/summary.html",{'page_obj': page_obj,'filter': filter})
-    except Exception:
-        return render(request,'hostel/error.html')
+    return render(request,"hostel/summary.html",{'page_obj': page_obj,'filter': filter})
+
+
 
 
 @login_required()
