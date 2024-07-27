@@ -336,22 +336,6 @@ def delete_attendance(request, date_id):
     except Exception:
         return render(request,'hostel/error.html')
 
-
-@login_required()
-def streak(request):
-    try:
-        streak_filter = streakFilter(request.GET, queryset=ContinuousAbsence.objects.all().select_related('name').order_by('-id'))
-        streak_list = streak_filter.qs
-
-        paginator = Paginator(streak_list,10)
-        page_number = request.GET.get('page')
-        page_obj = paginator.get_page(page_number)
-
-        return render(request,"hostel/streak.html",{'filter':streak_filter,'page_obj':page_obj})
-    except Exception:
-        return render(request,'hostel/error.html')
-
-
 # mess bill functions
 
 #function to find continuous absences
@@ -467,6 +451,7 @@ def generate_mess_bill(request):
                         print(f"Total students: {number_of_students}")
                         print(f"Total mess amount: {total_mess_amount}")
                         print(f"Total mess working days: {mess_days}")
+                        print(f"Total mess reduction days: {reduction_days}")
                         print(f"Total mess days after reduction: {total_mess_days}")
                         print(f"Mess bill per day: {mess_bill_per_day}")
                         print(f"Other expenses per student: {other_expenses_per_student}")
@@ -501,39 +486,6 @@ def generate_mess_bill(request):
     except Exception:
         return render(request,'hostel/error.html')
 
-
-
-@group_required('warden', login_url='access_denied')
-def view_bill(request):
-    students = Student.objects.all()
-
-    e_grantz_students = students.filter(E_Grantz=True)
-    non_e_grantz_students = students.filter(E_Grantz=False)
-
-    true_bill_filter = billFilter(request.GET, queryset=StudentBill.objects.filter(name__in=e_grantz_students).order_by('-id'))
-    true_filtered_bills = true_bill_filter.qs
-
-    false_bill_filter = billFilter(request.GET, queryset=StudentBill.objects.filter(name__in=non_e_grantz_students))
-    false_filtered_bills = false_bill_filter.qs
-
-    paginator_true = Paginator(true_filtered_bills, 10)
-    page_number_true = request.GET.get('page_true')
-    page_obj_true = paginator_true.get_page(page_number_true)
-
-    paginator_false = Paginator(false_filtered_bills, 10)
-    page_number_false = request.GET.get('page_false')
-    page_obj_false = paginator_false.get_page(page_number_false)
-
-    context = {
-        'page_obj_true': page_obj_true,
-        'page_obj_false': page_obj_false,
-        'true_bill_filter': true_bill_filter,
-        'false_bill_filter': false_bill_filter,
-    }
-
-    return render(request, 'hostel/bill.html', context)
-
-
 @group_required('warden', login_url='access_denied')
 def total_bill(request):
     try:
@@ -567,3 +519,16 @@ def view_monthly_bill(request,month,year):
     except Exception:
         return render(request,'hostel/error.html')
 
+@login_required()
+def streak(request):
+    try:
+        streak_filter = streakFilter(request.GET, queryset=ContinuousAbsence.objects.all().select_related('name').order_by('-id'))
+        streak_list = streak_filter.qs
+
+        paginator = Paginator(streak_list,10)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+
+        return render(request,"hostel/streak.html",{'filter':streak_filter,'page_obj':page_obj})
+    except Exception:
+        return render(request,'hostel/error.html')

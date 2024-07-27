@@ -14,23 +14,27 @@ Hostel | AttendanceForm
     <section class="main">
         <div class="main-body">
             <div class="attendance-validation">
-                {% if messages %}
-                <ul class="messages" >
-                    {% for message in messages %}
-                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                    {% endfor %}
-                </ul>
-                {% endif %}
                 <div class="attendance-form">
                     <div class="header-links">
                         <a href="{% url 'home' %}" id="closeBtn" class="back-link">&#10006;</a>
                     </div>
                     <h5>Attendance Form</h5>
+                    {% if messages %}
+                        <ul class="messages" >
+                            {% for message in messages %}
+                                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
                     <input type="text" id="studentSearch" placeholder="Search by student name" onkeyup="filterStudents()">
                     <form action="" method="post">
                         {% csrf_token %}
                         <label for="{{form.date.id_for_label}}">Date:</label>
                         {{ form.date }}
+                        <br>
+                        <label id="selectall_label">
+                            <input type="checkbox" id="select_all">Select All
+                        </label>
                         <div id="student-container">
                             {% for checkbox in form.absentees %}
                                 <div class="student-item">
@@ -61,5 +65,18 @@ Hostel | AttendanceForm
                 }
             }
         }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const selectAllCheckbox = document.getElementById('select_all');
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+            selectAllCheckbox.addEventListener('change', function() {
+                checkboxes.forEach(checkbox => {
+                    if (checkbox !== selectAllCheckbox) {
+                        checkbox.checked = selectAllCheckbox.checked;
+                    }
+                });
+            });
+        });
     </script>
 {% endblock %}

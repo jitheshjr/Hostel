@@ -13,11 +13,11 @@ Hostel | Home
 {% block content %}
 <section class="main-body">
     <div class="text-box">
-        <h4>K. V. Kunhambu Memorial Women's Hostel</h4>
-        <h3>NASC-HMS</h3>
+        <h2>K. V. Kunhambu Memorial Women's Hostel</h2>
+        <h1>NASC-HMS</h1>
         <a href="{% url 'mark_attendance' %}" class="hero-btn">Add attendance</a>
         {% if is_warden_group %}
-        <a href="{% url 'generate_mess_bill' %}" class="hero-btn">generate mess bill</a>
+        <a href="{% url 'generate_mess_bill' %}" class="hero-btn">generate messbill</a>
         {% endif %}
     </div>   
 </section>

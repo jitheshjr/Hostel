@@ -1,17 +1,15 @@
-.main{
-    min-height: 64vh;
-}
 .main-body{
-    margin-top: 15vh;
+    margin-top: 10vh;
     margin-bottom: 10vh;
 }
 .billform {
     width: 40%;
     margin: 0 auto;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 8px 16px rgba(21, 18, 105, 0.5); 
-    background-color: #EDF4F2;
+    padding: 20px 10px;
+    border-radius: 10px;
+    background: linear-gradient(to right, #ECE9E6 0%, #FFFFFF  51%, #ECE9E6  100%);
+    box-shadow: 0 8px 16px rgba(10, 10, 11, 0.5);
+    margin-bottom: 50px;
     font-size: smaller;
 }
 .form-fields {
@@ -34,52 +32,65 @@
     border-radius: 4px;
 }
 
-.submit-input input[type="submit"] {
-    width: 100%;
-    padding: 10px 20px;
-    border: none;
+form input[type="submit"] {
+    background-image: linear-gradient(to right, #1D976C 0%, #93F9B9  51%, #1D976C  100%);
+    margin: 10px;
+    padding: 15px 45px;
+    text-align: center;
+    width: 90%;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white; 
+    font-size: 15px;    
+    font-weight: bolder;       
+    box-shadow: 0 0 20px #eee;
     border-radius: 4px;
-    cursor: pointer;
-    background-color: rgb(10, 148, 208);
-    color: white;
-    transition: background-color 0.3s, opacity 0.3s;
-}
-.submit-input input[type="submit"]:hover {
-    background: #203A43;
-    color: white;
+    display: block;
+    margin: 20px auto;
+    border: none;
+  }
+
+form input[type="submit"]:hover{
+    background-position: right center;
+    color: black;
+    text-decoration: none;
 }
 
 h5{
     color: black;
     text-align: center;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
     text-transform: uppercase;
+    font-size: 20px;
+    font-weight: bolder;
 }
 li.error{
-    color: red;
     list-style-type: none;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 10vh;
+    height: 5vh;
     font-size: 16px;
     text-transform: uppercase;
     font-weight: bolder;
+    color: red;
 }
 li.success{
     list-style-type: none;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 10vh;
+    height: 5vh;
     font-size: 16px;
     text-transform: uppercase;
     font-weight: bolder;
     color: #151269;
 }
+
 .header-links {
     display: flex;
-    justify-content: space-between;
+    justify-content: start;
     align-items: center;
     position: relative;
     top: 0;
@@ -105,5 +116,14 @@ li.success{
     }
     .messages{
         font-size: 12px;
+    }
+    h5{
+        font-size: 16px;
+    }
+    li.error{
+        font-size: 10px;
+    }
+    li.success{
+        font-size: 10px;
     }
 }

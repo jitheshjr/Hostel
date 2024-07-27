@@ -33,29 +33,14 @@
             <div class="nav-links" id="navLinks">
                 <ul>
                     <li><a href="{% url 'home' %}">HOME</a></li>
-                    <li><a href="">STUDENT</a>
-                        <div class="submenu1">
-                            <ul>
-                                <li><a href="{% url 'add_student' %}">ADD STUDENT</a></li>
-                                <li><a href="{% url 'view_student' %}">VIEW STUDENTS</a></li>
-                                <li><a href="{% url 'inactive_student' %}">INACTIVE STUDENTS</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    
+                    <li><a href="{% url 'view_student' %}">STUDENTS</a></li>    
                     <li><a href="{% url 'room_list' %}">ROOM</a></li>
 
-                    <li><a href="">MESSBILL</a>
-                        <div class="submenu1">
-                            <ul>
-                                <li><a href="{% url 'view_bill' %}">Student bill</a></li>
-                                <li><a href="{% url 'total_bill' %}">monthly bill</a></li>    
-                            </ul>
-                        </div>
-                    </li>
+                    <li><a href="{% url 'total_bill' %}">MESSBILL</a></li>
 
                     <li><a href="{% url 'view_attendance' %}">SUMMARY</a></li>
                     <li><a href="{% url 'streak' %}">STREAKS</a></li>
+                    <li><a href="{% url 'inactive_student' %}">TRASH</a></li>
                 </ul>
             </div>
         </nav>

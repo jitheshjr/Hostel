@@ -13,21 +13,14 @@ Hostel | Allocations
 {% block content %}
 <section class="main">
     <div class="main-body">
-        {% if messages %}
-        <ul class="messages" >
-            {% for message in messages %}
-                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-            {% endfor %}
-        </ul>
-        {% endif %}
         <form method="get" class="filter-form">
             <table id="filter-table">
                 <tr>
-                    <td class="filter-td">
+                    <td class="filter-td" style="text-align: left;">
                         <label for="id_room_number">Room Number:</label>
                         {{filter.form.room_number}}
                     </td>
-                    <td class="filter-td">
+                    <td class="filter-td" style="text-align: right;">
                         <button type="submit" id="search">Search</button>
                     </td>
                 </tr>
@@ -40,14 +33,21 @@ Hostel | Allocations
             </div>
 
             <h5>Room Allocation Details</h5>
+            {% if messages %}
+            <ul class="messages" >
+                {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
 
             <div class="allot">
                 <div class="table-resposive">
                     <table>
                         <tr>
-                            <th>Room Number</th><th>Students</th><th>Floor</th><th>Action</th>
+                            <th>Room Number</th><th>Students</th><th>Floor</th><th style="text-align: right; color: red;">Action</th>
                         </tr>
-                        <tr class="ignore-row">
+                        <tr id="ignore-row">
                             <td></td><td></td><td></td><td></td>
                         </tr>
                         {% for a in alloted %}
@@ -55,7 +55,7 @@ Hostel | Allocations
                             <td>{{a.room_number}}</td>
                             <td>{{a.name}}</td>
                             <td>{{a.room_number.floor}}</td>
-                            <td><!-- <a href="{% url 'edit_allocation' a.name %}" onsubmit="return confirmData();">Edit</a>/ --><a href="{% url 'delete_allocation' a.name %}" onclick="return confirmDelete();">Delete</a></td>
+                            <td style="text-align: right;"><!-- <a href="{% url 'edit_allocation' a.name %}" onsubmit="return confirmData();">Edit</a>/ --><a href="{% url 'delete_allocation' a.name %}" onclick="return confirmDelete();">Delete</a></td>
                         </tr>
                         {% endfor %}
                     </table>

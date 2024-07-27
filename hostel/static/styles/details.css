@@ -1,24 +1,21 @@
-.main{
-    min-height: 64vh;
-}
 .student-details {
-    background-color: #EDF4F2;
+    background: linear-gradient(to right, #ECE9E6 0%, #FFFFFF  51%, #ECE9E6  100%);
+    box-shadow: 0 8px 16px rgba(10, 10, 11, 0.5);
     padding: 20px;
     padding-top: 10px;
     border-radius: 8px;
-    margin: 15vh auto;
+    margin: 17vh auto;
     width: 25%;
     text-align: center;
     font-family: 'Times New Roman', Times, serif;
-    box-shadow: 0 8px 16px rgba(21, 18, 105, 0.5);
     font-size: 10px;
     color: black;
 }
 .name-pgm {
     text-transform: uppercase;
     font-weight: bold;
-    font-size: 12px;
-    margin-bottom: 10px;
+    font-size: 10px;
+    margin: 15px 0;
 }
 .header-links {
     display: flex;
@@ -37,7 +34,7 @@
     display: inline-block;
 }
 .header-links .menu{
-    width: 20px; /* Adjust the size to match the font size of the back-link */
+    width: 20px; 
     height: 20px;
     margin-left: 10px;
     cursor: pointer;
@@ -103,14 +100,11 @@
 }
 
 @media (min-width: 360px) and (max-width:450px){
-    .main{
-        min-height: 70vh;
-    }
     .student-details{
         width: 80%;
     }
     .header-links{
-        width: 90%;
+        width: 97%;
     }
     .name-pgm{
         font-size: 8px;

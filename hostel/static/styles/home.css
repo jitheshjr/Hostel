@@ -7,39 +7,43 @@ h4{
 }
 .text-box{
     width: 90%;
-    color: #151269;
+    color: #F7F2EB;
+    text-shadow: 0px 4px 30px rgba(0, 0, 0, 0.1);
     position: absolute;
     top: 52%;
     left: 50%;
     transform: translate(-50%,-50%);
     text-align: center;
 }
-.text-box h4{
-    font-size: 30px;
+.text-box h2{
+    font-size: 45px;
     text-transform: uppercase;
     padding: 10px 0;
 }
-.text-box h3{
-    font-size: 30px;
+.text-box h1{
+    font-size: 100px;
 }
 .hero-btn{
-    margin-top: 50px;
+    background-image: linear-gradient(to right, #ffb347 0%, #ffcc33  51%, #ffb347  100%);
+    margin: 50px 20px;
     display: inline-block;
     text-decoration: none;
-    color: #151269;
-    border: 1px solid #151269;
-    padding: 12px 34px;
-    font-size: 13px;
-    background: transparent;
+    color: #000000;
+    padding: 20px 50px;
+    font-size: 20px;
+    font-weight: bolder;
     position: relative;
     cursor: pointer;
     text-transform: uppercase;
-    box-shadow: 0 4px 8px rgba(21, 18, 105, 0.5);
+    transition: 0.5s;
+    box-shadow: 0 8px 16px rgba(10, 10, 11, 0.5);
+    border-radius: 10px;
 }
-.hero-btn:hover{
-    background: #151269;
-    transition: 1s;
-    color: white;
+         
+.hero-btn:hover {
+    box-shadow: 0 0 5px rgb(23, 24, 7), 0 0 25px rgb(23, 24, 7), 0 0 50px rgb(23, 24, 7);
+    transform: scale(1.1);
+    transition: 1s; 
 }
 
 @media (min-width: 360px) and (max-width: 450px){
@@ -50,11 +54,17 @@ h4{
         width: 90%;
         max-width: 100%; 
     }
-    .text-box h4 {
+    .text-box h1{
+        font-size: 22px;
+    }
+    .text-box h2{
         font-size: 22px;
     }
     .hero-btn {
-        padding: 8px 16px; /* Adjust padding for smaller buttons */
-        font-size: 11px; /* Further decrease font size */
+        font-size: 12px;
+        font-weight: bolder;
+        margin: 30px 10px;
+        padding: 10px 10px;
+        border-radius: 2px;
     }
 }

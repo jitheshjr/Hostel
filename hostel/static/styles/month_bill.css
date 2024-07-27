@@ -1,60 +1,63 @@
-.main{
-    min-height: 64vh;
-}
 .main-body{
-    margin-top: 15vh;
+    margin-top: 10vh;
     margin-bottom: 10vh;
 }
 .main-block-1{
-    margin: 50px auto;
     width: 40%;
-    height: auto;
-    padding: 10px;
-    box-shadow: 0 8px 16px rgba(21, 18, 105, 0.5);
-    background-color: #EDF4F2;
-    font-size: smaller;
+    margin: 0 auto;
+    padding: 20px 10px;
+    border-radius: 10px;
+    background: linear-gradient(#ECE9E6, #FFFFFF);
+    box-shadow: 0 8px 16px rgba(10, 10, 11, 0.5);
+    margin-bottom: 50px;
 }
 .main-block-2{
-    margin: 50px auto;
     width: 40%;
-    height: auto;
-    padding: 10px;
-    box-shadow: 0 8px 16px rgba(21, 18, 105, 0.5);
-    background-color: #EDF4F2;
-    font-size: smaller;
+    margin: 0 auto;
+    padding: 20px 10px;
+    border-radius: 10px;
+    background: linear-gradient(#ECE9E6, #FFFFFF);
+    box-shadow: 0 8px 16px rgba(10, 10, 11, 0.5);
+    margin-bottom: 50px;
 }
 
 .bill {
-    width: 70%;
+    width: 80%;
     margin: 0 auto;
 }
 .bill table {
     border-collapse: collapse;
     width: 100%;
-    margin: 10px;
+}
+.bill th{
+    background-color: #bdc3c7;
+
+}
+.bill tr:nth-child(even){
+    background-color: #E2E2E2;
+}
+#ignore-row{
+    background-color: transparent;
 }
 .bill th, .bill td {
     border: none;
     text-align: left;
     padding: 8px;
 }
-.bill th, .bill td{
-    background-color: #EDF4F2;
-    color: black;
-}
 
-.ignore td{
-    background-color: #31473A;
-}
 h5{
     color: black;
     text-align: center;
-    margin-bottom: 25px;
+    margin-top: 10px;
+    margin-bottom: 30px;
     text-transform: uppercase;
+    font-size: 16px;
+    font-weight: bolder;
 }
+
 .header-links {
     display: flex;
-    justify-content: space-between;
+    justify-content: end;
     align-items: center;
     position: relative;
     top: 0;
@@ -62,15 +65,7 @@ h5{
     padding: 0;
     margin-bottom: 20px;
 }
-.header-links .back-link {
-    font-size: 25px;
-    color: black;
-    text-decoration: none;
-    display: inline-block;
-}
-.header-links .back-link:hover {
-    opacity: 0.6;
-}
+
 #printBtn {
     background: transparent;
     color: #151269;
@@ -87,10 +82,14 @@ h5{
     opacity: 0.6;
 }
 @media (min-width: 360px) and (max-width: 450px){
-    .main-body{
-        min-height: 72vh;
-    }
     .main-block-1, .main-block-2{
         width: 80%;
     }
+    h5{
+        font-size: 10px;
+    }
+    .bill th, .bill td{
+        font-size: 8px;
+    }
+
 }

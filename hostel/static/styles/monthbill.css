@@ -1,54 +1,46 @@
-.main{
-    min-height: 64vh;
-}
 .main-body{
-    margin-top: 15vh;
-    margin-bottom: 10vh;
+    margin-top: 10vh;
+    margin-bottom: 30vh;
 }
 .main-block{
+    width: 70%;
     margin: 0 auto;
-    width: 60%;
-    height: auto;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 8px 16px rgba(21, 18, 105, 0.5); 
-    background-color: #EDF4F2;
-    font-size: smaller;
+    padding: 20px 10px;
+    border-radius: 10px;
+    background: linear-gradient(#ECE9E6, #FFFFFF);
+    box-shadow: 0 8px 16px rgba(10, 10, 11, 0.5);
+    margin-bottom: 50px;
 }
 
 #filter-table {
     margin: auto;
-    width: 50%;
+    width: 30%;
     border-collapse: collapse;
     margin-bottom: 50px;
-    box-shadow: 0 4px 8px rgba(21, 18, 105, 0.5); 
+    box-shadow: 0 8px 16px rgba(10, 10, 11, 0.5);
 }
 .filter-td {
     padding: 10px;
-    background-color: #EDF4F2;
+    background: linear-gradient(#ECE9E6, #FFFFFF);
 }
 label {
     font-weight: bold;
 }
-
 #search{
     padding: 10px 20px;
-    background-color: rgb(10, 148, 208);
+    background: #45a9e3;
     color: white;
+    font-weight: bolder;
     transition: background-color 0.3s, opacity 0.3s;
     border: none;
     border-radius: 4px;
     cursor: pointer;
 }
-
 #search:hover {
-    background: #203A43;
+    background-color: black;
     color: white;
 }
 
-.table-responsive{
-    overflow-x: auto;
-}
 
 .bill {
     width: 80%;
@@ -59,43 +51,71 @@ label {
     width: 100%;
     margin: 10px;
 }
+.bill th{
+    background-color: #bdc3c7;
+
+}
+.bill tr:nth-child(even){
+    background-color: #E2E2E2;
+}
+#ignore-row{
+    background-color: transparent;
+}
 .bill th, .bill td {
     border: none;
-    text-align: left;
+    text-align: center;
     padding: 8px;
 }
-.bill th, .bill td{
-    background-color: #EDF4F2;
-    color: black;
-}
+.bill tr td a {
+    color: white;
+    background: #1FA2FF;
+    padding: 5px 10px; 
+    text-decoration: none; 
+    border-radius: 5px; 
+    display: inline-block; 
+    transition: background-color 0.3s ease; 
+    border: none; 
+    font-weight: bold; 
+    font-size: 10px;
+    text-align: center;
+} 
 
+.bill tr td a:hover{
+    background-color: black;
+    color: white;
+}
 
 h5{
     color: black;
     text-align: center;
-    margin-bottom: 25px;
+    margin-top: 10px;
+    margin-bottom: 30px;
     text-transform: uppercase;
+    font-size: 16px;
+    font-weight: bolder;
 }
 
-
-.header-links {
+li.error{
+    color: red;
+    list-style-type: none;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    position: relative;
-    top: 0;
-    width: 100%;
-    padding: 0;
-    margin-bottom: 20px;
+    height: 10vh;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: bolder;
 }
-.header-links .back-link {
-    font-size: 25px;
-    color: black;
-    text-decoration: none;
-    display: inline-block;
-}
-.header-linblueks .table-resposiveback-link:hover {
-    opacity: 0.6;
+li.success{
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10vh;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: bolder;
+    color: #151269;
 }
 
 .pagination {
@@ -107,7 +127,7 @@ h5{
 .pagination .step-links a {
     margin: 0 5px;
     padding: 5px 10px;
-    background: #fff;
+    background:fff;
     border: 1px solid #ddd;
     text-decoration: none;
     color: #071952;
@@ -122,13 +142,35 @@ h5{
 }
 
 @media (min-width: 360px) and (max-width: 450px){
-    .main-body{
-        min-height: 72vh;
-    }
     #filter-table{
         display: none;
     }
     .main-block{
         width: 80%;
+        margin-top: 20vh;
+    }
+    .table-responsive{
+        overflow-x: auto;
+    }
+    .bill th, .bill td{
+        font-size: 12px;
+    }
+    .pagination .step-links a{
+        margin: 0 2px;
+        padding: 1px 2px;
+    }
+    .pagination .step-links .current{
+        margin: 0 2px;
+        padding: 1px 2px;
+    }
+    h5{
+        font-size: 10px;
+    }
+    .hero-btn {
+        font-size: 12px;
+        font-weight: bolder;
+        margin: 30px 10px;
+        padding: 10px 10px;
+        border-radius: 2px;
     }
 }

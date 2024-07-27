@@ -1,0 +1,154 @@
+.main-body{
+    margin-top: 10vh;
+    margin-bottom: 28vh;
+}
+.main-block{
+    width: 40%;
+    margin: 0 auto;
+    padding: 20px 10px;
+    border-radius: 10px;
+    background-image: linear-gradient(#ECE9E6, #FFFFFF);
+    box-shadow: 0 8px 16px rgba(10, 10, 11, 0.5);
+    margin-bottom: 50px;
+}
+
+.allot {
+    width: 80%;
+    margin: 0 auto;
+}
+.allot table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px;
+}
+.allot th{
+    background-color: #bdc3c7;
+
+}
+.allot th, .allot td {
+    border: none;
+    text-align: center;
+    padding: 8px;
+}
+
+.allot tr:nth-child(even){
+    background-color: #E2E2E2;
+}
+
+#ignore-row{
+    background-color: transparent;
+}
+
+h5{
+    color: black;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: bolder;
+}
+
+li.error{
+    color: red;
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10vh;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: bolder;
+}
+li.success{
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10vh;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: bolder;
+    color: #151269;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.pagination .step-links a {
+    margin: 0 5px;
+    padding: 5px 10px;
+    background:fff;
+    border: 1px solid #ddd;
+    text-decoration: none;
+    color: #071952;
+
+}
+.pagination .step-links .current {
+    margin: 0 5px;
+    padding: 5px 10px;
+    background: rgb(134, 205, 236);
+    border: 1px solid #ccc;
+    color: black;
+}
+.btn{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    gap: 10px;
+}
+.hero-btn{
+    background-image: linear-gradient(to right, #ffb347 0%, #ffcc33  51%, #ffb347  100%);
+    margin: 30px 10px;
+    display: inline-block;
+    text-decoration: none;
+    color: #000000;
+    padding: 20px 30px;
+    font-size: 20px;
+    font-weight: bolder;
+    position: relative;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: 0.5s;
+    box-shadow: 0 8px 16px rgba(10, 10, 11, 0.5);
+    border-radius: 10px;
+}
+         
+.hero-btn:hover {
+    box-shadow: 0 0 5px rgb(23, 24, 7), 0 0 25px rgb(23, 24, 7), 0 0 50px rgb(23, 24, 7);
+    transform: scale(1.1);
+    transition: 1s; 
+}
+
+@media (min-width: 360px) and (max-width: 450px){
+    .main-body{
+        margin-bottom: 25vh;
+    }
+    .main-block{
+        width: 80%;
+    }
+    .hero-btn {
+        font-size: 12px;
+        font-weight: bolder;
+        margin: 30px 10px;
+        padding: 10px 10px;
+        border-radius: 2px;
+    }
+    .allot th, .allot td{
+        font-size: 12px;
+    }
+    .pagination .step-links a{
+        margin: 0 2px;
+        padding: 1px 2px;
+    }
+    .pagination .step-links .current{
+        margin: 0 2px;
+        padding: 1px 2px;
+    }
+    .table-resposive{
+        overflow-x: auto;
+    }
+}

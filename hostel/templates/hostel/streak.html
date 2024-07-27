@@ -28,7 +28,7 @@ Hostel | Streak
                         <label for="id_year">Year:</label>
                         {{filter.form.year}}
                     </td>
-                    <td class="filter-td">
+                    <td class="filter-td" style="text-align: right;">
                         <button type="submit" id="search">Search</button>
                     </td>
                 </tr>
@@ -36,18 +36,12 @@ Hostel | Streak
         </form>
 
         <div class="main-block">
-
-            <div class="header-links">
-                <a href="{% url 'home' %}" class="back-link" id="closeBtn">&#10006;</a>
-            </div>
-
             <h5>Continuous Absence Details</h5>
-
             <div class="streak">
                 <ul class="streak-list">
                     {% for streak in page_obj %}
                         <li class="streak-items">{{streak.name}} : {{ streak.streak }} days in {{ streak.month }},{{streak.year}}</li>
-                    {% endfor %}
+                    {% endfor %}    
 
                 </ul>
             </div>
@@ -56,17 +50,17 @@ Hostel | Streak
             <div class="pagination">
                 <span class="step-links">
                     {% if page_obj.has_previous %}
-                        <a href="?page=1{{ filter.form.data.urlencode }}">First</a>
-                        <a href="?page={{ page_obj.previous_page_number }}{{ filter.form.data.urlencode }}">Previous</a>
+                        <a href="?page=1">&laquo; first</a>
+                        <a href="?page={{ page_obj.previous_page_number }}">previous</a>
                     {% endif %}
-
+        
                     <span class="current">
                         Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
                     </span>
-
+        
                     {% if page_obj.has_next %}
-                        <a href="?page={{ page_obj.next_page_number }}{{ filter.form.data.urlencode }}">Next</a>
-                        <a href="?page={{ page_obj.paginator.num_pages }}{{ filter.form.data.urlencode }}">Last</a>
+                        <a href="?page={{ page_obj.next_page_number }}">next</a>
+                        <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
                     {% endif %}
                 </span>
             </div>

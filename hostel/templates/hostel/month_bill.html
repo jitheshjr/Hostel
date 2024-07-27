@@ -16,7 +16,6 @@ Hostel | Bill
     <div class="main-body">
         <div class="main-block-1">
             <div class="header-links">
-                <a href="{% url 'home' %}" class="back-link" id="closeBtn">&#10006;</a>
                 <button id="printBtn" onclick="printDiv('print1')">Print</button>
             </div>
             <div id="print1">
@@ -25,13 +24,16 @@ Hostel | Bill
                     <table>
                         <thead>
                             <tr>
-                                <th>Name</th> <th>Amount</th><th>Month</th><th>Year</th>
+                                <th>Name</th><th>Month</th><th>Year</th><th style="text-align: right;">Amount</th>
+                            </tr>
+                            <tr id="ignore-row">
+                                <td></td><td></td><td></td><td></td>
                             </tr>
                         </thead>
                         <tbody>
                             {% for t in true_bills %}
                                 <tr>
-                                    <td>{{ t.name.name}}</td> <td>{{t.total}}</td><td>{{t.month}}</td><td>{{t.year}}</td>
+                                    <td>{{ t.name.name}}</td><td>{{t.month}}</td><td>{{t.year}}</td><td style="text-align: right;">{{t.total}}</td>
                                 </tr>
                             {% endfor %}    
                         </tbody>
@@ -41,7 +43,6 @@ Hostel | Bill
         </div>
         <div class="main-block-2">
             <div class="header-links">
-                <a href="{% url 'home' %}" class="back-link" id="closeBtn">&#10006;</a>
                 <button id="printBtn" onclick="printDiv('print2')">Print</button>
             </div>
             <div id="print2">
@@ -50,13 +51,16 @@ Hostel | Bill
                     <table>
                         <thead>
                             <tr>
-                                <th>Name</th> <th>Amount</th><th>Month</th><th>Year</th>
+                                <th>Name</th><th>Month</th><th>Year</th><th style="text-align: right;">Amount</th>
+                            </tr>
+                            <tr id="ignore-row">
+                                <td></td><td></td><td></td><td></td>
                             </tr>
                         </thead>
                         <tbody>
                             {% for f in false_bills %}
                                 <tr>
-                                    <td>{{ f.name.name}}</td> <td>{{f.total}}</td><td>{{f.month}}</td><td>{{f.year}}</td>
+                                    <td>{{ f.name.name}}</td><td>{{f.month}}</td><td>{{f.year}}</td><td style="text-align: right;">{{f.total}}</td>
                                 </tr>
                             {% endfor %}    
                         </tbody>

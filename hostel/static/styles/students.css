@@ -4,38 +4,6 @@
 .main-block{
     margin-top: 15vh;
     margin-bottom: 10vh;
-    margin-right: 20px;
-    margin-left: 20px;
-}
-
-li.error{
-    color: red;
-    list-style-type: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 10vh;
-    font-size: 16px;
-    text-transform: uppercase;
-    font-weight: bolder;
-}
-li.success{
-    list-style-type: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 10vh;
-    font-size: 16px;
-    text-transform: uppercase;
-    font-weight: bolder;
-    color: #151269;
-}
-
-h5{
-    color: black;
-    text-align: center;
-    margin-bottom: 20px;
-    text-transform: uppercase;
 }
 
 #filter-table {
@@ -43,39 +11,80 @@ h5{
     width: 90%;
     border-collapse: collapse;
     margin-bottom: 50px;
-    box-shadow: 0 8px 16px rgba(21, 18, 105, 0.5); 
+    box-shadow: 0 8px 16px rgba(10, 10, 11, 0.5);
 }
 .filter-td {
     padding: 10px;
-    background-color: #EDF4F2;
+    background: linear-gradient(#ECE9E6, #FFFFFF);
 }
 label {
     font-weight: bold;
 }
-#search{
+.search{
     padding: 10px 20px;
-    background-color: rgb(10, 148, 208);
+    background: #45a9e3;
     color: white;
+    font-weight: bolder;
     transition: background-color 0.3s, opacity 0.3s;
     border: none;
     border-radius: 4px;
     cursor: pointer;
 }
-#search:hover {
-    background: #203A43;
+.search:hover {
+    background-color: black;
     color: white;
 }
 
+
 .student-boxes{
-    width: 100%;
+    width: 95%;
+    margin: 0 auto;
+    padding: 20px 0px;
     display: flex;
     flex-wrap: wrap;
     justify-content:center;
 }
 
+#add-bg{
+    width: 130px;
+    height: 130px;
+    padding: 20px 10px;
+    margin: 15px;
+    background-image: linear-gradient(to right, #ffb347 0%, #ffcc33  51%, #ffb347  100%);
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    box-shadow: 0 8px 16px rgba(10, 10, 11, 0.5);
+    border-radius: 5px; 
+}
+#add-bg:hover{
+    box-shadow: 0 0 5px rgb(23, 24, 7), 0 0 25px rgb(23, 24, 7), 0 0 50px rgb(23, 24, 7);
+    transform: scale(1.1);
+    transition: 1s; 
+}
+.add-user{
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.user{
+    width: 70%;
+    height: 70%;
+    object-fit: cover;
+    aspect-ratio: 1/1;
+}
+.add-student{
+    padding: 8px;
+    font-size: 10px;
+    font-weight: bold;
+    text-align: center;
+}
 .student-layout {
     width: 130px;
-    height: 120px;
+    height: 130px;
     padding: 20px 10px;
     margin: 15px;
     background: #EDF4F2;
@@ -83,21 +92,22 @@ label {
     justify-content: center;
     align-items: center;
     text-align: center;
-    border-radius: 2px;
-    box-shadow: 0 8px 16px rgba(21, 18, 105, 0.5); 
+    box-shadow: 0 8px 16px rgba(10, 10, 11, 0.5);
+    border-radius: 5px; 
 }
 .student-layout:hover{
-    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 2); 
+    transform: scale(1.1);
+    transition: 1s; 
 
 }
+
 .image-container{
-    width: 50px; 
-    height: 50px;
+    width: 70px; 
+    height: 70px;
     display: flex;
     overflow: hidden;
     position: relative;
-    margin-left: 26%;
-    margin-bottom: 10px;
+    margin: 0 auto;
     border: 2px solid white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     
@@ -134,7 +144,39 @@ label {
 }
 .link:hover{
     text-decoration: underline;
-    opacity: 0.5;
+}
+
+h5{
+    color: white;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    font-size: 16px;
+    font-weight: bolder;
+}
+
+li.error{
+    color: white;
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10vh;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: bolder;
+}
+li.success{
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10vh;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: bolder;
+    color: white;
 }
 
 @media (min-width: 360px) and (max-width:450px){

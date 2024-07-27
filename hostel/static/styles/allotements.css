@@ -1,19 +1,15 @@
-.main{
-    min-height: 67vh;
-}
 .main-body{
-    margin-top: 15vh;
-    margin-bottom: 10vh;
+    margin-top: 10vh;
+    margin-bottom: 30vh;
 }
 .main-block{
-    margin: 0 auto;
     width: 40%;
-    height: auto;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 8px 16px rgba(21, 18, 105, 0.5);
-    background-color: #EDF4F2;
-    font-size: smaller;
+    margin: 0 auto;
+    padding: 20px 10px;
+    border-radius: 10px;
+    background: linear-gradient(#ECE9E6, #FFFFFF);
+    box-shadow: 0 8px 16px rgba(10, 10, 11, 0.5);
+    margin-bottom: 50px;
 }
 
 #filter-table {
@@ -21,31 +17,28 @@
     width: 25%;
     border-collapse: collapse;
     margin-bottom: 50px;
-    box-shadow: 0 4px 8px rgba(21, 18, 105, 0.5);
+    box-shadow: 0 8px 16px rgba(10, 10, 11, 0.5);
 }
 .filter-td {
     padding: 10px;
-    background-color: #EDF4F2;
+    background: linear-gradient(#ECE9E6, #FFFFFF);
 }
 label {
     font-weight: bold;
 }
 #search{
     padding: 10px 20px;
-    background-color: rgb(10, 148, 208);
+    background: #45a9e3;
     color: white;
+    font-weight: bolder;
     transition: background-color 0.3s, opacity 0.3s;
     border: none;
     border-radius: 4px;
     cursor: pointer;
 }
 #search:hover {
-    background: #203A43;
+    background-color: black;
     color: white;
-}
-
-.table-resposive{
-    overflow-x: auto;
 }
 
 .allot {
@@ -57,31 +50,53 @@ label {
     width: 100%;
     margin: 10px;
 }
+.allot th{
+    background-color: #bdc3c7;
+
+}
+.allot tr:nth-child(even){
+    background-color: #E2E2E2;
+}
+
+#ignore-row{
+    background-color: transparent;
+}
+
 .allot th, .allot td {
     border: none;
     text-align: left;
-    padding: 8px;
-}
-.allot th ,.allot td{
-    background-color: #EDF4F2;
-    color: black;
-}
-.allot tr td a {
-    color: rgb(10, 148, 208);
-    text-decoration: none;
-}
-.allot tr td a:hover{
-    opacity: 0.5;
-    text-decoration: underline;
+    padding: 10px 10px;
 }
 
+.allot tr td a {
+    color: white;
+    background: #D31027;
+    padding: 5px 10px; 
+    text-decoration: none; 
+    border-radius: 5px; 
+    display: inline-block; 
+    transition: background-color 0.3s ease; 
+    border: none; 
+    font-weight: bold; 
+    font-size: 10px;
+    text-align: center;
+} 
+
+.allot tr td a:hover{
+    background-color: black;
+    color: white;
+}
 
 h5{
     color: black;
     text-align: center;
-    margin-bottom: 25px;
+    margin-top: 10px;
+    margin-bottom: 30px;
     text-transform: uppercase;
+    font-size: 20px;
+    font-weight: bolder;
 }
+
 li.error{
     color: red;
     list-style-type: none;
@@ -125,7 +140,6 @@ li.success{
     opacity: 0.6;
 }
 
-
 .pagination {
     display: flex;
     justify-content: center;
@@ -148,49 +162,29 @@ li.success{
     border: 1px solid #ccc;
     color: black;
 }
-.btn{
-    margin-top: 20px;
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 30px;
-}
-.hero-btn{
-    margin-top: 50px;
-    display: inline-block;
-    text-decoration: none;
-    color: #151269;
-    border: 1px solid #151269;
-    padding: 12px 34px;
-    font-size: 13px;
-    background: transparent;
-    position: relative;
-    cursor: pointer;
-    text-transform: uppercase;
-    box-shadow: 0 4px 8px rgba(21, 18, 105, 0.5);
-}
-.hero-btn:hover{
-    background: #151269;
-    transition: 1s;
-    color: white;
-}
 
 @media (min-width: 360px) and (max-width: 450px){
-    .main-body{
-        min-height: 72vh;
-    }
     #filter-table{
         display: none;
     }
     .main-block{
         width: 80%;
     }
-    .hero-btn {
-        padding: 8px 16px; /* Adjust padding for smaller buttons */
-        font-size: 11px; /* Further decrease font size */
+    .table-resposive{
+        overflow-x: auto;
     }
-    .btn{
-        width: 100%;
-        max-width: 100%; 
+    .allot th, .allot td{
+        font-size: 12px;
+    }
+    .pagination .step-links a{
+        margin: 0 2px;
+        padding: 1px 2px;
+    }
+    .pagination .step-links .current{
+        margin: 0 2px;
+        padding: 1px 2px;
+    }
+    h5{
+        font-size: 14px;
     }
 }

@@ -13,7 +13,7 @@ Hostel | Students
 {% block content %}
 <section class="main">
     <div class="main-block">
-        <form method="get" class="filter-form">
+        <form method="get" action="{% url 'view_student' %}" class="filter-form">
                 <table id="filter-table">
                     <tr>
                         <td class="filter-td">
@@ -42,7 +42,10 @@ Hostel | Students
                         </td>
         
                         <td class="filter-td">
-                            <button type="submit" id="search">Search</button>
+                            <button type="submit" class="search">Search</button>
+                        </td>
+                        <td class="filter-td" style="text-align: right;">
+                            <button type="reset" class="search" onclick="resetFilters()">Reset</button>
                         </td>
                     </tr>
                 </table>   
@@ -59,6 +62,14 @@ Hostel | Students
         {% endif %}
         
         <div class="student-boxes">
+            <a href="{% url 'add_student' %}" class="link">
+                <div class="student-layout" id="add-bg">
+                    <div class="add-user">   
+                        <img src="{% static 'add-user.png' %}" alt="No image" class="user">
+                    </div>
+                    <div class="add-student">Add Student</div>
+                </div>
+            </a>
             {% for student in filter.qs %}
             <a href="{% url 'view_details' student.id %}" class="link">
                 <div class="student-layout">
@@ -76,6 +87,16 @@ Hostel | Students
         </div>
         
     </div>
-    
 </section>
+<script>
+    function resetFilters() {
+        const form = document.querySelector('.filter-form');
+        form.querySelectorAll('select, input').forEach(input => {
+            if (input.type !== 'hidden') {
+                input.value = '';
+            }
+        });
+        form.submit();
+    }
+</script>
 {% endblock %}

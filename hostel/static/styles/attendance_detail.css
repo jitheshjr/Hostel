@@ -6,20 +6,32 @@
     margin-bottom: 10vh;
 }
 .main-block {
-    margin-top: 70px;
     width: 30%;
     margin: 0 auto;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 8px 16px rgba(21, 18, 105, 0.5);
-    background-color: #EDF4F2;
+    padding: 20px 10px;
+    border-radius: 10px;
+    background: linear-gradient(#ECE9E6, #FFFFFF);
+    box-shadow: 0 8px 16px rgba(10, 10, 11, 0.5);
+    margin-bottom: 50px;
 }
-h5,h3{
-    color: black;
+
+h3{
+    color: rgb(39, 39, 223);
     text-align: center;
     margin-bottom: 20px;
     text-transform: uppercase;
 }
+h5{
+    color: black;   
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    font-size: 16px;
+    font-weight: bolder;
+}
+
+
 #null{
     color: red;
     text-transform: uppercase;
@@ -41,7 +53,7 @@ h5,h3{
 }
 
 .list-items::before {
-    content: "•"; /* Custom bullet point */
+    content: "\2022"; /* unicode bullet point */
     color: black; /* Color of the bullet point */
     font-size: 1.2em; /* Size of the bullet point */
     position: absolute;

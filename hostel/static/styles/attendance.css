@@ -1,9 +1,5 @@
-.main{
-    min-height: 70vh;
-}
-
 .main-body{
-    margin-top: 15vh;
+    margin-top: 10vh;
     margin-bottom: 10vh;   
 }
 
@@ -12,10 +8,11 @@
     margin: 0 auto;
     padding: 20px 10px;
     border-radius: 10px;
-    background: #EDF4F2;
-    box-shadow: 0 8px 16px rgba(21, 18, 105, 0.5);
+    background: linear-gradient(to right, #ECE9E6 0%, #FFFFFF  51%, #ECE9E6  100%);
+    box-shadow: 0 8px 16px rgba(10, 10, 11, 0.5);
     margin-bottom: 50px;
 }
+
 #student-container {
     margin-top: 20px;
     margin-bottom: 40px;
@@ -40,37 +37,74 @@
     border: 1px solid #ccc;
     border-radius: 4px;
 }
+              
 form input[type="submit"] {
-    background-color: rgb(10, 148, 208);
-    color: white;
-    transition: background-color 0.3s, opacity 0.3s;
-    padding: 10px 20px;
-    border: none;
+    background-image: linear-gradient(to right, #1D976C 0%, #93F9B9  51%, #1D976C  100%);
+    margin: 10px;
+    padding: 15px 45px;
+    text-align: center;
+    width: 50%;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white; 
+    font-size: 15px;    
+    font-weight: bolder;       
+    box-shadow: 0 0 20px #eee;
     border-radius: 4px;
+    display: block;
+    margin: 20px auto;
+    border: none;
+  }
+
+form input[type="submit"]:hover{
+    background-position: right center;
+    color: black;
+    text-decoration: none;
+}
+
+
+form input[type="date"]:focus{
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+#selectall_label{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: black;
     cursor: pointer;
-    width: 50%; /* Desired width of the button */
-    display: block; /* Ensures the button takes up the width specified */
-    margin: 20px auto; 
+    user-select: none;
 }
-form input[type="submit"]:hover {
-    background: #203A43;
-    color: white;
+#select_all{
+        margin-right: 10px;
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+        border: 2px solid #333;
+        border-radius: 3px;
+        outline: none;
+        transition: background-color 0.2s, border-color 0.2s;
 }
-
-
 
 h5{
     color: black;
     text-align: center;
     margin-bottom: 20px;
     text-transform: uppercase;
+    font-size: 20px;
+    font-weight: bolder;
 }
 li.error{
     list-style-type: none;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 10vh;
+    height: 5vh;
     font-size: 16px;
     text-transform: uppercase;
     font-weight: bolder;
@@ -81,7 +115,7 @@ li.success{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 10vh;
+    height: 5vh;
     font-size: 16px;
     text-transform: uppercase;
     font-weight: bolder;
@@ -104,7 +138,7 @@ li.success{
 }
 .header-links {
     display: flex;
-    justify-content: space-between;
+    justify-content: start;
     align-items: center;
     position: relative;
     top: 0;
@@ -127,7 +161,7 @@ li.success{
         min-height: 72vh;
     }
     .attendance-form{
-        width: 70%;
+        width: 75%;
     }
     .messages{
         font-size: 12px;
@@ -137,5 +171,14 @@ li.success{
     }
     #studentSearch{
         width: 100%;
+    }
+    h5{
+        font-size: 12px;
+    }
+    li.error{
+        font-size: 8px;
+    }
+    li.success{
+        font-size: 8px;
     }
 }

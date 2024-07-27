@@ -12,13 +12,6 @@ Hostel | Report
 {% block content %}
 <section class="main">
     <div class="main-body">
-        {% if messages %}
-        <ul class="messages" >
-            {% for message in messages %}
-                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-            {% endfor %}
-        </ul>
-        {% endif %}
         <form method="get" class="filter-form">
             <table id="filter-table">
                 <tr>
@@ -30,7 +23,7 @@ Hostel | Report
                         <label for="id_year">Year:</label>
                         {{filter.form.year}}
                     </td>
-                    <td class="filter-td">
+                    <td class="filter-td" style="text-align: right;">
                         <button type="submit" id="search">Search</button>
                     </td>
                 </tr>
@@ -38,25 +31,27 @@ Hostel | Report
         </form>
     
         <div class="main-block">
-    
-            <div class="header-links">
-                <a href="{% url 'home' %}" class="back-link" id="closeBtn">&#10006;</a>
-            </div>
-    
             <h5>Attendance Report</h5>
+            {% if messages %}
+            <ul class="messages" >
+                {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
             <div class="absents">
                 <div class="table-responsive">
                     <table>
                         <tr>
-                            <th>Date</th><th>Delete</th>
+                            <th>Date</th><th style="text-align: right; color: red;">Action</th>
                         </tr>
-                        <tr>
-                            <td></td>
+                        <tr id="ignore-row">
+                            <td></td><td></td>
                         </tr>
                         {% for attendance in page_obj %}
                             <tr>
-                                <td><a href="{% url 'attendance_detail' attendance.id %}">{{ attendance.date }}</a></td>
-                                <td><a href="{% url 'delete_attendance' attendance.id %}" onclick="return confirmDelete();">Delete</a></td>
+                                <td><a href="{% url 'attendance_detail' attendance.id %}" class="dateBtn">{{ attendance.date }}</a></td>
+                                <td style="text-align: right;"><a href="{% url 'delete_attendance' attendance.id %}" onclick="return confirmDelete();" class="dltBtn">Delete</a></td>
                             </tr>
                         {% endfor %}
                     </table>

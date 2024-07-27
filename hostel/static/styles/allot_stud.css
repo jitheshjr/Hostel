@@ -1,38 +1,44 @@
-.main{
-    min-height: 64vh;
-}
-
 .main-body{
-    margin-top: 15vh;
+    margin-top: 20vh;
+    margin-bottom: 30vh;
 }
 
 .main-block {
     width: 30%;
     margin: 0 auto;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 8px 16px rgba(21, 18, 105, 0.5); 
-    background-color: #EDF4F2;
-    font-size: smaller;
+    padding: 20px 10px;
+    border-radius: 10px;
+    background: linear-gradient(to right, #ECE9E6 0%, #FFFFFF  51%, #ECE9E6  100%);
+    box-shadow: 0 8px 16px rgba(10, 10, 11, 0.5);
+    margin-bottom: 50px;
+}
+
+h5{
+    color: black;
+    text-align: center;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: bolder;
 }
 li.error{
-    color: red;
     list-style-type: none;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 10vh;
-    font-size: 16px;
+    height: 5vh;
+    font-size: 12px;
     text-transform: uppercase;
     font-weight: bolder;
+    color: red;
 }
 li.success{
     list-style-type: none;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 10vh;
-    font-size: 16px;
+    height: 5vh;
+    font-size: 12px;
     text-transform: uppercase;
     font-weight: bolder;
     color: #151269;
@@ -64,26 +70,32 @@ li.success{
     color: #31473A;
 }
 
-.submit-input input[type="submit"] {
-    background-color: rgb(10, 148, 208);
-    color: white;
-    transition: background-color 0.3s, opacity 0.3s;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    width: 100%;
-}
-.submit-input input[type="submit"]:hover {
-    background: #203A43;
-    color: white;
-}
-h5{
-    color: black;
+form input[type="submit"] {
+    background-image: linear-gradient(to right, #1D976C 0%, #93F9B9  51%, #1D976C  100%);
+    margin: 10px;
+    padding: 15px 45px;
     text-align: center;
-    margin-bottom: 20px;
+    width: 90%;
     text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white; 
+    font-size: 15px;    
+    font-weight: bolder;       
+    box-shadow: 0 0 20px #eee;
+    border-radius: 4px;
+    display: block;
+    margin: 20px auto;
+    border: none;
+  }
+
+form input[type="submit"]:hover{
+    background-position: right center;
+    color: black;
+    text-decoration: none;
 }
+
+
 .header-links {
     display: flex;
     justify-content: space-between;
@@ -105,12 +117,19 @@ h5{
 }
 @media (min-width: 360px) and (max-width: 450px){
     .main-body{
-        min-height: 72vh;
+        margin-top: 17vh;
+        margin-bottom: 30vh;
     }
     .main-block{
         width: 80%;
     }
-    .messages{
+    h5{
         font-size: 12px;
+    }
+    li.error{
+        font-size: 8px;
+    }
+    li.success{
+        font-size: 8px;
     }
 }
