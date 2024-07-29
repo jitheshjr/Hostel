@@ -1,10 +1,10 @@
 from django.shortcuts import redirect,render,get_object_or_404
-from django.http import HttpResponse
 from .models import *
 from .forms import *
 from django.contrib.auth.decorators import login_required
 from datetime import timedelta,datetime
 from django.contrib import messages
+from django.core.exceptions import ValidationError
 from django.core.files.storage import default_storage
 from django.conf import settings
 from collections import defaultdict
@@ -61,15 +61,12 @@ def view_students(request):
 
 @group_required('warden', login_url='access_denied')
 def view_details(request, student_id):
-    try:
-        student = Student.objects.filter(id=student_id).select_related('pgm').first()
-        room = Allotment.objects.filter(name_id=student_id).select_related('room_number').first()
-        student_image_url = None
-        if student and student.photo:
-            student_image_url = settings.MEDIA_URL + str(student.photo)
-        return render(request, "hostel/details.html", {'student': student, 'student_image_url': student_image_url,'room':room})
-    except Exception:
-        return render(request,'hostel/error.html')
+    student = Student.objects.filter(id=student_id).select_related('pgm').first()
+    room = Allotment.objects.filter(name_id=student_id).select_related('room_number').first()
+    student_image_url = None
+    if student and student.photo:
+        student_image_url = settings.MEDIA_URL + str(student.photo)
+    return render(request, "hostel/details.html", {'student': student, 'student_image_url': student_image_url,'room':room})
 
 
 def inactive_students(request, login_url='access_denied'):
@@ -233,11 +230,15 @@ def view_allotement(request):
         filter = roomFilter(request.GET, queryset=Allotment.objects.select_related('room_number', 'name').order_by('room_number'))
         alloted_list = filter.qs
 
-        paginator = Paginator(alloted_list,10)
+        paginator = Paginator(alloted_list, 10)
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
 
-        return render(request, 'hostel/allotements.html', {'alloted': page_obj, 'filter': filter})
+        query_params = request.GET.copy()
+        if 'page' in query_params:
+            query_params.pop('page')
+
+        return render(request, 'hostel/allotements.html', {'alloted': page_obj, 'filter': filter, 'query_params': query_params})
     except Exception:
         return render(request,'hostel/error.html')
 
@@ -302,15 +303,17 @@ def view_attendance(request):
     filter = attendanceFilter(request.GET, queryset=AttendanceDate.objects.all().order_by('-id'))
     attendance_list = filter.qs
 
-    #pagination
-    paginator = Paginator(attendance_list,10)
+    # Pagination
+    paginator = Paginator(attendance_list, 10)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
-    return render(request,"hostel/summary.html",{'page_obj': page_obj,'filter': filter})
+    # for filter
+    query_params = request.GET.copy()
+    if 'page' in query_params:
+        query_params.pop('page')
 
-
-
+    return render(request, "hostel/summary.html", {'page_obj': page_obj, 'filter': filter, 'query_params': query_params})
 
 @login_required()
 def detailed_attendance(request, date_id):
@@ -335,6 +338,17 @@ def delete_attendance(request, date_id):
         return redirect('view_attendance')
     except Exception:
         return render(request,'hostel/error.html')
+
+@group_required('warden', login_url='access_denied')
+def absent_records(request, student_id):
+    student = get_object_or_404(Student,id=student_id)
+    absences = Attendance.objects.filter(name=student).select_related('date')
+
+    paginator = Paginator(absences,20)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    return render(request,"hostel/absent_days.html",{'student':student,'page_obj':page_obj})
 
 # mess bill functions
 
@@ -385,121 +399,134 @@ def find_continuous_absences(start_date, end_date):
 
 @group_required('warden', login_url='access_denied')
 def generate_mess_bill(request):
-    try:
-        if request.method == "POST":
-            form = BillForm(request.POST)
-            if form.is_valid():
-                start_date = form.cleaned_data['start_date']
-                end_date = form.cleaned_data['end_date']
+    if request.method == "POST":
+        form = BillForm(request.POST)
+        if form.is_valid():
+            start_date = form.cleaned_data['start_date']
+            end_date = form.cleaned_data['end_date']
 
-                if AttendanceDate.objects.filter(date=start_date).exists() and AttendanceDate.objects.filter(date=end_date).exists():
-                    number_of_students = Student.objects.count()
-                    total_mess_amount = form.cleaned_data['total_mess_amount']
-                    room_rent = form.cleaned_data['room_rent']
-                    staff_salary = form.cleaned_data['staff_salary']
-                    electricity_bill = form.cleaned_data['electricity_bill']
+            if AttendanceDate.objects.filter(date=start_date).exists() and AttendanceDate.objects.filter(date=end_date).exists():
+                number_of_students = Student.objects.count()
+                total_mess_amount = form.cleaned_data['total_mess_amount']
+                room_rent = form.cleaned_data['room_rent']
+                staff_salary = form.cleaned_data['staff_salary']
+                electricity_bill = form.cleaned_data['electricity_bill']
 
-                    total = total_mess_amount + (room_rent*number_of_students) + staff_salary + electricity_bill
+                total = total_mess_amount + (room_rent*number_of_students) + staff_salary + electricity_bill
 
-                    year = start_date.year
-                    month = start_date.strftime('%B')
+                year = start_date.year
+                month = start_date.strftime('%B')
 
-                    reduction_days = 0
-                    sum = 0
+                reduction_days = 0
+                sum = 0
 
-                    existing_bill = MessBill.objects.filter(month=month,year=year).exists()
-                    if existing_bill:
-                        messages.error(request,f"Bill for {month}, {year} already exists")
-                    else:
-                        mess_days = (end_date-start_date).days + 1
-
-                        messbill = MessBill(
-                            no_of_students=number_of_students,
-                            month=month,
-                            mess_days=mess_days,
-                            mess_amount=total_mess_amount,
-                            room_rent=room_rent,
-                            staff_salary=staff_salary,
-                            electricity_bill=electricity_bill,
-                            total=total,
-                            year=year
-                        )
-                        messbill.save()
-                        bill_id = get_object_or_404(MessBill, month=month,year=year)
-
-
-                        streak = find_continuous_absences(start_date, end_date)
-
-                        #just for printing the continuouse absentees in the terminal
-                        for student_id, days_absent in streak.items():
-                            stud = get_object_or_404(Student, id=student_id)
-                            continous_absent = ContinuousAbsence(bill_id=bill_id,name=stud,streak=days_absent,month=month,year=year)
-                            continous_absent.save()
-                            print(f"Student ID: {student_id}, Continuous Absences: {days_absent}")
-
-                        for value in streak.values():
-                            reduction_days += value
-                        
-                        total_mess_days = (mess_days * number_of_students) - reduction_days 
-                        mess_bill_per_day = total_mess_amount/total_mess_days 
-                        other_expenses_per_student = ((room_rent*number_of_students) + (staff_salary + electricity_bill)) / number_of_students 
-
-
-                        #printing every details on the terminal
-                        print(f"Start date: {start_date}")
-                        print(f"End date: {end_date}")
-                        print(f"Total students: {number_of_students}")
-                        print(f"Total mess amount: {total_mess_amount}")
-                        print(f"Total mess working days: {mess_days}")
-                        print(f"Total mess reduction days: {reduction_days}")
-                        print(f"Total mess days after reduction: {total_mess_days}")
-                        print(f"Mess bill per day: {mess_bill_per_day}")
-                        print(f"Other expenses per student: {other_expenses_per_student}")
-
-                        students = Student.objects.all()
-
-                        for student in students:
-                            if student.id in streak:
-                                name_id = student.id
-                                days_present = mess_days - (streak[name_id])
-                                mess_bill = round((mess_bill_per_day*days_present)+other_expenses_per_student,2)
-                                print(f"Mess bill of {student} is {mess_bill}")
-                                sum += mess_bill
-                                student_bill = StudentBill(bill_id=bill_id,name=student,total=mess_bill,month=month,year=year)
-                                student_bill.save()
-                            else:
-                                name_id = student.id
-                                days_present = mess_days
-                                mess_bill = round((mess_bill_per_day*days_present)+other_expenses_per_student,2)
-                                print(f"Mess bill of {student} is {mess_bill}")
-                                sum += mess_bill
-                                student_bill = StudentBill(bill_id=bill_id,name=student,total=mess_bill,month=month,year=year)
-                                student_bill.save()
-                        print(f"Sum: {sum}")
-
-                        return redirect('view_monthly_bill',month,year)
+                existing_bill = MessBill.objects.filter(month=month,year=year).exists()
+                if existing_bill:
+                    messages.error(request,f"Bill for {month}, {year} already exists")
                 else:
-                    messages.error(request,f"Attendance has not been taken between {start_date} and {end_date}")
+                    mess_days = (end_date-start_date).days + 1
+
+                    messbill = MessBill(
+                        no_of_students=number_of_students,
+                        month=month,
+                        mess_days=mess_days,
+                        mess_amount=total_mess_amount,
+                        room_rent=room_rent,
+                        staff_salary=staff_salary,
+                        electricity_bill=electricity_bill,
+                        total=total,
+                        year=year
+                    )
+                    messbill.save()
+                    bill_id = get_object_or_404(MessBill, month=month,year=year)
+
+
+                    streak = find_continuous_absences(start_date, end_date)
+
+                    #just for printing the continuouse absentees in the terminal
+                    for student_id, days_absent in streak.items():
+                        stud = get_object_or_404(Student, id=student_id)
+                        continous_absent = ContinuousAbsence(bill_id=bill_id,name=stud,streak=days_absent,month=month,year=year)
+                        continous_absent.save()
+                        print(f"Student ID: {student_id}, Continuous Absences: {days_absent}")
+
+                    for value in streak.values():
+                        reduction_days += value
+                    
+                    total_mess_days = (mess_days * number_of_students) - reduction_days 
+                    mess_bill_per_day = total_mess_amount/total_mess_days 
+                    other_expenses_per_student = ((room_rent*number_of_students) + (staff_salary + electricity_bill)) / number_of_students 
+
+
+                    #printing every details on the terminal
+                    print(f"Start date: {start_date}")
+                    print(f"End date: {end_date}")
+                    print(f"Total students: {number_of_students}")
+                    print(f"Total mess amount: {total_mess_amount}")
+                    print(f"Total mess working days: {mess_days}")
+                    print(f"Total mess reduction days: {reduction_days}")
+                    print(f"Total mess days after reduction: {total_mess_days}")
+                    print(f"Mess bill per day: {mess_bill_per_day}")
+                    print(f"Other expenses per student: {other_expenses_per_student}")
+
+                    students = Student.objects.all()
+
+                    for student in students:
+                        if student.id in streak:
+                            name_id = student.id
+                            days_present = mess_days - (streak[name_id])
+                            mess_bill = round((mess_bill_per_day*days_present)+other_expenses_per_student,2)
+                            print(f"Mess bill of {student} is {mess_bill}")
+                            sum += mess_bill
+                            student_bill = StudentBill(bill_id=bill_id,name=student,total=mess_bill,month=month,year=year)
+                            student_bill.save()
+                        else:
+                            name_id = student.id
+                            days_present = mess_days
+                            mess_bill = round((mess_bill_per_day*days_present)+other_expenses_per_student,2)
+                            print(f"Mess bill of {student} is {mess_bill}")
+                            sum += mess_bill
+                            student_bill = StudentBill(bill_id=bill_id,name=student,total=mess_bill,month=month,year=year)
+                            student_bill.save()
+                    print(f"Sum: {sum}")
+
+                    return redirect('view_monthly_bill',month,year)
+            else:
+                messages.error(request,f"Attendance has not been taken between {start_date} and {end_date}")
         else:
-            form = BillForm()
-        return render(request, "hostel/billform.html", {'form': form})
-    except Exception:
-        return render(request,'hostel/error.html')
+            messages.error(request, "Make sure your entries are correct.")
+    else:
+        form = BillForm()
+    return render(request, "hostel/billform.html", {'form': form})
 
 @group_required('warden', login_url='access_denied')
 def total_bill(request):
     try:
-        bill_filter = monthbillFilter(request.GET, queryset = MessBill.objects.all().order_by('-id'))
+        bill_filter = monthbillFilter(request.GET, queryset=MessBill.objects.all().order_by('-id'))
         bill_list = bill_filter.qs
 
-        paginator = Paginator(bill_list,10)
+        paginator = Paginator(bill_list, 10)
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
 
-        return render(request,"hostel/totalbill.html",{'filter':bill_filter,'page_obj':page_obj})
-    except Exception:
-        return render(request,'hostel/error.html')
+        query_params = request.GET.copy()
+        if 'page' in query_params:
+            query_params.pop('page')
 
+        return render(request, "hostel/totalbill.html", {'filter': bill_filter, 'page_obj': page_obj, 'query_params': query_params})
+    except Exception:
+        return render(request, 'hostel/error.html')
+
+@group_required('warden', login_url='access_denied')
+def delete_bill(request, pk):
+    bill_obj = get_object_or_404(MessBill,pk=pk)
+    print(bill_obj)
+    if request.method == "GET":
+        bill_obj.delete()
+        messages.success(request,f"Deleted Successfully.")
+        return redirect('total_bill')
+    else:
+        messages.error(request,f"Something went wrong.")
 
 @group_required('warden', login_url='access_denied')
 def view_monthly_bill(request,month,year):
@@ -525,10 +552,15 @@ def streak(request):
         streak_filter = streakFilter(request.GET, queryset=ContinuousAbsence.objects.all().select_related('name').order_by('-id'))
         streak_list = streak_filter.qs
 
-        paginator = Paginator(streak_list,10)
+        paginator = Paginator(streak_list, 10)
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
 
-        return render(request,"hostel/streak.html",{'filter':streak_filter,'page_obj':page_obj})
+        # Get the query parameters as a dictionary
+        query_params = request.GET.copy()
+        if 'page' in query_params:
+            query_params.pop('page')
+
+        return render(request, "hostel/streak.html", {'filter': streak_filter, 'page_obj': page_obj, 'query_params': query_params})
     except Exception:
-        return render(request,'hostel/error.html')
+        return render(request, 'hostel/error.html')

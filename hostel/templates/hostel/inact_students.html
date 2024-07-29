@@ -48,6 +48,9 @@ Hostel | Students
                     <td class="filter-td">
                         <button type="submit" class="search">Search</button>
                     </td>
+                    <td class="filter-td" style="text-align: right;">
+                        <button type="reset" class="search" onclick="resetFilters()">Reset</button>
+                    </td>
                 </tr>
             </table>
     
@@ -77,6 +80,16 @@ Hostel | Students
             {% endfor %}
         </div>
     </div>
-    
 </section>
+<script>
+    function resetFilters() {
+        const form = document.querySelector('.filter-form');
+        form.querySelectorAll('select, input').forEach(input => {
+            if (input.type !== 'hidden') {
+                input.value = '';
+            }
+        });
+        form.submit();
+    }
+</script>
 {% endblock %}

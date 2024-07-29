@@ -1,0 +1,99 @@
+.main{
+    margin-top: 10vh;
+    margin-bottom: 30vh;
+}
+.main-body {
+    width: 40%;
+    margin: 0 auto;
+    padding: 20px 10px;
+    border-radius: 10px;
+    background: linear-gradient(to right, #ECE9E6 0%, #FFFFFF  51%, #ECE9E6  100%);
+    box-shadow: 0 8px 16px rgba(10, 10, 11, 0.5);
+    margin-bottom: 50px;
+}
+
+.main h1 {
+    color: black;
+    text-align: center;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: bolder;
+}
+
+.main ul {
+    list-style: none;
+    padding: 0;
+}
+
+.main ul li {
+    padding: 10px;
+    border-bottom: 1px solid #c1bfbf;
+    color: #666666;
+    text-align: center;
+}
+
+.main ul li:last-child {
+    border-bottom: none;
+}
+
+.main ul li:hover {
+    background-color: #dedddd;
+}
+.header-links {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    top: 0;
+    width: 100%;
+    padding: 0;
+    margin-bottom: 20px;
+}
+.header-links .back-link {
+    font-size: 25px;
+    color: black;
+    text-decoration: none;
+    display: inline-block;
+}
+.header-links .back-link:hover {
+    opacity: 0.6;
+}
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.pagination .step-links a {
+    margin: 0 5px;
+    padding: 5px 10px;
+    background:fff;
+    border: 1px solid #ddd;
+    text-decoration: none;
+    color: #071952;
+
+}
+.pagination .step-links .current {
+    margin: 0 5px;
+    padding: 5px 10px;
+    background: rgb(134, 205, 236);
+    border: 1px solid #ccc;
+    color: black;
+}
+@media (min-width: 360px) and (max-width: 450px){
+    .main-body{
+        width: 80%;
+    }
+    .main h1{
+        font-size: 14px;
+    }
+    .pagination .step-links a{
+        margin: 0 2px;
+        padding: 1px 2px;
+    }
+    .pagination .step-links .current{
+        margin: 0 2px;
+        padding: 1px 2px;
+    }
+}

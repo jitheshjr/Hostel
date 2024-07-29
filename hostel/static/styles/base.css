@@ -13,16 +13,30 @@ body{
     width: 100%;
     background-position: center;
     background-size: cover;
-    position: relative;
-    background:#FFFFFF;
+    background: linear-gradient(270deg,#FFFFFF,#acb6e5,#FFFFFF);
+    background-size: 400% 400%;
+    animation: gradientAnimation 20s ease infinite;
     box-shadow: 0 2px 20px rgba(0, 0, 255, 0.7);
 }
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
 
 .nasc {
     display: flex;
     align-items: center;
     padding: 20px;
-    color: #151269;
+    color: black;
 }
 .logo-heading {
     display: flex;

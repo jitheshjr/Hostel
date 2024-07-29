@@ -17,14 +17,17 @@ Hostel | Report
                 <tr>
                     <td class="filter-td">
                         <label for="id_month">Month:</label>
-                        {{filter.form.month}}
+                        {{ filter.form.month }}
                     </td>
                     <td class="filter-td">
                         <label for="id_year">Year:</label>
-                        {{filter.form.year}}
+                        {{ filter.form.year }}
                     </td>
                     <td class="filter-td" style="text-align: right;">
-                        <button type="submit" id="search">Search</button>
+                        <button type="submit" class="search">Search</button>
+                    </td>
+                    <td class="filter-td" style="text-align: right;">
+                        <button type="reset" class="search" onclick="resetFilters()">Reset</button>
                     </td>
                 </tr>
             </table>
@@ -61,8 +64,8 @@ Hostel | Report
             <div class="pagination">
                 <span class="step-links">
                     {% if page_obj.has_previous %}
-                        <a href="?page=1">&laquo; first</a>
-                        <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                        <a href="?page=1&{{ query_params.urlencode }}">&laquo; first</a>
+                        <a href="?page={{ page_obj.previous_page_number }}&{{ query_params.urlencode }}">previous</a>
                     {% endif %}
         
                     <span class="current">
@@ -70,8 +73,8 @@ Hostel | Report
                     </span>
         
                     {% if page_obj.has_next %}
-                        <a href="?page={{ page_obj.next_page_number }}">next</a>
-                        <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                        <a href="?page={{ page_obj.next_page_number }}&{{ query_params.urlencode }}">next</a>
+                        <a href="?page={{ page_obj.paginator.num_pages }}&{{ query_params.urlencode }}">last &raquo;</a>
                     {% endif %}
                 </span>
             </div>
@@ -81,7 +84,16 @@ Hostel | Report
 </section>
 <script>
     function confirmDelete() {
-        return confirm("Are you sure you want to delete this student?");
+        return confirm("Are you sure you want to delete the attendance?");
+    }
+    function resetFilters() {
+        const form = document.querySelector('.filter-form');
+        form.querySelectorAll('select, input').forEach(input => {
+            if (input.type !== 'hidden') {
+                input.value = '';
+            }
+        });
+        form.submit();
     }
 </script>
 {% endblock %}

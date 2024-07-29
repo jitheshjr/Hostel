@@ -18,18 +18,21 @@ Hostel | Streak
                 <tr>
                     <td class="filter-td">
                         <label for="id_name">Name:</label>
-                        {{filter.form.name}}
+                        {{ filter.form.name }}
                     </td>
                     <td class="filter-td">
                         <label for="id_month">Month:</label>
-                        {{filter.form.month}}
+                        {{ filter.form.month }}
                     </td>
                     <td class="filter-td">
                         <label for="id_year">Year:</label>
-                        {{filter.form.year}}
+                        {{ filter.form.year }}
                     </td>
                     <td class="filter-td" style="text-align: right;">
-                        <button type="submit" id="search">Search</button>
+                        <button type="submit" class="search">Search</button>
+                    </td>
+                    <td class="filter-td" style="text-align: right;">
+                        <button type="reset" class="search" onclick="resetFilters()">Reset</button>
                     </td>
                 </tr>
             </table>
@@ -40,9 +43,8 @@ Hostel | Streak
             <div class="streak">
                 <ul class="streak-list">
                     {% for streak in page_obj %}
-                        <li class="streak-items">{{streak.name}} : {{ streak.streak }} days in {{ streak.month }},{{streak.year}}</li>
-                    {% endfor %}    
-
+                        <li class="streak-items">{{ streak.name }} : {{ streak.streak }} days in {{ streak.month }},{{ streak.year }}</li>
+                    {% endfor %}
                 </ul>
             </div>
 
@@ -50,21 +52,32 @@ Hostel | Streak
             <div class="pagination">
                 <span class="step-links">
                     {% if page_obj.has_previous %}
-                        <a href="?page=1">&laquo; first</a>
-                        <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                        <a href="?page=1&{{ query_params.urlencode }}">&laquo; first</a>
+                        <a href="?page={{ page_obj.previous_page_number }}&{{ query_params.urlencode }}">previous</a>
                     {% endif %}
-        
+
                     <span class="current">
                         Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
                     </span>
-        
+
                     {% if page_obj.has_next %}
-                        <a href="?page={{ page_obj.next_page_number }}">next</a>
-                        <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                        <a href="?page={{ page_obj.next_page_number }}&{{ query_params.urlencode }}">next</a>
+                        <a href="?page={{ page_obj.paginator.num_pages }}&{{ query_params.urlencode }}">last &raquo;</a>
                     {% endif %}
                 </span>
             </div>
         </div>
     </div>
 </section>
+<script>
+    function resetFilters() {
+        const form = document.querySelector('.filter-form');
+        form.querySelectorAll('select, input').forEach(input => {
+            if (input.type !== 'hidden') {
+                input.value = '';
+            }
+        });
+        form.submit();
+    }
+</script>
 {% endblock %}

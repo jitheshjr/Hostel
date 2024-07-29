@@ -21,7 +21,10 @@ Hostel | Allocations
                         {{filter.form.room_number}}
                     </td>
                     <td class="filter-td" style="text-align: right;">
-                        <button type="submit" id="search">Search</button>
+                        <button type="submit" class="search">Search</button>
+                    </td>
+                    <td class="filter-td" style="text-align: right;">
+                        <button type="reset" class="search" onclick="resetFilters()">Reset</button>
                     </td>
                 </tr>
             </table>
@@ -42,7 +45,7 @@ Hostel | Allocations
             {% endif %}
 
             <div class="allot">
-                <div class="table-resposive">
+                <div class="table-responsive">
                     <table>
                         <tr>
                             <th>Room Number</th><th>Students</th><th>Floor</th><th style="text-align: right; color: red;">Action</th>
@@ -52,10 +55,10 @@ Hostel | Allocations
                         </tr>
                         {% for a in alloted %}
                         <tr>
-                            <td>{{a.room_number}}</td>
-                            <td>{{a.name}}</td>
-                            <td>{{a.room_number.floor}}</td>
-                            <td style="text-align: right;"><!-- <a href="{% url 'edit_allocation' a.name %}" onsubmit="return confirmData();">Edit</a>/ --><a href="{% url 'delete_allocation' a.name %}" onclick="return confirmDelete();">Delete</a></td>
+                            <td>{{ a.room_number }}</td>
+                            <td>{{ a.name }}</td>
+                            <td>{{ a.room_number.floor }}</td>
+                            <td style="text-align: right;"><a href="{% url 'delete_allocation' a.name %}" onclick="return confirmDelete();">Delete</a></td>
                         </tr>
                         {% endfor %}
                     </table>
@@ -64,8 +67,8 @@ Hostel | Allocations
             <div class="pagination">
                 <span class="step-links">
                     {% if alloted.has_previous %}
-                        <a href="?page=1">&laquo; first</a>
-                        <a href="?page={{ alloted.previous_page_number }}">previous</a>
+                        <a href="?page=1&{{ query_params.urlencode }}">&laquo; first</a>
+                        <a href="?page={{ alloted.previous_page_number }}&{{ query_params.urlencode }}">previous</a>
                     {% endif %}
 
                     <span class="current">
@@ -73,8 +76,8 @@ Hostel | Allocations
                     </span>
 
                     {% if alloted.has_next %}
-                        <a href="?page={{ alloted.next_page_number }}">next</a>
-                        <a href="?page={{ alloted.paginator.num_pages }}">last &raquo;</a>
+                        <a href="?page={{ alloted.next_page_number }}&{{ query_params.urlencode }}">next</a>
+                        <a href="?page={{ alloted.paginator.num_pages }}&{{ query_params.urlencode }}">last &raquo;</a>
                     {% endif %}
                 </span>
             </div>
@@ -82,15 +85,17 @@ Hostel | Allocations
     </div>
 </section>
 <script>
-    function confirmData(){
-        let result = confirm("Make sure everything is right!");
-        return result;
-    }
     function confirmDelete() {
-        return confirm("Are you sure you want to delete this student?");
+        return confirm("Are you sure you want to delete this allocation?");
     }
-    function goBack() {
-        window.history.back();
+    function resetFilters() {
+        const form = document.querySelector('.filter-form');
+        form.querySelectorAll('select, input').forEach(input => {
+            if (input.type !== 'hidden') {
+                input.value = '';
+            }
+        });
+        form.submit();
     }
 </script>
 {% endblock %}

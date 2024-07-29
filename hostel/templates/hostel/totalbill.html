@@ -10,7 +10,7 @@ Hostel | Bill
 <link rel="stylesheet" href="{% static 'styles/monthbill.css' %}">
 {% endblock %}
 
-{% block content %} 
+{% block content %}
 
 <section class="main">
     <div class="main-body">
@@ -19,14 +19,17 @@ Hostel | Bill
                 <tr>
                     <td class="filter-td">
                         <label for="id_month">Month:</label>
-                        {{filter.form.month}}
+                        {{ filter.form.month }}
                     </td>
                     <td class="filter-td">
                         <label for="id_year">Year:</label>
-                        {{filter.form.year}}
+                        {{ filter.form.year }}
                     </td>
                     <td class="filter-td" style="text-align: right;">
-                        <button type="submit" id="search">Search</button>
+                        <button type="submit" class="search">Search</button>
+                    </td>
+                    <td class="filter-td" style="text-align: right;">
+                        <button type="reset" class="search" onclick="resetFilters()">Reset</button>
                     </td>
                 </tr>
             </table>
@@ -34,28 +37,35 @@ Hostel | Bill
 
         <div class="main-block">
             <h5>Monthly Bills</h5>
-
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
             <div class="bill">
                 <div class="table-responsive">
                     <table>
                         <tr>
                             <th>Students</th><th>Month</th><th>Working Days</th><th>Mess Amount</th><th>Room Rent</th>
-                            <th>Electricity Bill</th><th>Staff Salary</th><th>Total</th><th>More</th>
+                            <th>Electricity Bill</th><th>Staff Salary</th><th>Total</th><th style="color: blue;">More</th><th style="text-align: right; color: red;">Action</th>
                         </tr>
                         <tr id="ignore-row">
                             <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                         </tr>
                         {% for bill in page_obj %}
                             <tr>
-                                <td>{{bill.no_of_students}}</td>
-                                <td>{{bill.month}},{{bill.year}}</td>
-                                <td>{{bill.mess_days}}</td>
-                                <td>{{bill.mess_amount}}</td>
-                                <td>{{bill.room_rent}}</td>
-                                <td>{{bill.electricity_bill}}</td>
-                                <td>{{bill.staff_salary}}</td>
-                                <td>{{bill.total}}</td>
+                                <td>{{ bill.no_of_students }}</td>
+                                <td>{{ bill.month }},{{ bill.year }}</td>
+                                <td>{{ bill.mess_days }}</td>
+                                <td>{{ bill.mess_amount }}</td>
+                                <td>{{ bill.room_rent }}</td>
+                                <td>{{ bill.electricity_bill }}</td>
+                                <td>{{ bill.staff_salary }}</td>
+                                <td>{{ bill.total }}</td>
                                 <td><a href="{% url 'view_monthly_bill' bill.month bill.year %}">BILLS</a></td>
+                                <td><a href="{% url 'delete_bill' bill.pk %}" id="delete" onclick="return confirmDelete();">Delete</a></td>
                             </tr>
                         {% endfor %}
                     </table>
@@ -66,8 +76,8 @@ Hostel | Bill
             <div class="pagination">
                 <span class="step-links">
                     {% if page_obj.has_previous %}
-                        <a href="?page=1{{ filter.form.data.urlencode }}">First</a>
-                        <a href="?page={{ page_obj.previous_page_number }}{{ filter.form.data.urlencode }}">Previous</a>
+                        <a href="?page=1&{{ query_params.urlencode }}">First</a>
+                        <a href="?page={{ page_obj.previous_page_number }}&{{ query_params.urlencode }}">Previous</a>
                     {% endif %}
 
                     <span class="current">
@@ -75,19 +85,26 @@ Hostel | Bill
                     </span>
 
                     {% if page_obj.has_next %}
-                        <a href="?page={{ page_obj.next_page_number }}{{ filter.form.data.urlencode }}">Next</a>
-                        <a href="?page={{ page_obj.paginator.num_pages }}{{ filter.form.data.urlencode }}">Last</a>
+                        <a href="?page={{ page_obj.next_page_number }}&{{ query_params.urlencode }}">Next</a>
+                        <a href="?page={{ page_obj.paginator.num_pages }}&{{ query_params.urlencode }}">Last</a>
                     {% endif %}
                 </span>
             </div>
         </div>
     </div>
 </section>
-    
+<script>
+    function confirmDelete() {
+        return confirm("Are you sure you want to delete this bill?");
+    }
+    function resetFilters() {
+        const form = document.querySelector('.filter-form');
+        form.querySelectorAll('select, input').forEach(input => {
+            if (input.type !== 'hidden') {
+                input.value = '';
+            }
+        });
+        form.submit();
+    }
+</script>
 {% endblock %}
-
-
-
-
-
-    

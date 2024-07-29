@@ -1,0 +1,43 @@
+{% extends 'hostel/base.html' %}
+{% load static %}
+
+{% block title %}
+Hostel | Days
+{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'styles/absent_days.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="main">
+    <div class="main-body">
+        <div class="header-links">
+            <a href="{% url 'view_student' %}" class="back-link" id="closeBtn">&#10006;</a>
+        </div>
+        <h1>Absent Records for {{ student.name }}</h1>
+        <ul>
+            {% for absence in page_obj %}
+                <li>{{ absence.date.date }}</li>
+            {% endfor %}
+        </ul>
+        <div class="pagination">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                    <a href="?page=1">&laquo; first</a>
+                    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+    
+                <span class="current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+    
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">next</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+    </div>
+</section>
+{% endblock %}

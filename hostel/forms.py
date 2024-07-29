@@ -1,5 +1,6 @@
 from django import forms
 from .models import *
+from django.core.exceptions import ValidationError
 
 
 class StudentForm(forms.ModelForm):
@@ -38,6 +39,17 @@ class BillForm(forms.Form):
     room_rent = forms.DecimalField(label='Room Rent', min_value=0, initial=500)
     staff_salary = forms.DecimalField(label='Staff Salary', min_value=0, initial=10000)
     electricity_bill = forms.DecimalField(label='Electricity Bill', min_value=0)
+
+    def clean(self):
+        cleaned_data = super().clean()
+        start_date = cleaned_data.get("start_date")
+        end_date = cleaned_data.get("end_date")
+
+        if start_date and end_date and end_date <= start_date:
+            raise ValidationError("End date should be greater than start date.")
+
+        return cleaned_data
+
 
 class AttendanceForm(forms.Form):
     date = forms.DateField(

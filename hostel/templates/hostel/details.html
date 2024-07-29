@@ -15,7 +15,6 @@ Hostel | Details
         <div class="header-links">
             <a href="{% url 'view_student' %}" class="back-link" id="closeBtn">&#10006;</a>
             <a href="{% url 'edit_student' student.id %}"><img src="{% static 'edit.png' %}" alt="edit" class="menu"></a>
-            <a href="{% url 'delete_student' student.id %}"><img src="{% static 'delete.png' %}" alt="edit" class="menu" onclick="return confirmDelete();"></a>
         </div>
         <div class="image-container">
             {% if student_image_url %}
@@ -40,7 +39,12 @@ Hostel | Details
                 <p><strong>ALLOCATED ROOM: </strong>Currently not allocated any room</p><br>
             {% endif %}
         </div>
+        <div class="btn">
+            <a href="{% url 'delete_student' student.id %}" class="hero-btn" id="del" onclick="return confirmDelete();">Delete</a>
+            <a href="{% url 'absent_records' student.id %}" class="hero-btn">Absent Days</a>
+        </div>  
     </div>
+
 </section>
 <script>
     function confirmDelete() {
