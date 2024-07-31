@@ -1,3 +1,6 @@
+.main{
+    min-height: 80vh;
+}
 .main-body{
     margin-top: 10vh;
     margin-bottom: 10vh;   
