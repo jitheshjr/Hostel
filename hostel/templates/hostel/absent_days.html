@@ -13,7 +13,7 @@ Hostel | Days
 <section class="main">
     <div class="main-body">
         <div class="header-links">
-            <a href="{% url 'view_student' %}" class="back-link" id="closeBtn">&#10006;</a>
+            <a href="#"><img src="{% static 'redclose.png' %}" alt="Close" id="close" onclick=""></a>
         </div>
         <h1>Absent Records for {{ student.name }}</h1>
         <ul>
@@ -40,4 +40,10 @@ Hostel | Days
         </div>
     </div>
 </section>
+<script>
+    document.getElementById('close').addEventListener('click', function(event){
+        event.preventDefault();
+        window.history.back();
+    });
+</script>
 {% endblock %}

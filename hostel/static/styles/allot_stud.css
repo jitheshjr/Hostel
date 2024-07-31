@@ -6,7 +6,7 @@
 .main-block {
     width: 30%;
     margin: 0 auto;
-    padding: 20px 10px;
+    padding: 10px;
     border-radius: 10px;
     background: linear-gradient(to right, #ECE9E6 0%, #FFFFFF  51%, #ECE9E6  100%);
     box-shadow: 0 8px 16px rgba(10, 10, 11, 0.5);
@@ -95,10 +95,9 @@ form input[type="submit"]:hover{
     text-decoration: none;
 }
 
-
 .header-links {
     display: flex;
-    justify-content: space-between;
+    justify-content: start;
     align-items: center;
     position: relative;
     top: 0;
@@ -112,8 +111,9 @@ form input[type="submit"]:hover{
     text-decoration: none;
     display: inline-block;
 }
-.header-links .back-link:hover {
-    opacity: 0.6;
+#close{
+    width: 30px;
+    height: 30px;
 }
 @media (min-width: 360px) and (max-width: 450px){
     .main-body{

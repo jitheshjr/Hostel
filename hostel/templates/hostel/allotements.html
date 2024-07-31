@@ -32,7 +32,7 @@ Hostel | Allocations
 
         <div class="main-block">
             <div class="header-links">
-                <a href="{% url 'room_list' %}" class="back-link" id="closeBtn">&#10006;</a>
+                <a href="{% url 'room_list' %}"><img src="{% static 'redclose.png' %}" alt="Close" id="close"></a>
             </div>
 
             <h5>Room Allocation Details</h5>
@@ -48,7 +48,10 @@ Hostel | Allocations
                 <div class="table-responsive">
                     <table>
                         <tr>
-                            <th>Room Number</th><th>Students</th><th>Floor</th><th style="text-align: right; color: red;">Action</th>
+                            <th>Room Number</th>
+                            <th>Students</th>
+                            <th>Floor</th>
+                            <th style="text-align: right; color: red;">Action</th>
                         </tr>
                         <tr id="ignore-row">
                             <td></td><td></td><td></td><td></td>
@@ -64,6 +67,7 @@ Hostel | Allocations
                     </table>
                 </div>
             </div>
+            
             <div class="pagination">
                 <span class="step-links">
                     {% if alloted.has_previous %}

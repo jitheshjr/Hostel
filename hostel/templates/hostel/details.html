@@ -13,7 +13,7 @@ Hostel | Details
 <section class="main">
     <div class="student-details">
         <div class="header-links">
-            <a href="{% url 'view_student' %}" class="back-link" id="closeBtn">&#10006;</a>
+            <a href="{% url 'view_student' %}"><img src="{% static 'redclose.png' %}" alt="Close" id="close"></a>
             <a href="{% url 'edit_student' student.id %}"><img src="{% static 'edit.png' %}" alt="edit" class="menu"></a>
         </div>
         <div class="image-container">
@@ -50,10 +50,5 @@ Hostel | Details
     function confirmDelete() {
         return confirm("Are you sure you want to delete this student?");
     }
-
-    document.getElementById('closeBtn').addEventListener('click', function(event){
-        event.preventDefault();
-        window.history.back();
-    });
 </script>  
 {% endblock %}

@@ -15,7 +15,7 @@ Hostel | AllocationForm
     <div class="main-body">
         <div class="main-block">
             <div class="header-links">
-                <a href="{% url 'room_list' %}" class="back-link" id="closeBtn">&#10006;</a>
+                <a href="{% url 'room_list' %}"><img src="{% static 'redclose.png' %}" alt="Close" id="close"></a>
             </div>
             <h5>Room Allocation</h5>
             {% if messages %}

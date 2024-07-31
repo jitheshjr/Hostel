@@ -5,7 +5,7 @@
 .main-block{
     width: 40%;
     margin: 0 auto;
-    padding: 20px 10px;
+    padding: 20px;
     border-radius: 10px;
     background: linear-gradient(#ECE9E6, #FFFFFF);
     box-shadow: 0 8px 16px rgba(10, 10, 11, 0.5);
@@ -119,10 +119,9 @@ li.success{
     font-weight: bolder;
     color: #151269;
 }
-
 .header-links {
     display: flex;
-    justify-content: space-between;
+    justify-content: start;
     align-items: center;
     position: relative;
     top: 0;
@@ -136,8 +135,14 @@ li.success{
     text-decoration: none;
     display: inline-block;
 }
-.header-linblueks .table-resposiveback-link:hover {
-    opacity: 0.6;
+#close{
+    width: 30px;
+    height: 30px;
+}
+
+#close:hover{
+    transform: scale(1.1);
+    transition: 1s;
 }
 
 .pagination {
@@ -170,9 +175,6 @@ li.success{
     .main-block{
         width: 80%;
     }
-    .table-resposive{
-        overflow-x: auto;
-    }
     .allot th, .allot td{
         font-size: 12px;
     }
@@ -186,5 +188,8 @@ li.success{
     }
     h5{
         font-size: 14px;
+    }
+    .table-responsive{
+        overflow-x: auto;
     }
 }

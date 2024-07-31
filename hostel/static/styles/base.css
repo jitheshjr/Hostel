@@ -67,7 +67,7 @@ body{
 }
 .logout-btn{
     background-color: transparent;
-    color: #151269;
+    color: black;
     font-size: 16px;
     text-transform: uppercase;
     font-weight: bolder;
@@ -78,15 +78,36 @@ body{
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 .logout-btn:hover{
-    background-color: #151269;
+    background-color: black;
     color: white;
 }
+
+         
+.btn-grad {
+    margin: 10px;
+    padding: 15px 45px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;            
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    display: block;
+  }
+
+  .btn-grad:hover {
+    background-position: right center; /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
+  }
+ 
 
 /* Nav bar */
 nav{
     width: 100%;
     display: flex;
-    padding: 0 100px;
+    padding: 5px 100px;
     justify-content: space-between;
     align-items: center;
     background: black;
@@ -109,35 +130,6 @@ nav ul li a{
     font-size: 20px;
     font-weight: bolder;
 }
-.submenu1{
-    display: none;
-}
-nav ul li:hover .submenu1{
-    display: block;
-    position: absolute;
-    margin-left: 0;
-    margin-top: 0;
-}
-nav ul li:hover .submenu1 ul{
-    display: block;
-    margin: 10px;
-    padding: 0;
-
-}
-nav ul li:hover .submenu1 ul li{
-    width: 100px;
-    padding: 5px 5px;
-    border-radius: 0;
-    text-align: center;
-    border: 1px solid white;
-    background: #151269;
-}
-nav ul li:hover .submenu1 ul li a{
-    font-size: 7px;
-    color: #fff;
-    text-decoration: none;
-    text-transform: uppercase;
-}
 
 #logo{
     width: 90px;
@@ -151,12 +143,18 @@ nav ul li:hover .submenu1 ul li a{
 .nav-links ul li::after{
     content: "";
     width: 0;
+    bottom: 5px;
     height: 2px;
-    background: white;
+    background: #00bfff;
     display: block;
     margin: auto;
     transition: 0.5s;
 }
+
+.nav-links ul li a:hover{
+    color: #00bfff;
+}
+
 .nav-links ul li:hover::after{
     width: 100%;
 }

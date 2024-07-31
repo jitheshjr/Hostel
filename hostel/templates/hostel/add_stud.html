@@ -14,7 +14,7 @@ Hostel | StudentForm
     <div class="main-body">
         <div class="main-block">
             <div class="header-links">
-                <a href="{% url 'home' %}" class="back-link" id="closeBtn">&#10006;</a>
+                <a href="{% url 'view_student' %}"><img src="{% static 'redclose.png' %}" alt="Close" id="close"></a>
             </div>
             <h5>Student Form</h5>
             {% if messages %}

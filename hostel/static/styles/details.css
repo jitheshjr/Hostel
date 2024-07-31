@@ -21,15 +21,16 @@
     font-size: 12px;
     margin: 15px 0;
 }
+
 .header-links {
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
     position: relative;
     top: 0;
     width: 100%;
-    padding: 0;
-    margin-bottom: 30px;
+    padding: 10px 0 ;
+    margin-bottom: 20px;
 }
 .header-links .back-link {
     font-size: 25px;
@@ -37,14 +38,18 @@
     text-decoration: none;
     display: inline-block;
 }
+#close{
+    width: 30px;
+    height: 30px;
+}
+
 .header-links .menu{
-    width: 20px; 
-    height: 20px;
+    width: 30px; 
+    height: 30px;
     margin-left: 10px;
     cursor: pointer;
 }
-.header-links .menu:hover,
-.header-links .back-link:hover {
+.header-links .menu:hover{
     opacity: 0.6;
 }
 
@@ -72,6 +77,7 @@
     font-family: 'Times New Roman', Times, serif;
     
 }
+
 .btn {
     display: flex;
     gap: 10px;
@@ -97,10 +103,16 @@
 }
 
 @media (min-width: 360px) and (max-width:450px){
+    .main{
+        min-height: 60vh;
+    }
     .student-details{
         width: 80%;
     }
     .name-pgm{
+        font-size: 8px;
+    }
+    .other-details{
         font-size: 8px;
     }
 }

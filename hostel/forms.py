@@ -9,7 +9,7 @@ class StudentForm(forms.ModelForm):
         fields = '__all__'
 
         widgets = {
-            'dob': forms.TextInput(attrs={'placeholder':'YYYY-MM-DD'}),
+            'dob': forms.TextInput(attrs={'type':'date'}),
             'contact': forms.TextInput(attrs={'pattern': '\d{10}', 'placeholder': 'Please enter a valid mobile number.'}),
         }
 
