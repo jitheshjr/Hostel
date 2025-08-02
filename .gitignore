@@ -1,89 +1,58 @@
-# Created by https://www.gitignore.io
+# =========================
+# Python & Django Projects
+# =========================
 
-### OSX ###
-.DS_Store
-.AppleDouble
-.LSOverride
-
-# Icon must end with two \r
-Icon
-
-
-# Thumbnails
-._*
-
-# Files that might appear on external disk
-.Spotlight-V100
-.Trashes
-
-# Directories potentially created on remote AFP share
-.AppleDB
-.AppleDesktop
-Network Trash Folder
-Temporary Items
-.apdisk
-
-
-### Python ###
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
+*$py.class
 
-# C extensions
-*.so
+# Django SQLite database (contains personal data)
+*.sqlite3
 
-# Distribution / packaging
-.Python
+# Media and uploaded student images (privacy-sensitive)
+media/
+mediafiles/
+
+# Sensitive datasets (CSV, Excel, JSON)
+*.csv
+*.tsv
+*.json
+*.xlsx
+
+# Virtual environments (including yours: `myenv`)
 env/
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-*.egg-info/
-.installed.cfg
-*.egg
-
-# PyInstaller
-#  Usually these files are written by a python script from a template
-#  before PyInstaller builds the exe, so as to inject date/other infos into it.
-*.manifest
-*.spec
-
-# Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
-
-# Unit test / coverage reports
-htmlcov/
-.tox/
-.coverage
-.cache
-nosetests.xml
-coverage.xml
-
-# Translations
-*.mo
-*.pot
-
-# Sphinx documentation
-docs/_build/
-
-# PyBuilder
-target/
-
-
-### Django ###
-*.log
-*.pot
-*.pyc
-__pycache__/
-local_settings.py
-
-.env
+venv/
+.venv/
+ENV/
 myenv/
+
+# Django-specific files (static & migration artifacts)
+staticfiles/
+static_cdn/
+
+# Optional: ignore Django migration files (if not collaborating)
+# */migrations/
+# !*/migrations/__init__.py
+
+# Unused Django apps (like utils)
+utils/
+
+# System logs and backups
+*.log
+*.bak
+*.tmp
+
+# IDE/editor files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Environment config
+.env
+.env.*

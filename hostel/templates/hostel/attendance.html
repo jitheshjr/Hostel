@@ -49,21 +49,49 @@ Hostel | AttendanceForm
         </div>
     </section>
     <script>
-        function filterStudents(){
-            let input = document.getElementById('studentSearch');
-            let filter = input.value.toLowerCase();
-            let studentContainer = document.getElementById('student-container');
-            let students = studentContainer.getElementsByTagName('label');
+        function filterStudents() {
+          let input = document.getElementById('studentSearch');
+          let filter = input.value.toLowerCase();
+          let studentContainer = document.getElementById('student-container');
+          let students = Array.from(studentContainer.getElementsByTagName('label'));  // Convert HTMLCollection to array
 
-            for (let i = 0; i < students.length; i++) {
-                let label = students[i];
-                let text = label.textContent || label.innerText;
-                if (text.toLowerCase().includes(filter)) {
-                    label.style.display = '';
-                } else {
-                    label.style.display = 'none';
-                }
-            }
+          // Separate the matching and non-matching students
+          let matchingStudents = [];
+          let nonMatchingStudents = [];
+
+          students.forEach(function(label) {
+              let text = label.textContent || label.innerText;
+
+              // If the text matches the filter, add to matchingStudents, else to nonMatchingStudents
+              if (text.toLowerCase().includes(filter)) {
+                  matchingStudents.push(label);
+              } else {
+                  nonMatchingStudents.push(label);
+              }
+          });
+
+          // Clear the container and add matching students first, then non-matching students
+          studentContainer.innerHTML = '';
+
+          // Append matching students first
+          matchingStudents.forEach(function(label) {
+              studentContainer.appendChild(label);
+          });
+
+          // Append non-matching students (these will remain hidden)
+          nonMatchingStudents.forEach(function(label) {
+              studentContainer.appendChild(label);
+          });
+
+          // Hide non-matching students
+          nonMatchingStudents.forEach(function(label) {
+              label.style.display = 'none';
+          });
+
+          // Show matching students
+          matchingStudents.forEach(function(label) {
+              label.style.display = '';
+          });
         }
 
         document.addEventListener("DOMContentLoaded", function() {

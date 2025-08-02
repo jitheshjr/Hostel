@@ -38,6 +38,7 @@ def add_student(request):
                 if form.is_valid():
                     form.save()
                     messages.success(request, "Student added successfully.")
+                    return redirect('add_student')
 
                 else:
                     # Debugging: Print form errors
@@ -182,6 +183,7 @@ def allot_student(request):
                 if room.allotment_set.count() < room.capacity:
                     form.save()
                     messages.success(request, "Student successfully allotted to room.")
+                    return redirect('allot_student')
                 else:
                     messages.error(request, "Room capacity exceeded. Please choose a different room.")
             else:
@@ -300,7 +302,7 @@ def mark_attendance(request):
 
 @login_required()
 def view_attendance(request):
-    filter = attendanceFilter(request.GET, queryset=AttendanceDate.objects.all().order_by('-id'))
+    filter = attendanceFilter(request.GET, queryset=AttendanceDate.objects.all().order_by('date'))
     attendance_list = filter.qs
 
     # Pagination
@@ -342,7 +344,7 @@ def delete_attendance(request, date_id):
 @group_required('warden', login_url='access_denied')
 def absent_records(request, student_id):
     student = get_object_or_404(Student,id=student_id)
-    absences = Attendance.objects.filter(name=student).select_related('date')
+    absences = Attendance.objects.filter(name=student).select_related('date').order_by('date__date')
 
     paginator = Paginator(absences,20)
     page_number = request.GET.get('page')
@@ -364,6 +366,12 @@ def find_continuous_absences(start_date, end_date):
     last_date = None
 
     for absence in absences:
+
+        #new
+        stud = absence.name
+        if stud.E_Grantz: # Skip students with eGrantz
+            continue
+
         student_id = absence.name.id
         absence_date = absence.date.date
 
@@ -448,7 +456,7 @@ def generate_mess_bill(request):
                         stud = get_object_or_404(Student, id=student_id)
                         continous_absent = ContinuousAbsence(bill_id=bill_id,name=stud,streak=days_absent,month=month,year=year)
                         continous_absent.save()
-                        print(f"Student ID: {student_id}, Continuous Absences: {days_absent}")
+                        #print(f"Student ID: {student_id}, Continuous Absences: {days_absent}")
 
                     for value in streak.values():
                         reduction_days += value
@@ -456,6 +464,10 @@ def generate_mess_bill(request):
                     total_mess_days = (mess_days * number_of_students) - reduction_days 
                     mess_bill_per_day = total_mess_amount/total_mess_days 
                     other_expenses_per_student = ((room_rent*number_of_students) + (staff_salary + electricity_bill)) / number_of_students 
+                    
+                    #new
+                    est = 300
+                    other_expenses_per_student_4_egrantz = (((room_rent*number_of_students) + (staff_salary + electricity_bill)) / number_of_students ) + est
 
 
                     #printing every details on the terminal
@@ -468,6 +480,7 @@ def generate_mess_bill(request):
                     print(f"Total mess days after reduction: {total_mess_days}")
                     print(f"Mess bill per day: {mess_bill_per_day}")
                     print(f"Other expenses per student: {other_expenses_per_student}")
+                    print(f"Other expenses per student: {other_expenses_per_student_4_egrantz}")
 
                     students = Student.objects.all()
 
@@ -476,15 +489,15 @@ def generate_mess_bill(request):
                             name_id = student.id
                             days_present = mess_days - (streak[name_id])
                             mess_bill = round((mess_bill_per_day*days_present)+other_expenses_per_student,2)
-                            print(f"Mess bill of {student} is {mess_bill}")
+                            #print(f"Mess bill of {student} is {mess_bill}")
                             sum += mess_bill
                             student_bill = StudentBill(bill_id=bill_id,name=student,total=mess_bill,month=month,year=year)
                             student_bill.save()
                         else:
                             name_id = student.id
                             days_present = mess_days
-                            mess_bill = round((mess_bill_per_day*days_present)+other_expenses_per_student,2)
-                            print(f"Mess bill of {student} is {mess_bill}")
+                            mess_bill = round((mess_bill_per_day*days_present)+other_expenses_per_student_4_egrantz,2)
+                            #print(f"Mess bill of {student} is {mess_bill}")
                             sum += mess_bill
                             student_bill = StudentBill(bill_id=bill_id,name=student,total=mess_bill,month=month,year=year)
                             student_bill.save()

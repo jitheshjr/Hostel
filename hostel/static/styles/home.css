@@ -1,36 +1,40 @@
-.main-body{
+.main-body {
     min-height: 80vh;
+    display: flex;
+    align-items: center; /* Center items vertically */
+    justify-content: center; /* Center items horizontally */
+    text-align: center; /* Center text */
 }
-h4{
+
+h4 {
     text-align: center;
     padding-top: 0px;
 }
-.text-box{
+
+.text-box {
     width: 90%;
     color: #F7F2EB;
     text-shadow: 0px 4px 30px rgba(0, 0, 0, 0.1);
-    position: absolute;
-    top: 52%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    text-align: center;
 }
-.text-box h2{
-    font-size: 45px;
+
+.text-box h2 {
+    font-size: 3rem; /* Adjusted for better scaling */
     text-transform: uppercase;
     padding: 10px 0;
 }
-.text-box h1{
-    font-size: 100px;
+
+.text-box h1 {
+    font-size: 5rem; /* Adjusted for better scaling */
 }
-.hero-btn{
-    background-image: linear-gradient(to right, #ffb347 0%, #ffcc33  51%, #ffb347  100%);
-    margin: 50px 20px;
+
+.hero-btn {
+    background-image: linear-gradient(to right, #ffb347 0%, #ffcc33 51%, #ffb347 100%);
+    margin: 20px;
     display: inline-block;
     text-decoration: none;
     color: #000000;
-    padding: 20px 50px;
-    font-size: 20px;
+    padding: 20px 30px; /* Adjusted padding */
+    font-size: 1.2rem; /* Adjusted for better scaling */
     font-weight: bolder;
     position: relative;
     cursor: pointer;
@@ -39,32 +43,48 @@ h4{
     box-shadow: 0 8px 16px rgba(10, 10, 11, 0.5);
     border-radius: 10px;
 }
-         
+
 .hero-btn:hover {
     box-shadow: 0 0 5px rgb(23, 24, 7), 0 0 25px rgb(23, 24, 7), 0 0 50px rgb(23, 24, 7);
     transform: scale(1.1);
-    transition: 1s; 
+    transition: 1s;
 }
 
-@media (min-width: 360px) and (max-width: 450px){
-    .main-body{
-        min-height: 87vh;
+@media (max-width: 768px) {
+    .text-box h1 {
+        font-size: 3rem; /* Smaller size for mobile */
     }
-    .text-box {
-        width: 90%;
-        max-width: 100%; 
+
+    .text-box h2 {
+        font-size: 2rem; /* Smaller size for mobile */
     }
-    .text-box h1{
-        font-size: 22px;
-    }
-    .text-box h2{
-        font-size: 22px;
-    }
+
     .hero-btn {
-        font-size: 12px;
-        font-weight: bolder;
-        margin: 30px 10px;
-        padding: 10px 10px;
-        border-radius: 2px;
+        font-size: 1rem; /* Smaller button text */
+        padding: 15px 20px; /* Adjust button padding */
+    }
+}
+
+@media (max-width: 450px) {
+    .main-body {
+        min-height: 87vh; /* Maintain height for smaller screens */
+    }
+
+    .text-box {
+        width: 95%; /* Slightly wider on very small screens */
+    }
+
+    .text-box h1 {
+        font-size: 2rem; /* Even smaller size */
+    }
+
+    .text-box h2 {
+        font-size: 1.5rem; /* Even smaller size */
+    }
+
+    .hero-btn {
+        font-size: 0.9rem; /* Even smaller button text */
+        padding: 10px 15px; /* Adjust button padding */
+        border-radius: 5px; /* Less rounded */
     }
 }

@@ -10,7 +10,7 @@ class StudentForm(forms.ModelForm):
 
         widgets = {
             'dob': forms.TextInput(attrs={'type':'date'}),
-            'contact': forms.TextInput(attrs={'pattern': '\d{10}', 'placeholder': 'Please enter a valid mobile number.'}),
+            'contact': forms.TextInput(attrs={'pattern': '\\d{10}', 'placeholder': 'Please enter a valid mobile number.'}),
         }
 
         labels = {
@@ -58,7 +58,7 @@ class AttendanceForm(forms.Form):
         )
 
     absentees = forms.ModelMultipleChoiceField(
-        queryset=Student.objects.all(),
+        queryset=Student.objects.all().order_by('name'),
         required=False,
         widget=forms.CheckboxSelectMultiple,
         label='Students'

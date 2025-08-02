@@ -1,5 +1,9 @@
 from django.db import models
 from django.core.validators import RegexValidator
+from PIL import Image
+from io import BytesIO
+from django.core.files.base import ContentFile
+import os
 
 # Create your models here.
 
@@ -15,7 +19,7 @@ class Programme(models.Model):
     pgm_name = models.CharField(max_length=100,unique=True)
     dept_id = models.ForeignKey(Department,on_delete=models.CASCADE)
     no_of_sems = models.PositiveSmallIntegerField()
-    grad_choices = [('UG','UG'),('PG','PG')]
+    grad_choices = [('UG','UG'),('PG','PG'),('IPG','IPG')]
     grad_level = models.CharField(max_length=5,choices=grad_choices)
 
     def __str__(self):
@@ -32,7 +36,7 @@ class Student(models.Model):
     year = models.IntegerField(choices=year_choices)
     dob = models.DateField()
     email = models.EmailField()
-    photo = models.ImageField(upload_to="images/")
+    photo = models.ImageField(upload_to="images/", blank=True, null=True)
     contact_regex = RegexValidator(regex=r'^\d{10}$',message="Contact number must be a 10-digit number.")
     contact = models.CharField(validators=[contact_regex], max_length=10)  # Using CharField for contact with max length 10
     parent_name = models.CharField(max_length=50)
@@ -55,8 +59,51 @@ class Student(models.Model):
     ]
     E_Grantz = models.BooleanField(choices=EGRANTZ_CHOICES)
     
+    def save(self,*args,**kwargs):
+        original_photo = self.photo
+
+        # Initially saving the photo
+        super().save(*args,**kwargs)
+
+        if original_photo:
+            img = Image.open(self.photo.path)
+
+            if img.mode != 'RGB':
+                img = img.convert('RGB')
+
+            desired_ratio = 1 / 1
+            width,height = img.size
+            current_ratio = width / height
+
+            if current_ratio > desired_ratio:
+                new_width = int(height * desired_ratio)
+                left = (width - new_width) / 2
+                right = left + new_width
+                img = img.crop((left, 0, right, height))
+            elif current_ratio < desired_ratio:
+                new_height = int(width / desired_ratio)
+                top = (height - new_height) / 2
+                bottom = top + new_height
+                img = img.crop((0, top, width, bottom))
+
+            buffer = BytesIO()
+            img.save(buffer, format='WEBP', quality=85)
+            webp_filename = os.path.splitext(original_photo.name)[0] + ".webp"
+
+            self.photo.save(webp_filename, ContentFile(buffer.getvalue()), save=False)
+
+            # Delete original image file (non-WebP) if different
+            original_path = original_photo.path
+            if os.path.exists(original_path):
+                os.remove(original_path)
+
+            # Final save to update DB with WebP image
+            super().save(*args, **kwargs)
+
+
     def __str__(self):
         return self.name
+
     
 
 class Trash(models.Model):
@@ -97,7 +144,7 @@ class Trash(models.Model):
     
 class Room(models.Model):
     room_number = models.SmallIntegerField(unique=True)
-    floor_choices = [('Ground','Ground'),('First','First'),('Second','Second')]
+    floor_choices = [('Ground','Ground'),('First','First')]
     floor = models.CharField(max_length=50, choices=floor_choices)
     capacity = models.PositiveIntegerField(default=3)
 

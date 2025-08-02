@@ -5,32 +5,16 @@
     box-sizing: border-box;
 }
 body{
-    background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(38,51,97,1) 0%, rgba(65,143,222,1) 79% );
+    background-color: #800020;
 }
 
 /* Header section */
 .header{
     width: 100%;
     background-position: center;
-    background-size: cover;
-    background: linear-gradient(270deg,#FFFFFF,#acb6e5,#FFFFFF);
-    background-size: 400% 400%;
-    animation: gradientAnimation 20s ease infinite;
-    box-shadow: 0 2px 20px rgba(0, 0, 255, 0.7);
+    background-color: #F2C94C;
+    box-shadow: 0 2px 20px rgba(211, 129, 6, 0.7);
 }
-
-@keyframes gradientAnimation {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
-}
-
 
 .nasc {
     display: flex;
@@ -110,7 +94,7 @@ nav{
     padding: 5px 100px;
     justify-content: space-between;
     align-items: center;
-    background: black;
+    background-color: #4B0011;
 }
 
 nav ul{

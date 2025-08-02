@@ -14,76 +14,23 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: black;
+            background-color: #f0f8ff; /* Light background */
         }
 
         .container {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            position: relative;
             padding: 20px;
-            width: 300px;
-            margin: auto;
+            width: 350px;
             border-radius: 10px;
-            border: 2px solid rgba(65,143,222,1);
-            box-shadow: 0 2px 20px rgba(0, 0, 255, 0.7);
-            backdrop-filter: blur(10px);
-            background-color: black;
+            border: 2px solid #add8e6; /* Light blue border */
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            background-color: white; /* White background */
             text-align: center; /* Center align content */
         }
 
         .container h2 {
-            color: rgba(65,143,222,1); /* Header color */
+            color: #4682b4; /* Steel blue */
             margin-bottom: 20px; /* Space below header */
-        }
-
-        .bgAnimation{
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            display: grid;
-            grid-template-columns: repeat(20,1fr);
-            grid-template-rows: repeat(20,1fr);
-            background: black;
-            filter: saturate(2);
-            overflow: hidden;
-        }
-
-        .colorBox{
-            z-index: 2;
-            filter: brightness(1.1);
-            transition: 2s ease;
-            position: relative;
-            margin: 2px;
-            background: black;
-        }
-
-        .colorBox:hover{    
-            background: rgba(65,143,222,1);
-            transition-duration: 0s;
-        }
-
-        .backgroundAnim{
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 60px;
-            background: rgba(65,143,222,1);
-            filter: blur(60px);
-            animation: anim 6s linear infinite;
-        }
-
-        @keyframes anim {
-            0%{
-                top: -60px;
-            }
-            100%{
-                top: 120%;
-            }
         }
 
         input[type="text"],
@@ -91,23 +38,23 @@
             width: 100%;
             padding: 12px;
             margin-bottom: 12px;
-            border: 1px solid rgba(65,143,222,1);
+            border: 1px solid #add8e6; /* Light blue border */
             border-radius: 4px;
             box-sizing: border-box;
-            background: transparent;
-            color: white;
+            background: #f8f8f8; /* Light input background */
+            color: #333; /* Darker text color */
             transition: border-color 0.3s;
         }
 
         input[type="text"]:focus,
         input[type="password"]:focus {
-            border-color: #1f0cca;
+            border-color: #1e90ff; /* Dodger blue on focus */
             outline: none;
         }
 
         input[type="submit"] {
             width: 100%;
-            background-color: rgb(7, 97, 187);
+            background-color: #87cefa; /* Light sky blue */
             color: white;
             font-weight: bold;
             font-size: larger;
@@ -120,34 +67,43 @@
         }
 
         input[type="submit"]:hover {
-            opacity: 0.8;
+            background-color: #00bfff; /* Deep sky blue on hover */
+            opacity: 0.9;
         }
 
         label {
             margin-top: 10px;
             display: block;
             font-weight: bold;
-            color: rgba(65,143,222,1);
+            color: #4682b4; /* Steel blue for labels */
             text-align: left; /* Left align labels */
         }
 
+        /* Error list styling */
         ul.errorlist.nonfield {
-            color: rgba(65,143,222,1);
+            color: #d9534f; /* Bootstrap danger color */
+            background-color: #f8d7da; /* Light red background */
+            border: 1px solid #f5c6cb; /* Border color */
+            border-radius: 4px;
+            padding: 6px;
+            margin: 10px 0;
+            font-size: 14px;
+            list-style-type: none; /* Remove bullet points */
+            text-align: left; /* Left align text */
         }
 
-        @media (min-width: 360px) and (max-width: 450px) {
+        ul.errorlist.nonfield li {
+            margin: 5px 0; /* Space between error messages */
+        }
+
+        @media (min-width: 350px) and (max-width: 450px) {
             .container {
-                width: 70%;
+                width: 70%; /* Adjust container width on small screens */
             }
         }
     </style>
 </head>
 <body>
-    <div class="bgAnimation" id="bgAnimation">
-        <div class="backgroundAnim">
-
-        </div>
-    </div>
     <div class="container">
         <h2>Welcome back! <br> H M S</h2> <!-- Added header -->
         <form action="" method="post">
@@ -156,16 +112,5 @@
             <input type="submit" value="Login">
         </form>
     </div>
-
-    <script>
-        const bgAnimation = document.getElementById('bgAnimation');
-        const numberOfColorBoxes = 400;
-
-        for (let i=0;i<numberOfColorBoxes;i++){
-            const colorBox = document.createElement('div');
-            colorBox.classList.add('colorBox');
-            bgAnimation.append(colorBox)
-        }
-    </script>
 </body>
 </html>
