@@ -6,107 +6,110 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <style>
-        body {
+        * {
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+
+        body {
+            background-color: #800020; /* Dark maroon base */
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #f0f8ff; /* Light background */
         }
 
         .container {
-            position: relative;
-            padding: 20px;
+            background-color: #F2C94C; /* Gold yellow */
+            padding: 30px 25px;
             width: 350px;
             border-radius: 10px;
-            border: 2px solid #add8e6; /* Light blue border */
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-            background-color: white; /* White background */
-            text-align: center; /* Center align content */
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.7);
+            text-align: center;
         }
 
         .container h2 {
-            color: #4682b4; /* Steel blue */
-            margin-bottom: 20px; /* Space below header */
+            color: black;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            color: #4B0011;
+            display: block;
+            margin: 10px 0 5px;
+            text-align: left;
         }
 
         input[type="text"],
         input[type="password"] {
             width: 100%;
             padding: 12px;
-            margin-bottom: 12px;
-            border: 1px solid #add8e6; /* Light blue border */
-            border-radius: 4px;
-            box-sizing: border-box;
-            background: #f8f8f8; /* Light input background */
-            color: #333; /* Darker text color */
-            transition: border-color 0.3s;
+            border-radius: 5px;
+            border: 1px solid #4B0011;
+            background-color: #fffbea;
+            color: #000;
+            margin-bottom: 15px;
+            transition: border-color 0.3s ease;
         }
 
         input[type="text"]:focus,
         input[type="password"]:focus {
-            border-color: #1e90ff; /* Dodger blue on focus */
             outline: none;
+            border-color: #00bfff; /* Cyan border on focus */
         }
 
         input[type="submit"] {
             width: 100%;
-            background-color: #87cefa; /* Light sky blue */
+            padding: 12px;
+            background-color: #4B0011; /* Dark accent */
             color: white;
             font-weight: bold;
-            font-size: larger;
-            padding: 14px 20px;
-            margin: 10px 0;
+            font-size: 16px;
             border: none;
-            border-radius: 4px;
+            border-radius: 5px;
             cursor: pointer;
-            transition: background-color 0.3s, opacity 0.3s;
+            transition: background-color 0.3s ease;
         }
 
         input[type="submit"]:hover {
-            background-color: #00bfff; /* Deep sky blue on hover */
-            opacity: 0.9;
+            background-color: #000;
         }
 
-        label {
-            margin-top: 10px;
-            display: block;
-            font-weight: bold;
-            color: #4682b4; /* Steel blue for labels */
-            text-align: left; /* Left align labels */
-        }
-
-        /* Error list styling */
         ul.errorlist.nonfield {
-            color: #d9534f; /* Bootstrap danger color */
-            background-color: #f8d7da; /* Light red background */
-            border: 1px solid #f5c6cb; /* Border color */
+            color: #d9534f;
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
             border-radius: 4px;
             padding: 6px;
             margin: 10px 0;
             font-size: 14px;
-            list-style-type: none; /* Remove bullet points */
-            text-align: left; /* Left align text */
+            list-style-type: none;
+            text-align: left;
         }
 
         ul.errorlist.nonfield li {
-            margin: 5px 0; /* Space between error messages */
+            margin: 5px 0;
         }
 
-        @media (min-width: 350px) and (max-width: 450px) {
+        @media (max-width: 480px) {
             .container {
-                width: 70%; /* Adjust container width on small screens */
+                width: 85%;
+                padding: 20px;
+            }
+            .container h2 {
+                font-size: 20px;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2>Welcome back! <br> H M S</h2> <!-- Added header -->
-        <form action="" method="post">
+        <h2>Welcome Back! <br> HMS Login</h2>
+        <form method="post">
             {% csrf_token %}
             {{ form.as_p }}
             <input type="submit" value="Login">

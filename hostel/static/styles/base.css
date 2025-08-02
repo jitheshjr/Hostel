@@ -129,14 +129,14 @@ nav ul li a{
     width: 0;
     bottom: 5px;
     height: 2px;
-    background: #00bfff;
+    background: #000000;
     display: block;
     margin: auto;
     transition: 0.5s;
 }
 
 .nav-links ul li a:hover{
-    color: #00bfff;
+    color: #000000;
 }
 
 .nav-links ul li:hover::after{

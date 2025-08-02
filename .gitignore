@@ -7,8 +7,6 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-# Django SQLite database (contains personal data)
-*.sqlite3
 
 # Media and uploaded student images (privacy-sensitive)
 media/
@@ -34,9 +32,6 @@ static_cdn/
 # Optional: ignore Django migration files (if not collaborating)
 # */migrations/
 # !*/migrations/__init__.py
-
-# Unused Django apps (like utils)
-utils/
 
 # System logs and backups
 *.log
