@@ -41,8 +41,4 @@ If you use or extend it, please give proper credit.
 
 - The Django open-source community
 
-- Pillow (Python Imaging Library)
-
-- Bootstrap for front-end design
-
 - My college hostel office staff for feature input
