@@ -27,11 +27,8 @@ Hostel | Details
         <p class="name-pgm">{{student.pgm}}</p>
         <div class="other-details">
             <p><strong>ADMISSION NUMBER: </strong>{{student.admn_no}}</p><br>
-            <p><strong>YEAR OF ADMISSION: </strong>{{student.year_of_admn}}</p><br>
             <p><strong>DOB: </strong>{{student.dob}}</p><br>
             <p><strong>PHONE: </strong>{{student.contact}}</p><br>
-            <p><strong>ADDRESS: </strong>{{student.address}}</p><br>
-            <p><strong>NAME OF GUARDIAN: </strong>{{student.parent_name}}</p><br>
             {% if room %}
                 <p><strong>ALLOCATED ROOM: </strong>{{room.room_number}} ( {{room.room_number.floor}} )</p><br>
             {% else %}

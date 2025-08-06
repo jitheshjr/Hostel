@@ -8,42 +8,29 @@ import os
 # Create your models here.
 
 class Department(models.Model):
-    dept_id = models.SmallIntegerField(unique=True)
     dept_name = models.CharField(max_length=100,unique=True)
 
     def __str__(self):
         return self.dept_name
 
 class Programme(models.Model):
-    pgm_id = models.SmallIntegerField(unique=True)
     pgm_name = models.CharField(max_length=100,unique=True)
     dept_id = models.ForeignKey(Department,on_delete=models.CASCADE)
-    no_of_sems = models.PositiveSmallIntegerField()
-    grad_choices = [('UG','UG'),('PG','PG'),('IPG','IPG')]
-    grad_level = models.CharField(max_length=5,choices=grad_choices)
-
+    
     def __str__(self):
         return self.pgm_name
 
 class Student(models.Model):
     admn_no = models.PositiveIntegerField(unique=True)
     name = models.CharField(max_length=50)
-    year_of_admn = models.PositiveSmallIntegerField()
     pgm = models.ForeignKey(Programme, on_delete=models.CASCADE)
-    year_choices = [
-        (1,'First'),(2,'Second'),(3,'Third'),(4,'Fourth'),(5,'Fifth'),
-    ]
-    year = models.IntegerField(choices=year_choices)
     dob = models.DateField()
     email = models.EmailField()
     photo = models.ImageField(upload_to="images/", blank=True, null=True)
     contact_regex = RegexValidator(regex=r'^\d{10}$',message="Contact number must be a 10-digit number.")
     contact = models.CharField(validators=[contact_regex], max_length=10)  # Using CharField for contact with max length 10
-    parent_name = models.CharField(max_length=50)
-    address = models.TextField(max_length=200)
     date_joined = models.DateField(auto_now_add=True)
 
-    
     CATEGORY_CHOICES = [
         ('GENERAL', 'GENERAL'),
         ('OBC', 'OBC'),
@@ -104,23 +91,18 @@ class Student(models.Model):
     def __str__(self):
         return self.name
 
-    
 
 class Trash(models.Model):
     admn_no = models.PositiveIntegerField(unique=True)
     name = models.CharField(max_length=50)
-    year_of_admn = models.PositiveSmallIntegerField()
     pgm = models.ForeignKey(Programme, on_delete=models.CASCADE)
     dob = models.DateField()
     email = models.EmailField()
     photo = models.ImageField(upload_to="images/")
     contact_regex = RegexValidator(regex=r'^\d{10}$',message="Contact number must be a 10-digit number.")
     contact = models.CharField(validators=[contact_regex], max_length=10)  # Using CharField for contact with max length 10
-    parent_name = models.CharField(max_length=50)
-    address = models.TextField(max_length=200)
     date_joined = models.DateField()
     date_exited = models.DateField(null=True,blank=True)
-    room_no = models.SmallIntegerField(null=True, blank=True)
     
     CATEGORY_CHOICES = [
         ('GENERAL', 'GENERAL'),
@@ -140,7 +122,6 @@ class Trash(models.Model):
     def __str__(self):
         return self.name
     
-
     
 class Room(models.Model):
     room_number = models.SmallIntegerField(unique=True)

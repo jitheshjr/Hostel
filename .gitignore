@@ -7,10 +7,12 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# Django SQLite database (contains personal data)
+#*.sqlite3
 
 # Media and uploaded student images (privacy-sensitive)
-media/
-mediafiles/
+#media/
+#mediafiles/
 
 # Sensitive datasets (CSV, Excel, JSON)
 *.csv
