@@ -4,115 +4,165 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Login - HMS</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            background-color: #800020; /* Dark maroon base */
+            background-color: #5a001a; /* Darker maroon for better contrast */
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
+            background-image: linear-gradient(135deg, rgba(0,0,0,0.1) 0%, rgba(255,255,255,0.05) 100%);
         }
 
         .container {
-            background-color: #F2C94C; /* Gold yellow */
-            padding: 30px 25px;
-            width: 350px;
-            border-radius: 10px;
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.7);
+            background-color: #f8e8b0; /* Softer gold yellow */
+            padding: 2.5rem;
+            width: 100%;
+            max-width: 400px;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
             text-align: center;
+            border: 1px solid rgba(255, 215, 0, 0.2);
         }
 
         .container h2 {
-            color: black;
-            font-size: 24px;
-            margin-bottom: 20px;
+            color: #3d000f;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        .container p {
+            color: #5a001a;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+            text-align: left;
         }
 
         label {
-            font-weight: bold;
-            color: #4B0011;
+            font-weight: 500;
+            color: #5a001a;
             display: block;
-            margin: 10px 0 5px;
-            text-align: left;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
         }
 
         input[type="text"],
         input[type="password"] {
             width: 100%;
-            padding: 12px;
-            border-radius: 5px;
-            border: 1px solid #4B0011;
-            background-color: #fffbea;
-            color: #000;
-            margin-bottom: 15px;
-            transition: border-color 0.3s ease;
+            padding: 0.75rem 1rem;
+            border-radius: 6px;
+            border: 1px solid #b38b6d;
+            background-color: #fffdf5;
+            color: #333;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
         }
 
         input[type="text"]:focus,
         input[type="password"]:focus {
             outline: none;
-            border-color: #00bfff; /* Cyan border on focus */
+            border-color: #5a001a;
+            box-shadow: 0 0 0 3px rgba(90, 0, 26, 0.1);
         }
 
         input[type="submit"] {
             width: 100%;
-            padding: 12px;
-            background-color: #4B0011; /* Dark accent */
-            color: white;
-            font-weight: bold;
-            font-size: 16px;
+            padding: 0.85rem;
+            background-color: #5a001a;
+            color: #f8e8b0;
+            font-weight: 600;
+            font-size: 1rem;
             border: none;
-            border-radius: 5px;
+            border-radius: 6px;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            transition: all 0.3s ease;
+            margin-top: 0.5rem;
+            letter-spacing: 0.5px;
         }
 
         input[type="submit"]:hover {
-            background-color: #000;
+            background-color: #3d000f;
+            transform: translateY(-1px);
+        }
+
+        input[type="submit"]:active {
+            transform: translateY(0);
         }
 
         ul.errorlist.nonfield {
-            color: #d9534f;
-            background-color: #f8d7da;
-            border: 1px solid #f5c6cb;
-            border-radius: 4px;
-            padding: 6px;
-            margin: 10px 0;
-            font-size: 14px;
+            color: #d32f2f;
+            background-color: #ffebee;
+            border: 1px solid #ef9a9a;
+            border-radius: 6px;
+            padding: 0.75rem;
+            margin: 1rem 0;
+            font-size: 0.85rem;
             list-style-type: none;
             text-align: left;
         }
 
         ul.errorlist.nonfield li {
-            margin: 5px 0;
+            margin: 0.25rem 0;
+            position: relative;
+            padding-left: 1.25rem;
+        }
+
+        ul.errorlist.nonfield li:before {
+            content: "•";
+            color: #d32f2f;
+            position: absolute;
+            left: 0.5rem;
         }
 
         @media (max-width: 480px) {
             .container {
-                width: 85%;
-                padding: 20px;
+                padding: 1.75rem;
+                margin: 0 1rem;
             }
+            
             .container h2 {
-                font-size: 20px;
+                font-size: 1.5rem;
+            }
+            
+            body {
+                background-color: #5a001a;
+                background-image: none;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2>Welcome Back! <br> HMS Login</h2>
+        <h2>Welcome to HMS</h2>
+        <p>Please sign in to continue</p>
         <form method="post">
             {% csrf_token %}
-            {{ form.as_p }}
-            <input type="submit" value="Login">
+            {% for field in form %}
+                <div class="form-group">
+                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    {{ field }}
+                    {% if field.errors %}
+                        <div class="error-message" style="color: #d32f2f; font-size: 0.8rem; margin-top: 0.25rem;">
+                            {{ field.errors.0 }}
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+            <input type="submit" value="Sign In">
         </form>
     </div>
 </body>
