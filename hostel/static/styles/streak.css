@@ -1,13 +1,17 @@
-.main-body{
+.main-body {
     margin-top: 10vh;
     margin-bottom: 40vh;
 }
-.main-block{
+
+.main-block {
     width: 30%;
     margin: 0 auto;
     padding: 20px 10px;
     border-radius: 10px;
-    background: linear-gradient(#ECE9E6, #FFFFFF);
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px) saturate(180%);
+    -webkit-backdrop-filter: blur(10px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     box-shadow: 0 8px 16px rgba(10, 10, 11, 0.5);
     margin-bottom: 50px;
 }
@@ -17,16 +21,23 @@
     width: 50%;
     border-collapse: collapse;
     margin-bottom: 50px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px) saturate(180%);
+    -webkit-backdrop-filter: blur(10px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     box-shadow: 0 8px 16px rgba(10, 10, 11, 0.5);
 }
+
 .filter-td {
     padding: 10px;
-    background: linear-gradient(#ECE9E6, #FFFFFF);
+    background: rgba(255, 255, 255, 0.1);
 }
+
 label {
     font-weight: bold;
 }
-.search{
+
+.search {
     padding: 10px 20px;
     background: #45a9e3;
     color: white;
@@ -36,6 +47,7 @@ label {
     border-radius: 4px;
     cursor: pointer;
 }
+
 .search:hover {
     background-color: black;
     color: white;
@@ -46,12 +58,12 @@ label {
     margin: 0 auto;
 }
 
-.streak-list{
+.streak-list {
     list-style-type: none;
     padding: 0;
 }
 
-.streak-items{
+.streak-items {
     font-size: 16px;
     background: #bdc3c7;
     padding: 10px;
@@ -60,7 +72,7 @@ label {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-h5{
+h5 {
     color: black;
     text-align: center;
     margin-bottom: 25px;
@@ -73,15 +85,16 @@ h5{
     margin-top: 30px;
     margin-bottom: 30px;
 }
+
 .pagination .step-links a {
     margin: 0 5px;
     padding: 5px 10px;
-    background:fff;
+    background: #fff;
     border: 1px solid #ddd;
     text-decoration: none;
     color: #071952;
-
 }
+
 .pagination .step-links .current {
     margin: 0 5px;
     padding: 5px 10px;
@@ -89,25 +102,49 @@ h5{
     border: 1px solid #ccc;
     color: black;
 }
-@media (min-width: 360px) and (max-width: 450px){
-    #filter-table{
+
+/* Header links and close icon styling */
+.header-links {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    position: relative;
+    top: 0;
+    width: 100%;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+.header-links .close-icon {
+    font-size: 28px;
+    color: red;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.header-links .close-icon:hover {
+    color: darkred;
+}
+
+@media (min-width: 360px) and (max-width: 450px) {
+    #filter-table {
         display: none;
     }
-    .main-block{
+    .main-block {
         width: 90%;
     }
-    .table-resposive{
+    .table-resposive {
         overflow-x: auto;
     }
-    .pagination .step-links a{
+    .pagination .step-links a {
         margin: 0 2px;
         padding: 1px 2px;
     }
-    .pagination .step-links .current{
+    .pagination .step-links .current {
         margin: 0 2px;
         padding: 1px 2px;
     }
-    h5{
+    h5 {
         font-size: 14px;
     }
 }

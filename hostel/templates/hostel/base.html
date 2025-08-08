@@ -34,11 +34,12 @@
                 <li>
                     <form action="{% url 'logout' %}" method="post" style="display:inline;">
                         {% csrf_token %}
-                        <button type="submit" class="sidebar-link">
-                            <img src="{% static 'logout.png' %}" alt="Logout Icon" style="width:18px; vertical-align:middle; margin-right:8px;">
+                        <button type="submit" class="sidebar-link" style="background:none; border:none; cursor:pointer; display:flex; align-items:center; color:inherit; font:inherit;">
+                            <i class="fas fa-sign-out-alt" style="margin-right:8px; font-size:18px;"></i>
                             Logout
                         </button>
                     </form>
+                    
                 </li>
 
         </ul>
