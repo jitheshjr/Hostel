@@ -1,188 +1,132 @@
-.main{
-    min-height: 80vh;
-}
-.main-body{
-    margin-top: 10vh;
-    margin-bottom: 10vh;   
+.main {
+    min-height: 85vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
 }
 
 .attendance-form {
-    width: 80%;
+    position: relative; /* Needed so close button can be positioned inside */
+    width: 100%;
+    max-width: 1100px;
+    padding: 35px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
     margin: 0 auto;
-    padding: 10px;
-    border-radius: 10px;
-    background: linear-gradient(to right, #ECE9E6 0%, #FFFFFF  51%, #ECE9E6  100%);
-    box-shadow: 0 8px 16px rgba(10, 10, 11, 0.5);
-    margin-bottom: 50px;
+}
+
+.form-title {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* center title since arrow is now separate */
+    gap: 16px;
+}
+
+.form-title h5 {
+    font-size: 32px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: rgba(7, 6, 6, 0.918);
+    letter-spacing: 1.5px;
+    text-align: center;
+}
+
+/* Close button pinned top-left */
+#close {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+}
+
+#studentSearch,
+#id_date {
+    width: 92%;
+    padding: 18px;
+    border: none;
+    border-radius: 12px;
+    font-size: 18px;
+    background: rgba(255, 255, 255, 0.88);
+    transition: all 0.3s ease;
+}
+
+#studentSearch:focus,
+#id_date:focus {
+    outline: none;
+    border: 2px solid rgba(0, 123, 255, 0.6);
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.4);
+}
+
+#selectall_label {
+    display: flex;
+    align-items: center;
+    font-size: 17px;
+    color: black;
+}
+
+#select_all {
+    margin-right: 10px;
+    margin-bottom: 14px;
+    margin-top: 14px;
 }
 
 #student-container {
-    margin-top: 20px;
-    margin-bottom: 40px;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Creates columns with a minimum width */
-    gap: 20px; /* Space between grid items */
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    padding: 10px 20px;
-    box-sizing: border-box;
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    gap: 14px;
+    max-height: 300px;
+    overflow-y: auto;
+    padding: 14px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.88);
 }
+
 .student-item {
     display: flex;
     align-items: center;
-    margin-bottom: 10px; /* Space between items within the column */
-}
-
-#id_date{
-    background-color: #fff;
-    width: 16.9%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-              
-form input[type="submit"] {
-    background-image: linear-gradient(to right, #1D976C 0%, #93F9B9  51%, #1D976C  100%);
-    margin: 10px;
-    padding: 15px 45px;
-    text-align: center;
-    width: 50%;
-    text-transform: uppercase;
-    transition: 0.5s;
-    background-size: 200% auto;
-    color: white; 
-    font-size: 15px;    
-    font-weight: bolder;       
-    box-shadow: 0 0 20px #eee;
-    border-radius: 4px;
-    display: block;
-    margin: 20px auto;
-    border: none;
-  }
-
-form input[type="submit"]:hover{
-    background-position: right center;
-    color: black;
-    text-decoration: none;
-}
-
-
-form input[type="date"]:focus{
-    border-color: #007bff;
-    outline: none;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-}
-#selectall_label{
-    margin-top: 20px;
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
     font-size: 16px;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 18px;
+    background: rgba(0, 123, 255, 0.92);
+    border: none;
+    border-radius: 12px;
+    color: white;
     font-weight: bold;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.1s ease;
+    margin-top: 14px;
+}
+
+.submit-btn:hover {
+    background: rgba(0, 86, 179, 0.92);
+    transform: scale(1.03);
+}
+
+.icon-close {
+    position: absolute;
+    top: 15px;  /* distance from top of form */
+    left: 15px; /* distance from left of form */
+    font-size: 18px;
     color: black;
     cursor: pointer;
-    user-select: none;
-}
-#select_all{
-        margin-right: 10px;
-        width: 20px;
-        height: 20px;
-        cursor: pointer;
-        border: 2px solid #333;
-        border-radius: 3px;
-        outline: none;
-        transition: background-color 0.2s, border-color 0.2s;
+    background: none;
+    border: none;
 }
 
-h5{
-    color: black;
-    text-align: center;
-    margin-bottom: 20px;
-    text-transform: uppercase;
-    font-size: 20px;
-    font-weight: bolder;
-}
-li.error{
-    list-style-type: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 5vh;
-    font-size: 16px;
-    text-transform: uppercase;
-    font-weight: bolder;
-    color: red;
-}
-li.success{
-    list-style-type: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 5vh;
-    font-size: 16px;
-    text-transform: uppercase;
-    font-weight: bolder;
-    color: #151269;
-}
-#studentSearch {
-    width: 20%;
-    padding: 10px;
-    margin-bottom: 15px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-#studentSearch:focus {
-    border-color: #007bff;
-    outline: none;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-}
-.header-links {
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    position: relative;
-    top: 0;
-    width: 100%;
-    padding: 0;
-    margin-bottom: 20px;
-}
-.header-links .back-link {
-    font-size: 25px;
-    color: black;
-    text-decoration: none;
-    display: inline-block;
-}
-#close{
-    width: 30px;
-    height: 30px;
-}
-
-@media (min-width: 360px) and (max-width: 450px){
-    .main-body{
-        min-height: 72vh;
-    }
-    .attendance-form{
-        width: 75%;
-    }
-    .messages{
-        font-size: 12px;
-    }
-    #id_date{
-        width: 100%;
-    }
-    #studentSearch{
-        width: 100%;
-    }
-    h5{
-        font-size: 12px;
-    }
-    li.error{
-        font-size: 8px;
-    }
-    li.success{
-        font-size: 8px;
-    }
+.icon-close:hover {
+    color: #00bfff;
 }

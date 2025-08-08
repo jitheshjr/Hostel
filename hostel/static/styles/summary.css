@@ -7,7 +7,10 @@
     margin: 0 auto;
     padding: 20px 10px;
     border-radius: 10px;
-    background: linear-gradient(#ECE9E6, #FFFFFF);
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px) saturate(180%);
+    -webkit-backdrop-filter: blur(10px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     box-shadow: 0 8px 16px rgba(10, 10, 11, 0.5);
     margin-bottom: 50px;
 }
@@ -17,11 +20,15 @@
     width: 40%;
     border-collapse: collapse;
     margin-bottom: 50px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px) saturate(180%);
+    -webkit-backdrop-filter: blur(10px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     box-shadow: 0 8px 16px rgba(10, 10, 11, 0.5);
 }
 .filter-td {
     padding: 10px;
-    background: linear-gradient(#ECE9E6, #FFFFFF);
+    background: rgba(255, 255, 255, 0.1);
 }
 label {
     font-weight: bold;
@@ -51,7 +58,6 @@ label {
 }
 .absents th{
     background-color: #bdc3c7;
-
 }
 .absents tr:nth-child(even){
     background-color: #E2E2E2;
@@ -155,11 +161,10 @@ li.success{
 .pagination .step-links a {
     margin: 0 5px;
     padding: 5px 10px;
-    background:fff;
+    background: #fff;
     border: 1px solid #ddd;
     text-decoration: none;
     color: #071952;
-
 }
 .pagination .step-links .current {
     margin: 0 5px;

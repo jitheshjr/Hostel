@@ -3,18 +3,25 @@
     margin-bottom: 12vh;
 }
 .student-details {
-    background: linear-gradient(to right, #ECE9E6 0%, #FFFFFF  51%, #ECE9E6  100%);
-    box-shadow: 0 8px 16px rgba(10, 10, 11, 0.5);
-    padding: 20px;
-    padding-top: 10px;
-    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.15); /* Transparent white */
+    backdrop-filter: blur(10px); /* Glass blur effect */
+    -webkit-backdrop-filter: blur(10px); /* Safari support */
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border for glass look */
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+
+    padding: 15px;
+    padding-top: 8px;
     margin: 0 auto;
-    width: 30%;
+    width: 25%; /* Smaller width */
     text-align: center;
     font-family: 'Times New Roman', Times, serif;
     font-size: 10px;
     color: black;
 }
+
+    
+
 .name-pgm {
     text-transform: uppercase;
     font-weight: bold;
@@ -115,4 +122,15 @@
     .other-details{
         font-size: 8px;
     }
+}
+.header-links .back-link i,
+.header-links .menu i {
+    font-size: 25px;
+    color: black;
+    cursor: pointer;
+}
+
+.header-links .back-link i:hover,
+.header-links .menu i:hover {
+    opacity: 0.6;
 }

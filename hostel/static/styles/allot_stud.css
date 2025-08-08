@@ -1,4 +1,4 @@
-.main-body{
+.main-body {
     margin-top: 20vh;
     margin-bottom: 30vh;
 }
@@ -8,12 +8,18 @@
     margin: 0 auto;
     padding: 10px;
     border-radius: 10px;
-    background: linear-gradient(to right, #ECE9E6 0%, #FFFFFF  51%, #ECE9E6  100%);
+
+    /* Glassmorphism */
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     box-shadow: 0 8px 16px rgba(10, 10, 11, 0.5);
+
     margin-bottom: 50px;
 }
 
-h5{
+h5 {
     color: black;
     text-align: center;
     margin-bottom: 20px;
@@ -21,7 +27,8 @@ h5{
     font-size: 20px;
     font-weight: bolder;
 }
-li.error{
+
+li.error {
     list-style-type: none;
     display: flex;
     justify-content: center;
@@ -32,7 +39,8 @@ li.error{
     font-weight: bolder;
     color: red;
 }
-li.success{
+
+li.success {
     list-style-type: none;
     display: flex;
     justify-content: center;
@@ -47,9 +55,11 @@ li.success{
 .form-fields {
     margin-bottom: 20px;
 }
+
 .form-field {
     margin-bottom: 15px;
 }
+
 .form-field select {
     width: 100%;
     padding: 10px;
@@ -61,9 +71,11 @@ li.success{
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
 .form-field select:hover {
     border-color: #aaa;
 }
+
 .form-field label {
     display: block;
     margin-bottom: 5px;
@@ -71,7 +83,7 @@ li.success{
 }
 
 form input[type="submit"] {
-    background-image: linear-gradient(to right, #1D976C 0%, #93F9B9  51%, #1D976C  100%);
+    background-image: linear-gradient(to right, #007BFF 0%, #66B2FF 51%, #007BFF 100%);
     margin: 10px;
     padding: 15px 45px;
     text-align: center;
@@ -87,9 +99,9 @@ form input[type="submit"] {
     display: block;
     margin: 20px auto;
     border: none;
-  }
+}
 
-form input[type="submit"]:hover{
+form input[type="submit"]:hover {
     background-position: right center;
     color: black;
     text-decoration: none;
@@ -105,31 +117,44 @@ form input[type="submit"]:hover{
     padding: 0;
     margin-bottom: 20px;
 }
+
 .header-links .back-link {
     font-size: 25px;
     color: black;
     text-decoration: none;
     display: inline-block;
 }
-#close{
+
+#close {
     width: 30px;
     height: 30px;
 }
-@media (min-width: 360px) and (max-width: 450px){
-    .main-body{
+
+@media (min-width: 360px) and (max-width: 450px) {
+    .main-body {
         margin-top: 17vh;
         margin-bottom: 30vh;
     }
-    .main-block{
+    .main-block {
         width: 80%;
     }
-    h5{
+    h5 {
         font-size: 12px;
     }
-    li.error{
+    li.error {
         font-size: 8px;
     }
-    li.success{
+    li.success {
         font-size: 8px;
     }
+}
+.close-icon i {
+    font-size: 30px; /* same size as old #close image */
+    color: black;      /* close icon color */
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-icon i:hover {
+    color: darkred;
 }

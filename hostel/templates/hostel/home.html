@@ -1,5 +1,4 @@
 {% extends 'hostel/base.html' %}
-
 {% load static %}
 
 {% block title %}
@@ -11,14 +10,14 @@ Hostel | Home
 {% endblock %}
 
 {% block content %}
-<main class="main-body">
-    <div class="text-box">
-        <h2>K. V. Kunhambu Memorial Women's Hostel</h2>
-        <h1>NASC-HMS</h1>
-        <a href="{% url 'mark_attendance' %}" class="hero-btn">Add attendance</a>
+<div class="home-container">
+    <h1 class="hostel-title">K.V. KUNHAMBU MEMORIAL<br>WOMEN’S HOSTEL</h1>
+    <div class="home-buttons">
+        <a href="{% url 'mark_attendance' %}">Add attendance</a>
         {% if is_warden_group %}
-        <a href="{% url 'generate_mess_bill' %}" class="hero-btn">Generate mess bill</a>
+        <a href="{% url 'generate_mess_bill' %}">Generate messbill</a>
         {% endif %}
-    </div>   
-</main>
+    </div>
+</div>
+
 {% endblock %}

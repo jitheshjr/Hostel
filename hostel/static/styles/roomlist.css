@@ -2,12 +2,18 @@
     margin-top: 10vh;
     margin-bottom: 28vh;
 }
-.main-block{
+
+.main-block {
     width: 40%;
     margin: 0 auto;
     padding: 20px 10px;
     border-radius: 10px;
-    background-image: linear-gradient(#ECE9E6, #FFFFFF);
+
+    /* Glassmorphism effect */
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     box-shadow: 0 8px 16px rgba(10, 10, 11, 0.5);
     margin-bottom: 50px;
 }
@@ -16,30 +22,32 @@
     width: 80%;
     margin: 0 auto;
 }
+
 .allot table {
     border-collapse: collapse;
     width: 100%;
     margin: 10px;
 }
-.allot th{
-    background-color: #bdc3c7;
 
+.allot th {
+    background-color: rgba(189, 195, 199, 0.7);
 }
+
 .allot th, .allot td {
     border: none;
     text-align: center;
     padding: 8px;
 }
 
-.allot tr:nth-child(even){
-    background-color: #E2E2E2;
+.allot tr:nth-child(even) {
+    background-color: rgba(226, 226, 226, 0.6);
 }
 
-#ignore-row{
+#ignore-row {
     background-color: transparent;
 }
 
-h5{
+h5 {
     color: black;
     text-align: center;
     margin-top: 10px;
@@ -49,7 +57,7 @@ h5{
     font-weight: bolder;
 }
 
-li.error{
+li.error {
     color: red;
     list-style-type: none;
     display: flex;
@@ -60,7 +68,8 @@ li.error{
     text-transform: uppercase;
     font-weight: bolder;
 }
-li.success{
+
+li.success {
     list-style-type: none;
     display: flex;
     justify-content: center;
@@ -78,15 +87,16 @@ li.success{
     margin-top: 30px;
     margin-bottom: 30px;
 }
+
 .pagination .step-links a {
     margin: 0 5px;
     padding: 5px 10px;
-    background:fff;
+    background: #fff;
     border: 1px solid #ddd;
     text-decoration: none;
     color: #071952;
-
 }
+
 .pagination .step-links .current {
     margin: 0 5px;
     padding: 5px 10px;
@@ -94,18 +104,20 @@ li.success{
     border: 1px solid #ccc;
     color: black;
 }
-.btn{
+
+.btn {
     display: flex;
     justify-content: center;
     margin-bottom: 30px;
     gap: 10px;
 }
-.hero-btn{
-    background-image: linear-gradient(to right, #ffb347 0%, #ffcc33  51%, #ffb347  100%);
+
+.hero-btn {
+    background-image: linear-gradient(to right, #1e3c72 0%, #2a5298 51%, #1e3c72 100%);
     margin: 30px 10px;
     display: inline-block;
     text-decoration: none;
-    color: #000000;
+    color: white;
     padding: 20px 30px;
     font-size: 20px;
     font-weight: bolder;
@@ -116,9 +128,9 @@ li.success{
     box-shadow: 0 8px 16px rgba(10, 10, 11, 0.5);
     border-radius: 10px;
 }
-         
+
 .hero-btn:hover {
-    box-shadow: 0 0 5px rgb(23, 24, 7), 0 0 25px rgb(23, 24, 7), 0 0 50px rgb(23, 24, 7);
+    box-shadow: 0 0 5px rgba(30, 60, 114, 0.8), 0 0 25px rgba(30, 60, 114, 0.8), 0 0 50px rgba(30, 60, 114, 0.8);
     transform: scale(1.1);
     transition: 1s; 
 }

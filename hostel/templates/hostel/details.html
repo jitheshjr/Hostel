@@ -13,9 +13,17 @@ Hostel | Details
 <section class="main">
     <div class="student-details">
         <div class="header-links">
-            <a href="{% url 'view_student' %}"><img src="{% static 'redclose.png' %}" alt="Close" id="close"></a>
-            <a href="{% url 'edit_student' student.id %}"><img src="{% static 'edit.png' %}" alt="edit" class="menu"></a>
+            <!-- Back/Close icon -->
+            <a href="{% url 'view_student' %}" class="back-link" title="Back">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+        
+            <!-- Edit icon -->
+            <a href="{% url 'edit_student' student.id %}" class="menu" title="Edit">
+                <i class="fas fa-user-edit"></i>
+            </a>
         </div>
+        
         <div class="image-container">
             {% if student_image_url %}
                 <img src="{{ student_image_url }}" alt="Student Image" class="student-photo">

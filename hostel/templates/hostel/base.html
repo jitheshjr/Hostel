@@ -3,70 +3,66 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-        {% block title %}
-        {% endblock %}
-    </title>
+    <title>{% block title %}HMS{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
     <link rel="stylesheet" href="{% static 'styles/base.css' %}">
-    {% block style %}
-    {% endblock %}
+    {% block style %}{% endblock %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
 
-    <!-- header -->
-    <section class="header">
-        <div class="nasc">
-            <div class="logo-heading">
-                <img src="{% static 'logo.png' %}" class="logo-image">
-            </div>
-            <div class="institution-name">
-                <h1>NASC-Hostel Management System<br>K. V. Kunhambu Memorial Women's Hostel<br>NEHRU ARTS AND SCIENCE COLLEGE KANHANGAD</h1>
-            </div>
-            <form action="{% url 'logout' %}" method="post" class="logout-form">
-                {% csrf_token %}
-                <button type="submit" value="Logout" class="logout-btn"><img src="{% static 'logout.png' %}" id="exit"><div id="log-text">Logout</div></button>
-            </form>
-        </div>
-        {% if is_warden_group %}
-        <nav>
-            <div class="nav-links" id="navLinks">
-                <ul>
-                    <li><a href="{% url 'home' %}">HOME</a></li>
-                    <li><a href="{% url 'view_student' %}">STUDENTS</a></li>    
-                    <li><a href="{% url 'room_list' %}">ROOM</a></li>
+    <!-- Navbar -->
+    <header class="navbar">
+        <button id="sidebarToggle" class="hamburger">&#9776;</button>
+        <img src="{% static 'images/logo.png' %}" alt="Logo" class="logo">
+        <span class="institution-name">K. V. Kunhambu Memorial Women's Hostel</span>
+    </header>
 
-                    <li><a href="{% url 'total_bill' %}">MESSBILL</a></li>
+    <!-- Sidebar -->
+   <!-- Sidebar -->
+    <nav id="sidebar" class="sidebar">
+        <ul>
+            <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'view_student' %}">Students</a></li>
+                <li><a href="{% url 'room_list' %}">Room</a></li>
+                <li><a href="{% url 'total_bill' %}">Messbill</a></li>
+                <li><a href="{% url 'view_attendance' %}">Summary</a></li>
+                <li><a href="{% url 'streak' %}">Streak</a></li>
+                <li><a href="{% url 'inactive_student' %}">Trash</a></li>
+                
+                <li>
+                    <form action="{% url 'logout' %}" method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="sidebar-link" style="background:none; border:none; cursor:pointer; display:flex; align-items:center; color:inherit; font:inherit;">
+                            <i class="fas fa-sign-out-alt" style="margin-right:8px; font-size:18px;"></i>
+                            Logout
+                        </button>
+                    </form>
+                    
+                </li>
 
-                    <li><a href="{% url 'view_attendance' %}">SUMMARY</a></li>
-                    <li><a href="{% url 'streak' %}">STREAKS</a></li>
-                    <li><a href="{% url 'inactive_student' %}">TRASH</a></li>
-                </ul>
-            </div>
-        </nav>
-        {% endif %}
+        </ul>
+    </nav>
 
-        {% if is_secretary_group %}
-        <nav>
-            <div class="nav-links" id="navLinks">
-                <ul>
-                    <li><a href="{% url 'home' %}">HOME</a></li>
-                    <li><a href="{% url 'view_attendance' %}">SUMMARY</a></li>
-                </ul>
-            </div>
-        </nav>
-        {% endif %}
-    </section>
 
-    <!-- Body -->
-    {% block content %}
-    {% endblock %}
-        
+    <!-- Main Content -->
+    <main class="content">
+        {% block content %}{% endblock %}
+    </main>
+
     <!-- Footer -->
-    <footer>
-        <div class="footer-section">
-            <p>&copy; 2024 HMS. All rights reserved.</p>
-        </div>
-    </footer>     
+    <footer class="footer">
+        &copy; 2024 HMS. All rights reserved.
+    </footer>
+
+    <script>
+        const sidebarToggle = document.getElementById('sidebarToggle');
+        const sidebar = document.getElementById('sidebar');
+
+        sidebarToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+        });
+    </script>
 </body>
 </html>

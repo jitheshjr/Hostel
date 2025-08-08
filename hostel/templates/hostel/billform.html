@@ -15,8 +15,11 @@ Hostel | BillForm
     <div class="main-body">
         <div class="billform">
             <div class="header-links">
-                <a href="{% url 'home' %}"><img src="{% static 'redclose.png' %}" alt="Close" id="close"></a>
+                <a href="{% url 'home' %}" class="icon-close" title="Back to Home">
+                    <i class="fas fa-times"></i>
+                </a>
             </div>
+            
             <h5>Mess Bill Form</h5>
             {% if messages %}
             <ul class="messages" >

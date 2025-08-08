@@ -1,130 +1,158 @@
-.main-body{
-    margin-top: 10vh;
-    margin-bottom: 10vh;
-}
-.billform {
-    width: 40%;
-    margin: 0 auto;
-    padding: 10px;
-    border-radius: 10px;
-    background: linear-gradient(to right, #ECE9E6 0%, #FFFFFF  51%, #ECE9E6  100%);
-    box-shadow: 0 8px 16px rgba(10, 10, 11, 0.5);
-    margin-bottom: 50px;
-    font-size: smaller;
-}
-.form-fields {
-    margin-bottom: 20px;
-}
-.form-field {
-    margin-bottom: 15px;
-}
-.form-field label {
-    display: block;
-    margin-bottom: 5px;
-    color: black;
+/* Container */
+.main-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 85vh;
+    padding: 20px;
+    position: relative;
+    z-index: 1;
 }
 
+/* Glassmorphism Form Box */
+.billform {
+    width: 100%;
+    max-width: 450px;
+    padding: 40px 30px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    text-align: center;
+}
+
+/* Heading */
+.billform h5 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+}
+
+/* Input Field Group */
+.form-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Form Label */
+.form-field label {
+    display: block;
+    text-align: left;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: #333;
+    font-size: 14px;
+}
+
+/* Input Styles */
 .form-field input[type="number"],
 .form-field input[type="date"] {
     width: 100%;
-    padding: 8px;
+    padding: 10px 14px;
+    box-sizing: border-box; /* ✅ Prevents overflow */
+    border-radius: 8px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    outline: none;
+    font-size: 14px;
+    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    transition: 0.2s;
+    max-width: 100%; /* ✅ Enforces boundaries */
 }
 
+
+.form-field input:focus {
+    border-color: #4d79ff;
+    box-shadow: 0 0 5px rgba(77, 121, 255, 0.4);
+}
+
+/* Submit Button */
 form input[type="submit"] {
-    background-image: linear-gradient(to right, #1D976C 0%, #93F9B9  51%, #1D976C  100%);
-    margin: 10px;
-    padding: 15px 45px;
-    text-align: center;
-    width: 90%;
-    text-transform: uppercase;
-    transition: 0.5s;
-    background-size: 200% auto;
-    color: white; 
-    font-size: 15px;    
-    font-weight: bolder;       
-    box-shadow: 0 0 20px #eee;
-    border-radius: 4px;
-    display: block;
-    margin: 20px auto;
-    border: none;
-  }
-
-form input[type="submit"]:hover{
-    background-position: right center;
-    color: black;
-    text-decoration: none;
-}
-
-h5{
-    color: black;
-    text-align: center;
-    margin-bottom: 20px;
-    text-transform: uppercase;
-    font-size: 20px;
-    font-weight: bolder;
-}
-li.error{
-    list-style-type: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 5vh;
+    width: 100%;
+    padding: 12px;
+    margin-top: 25px;
     font-size: 16px;
-    text-transform: uppercase;
-    font-weight: bolder;
+    font-weight: bold;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    background: linear-gradient(to right, #4d79ff, #1e3c72);
+    box-shadow: 0 4px 15px rgba(77, 121, 255, 0.3);
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+form input[type="submit"]:hover {
+    background-position: right center;
+    background: linear-gradient(to right, #1e3c72, #4d79ff);
+    color: #fff;
+}
+
+/* Close Button */
+.header-links {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+}
+
+#close {
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+}
+
+/* Messages */
+li.error, li.success {
+    list-style: none;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 10px;
+    text-align: center;
+}
+
+li.error {
     color: red;
 }
-li.success{
-    list-style-type: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 5vh;
-    font-size: 16px;
-    text-transform: uppercase;
-    font-weight: bolder;
+
+li.success {
     color: #151269;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 600px) {
+    .billform {
+        padding: 30px 20px;
+    }
+
+    .billform h5 {
+        font-size: 20px;
+    }
+
+    form input[type="submit"] {
+        font-size: 14px;
+    }
+}
+.icon-close {
+    font-size: 24px;
+    color: #333;
+    text-decoration: none;
+    margin-left: 5px;
+    transition: color 0.3s ease;
+}
+
+.icon-close:hover {
+    color: #ff3333;
 }
 
 .header-links {
     display: flex;
     justify-content: start;
     align-items: center;
-    position: relative;
-    top: 0;
-    width: 100%;
-    padding: 0;
     margin-bottom: 20px;
 }
-.header-links .back-link {
-    font-size: 25px;
-    color: black;
-    text-decoration: none;
-    display: inline-block;
-}
-#close{
-    width: 30px;
-    height: 30px;
-}
-@media (min-width: 360px) and (max-width: 450px){
-    .main-body{
-        min-height: 72vh;
-    }
-    .billform{
-        width: 80%;
-    }
-    .messages{
-        font-size: 12px;
-    }
-    h5{
-        font-size: 16px;
-    }
-    li.error{
-        font-size: 10px;
-    }
-    li.success{
-        font-size: 10px;
-    }
-}
+

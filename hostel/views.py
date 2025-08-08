@@ -12,7 +12,7 @@ from .decorators import group_required
 from .filters import *
 from django.utils import timezone
 from django.core.paginator import Paginator
-# Create your views here.
+# Create your views here..
 
 
 def access_denied(request):

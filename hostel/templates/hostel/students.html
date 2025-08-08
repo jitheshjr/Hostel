@@ -16,15 +16,7 @@ Hostel | Students
         <form method="get" action="{% url 'view_student' %}" class="filter-form">
                 <table id="filter-table">
                     <tr>
-                        <td class="filter-td">
-                            <label for="id_year_of_admn">Year of Admission:</label>
-                            {{ filter.form.year_of_admn }}
-                        </td>
-        
-                        <td class="filter-td">
-                            <label for="id_year_of_admn">Year:</label>
-                            {{ filter.form.year }}
-                        </td>
+                        
         
                         <td class="filter-td">
                             <label for="id_pgm">Programme:</label>
@@ -51,7 +43,7 @@ Hostel | Students
                 </table>   
         </form>
 
-        <h5>Students</h5>
+        <h5></h5>
 
         {% if messages %}
             <ul class="messages">
@@ -63,19 +55,25 @@ Hostel | Students
         
         <div class="student-boxes">
             <a href="{% url 'add_student' %}" class="link">
-                <div class="student-layout" id="add-bg">
-                    <div class="add-user">   
-                        <img src="{% static 'add-user.png' %}" alt="No image" class="user">
+                <div class="student-layout glass-card" id="add-bg">
+                    <div class="add-user-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="white" viewBox="0 0 24 24">
+                            <path d="M15 14c2.761 0 5-2.239 5-5s-2.239-5-5-5-5 
+                                     2.239-5 5 2.239 5 5 5zm0 2c-3.314 
+                                     0-10 1.657-10 5v3h20v-3c0-3.343-6.686-5-10-5zM4 
+                                     12h2v-2h2V8H6V6H4v2H2v2h2v2z"/>
+                        </svg>
                     </div>
                     <div class="add-student">Add Student</div>
                 </div>
             </a>
+            
             {% for student in filter.qs %}
             <a href="{% url 'view_details' student.id %}" class="link">
-                <div class="student-layout">
+                <div class="student-layout glass-card">
                     <div class="image-container">   
                         {% if student.photo %}
-                        <img src="{{student.photo.url}}" alt="No image" class="img-stud">
+                            <img src="{{student.photo.url}}" alt="No image" class="img-stud">
                         {% else %}
                             <span>No photo available</span>
                         {% endif %}
@@ -84,6 +82,7 @@ Hostel | Students
                 </div>
             </a>
             {% endfor %}
+            
         </div>
         
     </div>
