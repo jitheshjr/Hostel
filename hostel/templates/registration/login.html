@@ -14,93 +14,100 @@
         }
 
         body {
-            background-color: #5a001a; /* Darker maroon for better contrast */
+            background: url("{% static 'images/background-image.jpeg' %}") no-repeat center center fixed;
+            background-size: cover;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            background-image: linear-gradient(135deg, rgba(0,0,0,0.1) 0%, rgba(255,255,255,0.05) 100%);
+            padding: 2rem;
         }
 
-        .container {
-            background-color: #f8e8b0; /* Softer gold yellow */
-            padding: 2.5rem;
-            width: 100%;
-            max-width: 400px;
-            border-radius: 12px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            text-align: center;
-            border: 1px solid rgba(255, 215, 0, 0.2);
+        .login-wrapper {
+            display: flex;
+            width: 800px;
+            background: #fff;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            border-radius: 16px;
+            overflow: hidden;
         }
 
-        .container h2 {
-            color: #3d000f;
+        .login-left {
+            flex: 1;
+            background: #4285f4;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            font-weight: 600;
-            letter-spacing: -0.5px;
+            font-weight: bold;
         }
 
-        .container p {
-            color: #5a001a;
-            margin-bottom: 1.5rem;
-            font-size: 0.95rem;
+        .login-right {
+            flex: 1;
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+
+        .system-logo {
+            width: 70px;
+            height: auto;
+            margin: 0 auto 1rem auto;
+        }
+
+        .system-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 2rem;
         }
 
         .form-group {
             margin-bottom: 1.25rem;
-            text-align: left;
         }
 
         label {
-            font-weight: 500;
-            color: #5a001a;
             display: block;
+            font-weight: 500;
             margin-bottom: 0.5rem;
-            font-size: 0.9rem;
+            color: #333;
         }
 
         input[type="text"],
         input[type="password"] {
             width: 100%;
             padding: 0.75rem 1rem;
-            border-radius: 6px;
-            border: 1px solid #b38b6d;
-            background-color: #fffdf5;
-            color: #333;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            background-color: #f1f3f6;
             font-size: 0.95rem;
-            transition: all 0.3s ease;
         }
 
         input[type="text"]:focus,
         input[type="password"]:focus {
             outline: none;
-            border-color: #5a001a;
-            box-shadow: 0 0 0 3px rgba(90, 0, 26, 0.1);
+            border-color: #4285f4;
+            box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.15);
         }
 
         input[type="submit"] {
             width: 100%;
             padding: 0.85rem;
-            background-color: #5a001a;
-            color: #f8e8b0;
+            background-color: #4285f4;
+            color: #fff;
             font-weight: 600;
             font-size: 1rem;
             border: none;
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
             transition: all 0.3s ease;
-            margin-top: 0.5rem;
-            letter-spacing: 0.5px;
         }
 
         input[type="submit"]:hover {
-            background-color: #3d000f;
-            transform: translateY(-1px);
-        }
-
-        input[type="submit"]:active {
-            transform: translateY(0);
+            background-color: #3367d6;
         }
 
         ul.errorlist.nonfield {
@@ -115,55 +122,56 @@
             text-align: left;
         }
 
-        ul.errorlist.nonfield li {
-            margin: 0.25rem 0;
-            position: relative;
-            padding-left: 1.25rem;
-        }
-
-        ul.errorlist.nonfield li:before {
-            content: "•";
-            color: #d32f2f;
-            position: absolute;
-            left: 0.5rem;
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                padding: 1.75rem;
-                margin: 0 1rem;
+        @media (max-width: 768px) {
+            .login-wrapper {
+                flex-direction: column;
+                width: 90%;
             }
-            
-            .container h2 {
+
+            .login-left {
+                padding: 2rem;
                 font-size: 1.5rem;
             }
-            
-            body {
-                background-color: #5a001a;
-                background-image: none;
+
+            .login-right {
+                padding: 2rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h2>Welcome to HMS</h2>
-        <p>Please sign in to continue</p>
-        <form method="post">
-            {% csrf_token %}
-            {% for field in form %}
-                <div class="form-group">
-                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-                    {{ field }}
-                    {% if field.errors %}
-                        <div class="error-message" style="color: #d32f2f; font-size: 0.8rem; margin-top: 0.25rem;">
-                            {{ field.errors.0 }}
-                        </div>
-                    {% endif %}
-                </div>
-            {% endfor %}
-            <input type="submit" value="Sign In">
-        </form>
+    <div class="login-wrapper">
+        <div class="login-left">
+            Welcome back!
+        </div>
+        <div class="login-right">
+            <img src="{% static 'images/logo.png' %}" alt="Logo" class="system-logo">
+            <div class="system-title">NASC - HOSTEL MANAGEMENT SYSTEM</div>
+            <form method="post">
+                {% csrf_token %}
+            
+                {% if form.non_field_errors %}
+                    <ul class="errorlist nonfield">
+                        {% for error in form.non_field_errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            
+                {% for field in form %}
+                    <div class="form-group">
+                        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                        {{ field }}
+                        {% if field.errors %}
+                            <div class="error-message" style="color: #d32f2f; font-size: 0.8rem; margin-top: 0.25rem;">
+                                {{ field.errors.0 }}
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+                <input type="submit" value="LOGIN">
+            </form>
+        </div>
     </div>
 </body>
 </html>
