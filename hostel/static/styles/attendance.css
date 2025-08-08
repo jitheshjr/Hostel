@@ -1,188 +1,128 @@
-.main{
+.main {
     min-height: 80vh;
-}
-.main-body{
-    margin-top: 10vh;
-    margin-bottom: 10vh;   
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px; /* so it doesn't stick to edges */
 }
 
 .attendance-form {
-    width: 80%;
+    width: 100%;
+    max-width: 900px; /* keeps large look */
+    padding: 25px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
     margin: 0 auto;
-    padding: 10px;
+}
+
+.form-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.form-title h5 {
+    font-size: 26px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: rgba(7, 6, 6, 0.918);
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+#close {
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+
+#studentSearch,
+#id_date {
+    width: 90%;
+    padding: 14px;
+    border: none;
     border-radius: 10px;
-    background: linear-gradient(to right, #ECE9E6 0%, #FFFFFF  51%, #ECE9E6  100%);
-    box-shadow: 0 8px 16px rgba(10, 10, 11, 0.5);
-    margin-bottom: 50px;
+    font-size: 15px;
+    background: rgba(255, 255, 255, 0.85);
+    transition: all 0.3s ease;
+}
+
+#studentSearch:focus,
+#id_date:focus {
+    outline: none;
+    border: 2px solid rgba(0, 123, 255, 0.6);
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.4);
+}
+
+#selectall_label {
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+    color: black;
+}
+
+#select_all {
+    margin-right: 8px;
+    margin-bottom: 12px;
+    margin-top: 12px;
+    
 }
 
 #student-container {
-    margin-top: 20px;
-    margin-bottom: 40px;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Creates columns with a minimum width */
-    gap: 20px; /* Space between grid items */
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    padding: 10px 20px;
-    box-sizing: border-box;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
+    max-height: 240px;
+    overflow-y: auto;
+    padding: 10px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.85);
 }
+
 .student-item {
     display: flex;
     align-items: center;
-    margin-bottom: 10px; /* Space between items within the column */
+    font-size: 14px;
 }
 
-#id_date{
-    background-color: #fff;
-    width: 16.9%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-              
-form input[type="submit"] {
-    background-image: linear-gradient(to right, #1D976C 0%, #93F9B9  51%, #1D976C  100%);
-    margin: 10px;
-    padding: 15px 45px;
-    text-align: center;
-    width: 50%;
-    text-transform: uppercase;
-    transition: 0.5s;
-    background-size: 200% auto;
-    color: white; 
-    font-size: 15px;    
-    font-weight: bolder;       
-    box-shadow: 0 0 20px #eee;
-    border-radius: 4px;
-    display: block;
-    margin: 20px auto;
-    border: none;
-  }
-
-form input[type="submit"]:hover{
-    background-position: right center;
-    color: black;
-    text-decoration: none;
-}
-
-
-form input[type="date"]:focus{
-    border-color: #007bff;
-    outline: none;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-}
-#selectall_label{
-    margin-top: 20px;
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    font-size: 16px;
-    font-weight: bold;
-    color: black;
-    cursor: pointer;
-    user-select: none;
-}
-#select_all{
-        margin-right: 10px;
-        width: 20px;
-        height: 20px;
-        cursor: pointer;
-        border: 2px solid #333;
-        border-radius: 3px;
-        outline: none;
-        transition: background-color 0.2s, border-color 0.2s;
-}
-
-h5{
-    color: black;
-    text-align: center;
-    margin-bottom: 20px;
-    text-transform: uppercase;
-    font-size: 20px;
-    font-weight: bolder;
-}
-li.error{
-    list-style-type: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 5vh;
-    font-size: 16px;
-    text-transform: uppercase;
-    font-weight: bolder;
-    color: red;
-}
-li.success{
-    list-style-type: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 5vh;
-    font-size: 16px;
-    text-transform: uppercase;
-    font-weight: bolder;
-    color: #151269;
-}
-#studentSearch {
-    width: 20%;
-    padding: 10px;
-    margin-bottom: 15px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-#studentSearch:focus {
-    border-color: #007bff;
-    outline: none;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-}
-.header-links {
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    position: relative;
-    top: 0;
+/* Blue Submit Button */
+.submit-btn {
     width: 100%;
-    padding: 0;
-    margin-bottom: 20px;
+    padding: 14px;
+    background: rgba(0, 123, 255, 0.9);
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.1s ease;
+    margin-top: 12px;
 }
-.header-links .back-link {
+
+.submit-btn:hover {
+    background: rgba(0, 86, 179, 0.9);
+    transform: scale(1.02);
+}
+
+.icon-close {
     font-size: 25px;
     color: black;
     text-decoration: none;
-    display: inline-block;
-}
-#close{
-    width: 30px;
-    height: 30px;
+    display: flex;
+    align-items: center;
+    transition: color 0.3s ease;
 }
 
-@media (min-width: 360px) and (max-width: 450px){
-    .main-body{
-        min-height: 72vh;
-    }
-    .attendance-form{
-        width: 75%;
-    }
-    .messages{
-        font-size: 12px;
-    }
-    #id_date{
-        width: 100%;
-    }
-    #studentSearch{
-        width: 100%;
-    }
-    h5{
-        font-size: 12px;
-    }
-    li.error{
-        font-size: 8px;
-    }
-    li.success{
-        font-size: 8px;
-    }
+.icon-close:hover {
+    color: #00bfff; /* Hover blue */
 }
+
+

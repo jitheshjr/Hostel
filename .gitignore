@@ -26,6 +26,7 @@ venv/
 .venv/
 ENV/
 myenv/
+nhms/
 
 # Django-specific files (static & migration artifacts)
 staticfiles/

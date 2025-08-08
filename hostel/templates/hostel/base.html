@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}HMS{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
     <link rel="stylesheet" href="{% static 'styles/base.css' %}">
     {% block style %}{% endblock %}
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,7 +30,16 @@
                 <li><a href="{% url 'view_attendance' %}">Summary</a></li>
                 <li><a href="{% url 'streak' %}">Streak</a></li>
                 <li><a href="{% url 'inactive_student' %}">Trash</a></li>
-                <li><a href="{% url 'logout' %}" class="logout-link">Logout</a></li>
+                
+                <li>
+                    <form action="{% url 'logout' %}" method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="sidebar-link">
+                            <img src="{% static 'logout.png' %}" alt="Logout Icon" style="width:18px; vertical-align:middle; margin-right:8px;">
+                            Logout
+                        </button>
+                    </form>
+                </li>
 
         </ul>
     </nav>

@@ -11,43 +11,51 @@ Hostel | AttendanceForm
 {% endblock %}
 
 {% block content %}
-    <section class="main">
-        <div class="main-body">
-            <div class="attendance-validation">
-                <div class="attendance-form">
-                    <div class="header-links">
-                        <a href="{% url 'home' %}"><img src="{% static 'redclose.png' %}" alt="Close" id="close"></a>
-                    </div>
-                    <h5>Attendance Form</h5>
-                    {% if messages %}
-                        <ul class="messages" >
-                            {% for message in messages %}
-                                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                            {% endfor %}
-                        </ul>
-                    {% endif %}
-                    <input type="text" id="studentSearch" placeholder="Search by student name" onkeyup="filterStudents()">
-                    <form action="" method="post">
-                        {% csrf_token %}
-                        <label for="{{form.date.id_for_label}}">Date:</label>
-                        {{ form.date }}
-                        <br>
-                        <label id="selectall_label">
-                            <input type="checkbox" id="select_all">Select All
-                        </label>
-                        <div id="student-container">
-                            {% for checkbox in form.absentees %}
-                                <div class="student-item">
-                                    {{ checkbox }}
-                                </div>
-                            {% endfor %}
-                        </div>
-                        <input type="submit" value="Submit">
-                    </form>
-                </div>
+<section class="main">
+    <div class="main-body">
+        <div class="attendance-form">
+            <div class="form-title">
+                <a href="{% url 'home' %}" class="icon-close" title="Back to Home">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+                
+                <h5>Attendance Form</h5>
             </div>
+
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            <input type="text" id="studentSearch" placeholder="Search by name" onkeyup="filterStudents()">
+
+            <form action="" method="post">
+                {% csrf_token %}
+                <label for="{{form.date.id_for_label}}">Date:</label>
+                {{ form.date }}
+
+                <label id="selectall_label">
+                    <input type="checkbox" id="select_all"> Select all
+                </label>
+
+                <!-- Scrollable student list -->
+                <div id="student-container">
+                    {% for checkbox in form.absentees %}
+                        <div class="student-item">
+                            {{ checkbox }}
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <input type="submit" value="Submit" class="submit-btn">
+            </form>
         </div>
-    </section>
+    </div>
+</section>
+
     <script>
         function filterStudents() {
           let input = document.getElementById('studentSearch');
