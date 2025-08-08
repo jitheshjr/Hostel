@@ -140,6 +140,17 @@ li.success{
     width: 30px;
     height: 30px;
 }
+.close-icon i,
+.header-links .menu i {
+  font-size: 28px;
+  color: #333;      /* change color as needed */
+  cursor: pointer;
+  display: inline-block;
+}
+.close-icon i:hover,
+.header-links .menu i:hover {
+  opacity: 0.7;
+}
 @media (min-width: 360px) and (max-width: 450px){
     .main-block{
         width: 80%;
@@ -154,11 +165,4 @@ li.success{
         font-size: 8px;
     }
 }}
-.close-icon {
-    font-size: 30px;
-    color: red;
-    text-decoration: none;
-}
-.close-icon:hover {
-    color: darkred;
-}
+
