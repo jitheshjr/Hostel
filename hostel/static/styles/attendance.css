@@ -1,56 +1,62 @@
 .main {
-    min-height: 80vh;
+    min-height: 85vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px; /* so it doesn't stick to edges */
+    padding: 30px;
 }
 
 .attendance-form {
+    position: relative; /* Needed so close button can be positioned inside */
     width: 100%;
-    max-width: 900px; /* keeps large look */
-    padding: 25px;
+    max-width: 1100px;
+    padding: 35px;
     background: rgba(255, 255, 255, 0.15);
-    border-radius: 15px;
+    border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.25);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 25px;
     margin: 0 auto;
 }
 
 .form-title {
     display: flex;
     align-items: center;
-    gap: 12px;
+    justify-content: center; /* center title since arrow is now separate */
+    gap: 16px;
 }
 
 .form-title h5 {
-    font-size: 26px;
+    font-size: 32px;
     font-weight: bold;
     text-transform: uppercase;
     color: rgba(7, 6, 6, 0.918);
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
     text-align: center;
 }
 
+/* Close button pinned top-left */
 #close {
-    width: 25px;
-    height: 25px;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 35px;
+    height: 35px;
     cursor: pointer;
 }
 
 #studentSearch,
 #id_date {
-    width: 90%;
-    padding: 14px;
+    width: 92%;
+    padding: 18px;
     border: none;
-    border-radius: 10px;
-    font-size: 15px;
-    background: rgba(255, 255, 255, 0.85);
+    border-radius: 12px;
+    font-size: 18px;
+    background: rgba(255, 255, 255, 0.88);
     transition: all 0.3s ease;
 }
 
@@ -58,71 +64,69 @@
 #id_date:focus {
     outline: none;
     border: 2px solid rgba(0, 123, 255, 0.6);
-    box-shadow: 0 0 8px rgba(0, 123, 255, 0.4);
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.4);
 }
 
 #selectall_label {
     display: flex;
     align-items: center;
-    font-size: 15px;
+    font-size: 17px;
     color: black;
 }
 
 #select_all {
-    margin-right: 8px;
-    margin-bottom: 12px;
-    margin-top: 12px;
-    
+    margin-right: 10px;
+    margin-bottom: 14px;
+    margin-top: 14px;
 }
 
 #student-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 10px;
-    max-height: 240px;
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    gap: 14px;
+    max-height: 300px;
     overflow-y: auto;
-    padding: 10px;
-    border-radius: 10px;
-    background: rgba(255, 255, 255, 0.85);
+    padding: 14px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.88);
 }
 
 .student-item {
     display: flex;
     align-items: center;
-    font-size: 14px;
+    font-size: 16px;
 }
 
-/* Blue Submit Button */
 .submit-btn {
     width: 100%;
-    padding: 14px;
-    background: rgba(0, 123, 255, 0.9);
+    padding: 18px;
+    background: rgba(0, 123, 255, 0.92);
     border: none;
-    border-radius: 10px;
+    border-radius: 12px;
     color: white;
     font-weight: bold;
-    font-size: 16px;
+    font-size: 18px;
     cursor: pointer;
     transition: background 0.3s ease, transform 0.1s ease;
-    margin-top: 12px;
+    margin-top: 14px;
 }
 
 .submit-btn:hover {
-    background: rgba(0, 86, 179, 0.9);
-    transform: scale(1.02);
+    background: rgba(0, 86, 179, 0.92);
+    transform: scale(1.03);
 }
 
 .icon-close {
-    font-size: 25px;
+    position: absolute;
+    top: 15px;  /* distance from top of form */
+    left: 15px; /* distance from left of form */
+    font-size: 18px;
     color: black;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    transition: color 0.3s ease;
+    cursor: pointer;
+    background: none;
+    border: none;
 }
 
 .icon-close:hover {
-    color: #00bfff; /* Hover blue */
+    color: #00bfff;
 }
-
-
