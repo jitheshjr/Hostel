@@ -2,26 +2,40 @@
     margin-top: 10vh;
     margin-bottom: 30vh;
 }
-.main-block{
+.main-block {
     width: 40%;
     margin: 0 auto;
     padding: 20px;
     border-radius: 10px;
-    background: linear-gradient(#ECE9E6, #FFFFFF);
+
+    /* Glassmorphism effect */
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+
     box-shadow: 0 8px 16px rgba(10, 10, 11, 0.5);
     margin-bottom: 50px;
 }
+
 
 #filter-table {
     margin: auto;
     width: 25%;
     border-collapse: collapse;
     margin-bottom: 50px;
+
+    /* Glassmorphism effect */
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+
     box-shadow: 0 8px 16px rgba(10, 10, 11, 0.5);
 }
 .filter-td {
     padding: 10px;
-    background: linear-gradient(#ECE9E6, #FFFFFF);
+    background: transparent; /* Keep transparency inside glass box */
 }
 label {
     font-weight: bold;
@@ -192,4 +206,14 @@ li.success{
     .table-responsive{
         overflow-x: auto;
     }
+}
+.close-icon i {
+    font-size: 30px; /* same size as old #close image */
+    color: black;      /* close icon color */
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-icon i:hover {
+    color: darkred;
 }
