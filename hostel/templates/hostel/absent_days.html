@@ -13,7 +13,11 @@ Hostel | Days
 <section class="main">
     <div class="main-body">
         <div class="header-links">
-            <a href="#"><img src="{% static 'redclose.png' %}" alt="Close" id="close" onclick=""></a>
+            <!-- Back/Close Icon -->
+            <a href="#" class="icon-close" title="Close">
+            <i class="fas fa-times"></i>
+            </a>
+
         </div>
         <h1>Absent Records for {{ student.name }}</h1>
         <ul>

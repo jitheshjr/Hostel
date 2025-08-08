@@ -8,9 +8,16 @@
     margin: 0 auto;
     padding: 20px 10px;
     border-radius: 10px;
-    background: linear-gradient(to right, #ECE9E6 0%, #FFFFFF  51%, #ECE9E6  100%);
+
+    /* Glassmorphism */
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+
     box-shadow: 0 8px 16px rgba(10, 10, 11, 0.5);
     margin-bottom: 50px;
+   
 }
 
 .main h1 {
@@ -98,4 +105,14 @@
         margin: 0 2px;
         padding: 1px 2px;
     }
+}
+.icon-close i {
+    font-size: 30px;
+    color: black;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.icon-close i:hover {
+    opacity: 0.6;
 }

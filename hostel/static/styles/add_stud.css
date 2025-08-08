@@ -8,10 +8,15 @@
     margin: 0 auto;
     padding: 20px;
     border-radius: 10px;
-    background: linear-gradient(to right, #ECE9E6 0%, #FFFFFF  51%, #ECE9E6  100%);
+
+    /* Glassmorphism effect */
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     box-shadow: 0 8px 16px rgba(10, 10, 11, 0.5);
+
     margin-bottom: 50px;
-}
 
 .form-fields {
     margin-bottom: 20px;
@@ -46,6 +51,7 @@
 .form-field input[type="file"],
 .form-field input[type="date"]{
     background-color: #fff;
+    opacity: 80%;
     width: 100%;
     padding: 8px;
     border: 1px solid #ccc;
@@ -60,7 +66,7 @@ textarea{
     border-radius: 4px;
 }
 form input[type="submit"] {
-    background-image: linear-gradient(to right, #1D976C 0%, #93F9B9  51%, #1D976C  100%);
+    background-image: linear-gradient(to right, #007BFF 0%, #66B2FF 51%, #007BFF 100%);
     margin: 10px;
     padding: 15px 45px;
     text-align: center;
@@ -76,13 +82,14 @@ form input[type="submit"] {
     display: block;
     margin: 20px auto;
     border: none;
-  }
+}
 
-form input[type="submit"]:hover{
+form input[type="submit"]:hover {
     background-position: right center;
     color: black;
     text-decoration: none;
 }
+
 h5{
     color: black;
     text-align: center;
@@ -146,4 +153,12 @@ li.success{
     li.success{
         font-size: 8px;
     }
+}}
+.close-icon {
+    font-size: 30px;
+    color: red;
+    text-decoration: none;
+}
+.close-icon:hover {
+    color: darkred;
 }
