@@ -48,7 +48,7 @@
     width: 20px;
     height: 100%;
     background: var(--primary);
-    box-shadow: 2px 0 10px rgba(236, 72, 153, 0.3);
+    box-shadow: 2px 0 10px rgba(69, 2, 156, 0.3);
 }
 
 .card-header {
@@ -60,7 +60,7 @@
     font-size: 2.5rem;
     text-align: center;
     color: #1E3A8A; 
-    margin: 0 2rem;
+    margin: 0 auto;
     font-weight: 900;
     position: relative;
     display: inline-block;

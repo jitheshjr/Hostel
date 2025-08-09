@@ -12,50 +12,79 @@ Hostel | Allocations
 
 {% block content %}
 <section class="main">
-    <div class="main-body">
-        <div class="btn">
-            <a href="{% url 'allot_student' %}" class="hero-btn">Allocate Room</a>
-            <a href="{% url 'view_allotement' %}" class="hero-btn">View Allocations</a>
-        </div>
-        <div class="main-block">
-            <h5>Room Details</h5>
-
-            <div class="allot">
-                <div class="table-resposive">
-                    <table>
-                        <tr>
-                            <th>Room Number</th><th>Capacity</th><th style="color: red;">Available</th>
-                        </tr>
-                        <tr id="ignore-row">
-                            <td></td><td></td><td></td><td></td>
-                        </tr>
-                        {% for room in page_obj %}
-                        <tr>
-                            <td>{{room.room_number}}</td>
-                            <td>{{room.capacity}}</td>
-                            <td style="color: red;">{{room.available}}</td>
-                        </tr>
-                        {% endfor %}
-                    </table>
+    <div class="wrap">
+        <div class="card">
+            <div class="card-header">
+                <div class="title-wrap">
+                    <h1 class="card-title">Room Details</h1>
                 </div>
             </div>
-            <div class="pagination">
-                <span class="step-links">
+
+            <header class="actions">
+                <a href="{% url 'allot_student' %}" class="btn btn-primary">Allocate Room</a>
+                <a href="{% url 'view_allotement' %}" class="btn btn-primary">View Allocations</a>
+            </header>
+
+            <div class="table-wrap">
+                <table aria-describedby="page-title">
+                    <thead>
+                        <tr>
+                            <th scope="col">Room Number</th>
+                            <th scope="col">Floor</th>
+                            <th scope="col">Capacity</th>
+                            <th scope="col">availability</th>
+                            <th scope="col">status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for room in page_obj %}
+                        <tr>
+                            <td data-label="Room"><span class="badge">{{ room.room_number }}</span></td>
+                            <td data-label="Floor">{{ room.floor }}</td>
+                            <td data-label="Capacity">{{ room.capacity }}</td>
+                            <td data-label="availability">{{ room.available}}</td>
+                            <td data-label="Status">
+                                <span class="chip {% if room.available > 0 %}good{% else %}bad{% endif %}">
+                                    {% if room.available > 0 %}Available{% else %}Full{% endif %}
+                                </span>
+                            </td>
+                        </tr>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <nav class="pagination" role="navigation" aria-label="Pagination">
+                <div class="muted-small">
+                    <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+                </div>
+                <div class="pager">
                     {% if page_obj.has_previous %}
-                        <a href="?page=1">&laquo; first</a>
-                        <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                        <a href="?page=1" class="page-btn" aria-label="First page">«</a>
+                        <a href="?page={{ page_obj.previous_page_number }}" class="page-btn" aria-label="Previous page">‹</a>
+                    {% else %}
+                        <span class="page-btn" disabled>«</span>
+                        <span class="page-btn" disabled>‹</span>
                     {% endif %}
 
-                    <span class="current">
-                        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-                    </span>
+                    {% for num in page_obj.paginator.page_range %}
+                        {% if page_obj.number == num %}
+                            <span class="page-btn current" aria-current="page">{{ num }}</span>
+                        {% else %}
+                            <a href="?page={{ num }}" class="page-btn" aria-label="Page {{ num }}">{{ num }}</a>
+                        {% endif %}
+                    {% endfor %}
 
                     {% if page_obj.has_next %}
-                        <a href="?page={{ page_obj.next_page_number }}">next</a>
-                        <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                        <a href="?page={{ page_obj.next_page_number }}" class="page-btn" aria-label="Next page">›</a>
+                        <a href="?page={{ page_obj.paginator.num_pages }}" class="page-btn" aria-label="Last page">»</a>
+                    {% else %}
+                        <span class="page-btn" disabled>›</span>
+                        <span class="page-btn" disabled>»</span>
                     {% endif %}
-                </span>
-            </div>
+                </div>
+            </nav>
         </div>
     </div>
 </section>

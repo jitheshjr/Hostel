@@ -248,21 +248,20 @@ def room_list(request):
 
     for room in rooms:
         allotted_count = room.allotment_set.count()
-        available_count = room.capacity - allotted_count
+        available = room.capacity - allotted_count
         room_data.append({
-            'room_number':room.room_number,
-            'capacity':room.capacity,
-            'available':available_count
+            'room_number': room.room_number,
+            'capacity': room.capacity,
+            'available': available,
+            'floor': room.floor
         })
 
     paginator = Paginator(room_data, 10)  # Show 10 rooms per page
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
-    context = {'page_obj':page_obj}
-    
-    return render(request,"hostel/roomList.html",context)
-
+    context = {'page_obj': page_obj}
+    return render(request, "hostel/roomList.html", context)
 
 # Attendance functions
 

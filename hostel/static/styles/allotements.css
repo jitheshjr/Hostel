@@ -1,219 +1,325 @@
-.main-body{
-    margin-top: 10vh;
-    margin-bottom: 30vh;
-}
-.main-block {
-    width: 40%;
-    margin: 0 auto;
-    padding: 20px;
-    border-radius: 10px;
-
-    /* Glassmorphism effect */
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-
-    box-shadow: 0 8px 16px rgba(10, 10, 11, 0.5);
-    margin-bottom: 50px;
+:root {
+    --bg: #ffffff;
+    --text: #111111;
+    --muted: #6b7280;
+    --surface: #f6f7f9;
+    --border: #e5e7eb;
+    --primary: #1e3a8a;
+    --primary-light: #3b82f6;
+    --ring: #93c5fd;
+    --accent: #1e40af;
+    --shadow: 0 1px 2px rgba(16,24,40,.05), 0 10px 20px rgba(16,24,40,.08);
+    --bad: #ef4444;
+    --warn: #f59e0b;
+    --good: #10b981;
+    --error: #ef4444;
 }
 
-
-#filter-table {
-    margin: auto;
-    width: 25%;
-    border-collapse: collapse;
-    margin-bottom: 50px;
-
-    /* Glassmorphism effect */
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-
-    box-shadow: 0 8px 16px rgba(10, 10, 11, 0.5);
-}
-.filter-td {
-    padding: 10px;
-    background: transparent; /* Keep transparency inside glass box */
-}
-label {
-    font-weight: bold;
-}
-.search{
-    padding: 10px 20px;
-    background: #45a9e3;
-    color: white;
-    font-weight: bolder;
-    transition: background-color 0.3s, opacity 0.3s;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-.search:hover {
-    background-color: black;
-    color: white;
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg: #0b0f14;
+        --text: #e6e6e6;
+        --muted: #9aa3af;
+        --surface: #0f141b;
+        --border: #1f2937;
+        --primary: #3b82f6;
+        --primary-light: #60a5fa;
+        --ring: #93c5fd;
+        --accent: #1e40af;
+        --shadow: 0 1px 2px rgba(0,0,0,.4), 0 10px 20px rgba(0,0,0,.5);
+        --bad: #f87171;
+        --warn: #fbbf24;
+        --good: #34d399;
+    }
 }
 
-.allot {
-    width: 80%;
+.main {
+    max-width: 920px;
+    margin: 1rem auto;
+    padding: 2rem 1rem;
+}
+
+.wrap {
+    max-width: 760px;
     margin: 0 auto;
 }
-.allot table {
-    border-collapse: collapse;
-    width: 100%;
-    margin: 10px;
-}
-.allot th{
-    background-color: #bdc3c7;
 
-}
-.allot tr:nth-child(even){
-    background-color: #E2E2E2;
-}
-
-#ignore-row{
-    background-color: transparent;
-}
-
-.allot th, .allot td {
-    border: none;
-    text-align: left;
-    padding: 10px 10px;
-}
-
-.allot tr td a {
-    color: white;
-    background: #D31027;
-    padding: 5px 10px; 
-    text-decoration: none; 
-    border-radius: 5px; 
-    display: inline-block; 
-    transition: background-color 0.3s ease; 
-    border: none; 
-    font-weight: bold; 
-    font-size: 10px;
-    text-align: center;
-} 
-
-.allot tr td a:hover{
-    background-color: black;
-    color: white;
-}
-
-h5{
-    color: black;
-    text-align: center;
-    margin-top: 10px;
-    margin-bottom: 30px;
-    text-transform: uppercase;
-    font-size: 20px;
-    font-weight: bolder;
-}
-
-li.error{
-    color: red;
-    list-style-type: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 10vh;
-    font-size: 16px;
-    text-transform: uppercase;
-    font-weight: bolder;
-}
-li.success{
-    list-style-type: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 10vh;
-    font-size: 16px;
-    text-transform: uppercase;
-    font-weight: bolder;
-    color: #151269;
-}
-.header-links {
-    display: flex;
-    justify-content: start;
-    align-items: center;
+.card {
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid var(--border);
+    border-radius: 1.25rem;
+    box-shadow: var(--shadow);
     position: relative;
-    top: 0;
-    width: 100%;
-    padding: 0;
-    margin-bottom: 20px;
-}
-.header-links .back-link {
-    font-size: 25px;
-    color: black;
-    text-decoration: none;
-    display: inline-block;
-}
-#close{
-    width: 30px;
-    height: 30px;
+    padding: 1.5rem;
+    backdrop-filter: blur(8px);
+    margin: 2rem auto;
+    max-width: 800px;
+    overflow: hidden;
 }
 
-#close:hover{
-    transform: scale(1.1);
-    transition: 1s;
+.card::before,
+.card::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 20px;
+    background: #302b63;
+}
+
+.card::before {
+    top: 0;
+    box-shadow: 0 2px 8px rgba(11, 182, 250, 0.3);
+}
+
+.card::after {
+    bottom: 0;
+    box-shadow: 0 -2px 8px rgba(11, 182, 250, 0.3);
+}
+
+.card-header {
+    padding: 1.25rem 1.5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.title-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.header-links {
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.icon-close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: var(--text);
+    font-size: 1.5rem;
+    transition: color 0.2s;
+}
+
+.icon-close:hover {
+    color: var(--error);
+}
+
+.card-title {
+    font-size: 2rem;
+    text-align: center;
+    color: #1E3A8A;
+    margin: 0 auto;
+    font-weight: 900;
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    text-transform: uppercase;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background: linear-gradient(90deg, #2a0845 0%, #4b6cb7 50%, #2a0845 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    padding-bottom: 0.5rem;
+}
+
+.filter-form {
+    margin-bottom: 1.5rem;
+}
+
+.filter-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.25rem;
+    background-color: #cfdef3;
+    border-radius: 10px;
+}
+
+.filter-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.filter-group label {
+    font-weight: 600;
+    color: var(--text);
+}
+
+.filter-group input {
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    background: var(--surface);
+}
+
+.filter-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btn {
+    padding: 0.6rem 1rem;
+    border-radius: 0.65rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+    color: white;
+    font-size: 0.9rem;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 100px;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    box-shadow: 0 4px 6px rgba(30, 58, 138, 0.2);
+}
+
+.btn-secondary {
+    background: var(--surface);
+    color: var(--text);
+    border: 1px solid var(--border);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3);
+}
+
+.btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(30, 58, 138, 0.3);
+}
+
+.table-wrap {
+    padding: 0 1.25rem 1rem;
+}
+
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+thead th {
+    text-align: center;
+    font-weight: 700;
+    color: var(--text);
+    font-size: 0.9rem;
+    padding: 0.75rem;
+    position: sticky;
+    top: 0;
+    background: var(--border);
+    border-bottom: 1px solid var(--border);
+    z-index: 1;
+}
+
+tbody td {
+    padding: 0.75rem;
+    border-bottom: 1px solid var(--border);
+    text-align: center;
+}
+
+tbody tr:hover {
+    background: color-mix(in oklab, var(--primary), transparent 96%);
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.15rem 0.45rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--muted);
+    background: var(--bg);
+    color: inherit;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.85rem;
+}
+
+.action-cell {
+    text-align: center;
+}
+
+.delete-link {
+    color: red;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+.delete-link:hover {
+    color: #b91c1c;
+    text-decoration: underline;
 }
 
 .pagination {
     display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.25rem;
+    border-top: 1px solid var(--border);
+}
+
+.pager {
+    display: flex;
+    gap: 0.4rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.page-btn {
+    min-width: 2.25rem;
+    height: 2.25rem;
+    padding: 0 0.6rem;
+    display: inline-flex;
+    align-items: center;
     justify-content: center;
-    margin-top: 30px;
-    margin-bottom: 30px;
-}
-.pagination .step-links a {
-    margin: 0 5px;
-    padding: 5px 10px;
-    background:fff;
-    border: 1px solid #ddd;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    border-radius: 0.5rem;
+    cursor: pointer;
     text-decoration: none;
-    color: #071952;
-
-}
-.pagination .step-links .current {
-    margin: 0 5px;
-    padding: 5px 10px;
-    background: rgb(134, 205, 236);
-    border: 1px solid #ccc;
-    color: black;
+    color: inherit;
 }
 
-@media (min-width: 360px) and (max-width: 450px){
-    #filter-table{
-        display: none;
+.page-btn[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.page-btn.current {
+    border-color: color-mix(in oklab, var(--primary), var(--border) 40%);
+    background: color-mix(in oklab, var(--primary), transparent 70%);
+}
+
+@media (max-width: 768px) {
+    .filter-controls {
+        flex-direction: column;
+        align-items: stretch;
     }
-    .main-block{
-        width: 80%;
+    
+    .filter-group {
+        flex-direction: column;
+        align-items: flex-start;
     }
-    .allot th, .allot td{
-        font-size: 12px;
+    
+    .filter-actions {
+        justify-content: flex-end;
     }
-    .pagination .step-links a{
-        margin: 0 2px;
-        padding: 1px 2px;
-    }
-    .pagination .step-links .current{
-        margin: 0 2px;
-        padding: 1px 2px;
-    }
-    h5{
-        font-size: 14px;
-    }
-    .table-responsive{
+    
+    table {
+        display: block;
         overflow-x: auto;
     }
-}
-.close-icon i {
-    font-size: 30px; /* same size as old #close image */
-    color: black;      /* close icon color */
-    cursor: pointer;
-    transition: color 0.3s ease;
-}
-
-.close-icon i:hover {
-    color: darkred;
 }
