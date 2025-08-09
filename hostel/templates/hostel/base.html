@@ -5,46 +5,47 @@
     <meta charset="UTF-8">
     <title>{% block title %}HMS{% endblock %}</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
     <link rel="stylesheet" href="{% static 'styles/base.css' %}">
     {% block style %}{% endblock %}
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background: url("{% static 'images/bg.png' %}") no-repeat center center fixed;
+            background-size: cover;
+        }
+    </style>
 </head>
 <body>
 
     <!-- Navbar -->
     <header class="navbar">
-        <button id="sidebarToggle" class="hamburger">&#9776;</button>
-        <img src="{% static 'images/logo.png' %}" alt="Logo" class="logo">
-        <span class="institution-name">K. V. Kunhambu Memorial Women's Hostel</span>
+        <div class="header-left">
+            <img src="{% static 'images/logo.png' %}" alt="Logo" class="logo">
+            <span class="institution-name">K. V. Kunhambu Memorial Women's Hostel</span>
+        </div>
+
+        <div class="header-right">
+            <form action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </form>
+        </div>
     </header>
 
     <!-- Sidebar -->
-   <!-- Sidebar -->
-    <nav id="sidebar" class="sidebar">
+    <nav class="sidebar">
         <ul>
-            <li><a href="{% url 'home' %}">Home</a></li>
-                <li><a href="{% url 'view_student' %}">Students</a></li>
-                <li><a href="{% url 'room_list' %}">Room</a></li>
-                <li><a href="{% url 'total_bill' %}">Messbill</a></li>
-                <li><a href="{% url 'view_attendance' %}">Summary</a></li>
-                <li><a href="{% url 'streak' %}">Streak</a></li>
-                <li><a href="{% url 'inactive_student' %}">Trash</a></li>
-                
-                <li>
-                    <form action="{% url 'logout' %}" method="post" style="display:inline;">
-                        {% csrf_token %}
-                        <button type="submit" class="sidebar-link" style="background:none; border:none; cursor:pointer; display:flex; align-items:center; color:inherit; font:inherit;">
-                            <i class="fas fa-sign-out-alt" style="margin-right:8px; font-size:18px;"></i>
-                            Logout
-                        </button>
-                    </form>
-                    
-                </li>
-
+            <li><a href="{% url 'home' %}"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="{% url 'view_student' %}"><i class="fas fa-user-graduate"></i> Students</a></li>
+            <li><a href="{% url 'room_list' %}"><i class="fas fa-door-closed"></i> Room</a></li>
+            <li><a href="{% url 'total_bill' %}"><i class="fas fa-receipt"></i> Messbill</a></li>
+            <li><a href="{% url 'view_attendance' %}"><i class="fas fa-clipboard-list"></i> Summary</a></li>
+            <li><a href="{% url 'streak' %}"><i class="fas fa-fire"></i> Streak</a></li>
+            <li><a href="{% url 'inactive_student' %}"><i class="fas fa-trash-alt"></i> Trash</a></li>
         </ul>
     </nav>
-
 
     <!-- Main Content -->
     <main class="content">
@@ -56,13 +57,5 @@
         &copy; 2024 HMS. All rights reserved.
     </footer>
 
-    <script>
-        const sidebarToggle = document.getElementById('sidebarToggle');
-        const sidebar = document.getElementById('sidebar');
-
-        sidebarToggle.addEventListener('click', () => {
-            sidebar.classList.toggle('active');
-        });
-    </script>
 </body>
 </html>

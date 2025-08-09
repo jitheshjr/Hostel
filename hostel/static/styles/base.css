@@ -1,98 +1,124 @@
-/* Background */
+/* ===== General Reset ===== */
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: url("/static/images/bg.png") center/cover no-repeat;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+    background: #f5f6fa;
 }
 
-/* Navbar. */
+/* ===== Header/Navbar ===== */
 .navbar {
-    background-color: rgba(65, 131, 215, 0.95);
-    color: white;
-    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #4e54c8;
+    color:white ;
+    padding: 15px 20px;
+    height: auto; /* Bigger header */
+    /*box-shadow: 0 2px 8px rgba(0,0,0,0.1);*/
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+}
+
+.header-left {
     display: flex;
     align-items: center;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
+    gap: 15px;
 }
 
 .logo {
-    height: 40px;
-    margin-left: 10px;
+    height: 50px;
 }
 
 .institution-name {
-    margin-left: 10px;
-    font-size: 18px;
+    font-size: 1.3rem;
     font-weight: bold;
 }
 
-.hamburger {
-    font-size: 22px;
-    background: none;
-    border: none;
+.header-right .logout-btn {
+    background: #ff4b5c;
     color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-size: 1rem;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: background 0.3s ease;
 }
 
-/* Sidebar */
+.header-right .logout-btn:hover {
+    background: #ff1f3a;
+}
+
+/* ===== Sidebar ===== */
 .sidebar {
     position: fixed;
-    left: -220px;
-    top: 0;
-    width: 220px;
-    height: 100%;
-    background-color: rgba(44, 62, 80, 0.95);
-    padding-top: 60px;
-    transition: left 0.3s ease;
-    z-index: 999;
-}
-
-.sidebar.active {
+    top: 80px; 
+    bottom: 50px;/* same as header height */
     left: 0;
+    width: 240px; /* a bit wider */
+    height: calc(100% - 80px);
+    background: linear-gradient(180deg, #4e54c8, #8f94fb);
+    padding-top: 20px;
+    color: white;
+    /*box-shadow: 2px 0 8px rgba(0,0,0,0.1);*/
+    overflow-y: auto; /* scroll if too many items */
 }
 
 .sidebar ul {
     list-style: none;
     padding: 0;
+    margin: 0;
 }
 
 .sidebar ul li {
-    padding: 15px;
+    margin-bottom: 10px;
 }
 
 .sidebar ul li a {
-    color: white;
-    text-decoration: none;
     display: flex;
     align-items: center;
-    gap: 8px;
-    font-size: 16px;
-    padding: 12px;
+    padding: 14px 20px; /* bigger clickable area */
+    color: white;
+    text-decoration: none;
+    font-size: 1.1rem; /* bigger text */
+    gap: 12px;
+    transition: background 0.3s, transform 0.2s;
+    border-radius: 6px;
 }
 
 .sidebar ul li a:hover {
-    background-color: rgba(255, 255, 255, 0.15);
-    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateX(5px);
 }
 
+/* ===== Main Content ===== */
 
-/* Main Content */
 .content {
-    margin-top: 60px;
+    
+    margin-left: 240px; /* keep space for sidebar */
     padding: 20px;
-    flex: 1;
+    padding-bottom: 60px; /* space for footer */
+    margin-top: var(--header-height, 80px); 
 }
+    
 
-/* Footer */
+
+/* ===== Footer ===== */
+/* ===== Footer ===== */
 .footer {
-    background-color: rgba(0, 0, 0, 0.6);
+    position: fixed; /* Keep it at the bottom even when scrolling */
+    bottom: 0;
+    left: 0;         /* Start at very left of the page (covering sidebar too) */
+    width: 100%;     /* Full width of screen */
+    background-color: #333; /* Your desired footer color */
     color: white;
     text-align: center;
-    padding: 10px;
-}
+    padding: 10px 0;
+    z-index: 1000; 
+
