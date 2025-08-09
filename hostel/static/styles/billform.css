@@ -1,158 +1,271 @@
-/* Container */
-.main-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 85vh;
-    padding: 20px;
-    position: relative;
-    z-index: 1;
-}
-
-/* Glassmorphism Form Box */
-.billform {
-    width: 100%;
-    max-width: 450px;
-    padding: 40px 30px;
-    border-radius: 20px;
-    background: rgba(255, 255, 255, 0.25);
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    text-align: center;
-}
-
-/* Heading */
-.billform h5 {
-    font-size: 24px;
-    font-weight: bold;
-    color: #000;
-    margin-bottom: 30px;
-    text-transform: uppercase;
-}
-
-/* Input Field Group */
-.form-fields {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-/* Form Label */
-.form-field label {
-    display: block;
-    text-align: left;
-    margin-bottom: 5px;
-    font-weight: 500;
-    color: #333;
-    font-size: 14px;
-}
-
-/* Input Styles */
-.form-field input[type="number"],
-.form-field input[type="date"] {
-    width: 100%;
-    padding: 10px 14px;
-    box-sizing: border-box; /* ✅ Prevents overflow */
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    outline: none;
-    font-size: 14px;
-    background-color: rgba(255, 255, 255, 0.8);
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-    transition: 0.2s;
-    max-width: 100%; /* ✅ Enforces boundaries */
+:root {
+    --bg: #ffffff;
+    --text: #111111;
+    --muted: #6b7280;
+    --surface: #f6f7f9;
+    --border: #d8dadd;
+    --primary: #10b981;
+    --primary-ink: #054b35;
+    --ring: #34d399;
+    --shadow: 0 1px 2px rgba(16,24,40,.05), 0 8px 20px rgba(16,24,40,.08);
+    --error: #ef4444;
+    --success: #10b981;
 }
 
 
-.form-field input:focus {
-    border-color: #4d79ff;
-    box-shadow: 0 0 5px rgba(77, 121, 255, 0.4);
+.main {
+    max-width: 920px;
+    margin: 10rem auto;
+    padding: 2rem 1rem;
 }
 
-/* Submit Button */
-form input[type="submit"] {
-    width: 100%;
-    padding: 12px;
-    margin-top: 25px;
-    font-size: 16px;
-    font-weight: bold;
-    border-radius: 10px;
-    border: none;
-    color: white;
-    background: linear-gradient(to right, #4d79ff, #1e3c72);
-    box-shadow: 0 4px 15px rgba(77, 121, 255, 0.3);
-    cursor: pointer;
-    transition: 0.3s ease-in-out;
+.wrap {
+    max-width: 760px;
+    margin: 0 auto;
 }
 
-form input[type="submit"]:hover {
-    background-position: right center;
-    background: linear-gradient(to right, #1e3c72, #4d79ff);
-    color: #fff;
+.card {
+    position: relative; /* Add this */
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    box-shadow: 
+        0 4px 6px rgba(0, 0, 0, 0.1),
+        0 10px 15px rgba(0, 0, 0, 0.1),
+        0 20px 40px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
 }
 
-/* Close Button */
-.header-links {
+.card::before {
+    content: '';
     position: absolute;
-    top: 15px;
-    left: 15px;
+    top: 0;
+    left: 0;
+    width: 10px;
+    height: 100%;
+    background: #34d399;
+    box-shadow: 2px 0 10px rgba(11, 182, 250, 0.3);
 }
 
-#close {
-    width: 28px;
-    height: 28px;
-    cursor: pointer;
+.card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 25px;
+    width: 2px;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.3);
+    z-index: 2;
 }
 
-/* Messages */
-li.error, li.success {
-    list-style: none;
-    font-size: 14px;
-    font-weight: bold;
-    margin-top: 10px;
+.card-header {
+    padding: 1.25rem 1.5rem;
+    position: relative;
+}
+
+.card-title {
+    font-size: 2.5rem;
     text-align: center;
+    color: #1E3A8A; 
+    margin: 1.5rem 0 2rem;
+    font-weight: 900;
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    text-transform: uppercase;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background: linear-gradient(90deg, #10b981 0%, #10b981 50%, #34d399 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    animation: titleShine 3s ease-in-out infinite alternate;
 }
 
-li.error {
-    color: red;
+.card-body {
+    padding: 1.5rem;
 }
 
-li.success {
-    color: #151269;
+.header-links {
+    margin-bottom: 1.5rem;
+    position: relative;
 }
 
-/* Responsive Design */
-@media screen and (max-width: 600px) {
-    .billform {
-        padding: 30px 20px;
-    }
-
-    .billform h5 {
-        font-size: 20px;
-    }
-
-    form input[type="submit"] {
-        font-size: 14px;
-    }
-}
 .icon-close {
-    font-size: 24px;
-    color: #333;
-    text-decoration: none;
-    margin-left: 5px;
-    transition: color 0.3s ease;
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: var(--text);
+    font-size: 1.5rem;
+    transition: color 0.2s;
 }
 
 .icon-close:hover {
-    color: #ff3333;
+    color: var(--error);
 }
 
-.header-links {
+/* Messages */
+.messages {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+}
+
+.messages li {
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.messages .error {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--error);
+    border-left: 3px solid var(--error);
+}
+
+.messages .success {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--success);
+    border-left: 3px solid var(--success);
+}
+
+.bill-form {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.grid {
+    display: grid;
+    gap: 1rem;
+}
+
+.grid-2 {
+    grid-template-columns: 1fr 1fr;
+}
+
+.form-field {
     display: flex;
-    justify-content: start;
-    align-items: center;
-    margin-bottom: 20px;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
+label {
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+input[type="number"] {
+    width: 80%;
+    padding: 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 0.6rem;
+    background: var(--surface);
+    color: inherit;
+    font-size: 1rem;
+}
+
+input[type="date"]{
+    width: 92%;
+    padding: 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 0.6rem;
+    background: var(--surface);
+    color: inherit;
+    font-size: 1rem;
+}
+
+input:focus-visible {
+    outline: 2px solid #34d399;
+    outline-offset: 2px;
+    border-color: transparent;
+    background: var(--bg);
+}
+
+.money {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 0.6rem;
+    padding: 0 0.75rem;
+}
+
+.money span {
+    opacity: 0.8;
+}
+
+.money input {
+    border: none;
+    background: transparent;
+    padding: 0.75rem 0.1rem;
+    width: 100%;
+    font-size: 1rem;
+}
+
+.money input:focus {
+    outline: none;
+}
+
+/* Buttons */
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1.5rem;
+}
+
+.btn {
+    padding: 0.8rem 1.5rem;
+    border-radius: 0.65rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 90%; 
+    max-width: 300px; 
+    margin: 0 auto; 
+    display: block; 
+    text-align: center;
+    border: none;
+    color: white;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #10b981,#34d399); 
+    box-shadow: var(--shadow);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
+    filter: brightness(1.05);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(5, 150, 105, 0.3);
+}
+
+.btn-primary::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        to bottom right,
+        rgba(255, 255, 255, 0.3) 0%,
+        rgba(255, 255, 255, 0) 60%
+    );
+    transform: rotate(30deg);
+    transition: all 0.3s;
+}
+
+.btn-primary:hover::after {
+    left: 100%;
+    top: 100%;
+}

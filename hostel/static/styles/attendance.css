@@ -1,3 +1,18 @@
+:root {
+    --bg: #ffffff;
+    --text: #111111;
+    --muted: #6b7280;
+    --surface: #f6f7f9;
+    --border: #d8dadd;
+    --primary: #10b981;
+    --primary-ink: #054b35;
+    --ring: #34d399;
+    --shadow: 0 1px 2px rgba(16,24,40,.05), 0 8px 20px rgba(16,24,40,.08);
+    --error: #ef4444;
+    --success: #10b981;
+}
+
+
 .main {
     min-height: 85vh;
     display: flex;
@@ -6,127 +21,344 @@
     padding: 30px;
 }
 
-.attendance-form {
-    position: relative; /* Needed so close button can be positioned inside */
+.form-card {
+    position: relative;
     width: 100%;
-    max-width: 1100px;
-    padding: 35px;
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
+    max-width: 1200px; 
+    padding: 40px 50px; 
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 1.25rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 
+        0 4px 6px rgba(0, 0, 0, 0.1),
+        0 10px 15px rgba(0, 0, 0, 0.1),
+        0 20px 40px rgba(0, 0, 0, 0.15);
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 30px;
     margin: 0 auto;
+    overflow: hidden;
+}
+
+.form-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 25px;
+    height: 100%;
+    background: #00B4DB;
+    box-shadow: 2px 0 10px rgba(11, 182, 250, 0.3);
+}
+
+.form-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 25px;
+    width: 2px;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.3);
+    z-index: 2;
+}
+
+.form-header {
+    position: relative;
+}
+
+.close-btn {
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: var(--text);
+    font-size: 1.5rem;
+    transition: color 0.2s;
+}
+
+.close-btn:hover {
+    color: var(--error);
 }
 
 .form-title {
-    display: flex;
-    align-items: center;
-    justify-content: center; /* center title since arrow is now separate */
-    gap: 16px;
-}
-
-.form-title h5 {
-    font-size: 32px;
-    font-weight: bold;
-    text-transform: uppercase;
-    color: rgba(7, 6, 6, 0.918);
-    letter-spacing: 1.5px;
+    font-size: 2.5rem;
     text-align: center;
+    color: #1E3A8A; 
+    margin: 1.5rem 0 2rem;
+    font-weight: 900;
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    text-transform: uppercase;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background: linear-gradient(90deg, #1E3A8A 0%, #3B82F6 50%, #1E3A8A 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    animation: titleShine 3s ease-in-out infinite alternate;
 }
 
-/* Close button pinned top-left */
-#close {
+/* Search Bar */
+.search-input-container {
+    position: relative;
+}
+
+.search-icon {
     position: absolute;
-    top: 20px;
-    left: 20px;
-    width: 35px;
-    height: 35px;
-    cursor: pointer;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #718096; /* Gray color */
+    z-index: 2;
 }
 
-#studentSearch,
-#id_date {
-    width: 92%;
-    padding: 18px;
-    border: none;
-    border-radius: 12px;
+#studentSearch {
+    padding-left: 45px;
+    background: rgba(0, 123, 255, 0.08);
+}
+
+.search-bar input{
+    width: 20%;
+    padding: 20px;
+    border: 2px solid var(--border);
+    border-radius: 10px;
     font-size: 18px;
-    background: rgba(255, 255, 255, 0.88);
+    background: rgba(255, 255, 255, 0.95);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.search-bar input::placeholder {
+    color: var(--text);
+    font-style: italic;
+}
+
+.search-bar input:focus{
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+    background: white;
+}
+
+.form-section {
+    width: 21%;
+    border: 1px solid var(--border); 
+    border-radius: 0.85rem;
+    padding: 1.25rem 1.5rem; 
+    margin-bottom: 1.5rem;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden; 
+}
+
+.form-section:hover {
+    border-color: #00B4DB;
+    box-shadow: 0 4px 12px rgba(0, 180, 219, 0.1);
+}
+
+.form-section legend {
+    padding: 0 0.75rem; 
+    font-weight: 600;
+    color: #00B4DB;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    background: white;
+    position: relative;
+    z-index: 1;
+}
+
+.form-section #id_date {
+    width: 90%;
+    padding: 0.85rem;
+    border: 1px solid var(--border);
+    border-radius: 0.65rem;
+    font-size: 1rem;
+    background: white;
     transition: all 0.3s ease;
 }
 
-#studentSearch:focus,
-#id_date:focus {
+.form-section #id_date:focus {
     outline: none;
-    border: 2px solid rgba(0, 123, 255, 0.6);
-    box-shadow: 0 0 10px rgba(0, 123, 255, 0.4);
+    border-color: #00B4DB;
+    box-shadow: 0 0 0 3px rgba(0, 180, 219, 0.2);
 }
 
-#selectall_label {
-    display: flex;
-    align-items: center;
-    font-size: 17px;
-    color: black;
+.form-section #id_date::-webkit-calendar-picker-indicator {
+    filter: invert(0.5) sepia(1) saturate(5) hue-rotate(165deg);
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: 0.25rem;
+    transition: all 0.2s ease;
 }
 
-#select_all {
-    margin-right: 10px;
-    margin-bottom: 14px;
-    margin-top: 14px;
+.form-section #id_date::-webkit-calendar-picker-indicator:hover {
+    background: rgba(0, 180, 219, 0.1);
 }
 
+/* Select All */
+.select-all-button {
+    display: block;
+    margin: 10px 0;
+    cursor: pointer;
+    text-align: right;
+    margin-bottom: 1.5rem;
+}
+
+.select-all-button input[type="checkbox"] {
+    display: none;
+}
+
+.select-all-button span {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #e3f2fd;
+    color: #1976d2;
+    border: 2px solid #bbdefb;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.select-all-button:hover span {
+    background: #bbdefb;
+}
+
+.select-all-button input:checked + span {
+    background: #1976d2;
+    color: white;
+    border-color: #1976d2;
+}
+
+.select-all-button input:focus + span {
+    box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.3);
+}
+
+/* Student Grid - exactly 4 per row */
 #student-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
-    gap: 14px;
-    max-height: 300px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    max-height: 350px;
     overflow-y: auto;
-    padding: 14px;
-    border-radius: 12px;
-    background: rgba(255, 255, 255, 0.88);
+    padding: 20px;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 2px solid var(--border);
+    scrollbar-width: thin;
+    scrollbar-color: #007bff #f0f0f0;
 }
 
+/* Scrollbar */
+#student-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+#student-container::-webkit-scrollbar-track {
+    background: #f0f0f0;
+    border-radius: 10px;
+}
+
+#student-container::-webkit-scrollbar-thumb {
+    background-color: #007bff;
+    border-radius: 10px;
+}
+
+/* Student Items */
 .student-item {
     display: flex;
     align-items: center;
-    font-size: 16px;
+    font-size: 17px;
+    padding: 12px 15px;
+    background: var(--surface);
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    transition: all 0.2s ease;
+}
+
+.student-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    border-color: #007bff;
+}
+
+.student-item input[type="checkbox"] {
+    margin-right: 12px;
+    width: 18px;
+    height: 18px;
+    accent-color: #007bff;
+    cursor: pointer;
+}
+
+/* Submit Button */
+
+.form-actions {
+    display: flex;
+    justify-content: center; 
+    margin-top: 20px;
 }
 
 .submit-btn {
-    width: 100%;
-    padding: 18px;
-    background: rgba(0, 123, 255, 0.92);
-    border: none;
-    border-radius: 12px;
+    background: linear-gradient(135deg, #00B4DB, #106FEC);
     color: white;
-    font-weight: bold;
-    font-size: 18px;
+    font-weight: 600;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 14px 0; 
+    width: 300px; 
+    max-width: 100%; 
+    border: none;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
     cursor: pointer;
-    transition: background 0.3s ease, transform 0.1s ease;
-    margin-top: 14px;
+    transition: all 0.3s ease;
+    text-align: center;
+    display: block; 
 }
 
 .submit-btn:hover {
-    background: rgba(0, 86, 179, 0.92);
-    transform: scale(1.03);
+    background: linear-gradient(135deg, #00A4CB, #0A5FDC);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(16, 111, 236, 0.35);
 }
 
-.icon-close {
-    position: absolute;
-    top: 15px;  /* distance from top of form */
-    left: 15px; /* distance from left of form */
-    font-size: 18px;
-    color: black;
-    cursor: pointer;
-    background: none;
-    border: none;
+.submit-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(16, 111, 236, 0.25);
 }
 
-.icon-close:hover {
-    color: #00bfff;
+.submit-btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(16, 111, 236, 0.4);
+}
+
+/* Messages */
+.messages {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    background: rgba(0, 123, 255, 0.1);
+    border-left: 4px solid #007bff;
+}
+
+.messages li {
+    list-style: none;
+    color: var(--text);
+    font-size: 20px;
+    padding: 5px 0;
+}
+
+.messages .success {
+    color: #28a745;
+    background: rgba(40, 167, 69, 0.1);
+    border-left-color: #28a745;
+}
+
+.messages .error {
+    color: #dc3545;
+    background: rgba(220, 53, 69, 0.1);
+    border-left-color: #dc3545;
 }

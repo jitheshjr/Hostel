@@ -11,108 +11,83 @@ Hostel | AttendanceForm
 {% endblock %}
 
 {% block content %}
-<section class="main">
-    <div class="main-body">
-        <div class="attendance-form">
-            <div class="form-title">
-                <a href="{% url 'home' %}" class="icon-close" title="Back to Home">
-                    <i class="fas fa-arrow-left"></i>
-                </a>
-                
-                <h5>Attendance Form</h5>
+<section class="main attendance-form-container">
+    <div class="form-card">
+        <!-- Header -->
+        <div class="form-header">
+            <a href="{% url 'home' %}" class="close-btn" title="Back to students">
+                <i class="fa-solid fa-xmark"></i>
+            </a>
+            <h1 class="form-title">Attendance Form</h1>
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+        <!-- Search -->
+        <div class="search-bar">
+            <div class="search-input-container">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" id="studentSearch" placeholder="Search by name" onkeyup="filterStudents()">
+            </div>
+        </div>
+
+        <!-- Form -->
+        <form method="post" action="">
+            {% csrf_token %}
+
+            <!-- Date -->
+            <fieldset class="form-section">
+                <legend>Date</legend>
+                {{ form.date }}
+            </fieldset>
+
+            <!-- Select All -->
+            <label id="selectall_label" class="select-all-button">
+                <input type="checkbox" id="select_all">
+                <span>Select All</span>
+            </label>
+
+            <!-- Student list -->
+            <div id="student-container">
+                {% for checkbox in form.absentees %}
+                    <div class="student-item">
+                        {{ checkbox }}
+                    </div>
+                {% endfor %}
             </div>
 
-            {% if messages %}
-                <ul class="messages">
-                    {% for message in messages %}
-                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                    {% endfor %}
-                </ul>
-            {% endif %}
-
-            <input type="text" id="studentSearch" placeholder="Search by name" onkeyup="filterStudents()">
-
-            <form action="" method="post">
-                {% csrf_token %}
-                <label for="{{form.date.id_for_label}}">Date:</label>
-                {{ form.date }}
-
-                <label id="selectall_label">
-                    <input type="checkbox" id="select_all"> Select all
-                </label>
-
-                <!-- Scrollable student list -->
-                <div id="student-container">
-                    {% for checkbox in form.absentees %}
-                        <div class="student-item">
-                            {{ checkbox }}
-                        </div>
-                    {% endfor %}
-                </div>
-
-                <input type="submit" value="Submit" class="submit-btn">
-            </form>
-        </div>
+            <!-- Submit -->
+             <div class="form-actions">
+                <button type="submit" class="submit-btn">Submit</button>
+            </div>
+        </form>
     </div>
 </section>
 
-    <script>
-        function filterStudents() {
-          let input = document.getElementById('studentSearch');
-          let filter = input.value.toLowerCase();
-          let studentContainer = document.getElementById('student-container');
-          let students = Array.from(studentContainer.getElementsByTagName('label'));  // Convert HTMLCollection to array
+<script>
+    function filterStudents() {
+        let input = document.getElementById('studentSearch').value.toLowerCase();
+        let students = document.querySelectorAll('.student-item label');
 
-          // Separate the matching and non-matching students
-          let matchingStudents = [];
-          let nonMatchingStudents = [];
+        students.forEach(label => {
+            let text = label.textContent || label.innerText;
+            label.parentElement.style.display = text.toLowerCase().includes(input) ? '' : 'none';
+        });
+    }
 
-          students.forEach(function(label) {
-              let text = label.textContent || label.innerText;
+    document.addEventListener("DOMContentLoaded", function() {
+        const selectAllCheckbox = document.getElementById('select_all');
+        const checkboxes = document.querySelectorAll('#student-container input[type="checkbox"]');
 
-              // If the text matches the filter, add to matchingStudents, else to nonMatchingStudents
-              if (text.toLowerCase().includes(filter)) {
-                  matchingStudents.push(label);
-              } else {
-                  nonMatchingStudents.push(label);
-              }
-          });
-
-          // Clear the container and add matching students first, then non-matching students
-          studentContainer.innerHTML = '';
-
-          // Append matching students first
-          matchingStudents.forEach(function(label) {
-              studentContainer.appendChild(label);
-          });
-
-          // Append non-matching students (these will remain hidden)
-          nonMatchingStudents.forEach(function(label) {
-              studentContainer.appendChild(label);
-          });
-
-          // Hide non-matching students
-          nonMatchingStudents.forEach(function(label) {
-              label.style.display = 'none';
-          });
-
-          // Show matching students
-          matchingStudents.forEach(function(label) {
-              label.style.display = '';
-          });
-        }
-
-        document.addEventListener("DOMContentLoaded", function() {
-            const selectAllCheckbox = document.getElementById('select_all');
-            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-
-            selectAllCheckbox.addEventListener('change', function() {
-                checkboxes.forEach(checkbox => {
-                    if (checkbox !== selectAllCheckbox) {
-                        checkbox.checked = selectAllCheckbox.checked;
-                    }
-                });
+        selectAllCheckbox.addEventListener('change', function() {
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = selectAllCheckbox.checked;
             });
         });
-    </script>
+    });
+</script>
 {% endblock %}

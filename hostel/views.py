@@ -37,8 +37,7 @@ def add_student(request):
             else:
                 if form.is_valid():
                     form.save()
-                    messages.success(request, "Student added successfully.")
-                    return redirect('add_student')
+                    return redirect('view_student')
 
                 else:
                     # Debugging: Print form errors

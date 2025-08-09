@@ -7,43 +7,50 @@ Hostel | AllocationForm
 {% endblock %}
 
 {% block style %}
-    <link rel="stylesheet" href="{% static 'styles/allot_stud.css' %}">
+<link rel="stylesheet" href="{% static 'styles/allot_stud.css' %}">
 {% endblock %}
 
 {% block content %}
 <section class="main">
-    <div class="main-body">
-        <div class="main-block">
-            <div class="header-links">
-                <a href="{% url 'room_list' %}" class="close-icon">
-                    <i class="fas fa-times"></i>
-                </a>
+    <div class="wrap">
+        <div class="card">
+            <div class="card-header">
+                <div class="header-links">
+                    <a href="{% url 'room_list' %}" class="icon-close" title="Back to Rooms">
+                        <i class="fas fa-times"></i>
+                    </a>
+                </div>
+                <h1 class="card-title">Room Allocation</h1>
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
             </div>
-            <h5>Room Allocation</h5>
-            {% if messages %}
-            <ul class="messages">
-                {% for message in messages %}
-                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                {% endfor %}
-            </ul>
-            {% endif %}
-            <form action="" method="post">
-                {% csrf_token %}
-                <div class="form-fields">
-                    <div class="form-field">
-                        <label for="{{ form.room_number.id_for_label }}">Room Number:</label>
-                        {{ form.room_number }}
-                    </div>
             
-                    <div class="form-field">
-                        <label for="{{ form.name.id_for_label }}">Name:</label>
-                        {{ form.name }}
+            <div class="card-body">
+                <form method="post" class="allocation-form">
+                    {% csrf_token %}
+                    
+                    <div class="form-fields">
+                        <div class="form-field">
+                            <label for="{{ form.room_number.id_for_label }}">Room Number</label>
+                            {{ form.room_number }}
+                        </div>
+                
+                        <div class="form-field">
+                            <label for="{{ form.name.id_for_label }}">Name</label>
+                            {{ form.name }}
+                        </div>
                     </div>
-                </div>
-                <div class="submit-input">
-                    <input type="submit" value="Submit">
-                </div>
-            </form>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Allocate</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </section>

@@ -5,88 +5,108 @@
 {% block title %}
 Hostel | StudentForm
 {% endblock %}
+
 {% block style %}
 <link rel="stylesheet" href="{% static 'styles/add_stud.css' %}">
 {% endblock %}
-    
+
 {% block content %}
-<section class="main">
-    <div class="main-body">
-        <div class="main-block">
-            <div class="header-links">
-                <a href="{% url 'view_student' %}" class="close-icon" title="Back to students">
-                    <!-- FA6 solid xmark -->
-                    <i class="fa-solid fa-xmark"></i>
-                </a>
-            </div>
-            <h5>Student Form</h5>
+<section class="student-form-container">
+    <div class="form-card">
+        <div class="form-header">
+            <a href="{% url 'view_student' %}" class="close-btn" title="Back to students">
+                <i class="fa-solid fa-xmark"></i>
+            </a>
+            <h1 class="form-title">Student Registration</h1>
             {% if messages %}
-            <ul class="messages" >
+            <ul class="messages">
                 {% for message in messages %}
                     <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
                 {% endfor %}
             </ul>
             {% endif %}
-            <form method="post" action="" enctype="multipart/form-data" onsubmit="return confirmData();">
-                {% csrf_token %}
-                <div class="form-fields">
-                    
-                    <div class="form-field">
-                        <label for="{{ form.admn_no.id_for_label }}">{{ form.admn_no.label }}:</label>
+        </div>
+
+        <form method="post" action="" enctype="multipart/form-data" onsubmit="return confirmData();">
+            {% csrf_token %}
+            
+            <!-- Student Information Section -->
+            <fieldset class="form-section">
+                <legend>Student Information</legend>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="{{ form.admn_no.id_for_label }}">{{ form.admn_no.label }}<span class="required">*</span></label>
                         {{ form.admn_no }}
                     </div>
 
-                    <div class="form-field">
-                        <label for="{{form.name.id_for_label}}">Name:</label>
+                    <div class="form-group">
+                        <label for="{{form.name.id_for_label}}">Full Name<span class="required">*</span></label>
                         {{form.name}}
                     </div>
-                    
-                    <div class="form-field">
-                        <label for="{{ form.dob.id_for_label }}">{{ form.dob.label }}:</label>
+
+                    <div class="form-group">
+                        <label for="{{ form.dob.id_for_label }}">{{ form.dob.label }}<span class="required">*</span></label>
                         {{ form.dob }}
                     </div>
-                    
-                    <div class="form-field">
-                        <label for="{{ form.email.id_for_label }}">Email:</label>
+                </div>
+            </fieldset>
+
+            <!-- Contact Details Section -->
+            <fieldset class="form-section">
+                <legend>Contact Details</legend>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="{{ form.email.id_for_label }}">Email<span class="required">*</span></label>
                         {{ form.email }}
                     </div>
 
-                    <div class="form-field">
-                        <label for="{{ form.photo.id_for_label }}" class="file-label">Image:</label>
-                        {{ form.photo }}
-                    </div>
-
-                    <div class="form-field">
-                        <label for="{{ form.contact.id_for_label }}">{{ form.contact.label }}:</label>
+                    <div class="form-group">
+                        <label for="{{ form.contact.id_for_label }}">{{ form.contact.label }}<span class="required">*</span></label>
                         {{ form.contact }}
                     </div>
+                </div>
+            </fieldset>
 
-                    <div class="form-field">
-                        <label for="{{ form.pgm.id_for_label }}">Course:</label>
+            <!-- Academic Details Section -->
+            <fieldset class="form-section">
+                <legend>Academic Details</legend>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="{{ form.pgm.id_for_label }}">Course<span class="required">*</span></label>
                         {{ form.pgm }}
                     </div>
-                    
-                    <div class="form-field">
-                        <label for="{{ form.category.id_for_label }}">Category:</label>
+
+                    <div class="form-group">
+                        <label for="{{ form.category.id_for_label }}">Category<span class="required">*</span></label>
                         {{ form.category }}
                     </div>
 
-                    <div class="form-field">
-                        <label for="{{ form.E_Grantz.id_for_label }}">E-Grantz:</label>
+                    <div class="form-group">
+                        <label for="{{ form.E_Grantz.id_for_label }}">E-Grantz<span class="required">*</span></label>
                         {{ form.E_Grantz }}
                     </div>
                 </div>
-                <div class="submit-input">
-                    <input type="submit" value="Submit">
+            </fieldset>
+
+            <!-- Student Photo -->
+            <fieldset class="form-section">
+                <legend>Student Photo</legend>
+                <div class="form-group file-upload">
+                    <label for="{{ form.photo.id_for_label }}">Upload Image</label>
+                    {{ form.photo }}
                 </div>
-            </form>
-        </div>
+            </fieldset>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
     </div>
 </section>
+
 <script>
     function confirmData(){
-        let result = confirm("Make sure everything is right!");
-        return result;
+        return confirm("Are you sure all information is correct?");
     }
 </script>
 {% endblock %}
