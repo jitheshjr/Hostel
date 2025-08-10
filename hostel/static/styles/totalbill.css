@@ -16,24 +16,6 @@
     --error: #ef4444;
 }
 
-@media (prefers-color-scheme: dark) {
-    :root {
-        --bg: #0b0f14;
-        --text: #e6e6e6;
-        --muted: #9aa3af;
-        --surface: #0f141b;
-        --border: #1f2937;
-        --primary: #34d399;
-        --primary-dark: #10b981;
-        --primary-light: #6ee7b7;
-        --ring: #a7f3d0;
-        --accent: #059669;
-        --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 10px 20px rgba(0, 0, 0, .5);
-        --bad: #f87171;
-        --warn: #fbbf24;
-        --good: #34d399;
-    }
-}
 
 /* Base Styles */
 .main {
