@@ -1,98 +1,97 @@
-.main{
-    min-height: 80vh;
-}
-.main-body{
-    margin-top: 10vh;
-    margin-bottom: 10vh;
-}
-.main-block-1{
-    width: 40%;
-    margin: 0 auto;
-    padding: 20px 10px;
-    border-radius: 10px;
-    background: linear-gradient(#ECE9E6, #FFFFFF);
-    box-shadow: 0 8px 16px rgba(10, 10, 11, 0.5);
-    margin-bottom: 50px;
-}
-.main-block-2{
-    width: 40%;
-    margin: 0 auto;
-    padding: 20px 10px;
-    border-radius: 10px;
-    background: linear-gradient(#ECE9E6, #FFFFFF);
-    box-shadow: 0 8px 16px rgba(10, 10, 11, 0.5);
-    margin-bottom: 50px;
+/* Simplified Monthly Bill Page - Green Theme */
+:root {
+  --bg: #f5f9f5;
+  --panel: #ffffff;
+  --text: #0b1a13;
+  --muted: #61756a;
+  --border: #e2eee6;
+  --primary: #10b981;
+  --primary-dark: #059669;
+  --accent: #14b8a6;
+  --shadow: 0 1px 2px rgba(16,24,40,.05), 0 10px 20px rgba(16,24,40,.08);
 }
 
-.bill {
-    width: 80%;
-    margin: 0 auto;
-}
-.bill table {
-    border-collapse: collapse;
-    width: 100%;
-}
-.bill th{
-    background-color: #bdc3c7;
-
-}
-.bill tr:nth-child(even){
-    background-color: #E2E2E2;
-}
-#ignore-row{
-    background-color: transparent;
-}
-.bill th, .bill td {
-    border: none;
-    text-align: left;
-    padding: 8px;
+.bill-container {
+  max-width: 1200px;
+  margin: 4rem auto;
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1fr 1fr;
 }
 
-h5{
-    color: black;
-    text-align: center;
-    margin-top: 10px;
-    margin-bottom: 30px;
-    text-transform: uppercase;
-    font-size: 16px;
-    font-weight: bolder;
+.bill-section {
+  background: var(--panel);
+  border-radius: 0.75rem;
+  box-shadow: var(--shadow);
+  overflow: hidden;
 }
 
-.header-links {
-    display: flex;
-    justify-content: end;
-    align-items: center;
-    position: relative;
-    top: 0;
-    width: 100%;
-    padding: 0;
-    margin-bottom: 20px;
+/* Header */
+.section-header {
+  padding: 1rem;
+  background: var(--primary);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-#printBtn {
-    background: transparent;
-    color: #151269;
-    font-size: 16px;
-    text-transform: uppercase;
-    font-weight: bolder;
-    border: none; 
-    padding: 10px; 
-    cursor: pointer; 
-    border-radius: 5px; 
+.section-header h2 {
+  margin: 0;
+  font-size: 1.1rem;
 }
 
-#printBtn:hover {
-    opacity: 0.6;
+.print-title{
+  display: none;
 }
-@media (min-width: 360px) and (max-width: 450px){
-    .main-block-1, .main-block-2{
-        width: 80%;
-    }
-    h5{
-        font-size: 10px;
-    }
-    .bill th, .bill td{
-        font-size: 8px;
-    }
 
+/* Print button */
+.print-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: white;
+  color: var(--primary-dark);
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.print-btn:hover {
+  background: #f0f0f0;
+}
+
+/* Table */
+.bill-table-container {
+  padding: 1rem;
+  overflow-x: auto;
+}
+
+.bill-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.bill-table th {
+  background: color-mix(in oklab, var(--primary), transparent 85%);
+  color: black;
+  padding: 0.75rem;
+  text-align: center;
+  border-bottom: 2px solid var(--border);
+}
+
+.bill-table td {
+  padding: 0.75rem;
+  border-bottom: 1px solid var(--border);
+  text-align: center;
+}
+
+.bill-table tr:hover {
+  background: rgba(16, 185, 129, 0.05);
+}
+
+.text-right {
+  text-align: right;
 }
