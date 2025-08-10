@@ -1,83 +1,104 @@
 {% extends 'hostel/base.html' %}
-
 {% load static %}
 
-{% block title %}
-Hostel | Bill
-{% endblock %}
+{% block title %}Hostel | Bill{% endblock %}
 
 {% block style %}
 <link rel="stylesheet" href="{% static 'styles/month_bill.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 {% endblock %}
 
 {% block content %}
+<main class="bill-container">
+    <!-- Students with E-Grantz -->
+    <section class="bill-section">
+        <div class="section-header">
+            <h2>Bill details of students with E-Grantz</h2>
+            <button class="print-btn" onclick="printSection('e-grantz-bills')">
+                <i class="fas fa-print"></i> Print
+            </button>
+        </div>
+        
+        <div id="e-grantz-bills" class="bill-table-container">
+            <div class="print-title">Hostel Bill Report - With E-Grantz</div>
+            <table class="bill-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Month</th>
+                        <th>Year</th>
+                        <th class="text-right">Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for t in true_bills %}
+                    <tr>
+                        <td>{{ t.name.name }}</td>
+                        <td>{{ t.month }}</td>
+                        <td>{{ t.year }}</td>
+                        <td class="text-right">{{ t.total }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
 
-<section class="main">
-    <div class="main-body">
-        <div class="main-block-1">
-            <div class="header-links">
-                <button id="printBtn" onclick="printDiv('print1')">Print</button>
-            </div>
-            <div id="print1">
-                <h5>Bill details of students with E-Grantz</h5>
-                <div class="bill">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Name</th><th>Month</th><th>Year</th><th style="text-align: right;">Amount</th>
-                            </tr>
-                            <tr id="ignore-row">
-                                <td></td><td></td><td></td><td></td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for t in true_bills %}
-                                <tr>
-                                    <td>{{ t.name.name}}</td><td>{{t.month}}</td><td>{{t.year}}</td><td style="text-align: right;">{{t.total}}</td>
-                                </tr>
-                            {% endfor %}    
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+    <!-- Students without E-Grantz -->
+    <section class="bill-section">
+        <div class="section-header">
+            <h2>Bill details of students without E-Grantz</h2>
+            <button class="print-btn" onclick="printSection('non-e-grantz-bills')">
+                <i class="fas fa-print"></i> Print
+            </button>
         </div>
-        <div class="main-block-2">
-            <div class="header-links">
-                <button id="printBtn" onclick="printDiv('print2')">Print</button>
-            </div>
-            <div id="print2">
-                <h5>Bill details of students without E-Grantz</h5>
-                <div class="bill">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Name</th><th>Month</th><th>Year</th><th style="text-align: right;">Amount</th>
-                            </tr>
-                            <tr id="ignore-row">
-                                <td></td><td></td><td></td><td></td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for f in false_bills %}
-                                <tr>
-                                    <td>{{ f.name.name}}</td><td>{{f.month}}</td><td>{{f.year}}</td><td style="text-align: right;">{{f.total}}</td>
-                                </tr>
-                            {% endfor %}    
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+        
+        <div id="non-e-grantz-bills" class="bill-table-container">
+            <div class="print-title">Hostel Bill Report - without E-Grantz</div>
+            <table class="bill-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Month</th>
+                        <th>Year</th>
+                        <th class="text-right">Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for f in false_bills %}
+                    <tr>
+                        <td>{{ f.name.name }}</td>
+                        <td>{{ f.month }}</td>
+                        <td>{{ f.year }}</td>
+                        <td class="text-right">{{ f.total }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
-    </div>
-</section>
+    </section>
+</main>
+
 <script>
-    function printDiv(divId) {
-            var printContents = document.getElementById(divId).innerHTML;
-            var originalContents = document.body.innerHTML;
-
-            document.body.innerHTML = printContents;
-            window.print();
-            document.body.innerHTML = originalContents;
-        }
+    function printSection(sectionId) {
+        const printContents = document.getElementById(sectionId).innerHTML;
+        const originalContents = document.body.innerHTML;
+        
+        document.body.innerHTML = `
+            <style>
+                @page { size: auto; margin: 5mm; }
+                body { font-family: Arial; padding: 10px; }
+                table { width: 100%; border-collapse: collapse; border: 2px solid black;}
+                th, td { padding: 8px; border-collapse: collapse; border: 1px solid black; }
+                .text-right { text-align: right; }
+                .print-title { display: inline; text-align: center; margin: 2rem 0;}
+            </style>
+            ${printContents}
+        `;
+        
+        window.print();
+        document.body.innerHTML = originalContents;
+        window.location.reload();
+    }
 </script>
 {% endblock %}

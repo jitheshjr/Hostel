@@ -43,7 +43,7 @@
     left: 0;
     width: 10px;
     height: 100%;
-    background: #34d399;
+    background: #059669;
     box-shadow: 2px 0 10px rgba(11, 182, 250, 0.3);
 }
 
@@ -74,7 +74,7 @@
     width: 100%;
     text-transform: uppercase;
     font-family: 'Segoe UI', system-ui, sans-serif;
-    background: linear-gradient(90deg, #10b981 0%, #10b981 50%, #34d399 100%);
+    background: linear-gradient(90deg, #10b981 0%, #059669 50%, #059669 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -232,7 +232,7 @@ input:focus-visible {
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, #10b981,#34d399); 
+    background: linear-gradient(135deg, #059669,#34d399); 
     box-shadow: var(--shadow);
     position: relative;
     overflow: hidden;

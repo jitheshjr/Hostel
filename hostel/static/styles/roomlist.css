@@ -54,7 +54,7 @@
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, #1e3a8a, #1e40af); /* Navy blue gradient */
+    background: linear-gradient(135deg, #9F7AEA 0%, #D6BCFA 100%);
     box-shadow: 0 4px 6px rgba(30, 58, 138, 0.2);
     position: relative;
     overflow: hidden;
@@ -181,8 +181,7 @@ thead th {
     padding: 0.75rem;
     position: sticky;
     top: 0;
-    background: #e5e7eb;
-    border-bottom: 1px solid var(--border);
+    background: color-mix(in oklab, #1e3a8a, transparent 80%);
     z-index: 1;
 }
 
@@ -193,7 +192,7 @@ tbody td {
 }
 
 tbody tr:hover {
-    background: color-mix(in oklab, var(--primary), transparent 96%);
+    background: color-mix(in oklab, #1e3a8a, transparent 95%);
 }
 
 
@@ -231,7 +230,6 @@ tbody tr:hover {
 }
 
 .muted-small {
-    color: var(--muted);
     font-size: 0.9rem;
 }
 
@@ -271,6 +269,6 @@ tbody tr:hover {
 }
 
 .page-btn.current {
-    border-color: color-mix(in oklab, var(--primary), var(--border) 40%);
-    background: color-mix(in oklab, var(--primary), transparent 70%);
+    border-color: color-mix(in oklab, #1e3a8a, #f6f7f9 40%);
+    background: color-mix(in oklab, #1e3a8a, transparent 80%);
 }
