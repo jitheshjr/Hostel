@@ -26,6 +26,22 @@ def home(request):
 # Student manipulating functions
 
 @group_required('warden', login_url='access_denied')
+def student_dashboard(request):
+    try:
+        total_students = Student.objects.count()
+        last_student = Student.objects.last()  # Returns the last created student object
+
+        context = {
+            'total_students': total_students,
+            'last_student_name': last_student.name if last_student else None
+        }
+
+        return render(request, 'hostel/student_dashboard.html', context)
+    except Exception:
+        return render(request,'hostel/error.html')
+
+
+@group_required('warden', login_url='access_denied')
 def add_student(request):
     try:
         if request.method == "POST":
@@ -138,10 +154,10 @@ def delete_student(request,student_id):
         student = get_object_or_404(Student, id=student_id)
 
         # Get room number if allotted
-        room_no = None
+        #room_no = None
         allotment = Allotment.objects.filter(name=student).first()
         if allotment:
-            room_no = allotment.room_number.room_number
+            #room_no = allotment.room_number.room_number
             allotment.delete()
 
         # Move student data to Trash
@@ -155,7 +171,7 @@ def delete_student(request,student_id):
             contact=student.contact,
             date_joined=student.date_joined,
             date_exited=timezone.now(),
-            room_no=room_no,
+            #room_no=room_no,
             category=student.category,
             E_Grantz=student.E_Grantz,
         )
