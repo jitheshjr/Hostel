@@ -186,6 +186,24 @@ def delete_student(request,student_id):
 # Room allocation functions
 
 @group_required('warden', login_url='access_denied')
+def room_dashboard(request):
+    try:
+        total_rooms = Room.objects.count()
+        total_capacity = Room.objects.aggregate(total_capacity=models.Sum('capacity'))['total_capacity'] or 0
+        current_allotted = Allotment.objects.count()
+        available_slots = total_capacity - current_allotted
+
+        context = {
+            'total_rooms': total_rooms,
+            'available_slots': available_slots
+        }
+
+        return render(request, 'hostel/room_dashboard.html', context)
+
+    except Exception:
+        return render(request, 'hostel/error.html')
+
+@group_required('warden', login_url='access_denied')
 def allot_student(request):
     try:
         if request.method == "POST":

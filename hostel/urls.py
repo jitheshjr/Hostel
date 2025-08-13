@@ -13,6 +13,7 @@ urlpatterns = [
     path('days/<int:student_id>/',views.absent_records,name='absent_records'),
     path('edit_student/<int:student_id>/',views.edit_student,name='edit_student'),
     path('delete_student/<int:student_id>/',views.delete_student,name='delete_student'),
+    path('room_dash',views.room_dashboard,name='room_dashboard'),
     path('allot/',views.allot_student,name='allot_student'),
     path('allotements/',views.view_allotement,name='view_allotement'),
     path('roomList',views.room_list,name='room_list'),

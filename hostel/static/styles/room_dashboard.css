@@ -1,0 +1,263 @@
+:root {
+  --primary: #302b63; 
+  --primary-light: #60a5fa; 
+  --secondary: #1d4ed8; 
+  --success: #16a34a; 
+  --warning: #facc15; 
+  --danger: #dc2626; 
+  --dark: #0f172a; 
+  --gray: #6b7280;
+  --light: #f8fafc; 
+  --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --transition: all 0.3s ease;
+}
+
+/* Base Container */
+.modern-dashboard {
+  max-width: 1200px;
+  margin: 2rem auto; 
+  padding: 2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--dark);
+  background: white;
+  position: relative;
+  border-radius: 12px; 
+  overflow: hidden; 
+  box-shadow: var(--card-shadow);
+}
+
+.modern-dashboard::before,
+.modern-dashboard::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 20px;
+  background: var(--primary);
+  box-shadow: 0 2px 8px rgba(30, 64, 175, 0.3);
+  z-index: 1;
+}
+
+.modern-dashboard::before {
+  top: 0;
+  border-radius: 12px 12px 0 0;
+}
+
+.modern-dashboard::after {
+  bottom: 0;
+  border-radius: 0 0 12px 12px;
+}
+
+/* Header */
+.dashboard-header {
+  margin-bottom: 2.5rem;
+}
+
+.header-content {
+  text-align: center;
+}
+
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  color: var(--secondary);
+  font-weight: 600;
+  margin: 1.5rem 0;
+  gap: 2px;
+  transition: var(--transition);
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.back-button:hover {
+  color: var(--primary);
+}
+
+.header-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.icon-wrapper {
+  width: 150px;
+  height: 150px;
+  background: rgba(67, 97, 238, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-icon {
+  width: 80px;
+  height: 80px;
+}
+
+.dashboard-header h1 {
+  font-size: 2.0rem;
+  text-align: center;
+  color: #1E3A8A; 
+  margin: 0 auto;
+  font-weight: 900;
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  text-transform: uppercase;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  background: linear-gradient(90deg, #2a0845 0%, #4b6cb7 50%, #2a0845 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  padding-bottom: 0.5rem;
+  animation: titleShine 3s ease-in-out infinite alternate;
+}
+
+.header-description {
+  color: var(--gray);
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+/* Section Titles */
+.section-title {
+  position: relative;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.title-decoration {
+  width: 50px;
+  height: 4px;
+  background: var(--primary);
+  border-radius: 2px;
+}
+
+/* Quick Actions */
+.action-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.action-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-decoration: none;
+  color: inherit;
+  border-left: 4px solid;
+  transition: var(--transition);
+  box-shadow: var(--card-shadow);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+}
+
+.action-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+}
+
+.card-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  color: white;
+}
+
+.card-content h3 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.card-content p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--gray);
+}
+
+.allocate-action {
+  border-left-color: var(--primary-light);
+}
+
+.allocate-action .card-icon {
+  background: var(--secondary);
+}
+
+.view-action {
+  border-left-color: var(--primary);
+}
+
+.view-action .card-icon {
+  background: var(--primary);
+}
+
+/* Availability Cards */
+
+.availability-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.availability-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.availability-icon {
+  font-size: 2.5rem;
+  color: #16a34a;
+}
+
+.availability-info {
+  flex: 1;
+}
+
+.availability-value {
+  font-size: 1.75rem;
+  font-weight: 700;
+}
+
+.availability-label {
+  font-size: 0.9rem;
+  color: var(--gray);
+}
+
+/* View More Link */
+.view-more-link {
+  font-size: 1rem;
+  color: var(--secondary);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.view-more-link:hover {
+  color: var(--primary);
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .modern-dashboard {
+    padding: 1.5rem;
+  }
+}
