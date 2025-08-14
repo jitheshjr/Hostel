@@ -12,6 +12,7 @@ from .decorators import group_required
 from .filters import *
 from django.utils import timezone
 from django.core.paginator import Paginator
+from django.utils.timezone import now
 # Create your views here..
 
 
@@ -290,7 +291,7 @@ def room_list(request):
             'floor': room.floor
         })
 
-    paginator = Paginator(room_data, 10)  # Show 10 rooms per page
+    paginator = Paginator(room_data, 10)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
@@ -298,6 +299,39 @@ def room_list(request):
     return render(request, "hostel/roomList.html", context)
 
 # Attendance functions
+@login_required()
+def attendance_dashboard(request):
+    today = now().date()
+    total_students = Student.objects.count()
+
+    last_attendance = AttendanceDate.objects.last()
+    last_date = last_attendance.date
+    date_id = last_attendance.id
+    recent_absent = Attendance.objects.filter(date=date_id).count()
+
+    # Check today's attendance
+    attendance_date = AttendanceDate.objects.filter(date=today).first()
+
+    if attendance_date:
+        attendance_taken = True
+        absent_count = Attendance.objects.filter(date=attendance_date).count()
+        present_count = total_students - absent_count
+        attendance_percentage = round((present_count / total_students) * 100, 2) if total_students > 0 else 0
+    else:
+        attendance_taken = False
+        present_count = absent_count = attendance_percentage = None
+
+    context = {
+        'attendance_taken': attendance_taken,
+        'present_count': present_count,
+        'absent_count': absent_count,
+        'attendance_percentage': attendance_percentage,
+        'recent_absent': recent_absent, 
+        'last_date':last_date
+    }
+    return render(request, 'hostel/attendance_dashboard.html', context)
+
+
 
 @login_required()
 def mark_attendance(request):

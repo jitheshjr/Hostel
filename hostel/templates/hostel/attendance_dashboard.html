@@ -1,0 +1,155 @@
+{% extends 'hostel/base.html' %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'styles/attendance_dashboard.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+{% endblock %}
+
+{% block content %}
+<div class="modern-dashboard">
+  <!-- Dashboard Header -->
+  <header class="dashboard-header">
+    <div class="header-content">
+      <a href="{% url 'home' %}" class="back-button">
+        <i class="fas fa-chevron-left"></i> Home
+      </a>
+      <div class="header-title">
+        <div class="icon-wrapper">
+          <img src="{% static 'images/attendance-icon.svg' %}" alt="Attendance" class="header-icon">
+        </div>
+        <h1>Attendance Management</h1>
+      </div>
+      <p class="header-description">Track and manage student attendance</p>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="dashboard-content">
+    <!-- Quick Actions -->
+    <section class="quick-actions-section">
+      <h2 class="section-title">
+        <span>Quick Actions</span>
+        <div class="title-decoration"></div>
+      </h2>
+      
+      <div class="action-grid">
+        <a href="{% url 'mark_attendance' %}" class="action-card add-action">
+          <div class="card-icon">
+            <i class="fas fa-calendar-plus"></i>
+          </div>
+          <div class="card-content">
+            <h3>Record Attendance</h3>
+            <p>Add new attendance records</p>
+          </div>
+          <div class="action-arrow">
+            <i class="fas fa-arrow-right"></i>
+          </div>
+        </a>
+
+        <a href="{% url 'view_attendance' %}" class="action-card view-action">
+          <div class="card-icon">
+            <i class="fas fa-calendar-alt"></i>
+          </div>
+          <div class="card-content">
+            <h3>View Attendance</h3>
+            <p>Check attendance history</p>
+          </div>
+          <div class="action-arrow">
+            <i class="fas fa-arrow-right"></i>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Stats Overview -->
+    <section class="stats-section">
+        <div class="section-header">
+            <h2 class="section-title">
+            <span>Attendance Overview</span>
+            <div class="title-decoration"></div>
+            </h2>
+            <span class="update-info">
+            {% if attendance_taken %}
+                Updated just now
+            {% else %}
+                Not updated today
+            {% endif %}
+            </span>
+        </div>
+    
+        {% if not attendance_taken %}
+            <div class="no-attendance-alert">
+            <h1>Today's attendance has not been recorded</h1>
+            <p>Please mark attendance to view today's statistics</p>
+            <a href="{% url 'mark_attendance' %}" class="btn btn-primary">
+                <i class="fas fa-plus"></i> Mark Attendance Now
+            </a>
+            </div>
+        {% else %}
+            <div class="stats-grid">
+            <div class="stat-card present-card">
+                <div class="stat-icon">
+                <i class="fas fa-user-check"></i>
+                </div>
+                <div class="stat-info">
+                <div class="stat-value">{{ present_count }}</div>
+                </div>
+                <div class="stat-label">Present Today</div>
+            </div>
+
+            <div class="stat-card absent-card">
+                <div class="stat-icon">
+                <i class="fas fa-user-times"></i>
+                </div>
+                <div class="stat-info">
+                <div class="stat-value">{{ absent_count }}</div>
+                </div>
+                <div class="stat-label">Absent Today</div>
+            </div>
+
+        {% if attendance_percentage %}
+        <div class="stat-card percentage-card">
+            <div class="stat-icon">
+            <i class="fas fa-chart-line"></i>
+            </div>
+            <div class="stat-info">
+            <div class="stat-value">{{ attendance_percentage }}%</div>
+            </div>
+            <div class="stat-label">Attendance Rate</div>
+        </div>
+        {% endif %}
+        </div>
+    {% endif %}
+    </section>
+
+    <!-- Recent Activity -->
+    <section class="recent-section">
+      <div class="section-header">
+        <h2 class="section-title">
+          <span>Recent Attendance</span>
+          <div class="title-decoration"></div>
+        </h2>
+        <a href="{% url 'view_attendance' %}" class="view-all">View All</a>
+      </div>
+      
+      <div class="recent-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Absent</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{ last_date }}</td>
+              <td>{{ recent_absent }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</div>
+{% endblock %}

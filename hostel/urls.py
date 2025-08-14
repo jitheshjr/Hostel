@@ -17,6 +17,7 @@ urlpatterns = [
     path('allot/',views.allot_student,name='allot_student'),
     path('allotements/',views.view_allotement,name='view_allotement'),
     path('roomList',views.room_list,name='room_list'),
+    path('attendance_dash',views.attendance_dashboard,name='attendance_dashboard'),
     path('attendance/',views.mark_attendance,name='mark_attendance'),
     path('summary/',views.view_attendance,name='view_attendance'),
     path('attendance/<int:date_id>/',views.detailed_attendance, name='attendance_detail'),
