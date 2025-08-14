@@ -1,14 +1,14 @@
 :root {
-  --primary: #302b63;
-  --primary-light: #4895ef;
-  --secondary: #3a0ca3;
-  --success: #4361ee;
-  --warning: #f8961e;
-  --danger: #f72585;
-  --dark: #1b263b;
-  --gray: #6c757d;
-  --light: #f8f9fa;
-  --card-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  --primary: #1b4965;         
+  --primary-light: #62b6cb;   
+  --secondary: #ca6702;       
+  --success: #2e8b57;         
+  --danger: #d62828; 
+  --back: #4361ee;         
+  --dark: #14213d;            
+  --gray: #6c757d;           
+  --light: #f8f9fa;          
+  --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   --transition: all 0.3s ease;
 }
 
@@ -21,7 +21,7 @@
   height: 20px;
   background: var(--primary);
   border-radius: 12px 12px 0 0; 
-  box-shadow: 0 2px 8px rgba(67, 97, 238, 0.3);
+  box-shadow: 0 2px 8px rgba(27, 73, 101, 0.3);
   z-index: 1;
 }
 
@@ -34,7 +34,7 @@
   height: 20px;
   background: var(--primary);
   border-radius: 0 0 12px 12px;
-  box-shadow: 0 -2px 8px rgba(67, 97, 238, 0.3);
+  box-shadow: 0 -2px 8px rgba(27, 73, 101, 0.3);
   z-index: 1;
 }
 
@@ -65,7 +65,7 @@
 .back-button {
     display: inline-flex;
     align-items: center;
-    color: var(--success);
+    color: var(--back);
     font-weight: 600;
     margin: 1.5rem 0;
     gap: 2px;
@@ -75,9 +75,8 @@
 }
 
 .back-button:hover {
-  color: var(--secondary);
+  color: var(--dark);
 }
-
 
 .header-title {
     display: flex;
@@ -90,7 +89,7 @@
 .icon-wrapper {
     width: 150px;
     height: 150px;
-    background: rgba(67, 97, 238, 0.1);
+    background: rgba(98, 182, 203, 0.1);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -105,7 +104,7 @@
 .header-title h1 {
     font-size: 2.0rem;
     text-align: center;
-    color: #1E3A8A; 
+    color: var(--primary); 
     margin: 0 auto;
     font-weight: 900;
     position: relative;
@@ -113,7 +112,7 @@
     width: 100%;
     text-transform: uppercase;
     font-family: 'Segoe UI', system-ui, sans-serif;
-    background: linear-gradient(90deg, #2a0845 0%, #4b6cb7 50%, #2a0845 100%);
+    background: linear-gradient(90deg, #1b4965 0%, #62b6cb 50%, #1b4965 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -156,7 +155,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
     gap: 1.5rem;
-    margin-bottom: 3rem;
+    margin-bottom: 1.5rem;
 }
 
 .action-card {
@@ -192,16 +191,15 @@
 }
 
 .add-action .card-icon {
-    background-color: #2ecc71;
+    background-color: var(--success);
 }
 
 .view-action .card-icon {
-    background-color: #4a6baf;
-
+    background-color: var(--primary);
 }
 
 .absent-action .card-icon {
-    background-color: #e74c3c;
+    background-color: var(--danger);
 }
 
 .card-content h3 {
@@ -222,26 +220,18 @@
 
 /* Stats Section */
 .stats-section {
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 .section-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1.5rem;
 }
 
 .update-info {
     font-size: 0.85rem;
     color: var(--dark);
-}
-
-.view-all {
-    font-size: 1rem;
-    color: #4a6baf;
-    text-decoration: underline;
-    font-weight: 500;
 }
 
 .stats-grid {
@@ -273,19 +263,19 @@
 }
 
 .present-card .stat-icon {
-    background-color: #2ecc71;
+    background-color: var(--success);
 }
 
 .absent-card .stat-icon {
-    background-color: #e74c3c;
+    background-color: var(--danger);
 }
 
 .streak-card .stat-icon {
-    background-color: #f39c12;
+    background-color: var(--warning);
 }
 
 .percentage-card .stat-icon {
-  background-color: #3498db;
+  background-color: var(--primary-light);
 }
 
 .stat-value {
@@ -302,18 +292,17 @@
 
 /* No Attendance Alert */
 .no-attendance-alert {
-  background-color: #fff8e1;
+  background-color: #fff3cd;
   border-radius: 8px;
   padding: 2rem;
   text-align: center;
-  border-left: 4px solid #f39c12;
+  border-left: 4px solid var(--warning);
 }
 
 .no-attendance-alert i {
   font-size: 2rem;
-  color: #f39c12;
+  color: var(--secondary);
   margin-right: 1rem;
-
 }
 
 .no-attendance-alert h1 {
@@ -338,14 +327,14 @@
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #1e3a8a, #1e40af);
-  box-shadow: 0 4px 6px rgba(30, 58, 138, 0.2);
+  background: linear-gradient(135deg, var(--primary), #144552);
+  box-shadow: 0 4px 6px rgba(27, 73, 101, 0.2);
   color: white;
 }
 
 .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3);
+    box-shadow: 0 4px 12px rgba(27, 73, 101, 0.3);
     filter: brightness(1.05);
 }
 
@@ -366,7 +355,7 @@ table {
 th, td {
     padding: 1rem 1.5rem;
     text-align: left;
-    border-bottom: 1px solid #c0e5ee;
+    border-bottom: 1px solid #cfd8dc;
 }
 
 th {
@@ -394,7 +383,29 @@ th {
     transition: background-color 0.2s;
 }
 
-.view-btn {
-    background-color: #e9f0fb;
-    color: #4a6baf;
+.view-all {
+    font-size: 1rem;
+    font-weight: 500;
+    color: white;
+    background-color: var(--primary-light);
+    padding: 6px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    margin-right: 10px;
+}
+
+.view-all i {
+    margin-left: 6px;
+    transition: transform 0.3s ease;
+}
+
+.view-all:hover {
+    background-color: var(--primary);
+    color: #fff;
+    text-decoration: none;
+}
+
+.view-all:hover i {
+    transform: translateX(3px);
 }

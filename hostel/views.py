@@ -12,8 +12,7 @@ from .decorators import group_required
 from .filters import *
 from django.utils import timezone
 from django.core.paginator import Paginator
-from django.utils.timezone import now
-# Create your views here..
+from django.utils.timezone import localtime
 
 
 def access_denied(request):
@@ -301,7 +300,7 @@ def room_list(request):
 # Attendance functions
 @login_required()
 def attendance_dashboard(request):
-    today = now().date()
+    today = localtime().date()
     total_students = Student.objects.count()
 
     last_attendance = AttendanceDate.objects.last()
