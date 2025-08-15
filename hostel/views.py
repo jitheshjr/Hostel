@@ -416,6 +416,24 @@ def absent_records(request, student_id):
 
 # mess bill functions
 
+@group_required('warden', login_url='access_denied')
+def bill_dashboard(request):
+    try:
+        bill_filter = monthbillFilter(request.GET, queryset=MessBill.objects.all().order_by('-id'))
+        bill_list = bill_filter.qs
+
+        paginator = Paginator(bill_list, 10)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+
+        query_params = request.GET.copy()
+        if 'page' in query_params:
+            query_params.pop('page')
+
+        return render(request, "hostel/bill_dashboard.html", {'filter': bill_filter, 'page_obj': page_obj, 'query_params': query_params})
+    except Exception:
+        return render(request, 'hostel/error.html')
+
 #function to find continuous absences
 def find_continuous_absences(start_date, end_date):
     absences = Attendance.objects.filter(date__date__range=(start_date, end_date)).order_by('name', 'date__date')
@@ -573,24 +591,6 @@ def generate_mess_bill(request):
     else:
         form = BillForm()
     return render(request, "hostel/billform.html", {'form': form})
-
-@group_required('warden', login_url='access_denied')
-def total_bill(request):
-    try:
-        bill_filter = monthbillFilter(request.GET, queryset=MessBill.objects.all().order_by('-id'))
-        bill_list = bill_filter.qs
-
-        paginator = Paginator(bill_list, 10)
-        page_number = request.GET.get('page')
-        page_obj = paginator.get_page(page_number)
-
-        query_params = request.GET.copy()
-        if 'page' in query_params:
-            query_params.pop('page')
-
-        return render(request, "hostel/totalbill.html", {'filter': bill_filter, 'page_obj': page_obj, 'query_params': query_params})
-    except Exception:
-        return render(request, 'hostel/error.html')
 
 @group_required('warden', login_url='access_denied')
 def delete_bill(request, pk):

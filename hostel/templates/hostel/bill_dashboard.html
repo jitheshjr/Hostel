@@ -1,0 +1,182 @@
+{% extends 'hostel/base.html' %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'styles/bill_dashboard.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+{% endblock %}
+
+{% block content %}
+<div class="messbill-dashboard">
+  <!-- Dashboard Header -->
+  <header class="dashboard-header">
+    <div class="header-content">
+      <a href="{% url 'home' %}" class="back-button">
+        <i class="fas fa-chevron-left"></i> Home
+      </a>
+      <div class="header-title">
+        <div class="icon-wrapper">
+          <img src="{% static 'images/bill-icon.svg' %}" alt="Mess Bills" class="header-icon">
+        </div>
+        <h1>Mess Bill Management</h1>
+      </div>
+      <p class="header-description">
+        Easily generate, track, and manage hostel mess bills for each month.  
+      </p>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="dashboard-content">
+    <!-- Bill Generation Section -->
+    <section class="bill-generation">
+      <h2 class="section-title">
+        <span>Mess Operations</span>
+        <div class="title-decoration"></div>
+      </h2>
+
+      <div class="action-grid">
+        <a href="{% url 'generate_mess_bill' %}" class="action-card allocate-action">
+          <div class="card-icon">
+            <i class="fas fa-file-invoice-dollar"></i>
+          </div>
+          <div class="card-content">
+            <h3>Generate Mess Bill</h3>
+            <p>Create and view monthly mess bills</p>
+          </div>
+          <div class="action-arrow">
+            <i class="fas fa-arrow-right"></i>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Monthly Bills Summary Section -->
+    <section class="bills-summary">
+      
+      <!-- Section Header with Filter -->
+      <div class="section-header">
+        <h2 class="section-title">
+          <span>Monthly Bills Summary</span>
+          <div class="title-decoration"></div>
+        </h2>
+        
+        <div class="summary-actions">
+            <form method="get" class="filter-form">
+                <div class="filter-controls">
+                    <div class="filter-group">
+                        <label for="id_monthr">Month:</label>
+                        {{filter.form.month}}
+                    </div>
+                    <div class="filter-group">
+                        <label for="id_year">Year:</label>
+                        {{filter.form.year}}
+                    </div>
+                    <div class="filter-actions">
+                        <button type="submit" class="btn btn-primary">Search</button>
+                        <button type="reset" class="btn btn-secondary" onclick="resetFilters()">Reset</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+      </div>
+
+      <!-- Table -->
+      <div class="summary-table-container">
+        <table class="summary-table">
+          <thead>
+            <tr>
+              <th>Month / Year</th>
+              <th>Total Students</th>
+              <th>Mess Days</th>
+              <th>Mess Charges</th>
+              <th>Room Rent</th>
+              <th>Electricity Charges</th>
+              <th>Staff Salary</th>
+              <th>Grand Total</th>
+              <th>Student Bills</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for bill in page_obj %}
+            <tr>
+              <td>{{ bill.month }} / {{ bill.year }}</td>
+              <td>{{ bill.no_of_students }}</td>
+              <td>{{ bill.mess_days }}</td>
+              <td>₹{{ bill.mess_amount }}</td>
+              <td>₹{{ bill.room_rent }}</td>
+              <td>₹{{ bill.electricity_bill }}</td>
+              <td>₹{{ bill.staff_salary }}</td>
+              <td class="total-amount">₹{{ bill.total }}</td>
+              <td>
+                <a href="{% url 'view_monthly_bill' bill.month bill.year %}" class="btn btn-view">
+                 View More
+                </a>
+              </td>
+              <td class="action-cell">
+                <a href="{% url 'delete_bill' bill.pk %}" class="delete-link" onclick="return confirmDelete();">
+                  <i class="fas fa-trash-alt"></i>
+                </a>
+              </td>
+            </tr>
+            {% empty %}
+            <tr>
+              <td colspan="10" class="empty-message">
+                <i class="fas fa-info-circle"></i> No bills found matching your criteria
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+        <nav class="pagination" role="navigation" aria-label="Pagination">
+            <div class="muted-small">
+                <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+            </div>
+            <div class="pager">
+                {% if page_obj.has_previous %}
+                    <a href="?page=1" class="page-btn" aria-label="First page">«</a>
+                    <a href="?page={{ page_obj.previous_page_number }}" class="page-btn" aria-label="Previous page">‹</a>
+                {% else %}
+                    <span class="page-btn" disabled>«</span>
+                    <span class="page-btn" disabled>‹</span>
+                {% endif %}
+
+                {% for num in page_obj.paginator.page_range %}
+                    {% if page_obj.number == num %}
+                        <span class="page-btn current" aria-current="page">{{ num }}</span>
+                    {% else %}
+                        <a href="?page={{ num }}" class="page-btn" aria-label="Page {{ num }}">{{ num }}</a>
+                    {% endif %}
+                {% endfor %}
+
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}" class="page-btn" aria-label="Next page">›</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}" class="page-btn" aria-label="Last page">»</a>
+                {% else %}
+                    <span class="page-btn" disabled>›</span>
+                    <span class="page-btn" disabled>»</span>
+                {% endif %}
+            </div>
+        </nav>
+    </section>
+  </main>
+</div>
+
+<script>
+  function confirmDelete() {
+    return confirm("Are you sure you want to delete this bill?");
+  }
+  function resetFilters() {
+        const form = document.querySelector('.filter-form');
+        form.querySelectorAll('select, input').forEach(input => {
+            if (input.type !== 'hidden') {
+                input.value = '';
+            }
+        });
+        form.submit();
+    }
+</script>
+{% endblock %}
