@@ -64,16 +64,31 @@ def add_student(request):
     except Exception:
         return render(request,'hostel/error.html')
 
-@group_required('warden', login_url='access_denied')
+@group_required('warden', login_url='access_denied')  #new
 def view_students(request):
-    try:
-        stud = Student.objects.all().select_related('pgm').all().order_by('id')
-        students_filter = studentFilter(request.GET, queryset=stud)
-        if not stud.exists():
-            messages.error(request,"Currently there are no students")
-        return render(request,'hostel/students.html',{'filter':students_filter})
-    except Exception:
-        return render(request,'hostel/error.html')
+    stud = Student.objects.select_related('pgm').order_by('id')
+    students_filter = studentFilter(request.GET, queryset=stud)
+
+    # Apply filter
+    filtered_students = students_filter.qs
+
+    # Count total
+    total_students = filtered_students.count()
+
+    # Pagination (10 students per page, change if needed)
+    paginator = Paginator(filtered_students, 18)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    if not filtered_students.exists():
+        messages.error(request, "Currently there are no students")
+
+    return render(request, 'hostel/students.html', {
+        'filter': students_filter,
+        'page_obj': page_obj,
+        'total_students': total_students,
+        'student':stud
+    })
 
 @group_required('warden', login_url='access_denied')
 def view_details(request, student_id):
