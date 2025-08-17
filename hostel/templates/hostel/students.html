@@ -30,6 +30,39 @@ Hostel | Students
                 <p class="student-count">Total Students: {{ total_students }}</p>
             </div>
 
+           <form method="get" class="search-bar">
+                <input type="text" name="search" placeholder="Search by name..." value="{{ search_query }}">
+                <button type="submit">Search</button>
+            </form>
+
+
+            <form method="get" action="{% url 'view_student' %}" class="filter-form">
+                <div class="filter-controls">
+                    
+                    <div class="filter-group">
+                        <label for="id_pgm">Programme:</label>
+                        {{ filter.form.pgm }}
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="id_category">Category:</label>
+                        {{ filter.form.category }}
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="id_E_Grantz">E-Grantz:</label>
+                        {{ filter.form.E_Grantz }}
+                    </div>
+
+                    <div class="filter-actions">
+                        <button type="submit" class="btn btn-primary">Filter</button>
+                        <button type="reset" class="btn btn-secondary" onclick="resetFilters()">Reset</button>
+                    </div>
+
+                </div>
+            </form>
+
+
             <div class="students-grid">
             {% for student in page_obj %}
                 <a href="{% url 'view_details' student.id %}" class="student-card">
@@ -82,4 +115,16 @@ Hostel | Students
         </div>
     </div>
 </section>
+<script>
+    function resetFilters() {
+        const form = document.querySelector('.filter-form');
+        form.querySelectorAll('select, input').forEach(input => {
+            if (input.type !== 'hidden') {
+                input.value = '';
+            }
+        });
+        form.submit();
+    }
+
+</script>
 {% endblock %}

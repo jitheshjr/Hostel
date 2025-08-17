@@ -1,136 +1,312 @@
-.main{
-    margin-top: 10vh;
-    margin-bottom: 12vh;
+/* Main Container */
+.main {
+  min-height: 100vh;
+  padding: 2rem 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background-color: #f8fafc;
 }
+
+/* Student Details Card */
 .student-details {
-    background: rgba(255, 255, 255, 0.15); /* Transparent white */
-    backdrop-filter: blur(10px); /* Glass blur effect */
-    -webkit-backdrop-filter: blur(10px); /* Safari support */
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border for glass look */
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
-
-    padding: 15px;
-    padding-top: 8px;
-    margin: 0 auto;
-    width: 25%; /* Smaller width */
-    text-align: center;
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 10px;
-    color: black;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  padding: 2.5rem;
+  max-width: 1000px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
 }
 
-    
-
-.name-pgm {
-    text-transform: uppercase;
-    font-weight: bold;
-    font-size: 12px;
-    margin: 15px 0;
-}
-
+/* Header with back button */
 .header-links {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-    top: 0;
-    width: 100%;
-    padding: 10px 0 ;
-    margin-bottom: 20px;
-}
-.header-links .back-link {
-    font-size: 25px;
-    color: black;
-    text-decoration: none;
-    display: inline-block;
-}
-#close{
-    width: 30px;
-    height: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2.5rem;
 }
 
-.header-links .menu{
-    width: 30px; 
-    height: 30px;
-    margin-left: 10px;
-    cursor: pointer;
-}
-.header-links .menu:hover{
-    opacity: 0.6;
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: 12px;
+  background-color: #f1f5f9;
+  color: #64748b;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid #e2e8f0;
+  font-weight: 500;
 }
 
-.image-container {
-    width: 100px;
-    height: 100px;
-    overflow: hidden;
-    position: relative;
-    border: 2px solid white;
-    margin: 15px auto;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.4);
-    border-radius: 2px;
+.back-link:hover {
+  background-color: #3b82f6;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+  border-color: transparent;
 }
+
+.back-link i {
+  font-size: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.back-link:hover i {
+  transform: translateX(-3px);
+}
+
+/* Horizontal Card Layout */
+.student-card-horizontal {
+  display: flex;
+  gap: 2.5rem;
+  align-items: stretch;
+  min-height: 400px;
+}
+
+/* Photo Section with Gradient Background */
+.photo-section {
+  flex: 0 0 35%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 16px;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.photo-section::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom right, 
+              rgba(255,255,255,0.2) 0%, 
+              rgba(255,255,255,0.05) 100%);
+}
+
 .student-photo {
-    width: 100%;
-    height: auto;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 5px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  z-index: 2;
 }
-.other-details {
-    font-size: 14px;
-    text-align: left;
-    font-family: 'Times New Roman', Times, serif;
-    
+
+.student-photo:hover {
+  transform: scale(1.05) rotate(2deg);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+}
+
+.no-image {
+  color: white;
+  font-size: 1.2rem;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  padding: 1rem;
+  background: rgba(255,255,255,0.15);
+  border-radius: 12px;
+  backdrop-filter: blur(5px);
+}
+
+/* Details Section */
+.details-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 0;
+}
+
+.student-info {
+  margin-bottom: 2rem;
+}
+
+.student-name {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 0.5rem;
+  position: relative;
+  display: inline-block;
+}
+
+.student-name::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 60px;
+  height: 4px;
+  background: #3b82f6;
+  border-radius: 2px;
+}
+
+.student-program {
+  font-size: 1.2rem;
+  color: #64748b;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+}
+
+/* Enhanced Grid Layout */
+.student-details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.25rem;
+  background-color: white;
+  border-radius: 12px;
+  border-left: 4px solid #3b82f6;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.detail-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.detail-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.detail-value {
+  font-size: 1.05rem;
+  color: #1e293b;
+  font-weight: 500;
+}
+
+/* Action Buttons */
+.action-buttons {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: auto;
 }
 
 .btn {
-    display: flex;
-    gap: 10px;
-    justify-content: end;
+  flex: 1;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  text-align: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 }
 
-.hero-btn {
-    display: inline-block;
-    padding: 10px 20px;
-    color: #fff;
-    background-color: #007bff;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
-#del{
-    background-color: #D31027;
+.btn-absent {
+  background-color: #3b82f6;
+  color: white;
+  border: 2px solid transparent;
 }
 
-.hero-btn:hover,
-#del:hover {
-    background-color: black;
+.btn-absent:hover {
+  background-color: #2563eb;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
 }
 
-@media (min-width: 360px) and (max-width:450px){
-    .main{
-        min-height: 60vh;
-    }
-    .student-details{
-        width: 80%;
-    }
-    .name-pgm{
-        font-size: 8px;
-    }
-    .other-details{
-        font-size: 8px;
-    }
-}
-.header-links .back-link i,
-.header-links .menu i {
-    font-size: 25px;
-    color: black;
-    cursor: pointer;
+.btn-delete {
+  background-color: white;
+  color: #ef4444;
+  border: 2px solid #ef4444;
 }
 
-.header-links .back-link i:hover,
-.header-links .menu i:hover {
-    opacity: 0.6;
+.btn-delete:hover {
+  background-color: #ef4444;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(239, 68, 68, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+  .student-card-horizontal {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .photo-section {
+    flex: none;
+    min-height: 280px;
+  }
+
+  .student-photo {
+    width: 180px;
+    height: 180px;
+  }
+}
+
+@media (max-width: 640px) {
+  .main {
+    padding: 1rem;
+  }
+
+  .student-details {
+    padding: 1.5rem;
+    border-radius: 16px;
+  }
+
+  .student-name {
+    font-size: 1.8rem;
+  }
+
+  .student-program {
+    font-size: 1.1rem;
+  }
+
+  .student-details-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-links {
+    margin-bottom: 1.5rem;
+  }
+
+  .back-link {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .photo-section {
+    padding: 1.5rem;
+    min-height: 220px;
+  }
+
+  .student-photo {
+    width: 140px;
+    height: 140px;
+  }
 }

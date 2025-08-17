@@ -67,16 +67,21 @@ def add_student(request):
 @group_required('warden', login_url='access_denied')  #new
 def view_students(request):
     stud = Student.objects.select_related('pgm').order_by('id')
-    students_filter = studentFilter(request.GET, queryset=stud)
 
-    # Apply filter
+    # Apply filters
+    students_filter = studentFilter(request.GET, queryset=stud)
     filtered_students = students_filter.qs
+
+    # Custom search by name
+    search_query = request.GET.get('search', '')
+    if search_query:
+        filtered_students = filtered_students.filter(name__icontains=search_query)
 
     # Count total
     total_students = filtered_students.count()
 
-    # Pagination (10 students per page, change if needed)
-    paginator = Paginator(filtered_students, 18)
+    # Pagination AFTER search
+    paginator = Paginator(filtered_students, 15)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
@@ -87,8 +92,10 @@ def view_students(request):
         'filter': students_filter,
         'page_obj': page_obj,
         'total_students': total_students,
+        'search_query': search_query,
         'student':stud
     })
+
 
 @group_required('warden', login_url='access_denied')
 def view_details(request, student_id):
@@ -135,14 +142,14 @@ def edit_student(request, student_id):
             new_admn_no = request.POST.get('admn_no')
             if int(prev_admn_no) == int(new_admn_no):
                 if form.is_valid():
-                    if 'image' in form.changed_data:
-                    # Delete old image file if it exists
-                        if student.image:
-                            default_storage.delete(student.image.path)
-                
-                    # Save form data including the image field
+                    if 'photo' in form.changed_data:  
+                        # Delete old photo file if it exists
+                        if student.photo and default_storage.exists(student.photo.path):
+                            default_storage.delete(student.photo.path)
+
+                    # Save form data (new photo if uploaded, otherwise keeps old one)
                     student = form.save()
-                    messages.success(request, "Student details edited successfully.")
+                    return redirect('view_student')
 
             else:
                 if Student.objects.filter(admn_no=new_admn_no).exists():
@@ -156,10 +163,10 @@ def edit_student(request, student_id):
                         
                         # Save form data including the image field
                         student = form.save()
-                        messages.success(request, "Student details edited successfully.")
+                        return redirect('view_students')
         return render(request, 'hostel/edit.html', {'form': form})
     except Exception:
-        return render(request,'hostel/error.html') 
+        return render(request,'hostel/error.html')
 
 
 @group_required('warden', login_url='access_denied')
