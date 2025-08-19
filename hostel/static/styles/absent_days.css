@@ -1,3 +1,28 @@
+:root {
+  --blue-dark: #395886;     
+  --blue-lightest: #F0F3FA;  
+  --blue-lighter: #D5DEEF;   
+  --blue-light: #B1C9EF;     
+  --blue-mid: #8AAEE0;       
+  --blue: #628ECB;           
+  
+  --text-dark: #2C2C2C;
+  --text-light: #FFFFFF;
+  --border: #A7B8D8; 
+}
+
+body{
+  background: linear-gradient(135deg, var(--blue-lightest) 50%, var(--blue-dark) 50%);
+}
+
+.footer{
+  background: linear-gradient(135deg, #0f0f0f, #1a1a2e, #16213e);
+  color: #f1f1f1;
+  padding: 20px 0;
+  text-align: center;
+  font-size: 14px;
+}
+
 .main {
     display: flex;
     justify-content: center;
@@ -16,30 +41,46 @@
     position: relative;
 }
 
-/* ===== Header Section ===== */
 .header-links {
-    margin-bottom: 1.5rem;
-    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2.5rem;
 }
 
 .icon-close {
-    position: absolute;
-    right: 0;
-    top: 0;
-    color: #111111;
-    font-size: 1.5rem;
-    transition: color 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    border-radius: 12px;
+    background-color: var(--blue-light);
+    color: var(--blue-dark);
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid var(--blue-lighter);
+    font-weight: 500;
 }
 
 .icon-close:hover {
-    color: #ef4444;
+    background-color: var(--blue-dark);
+    color: var(--blue-lighter);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(241, 191, 198, 0.3);
+    border-color: transparent;
 }
+
+.icon-close i {
+  font-size: 1rem;
+  transition: transform 0.3s ease;
+}
+
 
 .main-body h1 {
     font-size: 1.8rem;
     margin: 0 0 1.5rem 0;
     color: #1e3a8a; 
-    border-bottom: 2px solid #D4AF37; 
+    border-bottom: 2px solid var(--blue); 
     padding-bottom: 0.5rem;
     text-align: center;
 }
@@ -65,7 +106,7 @@
 .main-body li:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    background: #DCD2C5;
+    background: var(--blue-lightest);
 }
 
 .pagination {

@@ -14,11 +14,22 @@
     --warn: #f59e0b;
     --good: #10b981;
     --error: #ef4444;
+    --blue-lightest: #F0F3FA;
+    --blue-dark: #395886;     
 }
 
+body{
+  background: linear-gradient(135deg, var(--blue-lightest) 50%, var(--blue-dark) 50%);
+}
 
+.footer{
+  background: linear-gradient(135deg, #0f0f0f, #1a1a2e, #16213e);
+    color: #f1f1f1;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 14px;
+}
 .main {
-  min-height: 100vh;
   padding: 2rem 1rem;
 }
 
@@ -39,7 +50,7 @@
 .card-header {
   background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
   color: white;
-  padding: 1.75rem 2.25rem;
+  padding: 1rem 2.25rem;
   border-radius: 12px 12px 0 0;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   position: relative;
@@ -110,7 +121,7 @@
 
 /* Student Header */
 .student-header {
-  padding: 2.25rem 2rem 1.25rem;
+  padding: 1rem 2rem;
   background-color: #ffffff;
   position: relative;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
@@ -161,7 +172,6 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    padding: 12px 12px;
     max-width: 400px;
     margin: 20px 0;
     margin-left: 20px;
@@ -392,7 +402,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1.5rem 2rem;
+  padding: 1rem;
   background-color: #ffffff;
   border-top: 1px solid #f3f4f6;
   position: relative;

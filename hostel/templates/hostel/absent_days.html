@@ -15,7 +15,7 @@ Hostel | Days
         <div class="header-links">
             <!-- Back/Close Icon -->
             <a href="#" class="icon-close" title="Close" id="close">
-            <i class="fas fa-times"></i>
+                <i class="fas fa-times"></i>
             </a>
 
         </div>
@@ -59,8 +59,8 @@ Hostel | Days
 </section>
 <script>
     document.getElementById('close').addEventListener('click', function(event){
-        event.preventDefault();
-        window.history.back();
-    });
+    event.preventDefault();
+    window.location.href = `/view/{{ student.id }}/`;
+});
 </script>
 {% endblock %}

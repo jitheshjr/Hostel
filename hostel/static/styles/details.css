@@ -1,17 +1,27 @@
-/* Define Blue Gradient Palette */
 :root {
-  --blue-lightest: #F0F3FA;  /* Very soft white-blue */
-  --blue-lighter: #D5DEEF;   /* Pale sky blue */
-  --blue-light: #B1C9EF;     /* Light denim */
-  --blue-mid: #8AAEE0;       /* Muted mid-blue */
-  --blue: #628ECB;           /* Vibrant medium blue */
-  --blue-dark: #395886;      /* Deep navy blue */
+  --blue-lightest: #F0F3FA;  
+  --blue-lighter: #D5DEEF;   
+  --blue-light: #B1C9EF;     
+  --blue-mid: #8AAEE0;       
+  --blue: #628ECB;           
+  --blue-dark: #395886;     
   
   --text-dark: #2C2C2C;
   --text-light: #FFFFFF;
-  --border: #A7B8D8; /* Muted border tone to match */
+  --border: #A7B8D8; 
 }
 
+body{
+  background: linear-gradient(135deg, var(--blue-lightest) 50%, var(--blue-dark) 50%);
+}
+
+.footer{
+  background: linear-gradient(135deg, #0f0f0f, #1a1a2e, #16213e);
+    color: #f1f1f1;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 14px;
+}
 
 /* Main Container */
 .main {

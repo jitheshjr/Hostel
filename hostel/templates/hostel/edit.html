@@ -14,8 +14,8 @@ Hostel | StudentForm
 <section class="student-form-container">
     <div class="form-card">
         <div class="form-header">
-            <a href="{% url 'view_student' %}" class="close-btn" title="Back to students">
-                <i class="fa-solid fa-xmark"></i>
+            <a href="#" class="close-btn" title="Close" id="close">
+                <i class="fas fa-times"></i>
             </a>
             <h1 class="form-title">Student Registration</h1>
             {% if messages %}
@@ -105,8 +105,9 @@ Hostel | StudentForm
 </section>
 
 <script>
-    function confirmData(){
-        return confirm("Are you sure all information is correct?");
-    }
+    document.getElementById('close').addEventListener('click', function(event){
+    event.preventDefault();
+    window.history.back();
+});
 </script>
 {% endblock %}

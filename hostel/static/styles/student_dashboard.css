@@ -10,7 +10,29 @@
   --light: #f8f9fa;
   --card-shadow: 0 4px 20px rgba(0,0,0,0.08);
   --transition: all 0.3s ease;
+  --secondary-rgb: 108, 117, 125;
+
+  --blue-lightest: #F0F3FA;  
+  --blue-lighter: #D5DEEF;   
+  --blue-light: #B1C9EF;     
+  --blue-mid: #8AAEE0;       
+  --blue: #628ECB;           
+  --blue-dark: #395886;
 }
+
+body{
+  background: linear-gradient(135deg, var(--blue-lightest) 50%, var(--blue-dark) 50%);
+}
+
+.footer{
+  background: linear-gradient(135deg, #0f0f0f, #1a1a2e, #16213e);
+    color: #f1f1f1;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 14px;
+}
+
+
 
 /* Base Styles */
 .modern-dashboard {
@@ -33,7 +55,7 @@
   left: 0;
   width: 100%;
   height: 20px;
-  background: var(--primary);
+  background: var(--blue-dark);
   border-radius: 12px 12px 0 0; 
   box-shadow: 0 2px 8px rgba(67, 97, 238, 0.3);
   z-index: 1;
@@ -46,15 +68,10 @@
   left: 0;
   width: 100%;
   height: 20px;
-  background: var(--primary);
+  background: var(--blue-dark);
   border-radius: 0 0 12px 12px;
   box-shadow: 0 -2px 8px rgba(67, 97, 238, 0.3);
   z-index: 1;
-}
-
-/* Header Styles */
-.dashboard-header {
-  margin-bottom: 2.5rem;
 }
 
 .header-content {
@@ -64,17 +81,25 @@
 .back-button {
   display: inline-flex;
   align-items: center;
-  color: var(--success);
+  color: var(--blue);
   font-weight: 600;
-  margin: 1.5rem 0;
-  gap: 2px;
-  transition: var(--transition);
+  margin: 0.2rem 0;
+  gap: 8px;
+  transition: all 0.3s ease;
   text-decoration: none;
   font-size: 20px;
+  padding: 10px;
+  border-radius: 6px;
+  background: transparent;
+  border: 1px solid transparent;
 }
 
 .back-button:hover {
   color: var(--secondary);
+  background: rgba(var(--secondary-rgb), 0.05);
+  border-color: rgba(var(--secondary-rgb), 0.2);
+  transform: translateX(-4px);
+  gap: 12px;
 }
 
 .header-title {
@@ -82,13 +107,12 @@
   flex-direction: column;
   align-items: center;
   gap: 1rem;
-  margin-bottom: 0.5rem;
 }
 
 .icon-wrapper {
-  width: 150px;
-  height: 150px;
-  background: rgba(67, 97, 238, 0.1);
+  width: 140px;
+  height: 140px;
+  background: var(--blue-lighter);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -130,7 +154,7 @@
 .section-title {
   position: relative;
   font-size: 1.5rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -147,12 +171,12 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .update-info {
   font-size: 0.85rem;
-  color: var(--gray);
+  color: var(--dark);
 }
 
 .view-all {
@@ -171,7 +195,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 1.5rem;
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem;
 }
 
 .action-card {
@@ -252,14 +276,28 @@
 }
 
 .stat-card {
-  background: white;
   border-radius: 12px;
   padding: 1.5rem;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12), 0 6px 6px rgba(0, 0, 0, 0.08);
   display: flex;
   align-items: center;
   gap: 1.5rem;
 }
+
+.stat-card:hover {
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.18), 0 10px 10px rgba(0, 0, 0, 0.12);
+}
+
+/* Soft Blue */
+.stat-card.total-card {
+  background: linear-gradient(135deg, #93C5FD 0%, #BFDBFE 100%);
+}
+
+/* Light Peach / Coral */
+.stat-card.new-card {
+  background: linear-gradient(135deg, #93C5FD 0%, #BFDBFE 100%);
+}
+
 
 .stat-icon {
   width: 50px;
@@ -283,24 +321,8 @@
 }
 
 .stat-label {
-  color: var(--gray);
+  color: var(--dark);
   font-size: 0.9rem;
-}
-
-.stat-trend {
-  font-size: 0.85rem;
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-}
-
-.up {
-  color: var(--success);
-}
-
-.down {
-  color: var(--danger);
 }
 
 /* Specific Stat Cards */
@@ -309,149 +331,5 @@
 }
 
 .new-card .stat-icon {
-  background: var(--success);
-}
-
-/* Activity Section */
-.activity-feed {
-  margin-bottom: 2.5rem;
-}
-
-.activity-item {
-  display: flex;
-  gap: 1rem;
-  padding: 1.25rem;
-  border-radius: 8px;
-  transition: var(--transition);
-}
-
-.activity-item:hover {
-  background: rgba(0,0,0,0.02);
-}
-
-.activity-item:not(:last-child) {
-  border-bottom: 1px solid rgba(0,0,0,0.05);
-}
-
-.activity-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1rem;
-  color: white;
-  flex-shrink: 0;
-}
-
-.activity-details {
-  flex: 1;
-}
-
-.activity-details h4 {
-  font-size: 1rem;
-  margin-bottom: 0.25rem;
-}
-
-.activity-details p {
-  color: var(--gray);
-  font-size: 0.9rem;
-  margin-bottom: 0.25rem;
-}
-
-.activity-time {
-  font-size: 0.8rem;
-  color: var(--gray);
-}
-
-/* Activity Icon Types */
-.new {
-  background: var(--success);
-}
-
-.update {
   background: var(--primary);
-}
-
-/* Resources Section */
-.resource-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem;
-}
-
-.resource-card {
-  background: white;
-  border-radius: 12px;
-  padding: 1.5rem;
-  box-shadow: var(--card-shadow);
-  transition: var(--transition);
-}
-
-.resource-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.12);
-}
-
-.resource-icon {
-  width: 50px;
-  height: 50px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.25rem;
-  color: white;
-  background: var(--primary);
-  margin-bottom: 1rem;
-}
-
-.resource-content h3 {
-  font-size: 1.25rem;
-  margin-bottom: 0.5rem;
-}
-
-.resource-content p {
-  color: var(--gray);
-  font-size: 0.9rem;
-  margin-bottom: 1rem;
-}
-
-.resource-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: var(--primary);
-  font-size: 0.9rem;
-  font-weight: 500;
-  text-decoration: none;
-  transition: var(--transition);
-}
-
-.resource-link:hover {
-  color: var(--secondary);
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .modern-dashboard {
-    padding: 1.5rem;
-  }
-  
-  .action-grid,
-  .stats-grid,
-  .resource-cards {
-    grid-template-columns: 1fr;
-  }
-  
-  .header-title {
-    flex-direction: row;
-    justify-content: center;
-  }
-  
-  .icon-wrapper {
-    width: 50px;
-    height: 50px;
-  }
 }

@@ -81,7 +81,7 @@ def view_students(request):
     total_students = filtered_students.count()
 
     # Pagination AFTER search
-    paginator = Paginator(filtered_students, 15)
+    paginator = Paginator(filtered_students, 10)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
