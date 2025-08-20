@@ -10,10 +10,10 @@
 <div class="modern-dashboard">
   <!-- Dashboard Header -->
   <header class="dashboard-header">
-    <div class="header-content">
-      <a href="{% url 'home' %}" class="back-button">
+     <a href="{% url 'home' %}" class="back-button">
         <i class="fas fa-chevron-left"></i> Home
       </a>
+    <div class="header-content">
       <div class="header-title">
         <div class="icon-wrapper">
           <img src="{% static 'images/room-icon.svg' %}" alt="Rooms" class="header-icon">
@@ -75,7 +75,7 @@
         <!-- Available Rooms -->
         <div class="availability-card available">
           <div class="availability-icon">
-            <i class="fas fa-door-open"></i>
+            <i class="fas fa-door-closed"></i>
           </div>
           <div class="availability-info">
             <div class="availability-value">{{ total_rooms}}</div>
@@ -91,7 +91,7 @@
         <!-- Occupied Rooms -->
         <div class="availability-card occupied">
           <div class="availability-icon">
-            <i class="fas fa-door-closed"></i>
+            <i class="fas fa-door-open"></i>
           </div>
           <div class="availability-info">
             <div class="availability-value">{{ available_slots }}</div>

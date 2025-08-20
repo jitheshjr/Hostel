@@ -10,20 +10,22 @@
     --shadow: 0 1px 2px rgba(16,24,40,.05), 0 8px 20px rgba(16,24,40,.08);
     --error: #ef4444;
     --success: #10b981;
-    --blue-dark: #395886;     
-    --blue-lightest: #F0F3FA;     
+    --denim: #6F8FA9;
+    --cream: #F5F5DC;    
 }
 
 body{
-  background: linear-gradient(135deg, var(--blue-lightest) 50%, var(--blue-dark) 50%);
+  background: linear-gradient(135deg, var(--cream) 50%, var(--denim) 50%);
 }
 
 .footer{
-  background: linear-gradient(135deg, #0f0f0f, #1a1a2e, #16213e);
-  color: #f1f1f1;
-  padding: 20px 0;
-  text-align: center;
-  font-size: 14px;
+    background: linear-gradient(135deg, #0a0a0a 0%, #0f0f1f 100%);
+    color: #F0EBE3; 
+    border-top: 1px solid #1a1a2e; 
+    padding: 20px 0;
+    text-align: center;
+    font-size: 14px;
+
 }
 
 .main {
@@ -193,13 +195,14 @@ select {
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, #1e3a8a, #1e40af); /* Navy blue gradient */
+    background: linear-gradient(135deg, #2b5876 0%, #4e4376 100%);
     box-shadow: 0 4px 6px rgba(30, 58, 138, 0.2);
     position: relative;
     overflow: hidden;
 }
 
 .btn-primary:hover {
+    background: linear-gradient(135deg, #23455c 0%, #423861 100%);
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3);
     filter: brightness(1.05);

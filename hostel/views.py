@@ -284,7 +284,7 @@ def view_allotement(request):
         filter = roomFilter(request.GET, queryset=Allotment.objects.select_related('room_number', 'name').order_by('room_number'))
         alloted_list = filter.qs
 
-        paginator = Paginator(alloted_list, 10)
+        paginator = Paginator(alloted_list, 6)
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
 
@@ -312,7 +312,7 @@ def room_list(request):
             'floor': room.floor
         })
 
-    paginator = Paginator(room_data, 10)
+    paginator = Paginator(room_data, 8)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 

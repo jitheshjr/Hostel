@@ -13,17 +13,18 @@
     --warn: #f59e0b;
     --good: #10b981;
     --error: #ef4444;
-    --blue-dark: #395886;     
-    --blue-lightest: #F0F3FA;
+    --denim: #6F8FA9;
+    --cream: #F5F5DC;
 }
 
 body{
-  background: linear-gradient(135deg, var(--blue-lightest) 50%, var(--blue-dark) 50%);
+  background: linear-gradient(135deg, var(--cream) 50%, var(--denim) 50%);
 }
 
 .footer{
-  background: linear-gradient(135deg, #0f0f0f, #1a1a2e, #16213e);
-  color: #f1f1f1;
+  background: linear-gradient(135deg, #0a0a0a 0%, #0f0f1f 100%);
+  color: #F0EBE3; 
+  border-top: 1px solid #1a1a2e; 
   padding: 20px 0;
   text-align: center;
   font-size: 14px;
@@ -48,7 +49,7 @@ body{
     position: relative;
     padding: 1.5rem;
     backdrop-filter: blur(8px);
-    margin: 2rem auto;
+    margin: 2rem auto 0;
     max-width: 800px;
     overflow: hidden;
 }
@@ -74,7 +75,7 @@ body{
 }
 
 .card-header {
-    padding: 1.25rem 1.5rem;
+    padding: 1rem 1.5rem;
     position: relative;
     overflow: hidden;
 }
@@ -133,7 +134,7 @@ body{
     align-items: center;
     justify-content: space-between;
     padding: 1rem 1.25rem;
-    background: color-mix(in oklab, #D6BCFA, transparent 30%);
+    background: color-mix(in oklab, #6F8FA9, transparent 60%);
     border-radius: 5px;
 }
 
@@ -145,25 +146,25 @@ body{
 
 .filter-group label {
     font-weight: 600;
-    color: #7E4DD4;
+    color: #344955;
 }
 
 .filter-group select {
-    color: #5D3A9B;
-    background-color: #F5F0FF;
-    border: 1px solid #C1A5F9;
+    color: #344955;
+    background-color: #fff;
+    border: 1px solid #344955;
     padding: 8px 32px 8px 12px; 
     border-radius: 6px;
 }
 
 .filter-group select:hover {
-    border-color: #9F7AEA;
+    border-color: #344955;
     background-color: #F9F5FF;
 }
 
 .filter-group select:focus {
     outline: none;
-    border-color: #7E4DD4;
+    border-color: #344955;
     box-shadow: 0 0 0 2px rgba(126, 77, 212, 0.2);
 }
 
@@ -187,7 +188,7 @@ body{
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, #7E4DD4 0%, #A779E9 100%);
+    background: linear-gradient(135deg, #6F8FA9 0%, #537188 100%);
     color: white;
     border: none;
     box-shadow: 0 4px 8px rgba(126, 77, 212, 0.3);
@@ -196,33 +197,27 @@ body{
 }
 
 .btn-primary:hover {
-    background: linear-gradient(135deg, #6D3DC1 0%, #9568D6 100%);
     box-shadow: 0 6px 12px rgba(126, 77, 212, 0.4);
     transform: translateY(-2px);
 }
 
 .btn-primary:active {
-    background: linear-gradient(135deg, #5C32A8 0%, #8357C3 100%);
     transform: translateY(0);
 }
 
 .btn-secondary {
     background-color: #fff;
-    color: #5D3A9B;
-    border: 1px solid #C1A5F9;
+    color: #344955;
+    border: 1px solid #344955;
     box-shadow: 0 2px 4px rgba(197, 173, 255, 0.2);
     transition: all 0.3s ease;
 }
 
 .btn-secondary:hover {
-    background: linear-gradient(135deg, #C9B5FA 0%, #DDD0FF 100%);
+    background: linear-gradient(135deg, #344955 0%, #344955 100%);
     box-shadow: 0 4px 8px rgba(197, 173, 255, 0.3);
+    color: white;
 }
-
-.btn-secondary:active {
-    background: linear-gradient(135deg, #BBA6F2 0%, #D0C0F5 100%);
-}
-
 
 .table-wrap {
     padding: 0 1.25rem 1rem;
@@ -242,7 +237,7 @@ thead th {
     padding: 0.75rem;
     position: sticky;
     top: 0;
-    background: color-mix(in oklab, #1e3a8a, transparent 80%);
+    background: #6F8FA9;
     border-bottom: 1px solid var(--border);
     z-index: 1;
 }
@@ -323,26 +318,5 @@ tbody tr:hover {
 
 .page-btn.current {
     border-color: color-mix(in oklab, var(--primary), var(--border) 40%);
-    background: color-mix(in oklab, var(--primary), transparent 70%);
-}
-
-@media (max-width: 768px) {
-    .filter-controls {
-        flex-direction: column;
-        align-items: stretch;
-    }
-    
-    .filter-group {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    
-    .filter-actions {
-        justify-content: flex-end;
-    }
-    
-    table {
-        display: block;
-        overflow-x: auto;
-    }
+    background: color-mix(in oklab, #6F8FA9, transparent 70%);
 }

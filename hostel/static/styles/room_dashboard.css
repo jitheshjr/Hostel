@@ -10,6 +10,24 @@
   --light: #f8fafc; 
   --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   --transition: all 0.3s ease;
+  --denim: #6F8FA9;
+  --cream: #F5F5DC;
+  --secondary-rgb: 108, 117, 125;
+    
+}
+
+body{
+  background: linear-gradient(135deg, var(--cream) 50%, var(--denim) 50%);
+}
+
+.footer{
+    background: linear-gradient(135deg, #0a0a0a 0%, #0f0f1f 100%);
+    color: #F0EBE3; 
+    border-top: 1px solid #1a1a2e; 
+    padding: 20px 0;
+    text-align: center;
+    font-size: 14px;
+
 }
 
 /* Base Container */
@@ -22,6 +40,7 @@
   background: white;
   position: relative;
   border-radius: 12px; 
+  border: 1px solid #fff;
   overflow: hidden; 
   box-shadow: var(--card-shadow);
 }
@@ -60,17 +79,25 @@
 .back-button {
   display: inline-flex;
   align-items: center;
-  color: var(--secondary);
+  color: var(--blue);
   font-weight: 600;
-  margin: 1.5rem 0;
-  gap: 2px;
-  transition: var(--transition);
+  margin: 0.2rem 0;
+  gap: 8px;
+  transition: all 0.3s ease;
   text-decoration: none;
   font-size: 20px;
+  padding: 10px;
+  border-radius: 6px;
+  background: transparent;
+  border: 1px solid transparent;
 }
 
 .back-button:hover {
-  color: var(--primary);
+  color: var(--secondary);
+  background: rgba(var(--secondary-rgb), 0.05);
+  border-color: rgba(var(--secondary-rgb), 0.2);
+  transform: translateX(-4px);
+  gap: 12px;
 }
 
 .header-title {
@@ -78,13 +105,12 @@
   flex-direction: column;
   align-items: center;
   gap: 1rem;
-  margin-bottom: 0.5rem;
 }
 
 .icon-wrapper {
-  width: 150px;
-  height: 150px;
-  background: rgba(67, 97, 238, 0.1);
+  width: 140px;
+  height: 140px;
+  background: color-mix(in oklab, #6F8FA9, transparent 50%);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -189,7 +215,7 @@
 }
 
 .allocate-action {
-  border-left-color: var(--primary-light);
+  border-left-color: var(--secondary);
 }
 
 .allocate-action .card-icon {
@@ -197,11 +223,11 @@
 }
 
 .view-action {
-  border-left-color: var(--primary);
+  border-left-color: var(--secondary);
 }
 
 .view-action .card-icon {
-  background: var(--primary);
+  background: var(--secondary);
 }
 
 /* Availability Cards */
@@ -213,7 +239,7 @@
 }
 
 .availability-card {
-  background: white;
+  background: linear-gradient(135deg, #93C5FD 0%, #BFDBFE 100%);
   border-radius: 12px;
   padding: 1.5rem;
   box-shadow: 0 10px 25px rgba(0,0,0,0.12);
@@ -225,7 +251,7 @@
 
 .availability-icon {
   font-size: 2.5rem;
-  color: #16a34a;
+  color: navy;
 }
 
 .availability-info {
@@ -239,7 +265,7 @@
 
 .availability-label {
   font-size: 0.9rem;
-  color: var(--gray);
+  color: var(--dark);
 }
 
 /* View More Link */
@@ -248,16 +274,13 @@
   color: var(--secondary);
   text-decoration: none;
   transition: var(--transition);
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--secondary);
+  border-radius: 4px;
 }
 
 .view-more-link:hover {
   color: var(--primary);
-  text-decoration: underline;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .modern-dashboard {
-    padding: 1.5rem;
-  }
+  border-color: var(--primary);
+  background-color: rgba(0, 0, 0, 0.03); 
 }

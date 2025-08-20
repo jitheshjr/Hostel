@@ -20,8 +20,9 @@ body{
 }
 
 .footer{
-  background: linear-gradient(135deg, #0f0f0f, #1a1a2e, #16213e);
-  color: #f1f1f1;
+  background: linear-gradient(135deg, #0a0a0a 0%, #0f0f1f 100%);
+  color: #F0EBE3; 
+  border-top: 1px solid #1a1a2e; 
   padding: 20px 0;
   text-align: center;
   font-size: 14px;
