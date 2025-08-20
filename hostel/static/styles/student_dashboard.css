@@ -260,11 +260,11 @@ body{
 }
 
 .view-action {
-  border-left-color: var(--primary);
+  border-left-color: var(--success);
 }
 
 .view-action .card-icon {
-  background: var(--primary);
+  background: var(--success);
 }
 
 /* Stats Section */

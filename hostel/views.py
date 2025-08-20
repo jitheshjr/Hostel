@@ -53,7 +53,7 @@ def add_student(request):
             else:
                 if form.is_valid():
                     form.save()
-                    return redirect('view_student')
+                    return redirect('student_dashboard')
 
                 else:
                     # Debugging: Print form errors

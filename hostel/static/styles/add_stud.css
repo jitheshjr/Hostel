@@ -4,12 +4,27 @@
     --muted: #6b7280;
     --surface: #f6f7f9;
     --border: #d8dadd;
-    --primary: #10b981;
-    --primary-ink: #054b35;
-    --ring: #34d399;
     --shadow: 0 1px 2px rgba(16,24,40,.05), 0 8px 20px rgba(16,24,40,.08);
     --error: #ef4444;
     --success: #10b981;
+    --blue-lighter: #D5DEEF;   
+    --blue-light: #B1C9EF;     
+    --blue-mid: #8AAEE0;       
+    --blue: #628ECB;    
+    --blue-dark: #395886;     
+    --blue-lightest: #F0F3FA; 
+}
+
+body{
+  background: linear-gradient(135deg, var(--blue-lightest) 50%, var(--blue-dark) 50%);
+}
+
+.footer{
+  background: linear-gradient(135deg, #0f0f0f, #1a1a2e, #16213e);
+  color: #f1f1f1;
+  padding: 20px 0;
+  text-align: center;
+  font-size: 14px;
 }
 
 /* Base Styles */
@@ -20,7 +35,7 @@
 }
 
 .form-card {
-    background: rgba(255, 255, 255, 0.95); 
+    background: var(--bg); 
     border: 1px solid #e5e7eb; 
     border-radius: 1.25rem; 
     box-shadow: 
@@ -43,8 +58,8 @@
     left: 0;
     width: 25px;
     height: 100%;
-    background: #ED213A;
-    box-shadow: 2px 0 10px rgba(252, 39, 1, 0.3);
+    background: var(--blue-dark);
+    box-shadow: 2px 0 10px rgba(32, 63, 240, 0.3);
 }
 
 .form-card::after {
@@ -79,7 +94,7 @@
 .form-title {
     font-size: 2.5rem;
     text-align: center;
-    color: #1E3A8A; 
+    color: var(--blue); 
     margin: 1.5rem 0 2rem;
     font-weight: 900;
     position: relative;
@@ -87,7 +102,7 @@
     width: 100%;
     text-transform: uppercase;
     font-family: 'Segoe UI', system-ui, sans-serif;
-    background: linear-gradient(90deg, #ED213A 0%, #ED213A 50%, #ef4444 100%);
+    background: linear-gradient(90deg, #628ECB 0%, #4b6cb7 50%, #628ECB 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -107,7 +122,7 @@
 .form-section legend {
     padding: 0 0.5rem;
     font-weight: 600;
-    color: #ED213A;
+    color: #2555da;
 }
 
 .form-grid {
@@ -146,7 +161,7 @@ input, select, textarea {
 }
 
 input:focus, select:focus, textarea:focus {
-    outline: 1px solid #FF416C;
+    outline: 1px solid #2555da;
     outline-offset: 2px;
     border-color: transparent;
     background: var(--bg);
@@ -185,7 +200,7 @@ input:focus, select:focus, textarea:focus {
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, #FF416C,#ED213A); 
+    background: linear-gradient(135deg, var(--blue-dark),var(--blue)); 
     box-shadow: var(--shadow);
     position: relative;
     overflow: hidden;
