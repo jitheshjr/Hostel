@@ -390,7 +390,7 @@ def view_attendance(request):
     attendance_list = filter.qs
 
     # Pagination
-    paginator = Paginator(attendance_list, 10)
+    paginator = Paginator(attendance_list, 8)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
@@ -404,12 +404,23 @@ def view_attendance(request):
 @login_required()
 def detailed_attendance(request, date_id):
     try:
-        attendance_date = get_object_or_404(AttendanceDate, id=date_id)
+        attendance_date = get_object_or_404(AttendanceDate, id=date_id)        
         absentees = Attendance.objects.filter(date=attendance_date)
-        return render(request, "hostel/attendance_detail.html", {'date': attendance_date, 'absentees': absentees})
-    except Exception:
-        return render(request,'hostel/error.html')
+        total_absentees = absentees.count()
 
+        paginator = Paginator(absentees, 7)  
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+
+        context = {
+            'date': attendance_date,
+            'absentees': page_obj,
+            'total_absentees': total_absentees,
+        }
+        return render(request, "hostel/attendance_detail.html", context)
+
+    except Exception:
+        return render(request, 'hostel/error.html')
 
 @login_required()
 def delete_attendance(request, date_id):

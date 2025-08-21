@@ -1,16 +1,29 @@
-/* Reset and base styles */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+:root {
+  --blue-dark: #395886;     
+  --blue-lightest: #F0F3FA;  
+  --blue-lighter: #D5DEEF;   
+  --blue-light: #B1C9EF;     
+  --blue-mid: #8AAEE0;       
+  --blue: #628ECB;           
+  --danger: #ff0000;         
+  --success: #059669;        
+  --text-dark: #2C2C2C;
+  --text-light: #FFFFFF;
+  --border: #A7B8D8; 
 }
 
 body {
-  font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
-  background-color: #f8f9fa;
-  min-height: 100vh;
-  color: #333;
-  line-height: 1.6;
+  background: linear-gradient(135deg, var(--blue-lightest) 50%, var(--blue-dark) 50%);
+}
+
+/* Footer */
+.footer {
+  background: linear-gradient(135deg, #0a0a0a 0%, #0f0f1f 100%);
+  color: #F0EBE3; 
+  border-top: 1px solid #1a1a2e; 
+  padding: 20px 0;
+  text-align: center;
+  font-size: 14px;
 }
 
 /* Main container */
@@ -18,254 +31,147 @@ body {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  min-height: 100vh;
-  padding: 40px 20px;
+  padding: 2rem;
 }
 
 .main-body {
-  width: 100%;
-  max-width: 680px;
-}
-
-.main-block {
-  background: white;
+  background: #fff;
+  padding: 2rem;
   border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-  padding: 40px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 700px;
   position: relative;
-  overflow: hidden;
-  border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
-.main-block::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, #667eea, #764ba2);
-}
-
-/* Header */
+/* Header & back button */
 .header-links {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  z-index: 10;
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 2rem;
 }
 
-.back-link {
+.icon-close {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  width: 42px;
-  height: 42px;
-  background: #f8f9fa;
-  border: 1px solid #e9ecef;
-  border-radius: 50%;
-  color: #6c757d;
+  gap: 0.5rem;
+  padding: 0.6rem 1rem;
+  border-radius: 12px;
+  background-color: var(--blue-light);
+  color: var(--blue-dark);
   text-decoration: none;
-  font-size: 18px;
-  font-weight: bold;
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--blue-lighter);
+  font-weight: 500;
+  transition: all 0.3s ease;
 }
 
-.back-link:hover {
-  background: #667eea;
-  border-color: #667eea;
-  color: white;
+.icon-close:hover {
+  background-color: var(--blue-dark);
+  color: var(--blue-lighter);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
-/* Typography */
-h5 {
-  color: #6c757d;
-  font-size: 14px;
+/* Headings */
+h1 {
+  font-size: 1.8rem;
+  margin: 0 0 0.5rem;
+  color: #1e3a8a;
+  border-bottom: 2px solid var(--blue);
+  padding-bottom: 0.5rem;
+  text-align: center;
+}
+
+.date-text {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #6b7280;
+  margin-bottom: 1rem;
+}
+
+/* Total count */
+.total-count {
+  text-align: center;
+  font-size: 1rem;
   font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 8px;
+  color: var(--blue-dark);
+  margin-bottom: 1.5rem;
+  padding: 0.5rem 1rem;
+  background: var(--blue-lightest);
+  border-radius: 8px;
+  border: 1px solid var(--blue-lighter);
 }
 
-h3 {
-  color: #2c3e50;
-  font-size: 26px;
-  font-weight: 700;
-  margin-bottom: 30px;
-  line-height: 1.4;
-  position: relative;
-  padding-bottom: 10px;
-}
-
-h3::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 60px;
-  height: 3px;
-  background: linear-gradient(90deg, #667eea, #764ba2);
-  border-radius: 3px;
-}
-
-/* Absent list */
+/* Absentees list */
 .absent-list {
   list-style: none;
-  margin: 0;
   padding: 0;
+  margin: 0;
 }
 
-.list-items {
-  background: #fff;
-  border: 1px solid #e9ecef;
-  border-radius: 8px;
-  padding: 18px 24px;
-  margin-bottom: 12px;
-  font-size: 16px;
-  font-weight: 500;
-  color: #495057;
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+.absent-item {
+  background: color-mix(in oklab, var(--danger), transparent 70%);
+  border: 1px solid color-mix(in oklab, var(--danger), #fff 70%);
+  margin-bottom: 0.75rem;
+  padding: 0.9rem 1.2rem;
+  border-radius: 10px;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.list-items::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 4px;
-  background: #dc3545;
-  transform: scaleY(0);
-  transform-origin: bottom;
-  transition: transform 0.3s ease-out;
+.absent-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  background: var(--blue-lightest);
 }
 
-.list-items:hover {
-  background: #fff;
-  border-color: #e9ecef;
-  transform: translateX(8px);
-  box-shadow: 0 5px 15px rgba(220, 53, 69, 0.1);
-}
-
-.list-items:hover::before {
-  transform: scaleY(1);
-  transform-origin: top;
-}
-
-/* No absent students message */
-#null {
-  text-align: center;
-  padding: 50px 20px;
-  color: #28a745;
-  font-size: 18px;
+.absent-item .status {
   font-weight: 600;
-  background: #f8f9fa;
-  border: 1px dashed #c3e6cb;
-  border-radius: 12px;
-  position: relative;
-  margin-top: 20px;
+  color: var(--danger);
 }
 
-#null::before {
-  content: "✓";
-  display: inline-block;
-  width: 48px;
-  height: 48px;
-  background: #28a745;
-  color: white;
-  border-radius: 50%;
-  line-height: 48px;
+/* No absentees case */
+.no-absentees {
   text-align: center;
-  font-size: 22px;
-  font-weight: bold;
-  margin-bottom: 20px;
-  box-shadow: 0 4px 8px rgba(40, 167, 69, 0.2);
+  padding: 1.2rem;
+  font-size: 1rem;
+  background: color-mix(in oklab, var(--success), transparent 85%);
+  border: 1px solid color-mix(in oklab, var(--success), #fff 70%);
+  border-radius: 8px;
+  color: var(--success);
+  font-weight: 500;
 }
 
-/* Animation for list items */
-.list-items {
-  animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  opacity: 0;
-  transform: translateY(15px);
+/* Pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.8rem;
+  margin-top: 2rem;
 }
 
-.list-items:nth-child(1) { animation-delay: 0.1s; }
-.list-items:nth-child(2) { animation-delay: 0.2s; }
-.list-items:nth-child(3) { animation-delay: 0.3s; }
-.list-items:nth-child(4) { animation-delay: 0.4s; }
-.list-items:nth-child(5) { animation-delay: 0.5s; }
-
-@keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.pagination .page-link {
+  padding: 0.5rem 1rem;
+  border: 1px solid;
+  border-radius: 8px;
+  border-color: color-mix(in oklab, #1e3a8a, #e5e7eb 40%);
+  background: color-mix(in oklab, #1e3a8a, transparent 70%);  color: var(--blue-dark);
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease;
 }
 
-/* Responsive design */
-@media (max-width: 768px) {
-  .main {
-    padding: 30px 15px;
-  }
-
-  .main-block {
-    padding: 35px 25px;
-  }
-
-  h3 {
-    font-size: 22px;
-    margin-bottom: 25px;
-  }
-
-  .list-items {
-    padding: 16px 20px;
-  font-size: 15px;
-  margin-bottom: 10px;
-  border-radius: 6px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
-  }
+.pagination .page-link:hover {
+  background: var(--blue-mid);
+  color: var(--text-light);
 }
 
-@media (max-width: 480px) {
-  .main {
-    padding: 20px 10px;
-  }
-
-  .main-block {
-    padding: 30px 20px;
-  }
-
-  h3 {
-    font-size: 20px;
-    padding-bottom: 8px;
-  }
-
-  h3::after {
-    width: 40px;
-    height: 2px;
-  }
-
-  .list-items {
-    padding: 14px 16px;
-    font-size: 14px;
-  }
-
-  #null {
-    padding: 40px 15px;
-    font-size: 16px;
-  }
-
-  #null::before {
-    width: 40px;
-    height: 40px;
-    line-height: 40px;
-    font-size: 18px;
-    margin-bottom: 15px;
-  }
+.pagination .page-info {
+  font-size: 0.9rem;
+  color: var(--blue-dark);
+  font-weight: 500;
 }

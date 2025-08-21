@@ -1,24 +1,44 @@
-/* Simplified Monthly Bill Page - Green Theme */
 :root {
-  --bg: #f5f9f5;
-  --panel: #ffffff;
-  --text: #0b1a13;
-  --muted: #61756a;
-  --border: #e2eee6;
-  --primary: #10b981;
-  --primary-dark: #059669;
-  --accent: #14b8a6;
-  --shadow: 0 1px 2px rgba(16,24,40,.05), 0 10px 20px rgba(16,24,40,.08);
+  --bg: #f5f2ed;         /* light cream background */
+  --panel: #ffffff;      /* white panels */
+  --text: #2c1810;       /* dark coffee text */
+  --muted: #8b6f47;      /* muted warm brown */
+  --border: #e6d7c3;     /* beige border */
+  --primary: #6f4e37;    /* medium roast coffee */
+  --primary-dark: #5d4037; 
+  --accent: #a0522d;     /* warm accent brown */
+  --coffee: #6F4E37;
+  --beige: #f5f5dc;
+  --shadow: 0 1px 2px rgba(44, 24, 16, 0.05), 
+            0 10px 20px rgba(44, 24, 16, 0.08);
 }
 
+body {
+  background: var(--beige) ;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--text);
+}
+
+.footer {
+  background: linear-gradient(135deg, #0a0a0a 0%, #0f0f1f 100%);
+  color: #f0ebe3;
+  border-top: 1px solid #1a1a2e;
+  padding: 20px 0;
+  text-align: center;
+  font-size: 14px;
+}
+
+/* Main Container */
 .bill-container {
   max-width: 1200px;
   margin: 4rem auto;
   display: grid;
   gap: 1.5rem;
   grid-template-columns: 1fr 1fr;
+  padding: 0 1rem;
 }
 
+/* Each Bill Section */
 .bill-section {
   background: var(--panel);
   border-radius: 0.75rem;
@@ -26,7 +46,7 @@
   overflow: hidden;
 }
 
-/* Header */
+/* Section Header */
 .section-header {
   padding: 1rem;
   background: var(--primary);
@@ -41,11 +61,7 @@
   font-size: 1.1rem;
 }
 
-.print-title{
-  display: none;
-}
-
-/* Print button */
+/* Print Button */
 .print-btn {
   display: flex;
   align-items: center;
@@ -57,13 +73,15 @@
   border-radius: 0.5rem;
   font-weight: 600;
   cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .print-btn:hover {
-  background: #f0f0f0;
+  background: var(--beige);
+  color: var(--primary);
 }
 
-/* Table */
+/* Bill Table */
 .bill-table-container {
   padding: 1rem;
   overflow-x: auto;
@@ -76,10 +94,11 @@
 
 .bill-table th {
   background: color-mix(in oklab, var(--primary), transparent 85%);
-  color: black;
+  color: var(--text);
   padding: 0.75rem;
   text-align: center;
   border-bottom: 2px solid var(--border);
+  font-weight: 600;
 }
 
 .bill-table td {
@@ -89,9 +108,14 @@
 }
 
 .bill-table tr:hover {
-  background: rgba(16, 185, 129, 0.05);
+  background: rgba(111, 78, 55, 0.05); /* coffee hover */
 }
 
 .text-right {
   text-align: right;
+}
+
+/* Print-specific Title */
+.print-title {
+  display: none;
 }

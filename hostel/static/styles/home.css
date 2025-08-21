@@ -267,70 +267,70 @@ a {
 
 /* Student Card Specific */
 .student-card {
-  border-color: #4F46E5; /* indigo-600 */
+  border-color: #800020; 
 }
 
 .student-card .card-icon {
-  background-color: rgba(79, 70, 229, 0.1);
+  background-color: rgba(201, 29, 29, 0.1);
 }
 
 .student-card .btn-primary {
-  background-color: #4F46E5; /* indigo-600 */
+  background-color: #800020; 
 }
 
 .student-card .btn-primary:hover {
-  background-color: #4338CA; /* indigo-700 */
+  background-color: #66001F; 
 }
 
 /* Room Card Specific */
 .room-card {
-  border-color: #7C3AED; /* purple-600 */
+  border-color: #6F8FA9; 
 }
 
 .room-card .card-icon {
-  background-color: rgba(124, 58, 237, 0.1);
+  background-color: rgba(43, 135, 221, 0.1);
 }
 
 .room-card .btn-primary {
-  background-color: #7C3AED; /* purple-600 */
+  background-color: #6F8FA9; 
 }
 
 .room-card .btn-primary:hover {
-  background-color: #6D28D9; /* purple-700 */
+  background-color: #60a5fa; 
 }
 
 /* Attendance Card Specific */
 .attendance-card {
-  border-color: #D97706; /* amber-600 */
+  border-color: #628ECB; 
 }
 
 .attendance-card .card-icon {
-  background-color: rgba(217, 119, 6, 0.1);
+  background-color: rgba(80, 92, 199, 0.1);
 }
 
 .attendance-card .btn-primary {
-  background-color: #D97706; /* amber-600 */
+  background-color: #628ECB; 
 }
 
 .attendance-card .btn-primary:hover {
-  background-color: #B45309; /* amber-700 */
+  background-color: #395886; 
 }
 
 /* Mess Card Specific */
 .mess-card {
-  border-color: #059669; /* emerald-600 */
+  border-color: #6F4E37; 
 }
 
 .mess-card .card-icon {
-  background-color: rgba(5, 150, 105, 0.1);
+  background-color: #D2B48C;
 }
 
 .mess-card .btn-primary {
-  background-color: #059669; /* emerald-600 */
+  background-color: #6F4E37; 
 }
 
 .mess-card .btn-primary:hover {
-  background-color: #047857; /* emerald-700 */
+  background-color: #4B3832;
 }
 
 /* Responsive Adjustments */

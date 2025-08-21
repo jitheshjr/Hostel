@@ -10,10 +10,10 @@
 <div class="modern-dashboard">
   <!-- Dashboard Header -->
   <header class="dashboard-header">
+    <a href="{% url 'home' %}" class="back-button">
+      <i class="fas fa-chevron-left"></i> Home
+    </a>
     <div class="header-content">
-      <a href="{% url 'home' %}" class="back-button">
-        <i class="fas fa-chevron-left"></i> Home
-      </a>
       <div class="header-title">
         <div class="icon-wrapper">
           <img src="{% static 'images/attendance-icon.svg' %}" alt="Attendance" class="header-icon">
@@ -108,16 +108,16 @@
                 <div class="stat-label">Absent Today</div>
             </div>
 
-        {% if attendance_percentage %}
-        <div class="stat-card percentage-card">
-            <div class="stat-icon">
-            <i class="fas fa-chart-line"></i>
-            </div>
-            <div class="stat-info">
-            <div class="stat-value">{{ attendance_percentage }}%</div>
-            </div>
-            <div class="stat-label">Attendance Rate</div>
-        </div>
+        {% if attendance_percentage is not None %}
+          <div class="stat-card percentage-card">
+              <div class="stat-icon">
+                  <i class="fas fa-chart-line"></i>
+              </div>
+              <div class="stat-info">
+                  <div class="stat-value">{{ attendance_percentage }}%</div>
+              </div>
+              <div class="stat-label">Attendance Rate</div>
+          </div>
         {% endif %}
         </div>
     {% endif %}

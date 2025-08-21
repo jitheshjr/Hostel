@@ -1,53 +1,58 @@
 :root {
-  /* Green Color Palette */
-  --emerald: #2E7D32;        /* Primary dark green */
-  --forest: #1B5E20;         /* Secondary darker green */
-  --mint: #66BB6A;           /* Primary light green */
-  --sage: #81C784;           /* Lighter green */
-  --sea-green: #388E3C;      /* Medium green */
-  --lime: #AED581;           /* Bright accent green */
-  --honeydew: #E8F5E9;       /* Very light green */
-  --slate: #455A64;          /* Dark gray-blue */
-  --pebble: #90A4AE;         /* Medium gray */
-  --cloud: #CFD8DC;          /* Light gray */
+  --coffee-dark: #4B3832;      
+  --coffee: #6F4E37;           
+  --coffee-light: #A47148;     
   
-  /* Functional Colors */
-  --primary: var(--emerald);
-  --primary-light: var(--mint);
-  --secondary: var(--forest);
-  --success: var(--sea-green);
-  --warning: #F57F17;        /* Amber */
-  --danger: #C62828;         /* Red */
-  --dark: var(--slate);
-  --gray: var(--pebble);
-  --light: var(--honeydew);
-  --card-shadow: 0 4px 20px rgba(46, 125, 50, 0.15);
+  --beige: #f5f5dc;            
+  --beige-light: #F5EBDD;      
+  --beige-dark: #D2B48C;       
+  --mocha: #8D6E63;            
+  --cappuccino: #B08968;       
+  --espresso: #3E2723;         
+  --warning: #E07A5F;          
+  --danger: #8B0000;           
+  --card-shadow: 0 4px 20px rgba(111, 78, 55, 0.15); 
+}
+
+
+body {
+  background: linear-gradient(135deg, var(--beige) 50%, var(--coffee) 50%);
+}
+
+.footer {
+  background: linear-gradient(135deg, #0a0a0a 0%, #0f0f1f 100%);
+  color: #f0ebe3;
+  border-top: 1px solid #1a1a2e;
+  padding: 20px 0;
+  text-align: center;
+  font-size: 14px;
 }
 
 /* Base Styles */
 .messbill-dashboard {
   max-width: 90%;
   width: 70%;
-  margin: 2rem auto; 
+  margin: 2rem auto;
   padding: 2rem;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   color: var(--dark);
   background: white;
   position: relative;
-  border-radius: 12px; 
-  overflow: hidden; 
+  border-radius: 12px;
+  overflow: hidden;
   box-shadow: var(--card-shadow);
+  border: 1px solid #cfd8dc;
 }
 
 .messbill-dashboard::before,
 .messbill-dashboard::after {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   width: 100%;
   height: 20px;
-  background: var(--emerald);
-  box-shadow: 0 2px 8px rgba(46, 125, 50, 0.3);
+  background: var(--coffee);
+  box-shadow: 2px 0 10px rgba(210, 105, 30, 0.3);
   z-index: 1;
 }
 
@@ -72,17 +77,25 @@
 .back-button {
   display: inline-flex;
   align-items: center;
-  color: var(--mint);
+  color: var(--coffee);
   font-weight: 600;
-  margin: 1.5rem 0;
-  gap: 2px;
-  transition: var(--transition);
+  margin: 0.2rem 0;
+  gap: 8px;
+  transition: all 0.3s ease;
   text-decoration: none;
   font-size: 20px;
+  padding: 10px;
+  border-radius: 6px;
+  background: transparent;
+  border: 1px solid transparent;
 }
 
 .back-button:hover {
-  color: var(--secondary);
+  color: var(--danger);
+  background: rgba(var(--coffee), 0.05);
+  border-color: rgba(var(--cappuccino), 0.2);
+  transform: translateX(-4px);
+  gap: 12px;
 }
 
 .header-title {
@@ -90,13 +103,12 @@
   flex-direction: column;
   align-items: center;
   gap: 1rem;
-  margin-bottom: 0.5rem;
 }
 
 .icon-wrapper {
-  width: 150px;
-  height: 150px;
-  background: var(--lime);
+  width: 140px;
+  height: 140px;
+  background: var(--beige-dark);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -111,15 +123,15 @@
 .dashboard-header h1 {
   font-size: 2.0rem;
   text-align: center;
-  color: var(--emerald); 
+  color: var(--coffee);
   margin: 0 auto;
   font-weight: 900;
   position: relative;
   display: inline-block;
   width: 100%;
   text-transform: uppercase;
-  font-family: 'Segoe UI', system-ui, sans-serif;
-  background: linear-gradient(90deg, var(--emerald) 0%, var(--forest) 50%, var(--emerald) 100%);
+  font-family: "Segoe UI", system-ui, sans-serif;
+  background: linear-gradient(90deg, var(--beige) 0%, var(--cappuccino) 50%, var(--cappuccino) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -129,7 +141,6 @@
 }
 
 .header-description {
-  color: var(--gray);
   font-size: 1.1rem;
   margin: 0;
 }
@@ -147,18 +158,17 @@
 .title-decoration {
   width: 50px;
   height: 4px;
-  background: var(--primary);
+  background: var(--coffee);
   border-radius: 2px;
 }
 
 /* Quick Actions */
 .action-grid {
   display: grid;
-  justify-content: left;  
-  grid-template-columns: minmax(200px, 400px); 
+  justify-content: left;
+  grid-template-columns: minmax(200px, 400px);
   gap: 1.5rem;
 }
-
 
 .action-card {
   background: white;
@@ -172,12 +182,12 @@
   border-left: 4px solid;
   transition: var(--transition);
   box-shadow: var(--card-shadow);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
 }
 
 .action-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
 }
 
 .card-icon {
@@ -199,135 +209,120 @@
 .card-content p {
   margin: 0;
   font-size: 0.9rem;
-  color: var(--gray);
 }
 
 .allocate-action {
-  border-left-color: var(--primary-light);
+  border-left-color: var(--coffee);
 }
 
 .allocate-action .card-icon {
-  background: var(--secondary);
+  background: var(--cappuccino);
 }
-
-.view-action {
-  border-left-color: var(--primary);
-}
-
-.view-action .card-icon {
-  background: var(--primary);
-}
-
 
 /* Filter Form Styling */
-
 .filter-form {
-    margin-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .filter-controls {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    align-items: center;
-    justify-content: center; 
-    padding: 1rem 1.25rem;
-    background: color-mix(in oklab, var(--sage), transparent 30%);
-    border-radius: 5px;
-    width: fit-content;      
-    margin: 0 auto;         
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 1.25rem;
+  background: color-mix(in oklab, var(--cappuccino), transparent 30%);
+  border-radius: 5px;
+  width: fit-content;
+  margin: 0 auto;
 }
 
-
 .filter-group {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .filter-group label {
-    font-weight: 600;
-    color: var(--forest);
+  font-weight: 600;
+  color: black;
 }
 
 .filter-group select {
-    color: var(--emerald);
-    background-color: color-mix(in oklab, var(--cloud), transparent 90%);;
-    border: 1px solid var(--mint);
-    padding: 8px 32px 8px 12px; 
-    border-radius: 6px;
+  color: var(--coffee-dark);
+  border: 1px solid var(--coffee-light);
+  padding: 8px 32px 8px 12px;
+  border-radius: 6px;
 }
 
 .filter-group select:hover {
-    border-color: var(--lime);
-    background-color: var(--mint);
+  border-color: var(--cappuccino);
+  background-color: var(--coffee-light);
 }
 
 .filter-group select:focus {
-    outline: none;
-    border-color: #7E4DD4;
-    box-shadow: 0 0 0 2px rgba(126, 77, 212, 0.2);
+  outline: none;
+  border-color: var(--coffee);
+  box-shadow: 0 0 0 2px rgba(210, 105, 30, 0.2);
 }
 
 .filter-actions {
-    display: flex;
-    gap: 0.5rem;
+  display: flex;
+  gap: 0.5rem;
 }
 
 .btn {
-    padding: 0.6rem 1rem;
-    border-radius: 0.65rem;
-    font-weight: 600;
-    cursor: pointer;
-    border: none;
-    font-size: 0.9rem;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 100px;
+  padding: 0.6rem 1rem;
+  border-radius: 0.65rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  font-size: 0.9rem;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 100px;
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, var(--emerald) 0%, var(--mint) 100%);
-    box-shadow: 0 4px 8px rgba(46, 125, 50, 0.3);
-    color: white;
-    border: none;
-    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease;
+  background: linear-gradient(135deg, var(--coffee) 0%, var(--coffee-light) 100%);
+  box-shadow: 0 4px 8px rgba(210, 105, 30, 0.3);
+  color: white;
+  border: none;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
 }
 
 .btn-primary:hover {
-  background: linear-gradient(135deg, var(--forest) 0%, var(--sea-green) 100%);
-  box-shadow: 0 6px 12px rgba(46, 125, 50, 0.4);
+  background: linear-gradient(135deg, var(--coffee-dark) 0%, var(--cappuccino) 100%);
+  box-shadow: 0 6px 12px rgba(210, 105, 30, 0.4);
   transform: translateY(-2px);
-
 }
 
 .btn-primary:active {
-  background: linear-gradient(135deg, #1B5E20 0%, #2E7D32 100%);
+  background: linear-gradient(135deg, var(--cappuccino) 0%, var(--coffee) 100%);
   transform: translateY(0);
 }
 
 .btn-secondary {
-    color: var(--emerald);
-    border: 1px solid var(--sage);
-    box-shadow: 0 2px 4px rgba(129, 199, 132, 0.2);
-    transition: all 0.3s ease;
+  color: var(--coffee);
+  box-shadow: 0 2px 4px rgba(244, 164, 96, 0.2);
+  transition: all 0.3s ease;
 }
 
 .btn-secondary:hover {
-  background: linear-gradient(135deg, var(--honeydew) 0%, white 100%);
-  box-shadow: 0 4px 8px rgba(129, 199, 132, 0.3);
+  background: linear-gradient(135deg, var(--cappuccino) 0%, var(--coffee) 100%);
+  box-shadow: 0 4px 8px rgba(244, 164, 96, 0.3);
 }
 
 .btn-secondary:active {
-    background: linear-gradient(135deg, #1B5E20 0%, #388E3C 100%);
+  background: linear-gradient(135deg, var(--cappuccino) 0%, var(--coffee-light) 100%);
 }
 
 /* Summary Table */
 .summary-table-container {
-  background-color: var(--light);
+  background-color: var(--beige-light);
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
@@ -347,7 +342,7 @@
 }
 
 .summary-table th {
-  background: color-mix(in oklab, var(--mint), transparent 85%);
+  background: color-mix(in oklab, var(--coffee), transparent 60%);
   font-weight: 600;
   color: #2c3e50;
   font-size: 0.8rem;
@@ -356,24 +351,24 @@
 }
 
 .summary-table tr:nth-child(even) {
-  background: rgba(0,0,0,0.02);
+  background: rgba(0, 0, 0, 0.02);
 }
 
 .total-amount {
   font-weight: 600;
-  color: var(--primary);
+  color: var(--espresso);
 }
 
 .btn-view {
   padding: 0.5rem;
-  background: var(--primary-light);
+  background: var(--cappuccino);
   color: var(--dark);
   font-size: 0.9rem;
   border-radius: 6px;
 }
 
 .btn-view:hover {
-    opacity: 0.5;
+  opacity: 0.5;
 }
 
 .empty-message {
@@ -386,52 +381,51 @@
   margin-right: 0.5rem;
 }
 
-.delete-link{
-    font-size: 1.5rem;
-    color: red;
+.delete-link {
+  font-size: 1.5rem;
+  color: red;
 }
 
-.delete-link:hover{
- opacity: 0.5;
+.delete-link:hover {
+  opacity: 0.5;
 }
 
 .pagination {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1rem 1.25rem;
-    border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  border-top: 1px solid var(--coffee-dark);
 }
 
 .pager {
-    display: flex;
-    gap: 0.4rem;
-    align-items: center;
-    flex-wrap: wrap;
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .page-btn {
-    min-width: 2.25rem;
-    height: 2.25rem;
-    padding: 0 0.6rem;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid var(--border);
-    background: var(--surface);
-    border-radius: 0.5rem;
-    cursor: pointer;
-    text-decoration: none;
-    color: inherit;
+  min-width: 2.25rem;
+  height: 2.25rem;
+  padding: 0 0.6rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--coffee-dark);
+  background: var(--beige-light);
+  border-radius: 0.5rem;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
 }
 
 .page-btn[disabled] {
-    opacity: 0.5;
-    cursor: not-allowed;
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .page-btn.current {
-    border-color: color-mix(in oklab, var(--emerald), var(--honeydew) 40%);
-  background: color-mix(in oklab, var(--emerald), transparent 80%);
+  border-color: color-mix(in oklab, var(--coffee), var(--cappuccino) 40%);
+  background: color-mix(in oklab, var(--coffee-dark), transparent 50%);
 }
-

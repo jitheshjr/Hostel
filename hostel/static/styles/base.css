@@ -10,8 +10,7 @@ body {
 
 /* Navbar. */
 .navbar {
-    background-color: rgba(65, 131, 215, 0.95);
-    color: white;
+    color: black;
     padding: 10px 20px;
     display: flex;
     align-items: center;
@@ -36,7 +35,7 @@ body {
     font-size: 22px;
     background: none;
     border: none;
-    color: white;
+    color: black;
     cursor: pointer;
 }
 

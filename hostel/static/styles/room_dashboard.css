@@ -52,8 +52,8 @@ body{
   left: 0;
   width: 100%;
   height: 20px;
-  background: var(--primary);
-  box-shadow: 0 2px 8px rgba(30, 64, 175, 0.3);
+  background: var(--denim);
+  box-shadow: 2px 0 10px rgba(33, 100, 201, 0.3);
   z-index: 1;
 }
 
@@ -79,7 +79,7 @@ body{
 .back-button {
   display: inline-flex;
   align-items: center;
-  color: var(--blue);
+  color: var(--denim);
   font-weight: 600;
   margin: 0.2rem 0;
   gap: 8px;
@@ -93,7 +93,7 @@ body{
 }
 
 .back-button:hover {
-  color: var(--secondary);
+  color: var(--blue);
   background: rgba(var(--secondary-rgb), 0.05);
   border-color: rgba(var(--secondary-rgb), 0.2);
   transform: translateX(-4px);
@@ -133,7 +133,7 @@ body{
   width: 100%;
   text-transform: uppercase;
   font-family: 'Segoe UI', system-ui, sans-serif;
-  background: linear-gradient(90deg, #2a0845 0%, #4b6cb7 50%, #2a0845 100%);
+  background: linear-gradient(90deg, var(--denim) 0%, #4b6cb7 50%, var(--denim) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -161,7 +161,7 @@ body{
 .title-decoration {
   width: 50px;
   height: 4px;
-  background: var(--primary);
+  background: var(--denim);
   border-radius: 2px;
 }
 
@@ -183,7 +183,6 @@ body{
   color: inherit;
   border-left: 4px solid;
   transition: var(--transition);
-  box-shadow: var(--card-shadow);
   box-shadow: 0 10px 25px rgba(0,0,0,0.12);
 }
 
@@ -215,19 +214,19 @@ body{
 }
 
 .allocate-action {
-  border-left-color: var(--secondary);
+  border-left-color: var(--primary-light);
 }
 
 .allocate-action .card-icon {
-  background: var(--secondary);
+  background: var(--primary-light);
 }
 
 .view-action {
-  border-left-color: var(--secondary);
+  border-left-color: var(--primary-light);
 }
 
 .view-action .card-icon {
-  background: var(--secondary);
+  background: var(--primary-light);
 }
 
 /* Availability Cards */
@@ -239,7 +238,7 @@ body{
 }
 
 .availability-card {
-  background: linear-gradient(135deg, #93C5FD 0%, #BFDBFE 100%);
+  background: #cbad8d;
   border-radius: 12px;
   padding: 1.5rem;
   box-shadow: 0 10px 25px rgba(0,0,0,0.12);
@@ -251,7 +250,7 @@ body{
 
 .availability-icon {
   font-size: 2.5rem;
-  color: navy;
+  color: black;
 }
 
 .availability-info {
@@ -271,16 +270,16 @@ body{
 /* View More Link */
 .view-more-link {
   font-size: 1rem;
-  color: var(--secondary);
+  color: var(--dark);
   text-decoration: none;
   transition: var(--transition);
   padding: 0.5rem 1rem;
-  border: 1px solid var(--secondary);
+  border: 1px solid var(--dark);
   border-radius: 4px;
 }
 
 .view-more-link:hover {
-  color: var(--primary);
-  border-color: var(--primary);
-  background-color: rgba(0, 0, 0, 0.03); 
+  color: #fff;
+  background-color: var(--dark);
+  border-color: var(--cream);
 }
