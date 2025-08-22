@@ -14,38 +14,17 @@
 
     <!-- Navbar -->
     <header class="navbar">
-        <button id="sidebarToggle" class="hamburger">&#9776;</button>
-        <img src="{% static 'images/logo.png' %}" alt="Logo" class="logo">
-        <span class="institution-name">K. V. Kunhambu Memorial Women's Hostel</span>
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'streak' %}">Streak</a></li>
+        <a href="{% url 'inactive_student' %}">Trash</a>
+        <form action="{% url 'logout' %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" class="sidebar-link" style="background:none; border:none; cursor:pointer; display:flex; align-items:center; color:inherit; font:inherit;">
+                <i class="fas fa-sign-out-alt" style="margin-right:8px; font-size:18px;"></i>
+                Logout
+            </button>
+        </form>
     </header>
-
-    <!-- Sidebar -->
-   <!-- Sidebar -->
-    <nav id="sidebar" class="sidebar">
-        <ul>
-            <li><a href="{% url 'home' %}">Home</a></li>
-                <li><a href="{% url 'view_student' %}">Students</a></li>
-                <li><a href="{% url 'room_list' %}">Room</a></li>
-                <li><a href="#">Messbill</a></li>
-                <li><a href="{% url 'view_attendance' %}">Summary</a></li>
-                <li><a href="{% url 'streak' %}">Streak</a></li>
-                <li><a href="{% url 'inactive_student' %}">Trash</a></li>
-                
-                <li>
-                    <form action="{% url 'logout' %}" method="post" style="display:inline;">
-                        {% csrf_token %}
-                        <button type="submit" class="sidebar-link" style="background:none; border:none; cursor:pointer; display:flex; align-items:center; color:inherit; font:inherit;">
-                            <i class="fas fa-sign-out-alt" style="margin-right:8px; font-size:18px;"></i>
-                            Logout
-                        </button>
-                    </form>
-                    
-                </li>
-
-        </ul>
-    </nav>
-
-
     <!-- Main Content -->
     <main class="content">
         {% block content %}{% endblock %}
@@ -55,14 +34,5 @@
     <footer class="footer">
         &copy; 2024 HMS. All rights reserved.
     </footer>
-
-    <script>
-        const sidebarToggle = document.getElementById('sidebarToggle');
-        const sidebar = document.getElementById('sidebar');
-
-        sidebarToggle.addEventListener('click', () => {
-            sidebar.classList.toggle('active');
-        });
-    </script>
 </body>
 </html>
