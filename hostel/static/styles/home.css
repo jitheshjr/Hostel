@@ -1,24 +1,22 @@
-/* Main Container */
 .home {
   min-height: 100vh;
   padding: 2rem 1rem;
   margin: 0 auto;
-  width: 70%;
+  width: 80%;
 }
 
 /* Hero Section */
 .hero-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 3rem;
   align-items: center;
-  margin-bottom: 4rem;
-  padding: 2rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 0 1.5rem 1rem;
+  background: linear-gradient(135deg, #4e73df 0%, #224abe 100%); /* NEW COLOR */
   border-radius: 16px;
   color: white;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
 }
+
 
 /* Brand Section */
 .brand-section {
@@ -32,61 +30,78 @@
 }
 
 .brand-icon {
-  width: 100px;
-  height: 100px;
-  margin-bottom: 1rem;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.1);
-  padding: 1rem;
+  width: 230px;  
+  height: 230px; 
+  padding: 1.5rem;
+  object-fit: contain; 
 }
 
 .brand-title {
-  font-size: 3rem;
-  font-weight: 700;
-  letter-spacing: 0.5rem;
-  margin-bottom: 0.5rem;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  font-size: 3.5rem; 
+  font-weight: 800;
+  letter-spacing: 0.7rem;
+  margin-bottom: 0.8rem;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+  color: white;
 }
 
 .brand-tagline {
-  font-size: 1.1rem;
-  opacity: 0.9;
-  font-weight: 300;
-  letter-spacing: 0.1rem;
+  font-size: 1.3rem;
+  opacity: 0.85;
+  font-weight: 400;
+  letter-spacing: 0.15rem;
+  color: white;
 }
 
 /* Content Section */
 .content-section {
   text-align: center;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.hero-subtitle {
-  font-size: 1.3rem;
+/* Hostel Info */
+.hostel-info {
   margin-bottom: 2rem;
-  opacity: 0.95;
-  line-height: 1.5;
 }
 
-/* Quick Stats */
+.hostel-info h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.hostel-info p {
+  font-size: 1.1rem;
+  color: #666;
+  font-weight: 400;
+  opacity: 0.9;
+}
+
+/* Quick Stats Grid */
 .quick-stats {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
 }
 
+/* Stat Cards */
 .stat-card {
-  background: rgba(255, 255, 255, 0.15);
   padding: 1.5rem;
   border-radius: 12px;
   text-align: center;
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   transition: transform 0.3s ease, background 0.3s ease;
 }
 
 .stat-card:hover {
   transform: translateY(-5px);
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.25);
 }
 
 .stat-number {
@@ -94,6 +109,7 @@
   font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
+  color: #fff;
 }
 
 .stat-label {
@@ -101,11 +117,12 @@
   opacity: 0.9;
   text-transform: uppercase;
   letter-spacing: 0.05rem;
+  color: #f0f0f0;
 }
 
 /* Modules Section */
 .modules {
-  margin-top: 4rem;
+  margin-top: 1rem;
 }
 
 .section-header {
@@ -116,7 +133,6 @@
 .section-header h2 {
   font-size: 2.5rem;
   color: #2d3748;
-  margin-bottom: 1rem;
   font-weight: 600;
 }
 
@@ -223,26 +239,46 @@
   box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
 }
 
-/* Specific Card Colors */
+/* Students Module */
+.student-card::before {
+  background: linear-gradient(90deg, #3b82f6, #1e40af); /* Blue */
+}
+
+/* Rooms Module */
+.room-card::before {
+  background: linear-gradient(90deg, #f59e0b, #b45309); /* Amber */
+}
+
+/* Attendance Module */
+.attendance-card::before {
+  background: linear-gradient(90deg, #10b981, #065f46); /* Green */
+}
+
+/* Mess Module */
+.mess-card::before {
+  background: linear-gradient(90deg, #ec4899, #9d174d); /* Pink */
+}
+
 .student-card:hover .card-icon {
-  background: #e6fffa;
-  color: #319795;
+  background: #dbeafe;
+  color: #1e40af;
 }
 
 .room-card:hover .card-icon {
-  background: #fef5e7;
-  color: #d69e2e;
+  background: #fef3c7;
+  color: #b45309;
 }
 
 .attendance-card:hover .card-icon {
-  background: #f0fff4;
-  color: #38a169;
+  background: #d1fae5;
+  color: #065f46;
 }
 
 .mess-card:hover .card-icon {
-  background: #fdf2f8;
-  color: #d53f8c;
+  background: #fce7f3;
+  color: #9d174d;
 }
+
 
 /* Responsive Design */
 @media (max-width: 768px) {

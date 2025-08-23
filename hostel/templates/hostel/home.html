@@ -12,28 +12,29 @@
   <div class="hero-container">
     <div class="brand-section">
       <div class="brand">
-        <img src="{% static 'logo.png' %}" alt="" class="brand-icon" aria-hidden="true">
-        <h1 class="brand-title">H O S T</h1>
+        <img src="{% static 'images/logo.png' %}" alt="" class="brand-icon" aria-hidden="true">
+        <h1 class="brand-title">H M S</h1>
         <p class="brand-tagline">Track. Manage. Simplify.</p>
       </div>
     </div>
     
     <div class="content-section">
-      <p class="hero-subtitle">
-        Streamlined management for students, rooms, attendance, and mess bills
-      </p>
+      <div class="hostel-info">
+        <h1 class="hostel-name">K. V. Kunhambu Memorial Womens Hostel</h1>
+        <p class="college-name">Nehru Arts and Science College, Kanhangad</p>
+      </div>
       <div class="quick-stats">
         <div class="stat-card">
-          <span class="stat-number">80</span>
+          <span class="stat-number">{{students}}</span>
           <span class="stat-label">Students</span>
         </div>
         <div class="stat-card">
-          <span class="stat-number">20</span>
+          <span class="stat-number">{{rooms}}</span>
           <span class="stat-label">Rooms</span>
         </div>
         <div class="stat-card">
-          <span class="stat-number">65%</span>
-          <span class="stat-label">Today's Attendance</span>
+          <span class="stat-number">{{ date|date:"d F Y" }}</span>
+          <span class="stat-label">Today</span>
         </div>
       </div>
     </div>

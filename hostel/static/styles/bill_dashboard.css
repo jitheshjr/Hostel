@@ -19,15 +19,6 @@ body {
   background: linear-gradient(135deg, var(--beige) 50%, var(--coffee) 50%);
 }
 
-.footer {
-  background: linear-gradient(135deg, #0a0a0a 0%, #0f0f1f 100%);
-  color: #f0ebe3;
-  border-top: 1px solid #1a1a2e;
-  padding: 20px 0;
-  text-align: center;
-  font-size: 14px;
-}
-
 /* Base Styles */
 .messbill-dashboard {
   max-width: 90%;
@@ -166,7 +157,7 @@ body {
 .action-grid {
   display: grid;
   justify-content: left;
-  grid-template-columns: minmax(200px, 400px);
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 1.5rem;
 }
 
@@ -176,7 +167,7 @@ body {
   padding: 1.5rem;
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 1rem;  
   text-decoration: none;
   color: inherit;
   border-left: 4px solid;

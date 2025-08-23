@@ -15,7 +15,6 @@
     <!-- Navbar -->
     <header class="navbar">
         <a href="{% url 'home' %}">Home</a>
-        <a href="{% url 'streak' %}">Streak</a></li>
         <a href="{% url 'inactive_student' %}">Trash</a>
         <form action="{% url 'logout' %}" method="post" style="display:inline;">
             {% csrf_token %}

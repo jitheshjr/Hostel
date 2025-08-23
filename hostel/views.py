@@ -20,7 +20,15 @@ def access_denied(request):
 
 @login_required()
 def home(request):
-    return render(request,'hostel/home.html')
+    total_student = Student.objects.count()
+    total_room = Room.objects.count()
+    date_today = timezone.now().date()
+    context = {
+        'students':total_student,
+        'rooms':total_room,
+        'date':date_today
+    }
+    return render(request,'hostel/home.html',context)
 
 
 # Student manipulating functions
@@ -451,21 +459,9 @@ def absent_records(request, student_id):
 
 @group_required('warden', login_url='access_denied')
 def bill_dashboard(request):
-    try:
-        bill_filter = monthbillFilter(request.GET, queryset=MessBill.objects.all().order_by('-id'))
-        bill_list = bill_filter.qs
+        last_bill = MessBill.objects.last()
+        return render(request, "hostel/bill_dashboard.html", {'bill':last_bill})
 
-        paginator = Paginator(bill_list, 10)
-        page_number = request.GET.get('page')
-        page_obj = paginator.get_page(page_number)
-
-        query_params = request.GET.copy()
-        if 'page' in query_params:
-            query_params.pop('page')
-
-        return render(request, "hostel/bill_dashboard.html", {'filter': bill_filter, 'page_obj': page_obj, 'query_params': query_params})
-    except Exception:
-        return render(request, 'hostel/error.html')
 
 #function to find continuous absences
 def find_continuous_absences(start_date, end_date):
@@ -635,6 +631,24 @@ def delete_bill(request, pk):
         return redirect('total_bill')
     else:
         messages.error(request,f"Something went wrong.")
+
+@group_required('warden', login_url='access_denied')
+def total_bill(request):
+    try:
+        bill_filter = monthbillFilter(request.GET, queryset=MessBill.objects.all().order_by('-id'))
+        bill_list = bill_filter.qs
+
+        paginator = Paginator(bill_list, 10)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+
+        query_params = request.GET.copy()
+        if 'page' in query_params:
+            query_params.pop('page')
+
+        return render(request, "hostel/totalbill.html", {'filter': bill_filter, 'page_obj': page_obj, 'query_params': query_params})
+    except Exception:
+        return render(request, 'hostel/error.html')
 
 @group_required('warden', login_url='access_denied')
 def view_monthly_bill(request,month,year):
