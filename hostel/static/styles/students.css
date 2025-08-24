@@ -1,34 +1,36 @@
 :root {
-    --bg: #ffffff;
-    --text: #111111;
-    --muted: #6b7280;
-    --surface: #f6f7f9;
-    --border: #e5e7eb;
-    --primary: #2563eb;
-    --primary-dark: #1e40af;
-    --primary-light: #3b82f6;
-    --ring: #5f83c5;
-    --accent: #18bff1;
-    --shadow: 0 1px 2px rgba(16, 24, 40, .05), 0 10px 20px rgba(16, 24, 40, .08);
-    --bad: #ef4444;
-    --warn: #f59e0b;
-    --good: #10b981;
-    --error: #ef4444;
-    --blue-lightest: #F0F3FA;
-    --blue-dark: #395886;     
+  --danger: #dd1818;
+  --success: #10b981;
+  --border: #d8dadd;
+  --text: #1b263b;
+  --gray: #6b7280;
+  --transition: all 0.3s ease;
+  --wine:#800000;
+  --rich-wine: #722F37;
+  --wine-lighter: #d88998;
+  --cream: #F5F5DC;
+  --wine-rgb: 114, 47, 55;
+  --muted: #6b7280;
+  --surface: #f6f7f9;
+  --text: #111111;
 }
 
 body{
-  background: linear-gradient(135deg, var(--blue-lightest) 50%, var(--blue-dark) 50%);
+  background: linear-gradient(135deg, var(--cream) 50%, var(--wine) 50%);
 }
 
-.footer{
-  background: linear-gradient(135deg, #0a0a0a 0%, #0f0f1f 100%);
-  color: #F0EBE3; 
-  border-top: 1px solid #1a1a2e; 
-  padding: 20px 0;
-  text-align: center;
-  font-size: 14px;
+.navbar{
+    background: none;
+
+}
+
+.navbar button{
+  background: var(--cream);
+  color: var(--wine);
+}
+
+.navbar button:hover{
+  background: var(--danger);
 }
 
 .main {
@@ -44,13 +46,16 @@ body{
 .card {
   background: white;
   border-radius: 12px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   overflow: hidden;
+  box-shadow: 
+        0 4px 8px rgba(0, 0, 0, 0.1),   
+        0 8px 20px rgba(0, 0, 0, 0.08),
+        0 0 0 1px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* Enhanced Card Header */
 .card-header {
-  background: linear-gradient(135deg, #60a5fa 0%, #1e3a8a 100%);
+  background: linear-gradient(135deg, var(--rich-wine) 0%, var(--wine-lighter) 100%);
   color: white;
   padding: 1rem 2.25rem;
   border-radius: 12px 12px 0 0;
@@ -148,6 +153,7 @@ body{
   letter-spacing: -0.025em;
   position: relative;
   display: inline-block;
+  color: var(--rich-wine);
 }
 
 .student-header h1::after {
@@ -155,14 +161,14 @@ body{
   position: absolute;
   bottom: -0.25rem;
   left: 0;
-  width: 3rem;
+  width: 4rem;
   height: 3px;
-  background: linear-gradient(90deg, #3b82f6 0%, #1d4ed8 100%);
+  background: var(--wine-lighter);
   border-radius: 3px;
 }
 
 .student-count {
-  color: #4b5563;
+  color: var(--text);
   font-size: 0.9375rem;
   margin: 0;
   display: flex;
@@ -190,12 +196,12 @@ body{
 }
 
 .search-bar input[type="text"]:focus {
-    border-color: #4f46e5; /* Indigo */
-    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+    border-color: var(--rich-wine); 
+    box-shadow: 0 0 0 3px rgba(143, 4, 4, 0.2);
 }
 
 .search-bar button {
-    background: #4f46e5; /* Indigo */
+    background: var(--wine-lighter); 
     color: #fff;
     border: none;
     border-radius: 8px;
@@ -207,7 +213,7 @@ body{
 }
 
 .search-bar button:hover {
-    background: #4338ca;
+    background: var(--wine);
 }
 
 .search-bar button:active {
@@ -226,8 +232,8 @@ body{
     align-items: center;
     justify-content: space-between;
     padding: 1rem 1.25rem;
-    background: color-mix(in oklab, var(--primary-light), transparent 70%);
-    border-top: 5px solid #1d4ed8;
+    background: color-mix(in oklab, var(--wine), transparent 70%);
+    border-top: 5px solid var(--wine);
 }
 
 .filter-group {
@@ -249,17 +255,6 @@ body{
     border-radius: 6px;
     font-size: 0.9rem;
     transition: all 0.2s ease;
-}
-
-.filter-group select:hover {
-    border-color: var(--primary);
-    background-color: #ecfdf5;
-}
-
-.filter-group select:focus {
-    outline: none;
-    border-color: var(--primary);
-    box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
 }
 
 .filter-actions {
@@ -284,32 +279,27 @@ body{
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, var(--primary), var(--primary-light));
-    color: white;
-    box-shadow: 0 4px 8px rgba(6, 89, 184, 0.3);
+  background: var(--wine);
+  color: white;
+    box-shadow: 0 4px 8px rgba(104, 14, 14, 0.3);
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
 }
 
 .btn-primary:hover {
-    background: linear-gradient(135deg, var(--primary-dark), var(--primary));
-    box-shadow: 0 6px 12px rgba(9, 94, 204, 0.4);
+    background: var(--rich-wine);
+    box-shadow: 0 6px 12px rgba(204, 9, 9, 0.4);
     transform: translateY(-2px);
-}
-
-.btn-primary:active {
-    background: linear-gradient(135deg, var(--accent), var(--primary-dark));
-    transform: translateY(0);
 }
 
 .btn-secondary {
     background: white;
     color: black;
-    border: 1px solid var(--primary-light);
-    box-shadow: 0 2px 4px rgba(16, 185, 129, 0.2);
+    border: 1px solid var(--wine);
+    box-shadow: 0 2px 4px rgba(185, 16, 16, 0.2);
 }
 
 .btn-secondary:hover {
-  background-color: #18bff1;
+  background-color: var(--wine-lighter);
 }
 
 /* Students grid */
@@ -318,8 +308,8 @@ body{
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 1.5rem;
   padding: 2rem;
-  background: color-mix(in oklab, var(--primary-light), transparent 70%);
-  border-top: 5px solid #1d4ed8;
+  background: color-mix(in oklab, var(--wine), transparent 70%);
+  border-top: 5px solid var(--wine);
 }
 
 .student-card {
@@ -343,7 +333,7 @@ body{
     0 4px 8px rgba(0, 0, 0, 0.07),
     0 8px 16px rgba(0, 0, 0, 0.10);
   transform: translateY(-2px);
-  border-color: #3b82f6;
+  border-color: var(--wine);
 }
 
 .student-photo-container {
@@ -361,7 +351,7 @@ body{
 }
 
 .student-card:hover .student-photo {
-  border-color: #3b82f6;
+  border-color: var(--wine);
 }
 
 .student-photo-container span {
@@ -369,8 +359,8 @@ body{
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  background-color: #bdcff0;
-  border: 2px solid #9eb9ee;
+  background-color: var(--wine-lighter);
+  border: 2px solid var(--wine);
   align-items: center;
   justify-content: center;
   position: relative;
@@ -379,24 +369,24 @@ body{
 
 .student-name {
   font-weight: 600;
-  color: #111827;  /* Darker gray for better contrast */
-  font-size: 1rem;  /* Slightly larger */
+  color: var(--text);  
+  font-size: 1rem;  
   margin-top: 0.75rem;
   line-height: 1.4;
   letter-spacing: 0.025em;
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);  /* Subtle text shadow */
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.05); 
   transition: color 0.2s ease;
 }
 
 .student-card:hover .student-name {
-  color: #1d4ed8;  /* Brand color on hover */
+  color: var(--wine);
 }
 
 .no-students {
   grid-column: 1 / -1;
   text-align: center;
   padding: 3rem;
-  color: #6b7280;
+  color: var(--wine-lighter);
   font-size: 1.125rem;
 }
 /* Enhanced Pagination */
@@ -421,7 +411,7 @@ body{
 }
 
 .muted-small {
-  color: black;
+  color: var(--text);
   font-size: 0.875rem;
   font-weight: 500;
   letter-spacing: 0.025em;
@@ -441,7 +431,7 @@ body{
   padding: 0 0.5rem;
   border: 1px solid #b3c2e2;
   background: #ffffff;
-  color: #4b5563;
+  color: var(--muted);
   text-decoration: none;
   border-radius: 6px;
   font-size: 0.875rem;
@@ -463,8 +453,8 @@ body{
 }
 
 .page-btn.current {
-  background: #3b82f6;
-  border-color: #3b82f6;
+  background: var(--wine-lighter);
+  border-color: var(--wine);
   color: white;
   box-shadow: 0 1px 3px rgba(59, 130, 246, 0.3);
   font-weight: 600;
@@ -486,4 +476,86 @@ body{
 .page-btn.prev-next svg {
   width: 1rem;
   height: 1rem;
+}
+
+@media (max-width: 400px) {
+  .navbar{
+    background: var(--cream);
+  }
+  .navbar button{
+    background: var(--wine);
+    color: var(--cream);
+  }
+  body{
+    background: var(--cream);
+  }
+  .card-header{
+    padding: 1rem;
+  }
+  .header-links .icon-close{
+    font-size: 1rem;
+  }
+  .search-bar{
+    width: 90%;
+  }
+  .card-title{
+    font-size: 1rem;
+  }
+  .filter-form{
+    display: none;
+  }
+  .pagination{
+    gap: 0.25rem;
+    overflow-x: auto;
+    white-space: nowrap;
+    justify-content: flex-start;
+    padding: 0.5rem 0;
+  }
+  .muted-small{
+    display: none;
+  }
+}
+
+
+@media (max-width: 1024px){
+  .student-form-container {
+    width: 90%;
+  }
+  .navbar{
+    background: var(--cream);
+  }
+  .navbar button{
+    background: var(--wine);
+    color: var(--cream);
+  }
+  body{
+    background: var(--cream);
+  }
+    .card-header{
+    padding: 1rem;
+  }
+  .header-links .icon-close{
+    font-size: 1rem;
+  }
+  .search-bar{
+    width: 90%;
+  }
+  .card-title{
+    font-size: 1rem;
+  }
+  .filter-form{
+    display: none;
+  }
+  .pagination{
+    gap: 0.25rem;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 0.5rem 0;
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1366px){
+  .student-form-container {
+    width: 90%;
+  }
 }

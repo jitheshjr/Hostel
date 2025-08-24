@@ -449,7 +449,7 @@ def absent_records(request, student_id):
     student = get_object_or_404(Student,id=student_id)
     absences = Attendance.objects.filter(name=student).select_related('date').order_by('date__date')
 
-    paginator = Paginator(absences,10)
+    paginator = Paginator(absences,5)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 

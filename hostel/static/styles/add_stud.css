@@ -1,31 +1,35 @@
 :root {
-    --bg: #ffffff;
-    --text: #111111;
-    --muted: #6b7280;
-    --surface: #f6f7f9;
-    --border: #d8dadd;
-    --shadow: 0 1px 2px rgba(16,24,40,.05), 0 8px 20px rgba(16,24,40,.08);
-    --error: #ef4444;
-    --success: #10b981;
-    --blue-lighter: #D5DEEF;   
-    --blue-light: #B1C9EF;     
-    --blue-mid: #8AAEE0;       
-    --blue: #628ECB;    
-    --blue-dark: #395886;     
-    --blue-lightest: #F0F3FA; 
+  --danger: #dd1818;
+  --success: #10b981;
+  --border: #d8dadd;
+  --text: #1b263b;
+  --gray: #6b7280;
+  --transition: all 0.3s ease;
+  --wine:#800000;
+  --rich-wine: #722F37;
+  --wine-lighter: #d88998;
+  --cream: #F5F5DC;
+  --wine-rgb: 114, 47, 55;
+  --muted: #6b7280;
+  --surface: #f6f7f9;
 }
 
 body{
-  background: linear-gradient(135deg, var(--blue-lightest) 50%, var(--blue-dark) 50%);
+  background: linear-gradient(135deg, var(--cream) 50%, var(--wine) 50%);
 }
 
-.footer{
-  background: linear-gradient(135deg, #0a0a0a 0%, #0f0f1f 100%);
-  color: #F0EBE3; 
-  border-top: 1px solid #1a1a2e; 
-  padding: 20px 0;
-  text-align: center;
-  font-size: 14px;
+.navbar{
+    background: none;
+
+}
+
+.navbar button{
+  background: var(--cream);
+  color: var(--wine);
+}
+
+.navbar button:hover{
+  background: var(--danger);
 }
 
 /* Base Styles */
@@ -36,13 +40,13 @@ body{
 }
 
 .form-card {
-    background: var(--bg); 
-    border: 1px solid #e5e7eb; 
+    background: white; 
     border-radius: 1.25rem; 
     box-shadow: 
-        0 4px 6px rgba(0, 0, 0, 0.1),
-        0 10px 15px rgba(0, 0, 0, 0.1),
-        0 20px 40px rgba(0, 0, 0, 0.15);
+        0 4px 8px rgba(0, 0, 0, 0.1),   
+        0 8px 20px rgba(0, 0, 0, 0.08),
+        0 0 0 1px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
     position: relative;
     padding: 2rem 2.5rem;
     backdrop-filter: blur(8px); 
@@ -59,8 +63,8 @@ body{
     left: 0;
     width: 25px;
     height: 100%;
-    background: var(--blue-dark);
-    box-shadow: 2px 0 10px rgba(32, 63, 240, 0.3);
+    background: var(--wine);
+    box-shadow: 0 2px 8px rgba(114, 47, 55, 0.4); 
 }
 
 .form-card::after {
@@ -70,7 +74,7 @@ body{
     left: 25px;
     width: 2px;
     height: 100%;
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(114, 47, 55, 0.3);
     z-index: 2;
 }
 
@@ -89,13 +93,13 @@ body{
 }
 
 .close-btn:hover {
-    color: var(--error);
+    color: var(--danger);
 }
 
 .form-title {
     font-size: 2.5rem;
     text-align: center;
-    color: var(--blue); 
+    color: var(--wine); 
     margin: 1.5rem 0 2rem;
     font-weight: 900;
     position: relative;
@@ -103,7 +107,7 @@ body{
     width: 100%;
     text-transform: uppercase;
     font-family: 'Segoe UI', system-ui, sans-serif;
-    background: linear-gradient(90deg, #628ECB 0%, #4b6cb7 50%, #628ECB 100%);
+    background: var(--wine-lighter);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -123,7 +127,7 @@ body{
 .form-section legend {
     padding: 0 0.5rem;
     font-weight: 600;
-    color: #2555da;
+    color: var(--wine-lighter);
 }
 
 .form-grid {
@@ -145,7 +149,7 @@ body{
 }
 
 .required {
-    color: var(--primary);
+    color: var(--text);
     margin-left: 0.25rem;
 }
 
@@ -201,21 +205,21 @@ input:focus, select:focus, textarea:focus {
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, var(--blue-dark),var(--blue)); 
-    box-shadow: var(--shadow);
+    background: linear-gradient(135deg, var(--wine),var(--rich-wine)); 
+    box-shadow: 0 4px 12px rgba(194, 12, 12, 0.1);
     position: relative;
     overflow: hidden;
 }
 
 .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
+    box-shadow: 0 4px 12px rgba(194, 12, 12, 0.3);
     filter: brightness(1.05);
 }
 
 .btn-primary:active {
     transform: translateY(0);
-    box-shadow: 0 2px 6px rgba(5, 150, 105, 0.3);
+    box-shadow: 0 4px 12px rgba(194, 12, 12, 0.3);
 }
 
 .btn-primary::after {
@@ -254,8 +258,8 @@ input:focus, select:focus, textarea:focus {
 
 .messages .error {
     background: rgba(239, 68, 68, 0.1);
-    color: var(--error);
-    border-left: 3px solid var(--error);
+    color: var(--danger);
+    border-left: 3px solid var(--danger);
 }
 
 .messages .success {
@@ -264,13 +268,54 @@ input:focus, select:focus, textarea:focus {
     border-left: 3px solid var(--success);
 }
 
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-    .form-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .form-card {
-        padding: 1.25rem;
-    }
+/* Responsive */
+@media (max-width: 400px) {
+  .student-form-container {
+    width: 90%;
+  }
+  .navbar{
+    background: var(--cream);
+  }
+  .navbar button{
+    background: var(--wine);
+    color: var(--cream);
+  }
+  body{
+    background: var(--cream);
+  }
+  .form-card::before,
+  .form-card::after{
+    display: none;
+  }
+  .form-title{
+    font-size: 2rem;
+  }
+
+  .form-grid{
+    display: block;
+  }
+}
+
+
+@media (max-width: 1024px){
+  .student-form-container {
+    width: 90%;
+  }
+  .navbar{
+    background: var(--cream);
+  }
+  .navbar button{
+    background: var(--wine);
+    color: var(--cream);
+  }
+  body{
+    background: var(--cream);
+  }
+
+}
+
+@media (min-width: 1025px) and (max-width: 1366px){
+  .student-form-container {
+    width: 90%;
+  }
 }

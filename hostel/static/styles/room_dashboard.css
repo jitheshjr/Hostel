@@ -10,7 +10,7 @@
   --light: #f8fafc; 
   --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   --transition: all 0.3s ease;
-  --denim: #6F8FA9;
+  --denim: #1e3a8a;
   --cream: #F5F5DC;
   --secondary-rgb: 108, 117, 125;
     
@@ -28,6 +28,19 @@ body{
     text-align: center;
     font-size: 14px;
 
+}
+
+.navbar{
+    background: none;
+}
+
+.navbar button{
+  background: var(--cream);
+  color: var(--denim);
+}
+
+.navbar button:hover{
+  background: var(--primary-light);
 }
 
 /* Base Container */

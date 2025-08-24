@@ -14,13 +14,19 @@
 
     <!-- Navbar -->
     <header class="navbar">
-        <a href="{% url 'home' %}">Home</a>
-        <a href="{% url 'inactive_student' %}">Trash</a>
+        <a href="{% url 'home' %}">
+            <i class="fas fa-house"></i>
+            <span class="hide">Home</span>
+        </a>
+        <a href="{% url 'inactive_student' %}">
+            <i class="fas fa-trash-alt"></i>
+            <span class="hide">Trash</span>
+        </a>
         <form action="{% url 'logout' %}" method="post" style="display:inline;">
             {% csrf_token %}
-            <button type="submit" class="sidebar-link" style="background:none; border:none; cursor:pointer; display:flex; align-items:center; color:inherit; font:inherit;">
-                <i class="fas fa-sign-out-alt" style="margin-right:8px; font-size:18px;"></i>
-                Logout
+            <button type="submit" class="sidebar-link">
+                <i class="fas fa-sign-out-alt"></i>
+                <span class="hide">Logout</span>
             </button>
         </form>
     </header>

@@ -1,27 +1,30 @@
 :root {
-  --blue-lightest: #F0F3FA;  
-  --blue-lighter: #D5DEEF;   
-  --blue-light: #B1C9EF;     
-  --blue-mid: #8AAEE0;       
-  --blue: #628ECB;           
-  --blue-dark: #395886;     
-  
-  --text-dark: #2C2C2C;
-  --text-light: #FFFFFF;
-  --border: #A7B8D8; 
+  --danger: #dd1818;
+  --border: #d8dadd;
+  --text: #1b263b;
+  --wine:#800000;
+  --rich-wine: #722F37;
+  --wine-lighter: #d88998;
+  --cream: #F5F5DC;
+  --text: #111111;
 }
 
 body{
-  background: linear-gradient(135deg, var(--blue-lightest) 50%, var(--blue-dark) 50%);
+  background: linear-gradient(135deg, var(--cream) 50%, var(--wine) 50%);
 }
 
-.footer{
-  background: linear-gradient(135deg, #0a0a0a 0%, #0f0f1f 100%);
-  color: #F0EBE3; 
-  border-top: 1px solid #1a1a2e; 
-  padding: 20px 0;
-  text-align: center;
-  font-size: 14px;
+.navbar{
+    background: none;
+
+}
+
+.navbar button{
+  background: var(--cream);
+  color: var(--wine);
+}
+
+.navbar button:hover{
+  background: var(--danger);
 }
 
 /* Main Container */
@@ -35,10 +38,14 @@ body{
 
 /* Student Details Card */
 .student-details {
-  background: var(--text-light);
+  background: white;
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  box-shadow: 
+        0 4px 8px rgba(0, 0, 0, 0.1),   
+        0 8px 20px rgba(0, 0, 0, 0.08),
+        0 0 0 1px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
   padding: 2.5rem;
   width: 60%;
   position: relative;
@@ -52,7 +59,7 @@ body{
     left: 0;
     width: 10px;
     height: 100%;
-    background: var(--blue-dark);
+    background: var(--wine);
 }
 
 /* Header with back button */
@@ -70,17 +77,17 @@ body{
   gap: 0.5rem;
   padding: 0.75rem 1.25rem;
   border-radius: 12px;
-  background-color: var(--blue-light);
-  color: var(--blue-dark);
+  background-color: var(--wine-lighter);
+  color: var(--wine);
   text-decoration: none;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 1px solid var(--blue-lighter);
+  border: 1px solid var(--wine-lighter);
   font-weight: 500;
 }
 
 .back-link:hover {
-  background-color: var(--blue-dark);
-  color: var(--blue-lighter);
+  background-color: var(--wine);
+  color: var(--wine-lighter);
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(241, 191, 198, 0.3);
   border-color: transparent;
@@ -92,13 +99,12 @@ body{
 }
 
 .menu:hover{
-  background-color: var(--blue-dark);
-  color: var(--blue-lighter);
+  background-color: var(--wine);
+  color: var(--wine-lighter);
   box-shadow: 0 4px 12px rgba(241, 191, 198, 0.3);
   border-color: transparent;
 }
 
-/* Horizontal Card Layout */
 .student-card-horizontal {
   display: flex;
   gap: 2.5rem;
@@ -106,14 +112,13 @@ body{
   min-height: 400px;
 }
 
-/* Photo Section with Gradient Background */
 .photo-section {
   flex: 0 0 35%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, var(--blue-mid) 0%, var(--blue) 100%);
+  background: linear-gradient(135deg, var(--wine-lighter) 0%, var(--wine) 100%);
   border-radius: 16px;
   padding: 2rem;
   position: relative;
@@ -134,7 +139,7 @@ body{
   height: 300px;
   border-radius: 50%;
   object-fit: cover;
-  border: 5px solid var(--blue-light);
+  border: 5px solid var(--wine);
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
@@ -147,7 +152,7 @@ body{
 }
 
 .no-image {
-  color: var(--text-light);
+  color: var(--wine);
   font-size: 1.2rem;
   text-align: center;
   position: relative;
@@ -173,7 +178,7 @@ body{
 .student-name {
   font-size: 2.2rem;
   font-weight: 700;
-  color: var(--text-dark);
+  color: var(--text);
   margin-bottom: 0.5rem;
   position: relative;
   display: inline-block;
@@ -186,18 +191,17 @@ body{
   left: 0;
   width: 60px;
   height: 4px;
-  background: var(--blue-dark);
+  background: var(--wine);
   border-radius: 2px;
 }
 
 .student-program {
   font-size: 1.2rem;
-  color: var(--text-dark);
+  color: var(--text);
   font-weight: 500;
   margin-bottom: 1.5rem;
 }
 
-/* Enhanced Grid Layout */
 .student-details-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -210,10 +214,10 @@ body{
   flex-direction: column;
   gap: 0.5rem;
   padding: 1.25rem;
-  background-color: var(--blue-light);
+  background-color: var(--wine-lighter);
   border-top-left-radius: 12px;
   border-bottom-left-radius: 12px;
-  border-left: 4px solid var(--blue-dark);
+  border-left: 4px solid var(--wine);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -233,21 +237,21 @@ body{
 
 .detail-value {
   font-size: 1.05rem;
-  color: var(--text-dark);
+  color: var(--text);
   font-weight: 500;
 }
 
 .action-buttons {
     display: flex;
     gap: 10px;
-    justify-content: flex-end; /* Aligns buttons to the right */
+    justify-content: flex-end;
 }
 
 .btn-delete, .btn-absent {
     padding: 12px 20px;
     border: none;
-    border-radius: 5px;
-    color: white;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
     font-weight: bold;
     text-decoration: none;
     cursor: pointer;
@@ -256,9 +260,9 @@ body{
     min-width: 120px;
 }
 
-/* Deep Wine Red (for better contrast) */
 .btn-delete {
     background: linear-gradient(125deg, #ff0000 0%, #bd0000 100%);
+    color: white;
     box-shadow: 0 2px 5px rgba(139, 0, 0, 0.3);
 }
 
@@ -268,11 +272,61 @@ body{
 }
 
 .btn-absent {
-    background: linear-gradient(135deg, #8AAEE0 0%, #628ECB 100%);
-    box-shadow: 0 2px 5px rgba(98, 142, 203, 0.3);
+    background: linear-gradient(135deg, #FFEFBA 0%, #FFD580 100%);
+    color: var(--text);
+    box-shadow: 0 2px 5px rgba(0, 7, 17, 0.3);
 }
 
 .btn-absent:hover {
-    background: linear-gradient(135deg, #628ECB 0%, #8AAEE0 100%);
+    background: linear-gradient(135deg, #FFEFBA 0%, #FFEFBA 100%);
     transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .main{
+    margin: 1rem 0;
+  }
+  .student-details {
+    width: 90%;
+  }
+  .navbar{
+    background: var(--cream);
+  }
+  .navbar button{
+    background: var(--wine);
+    color: var(--cream);
+  }
+  body{
+    background: var(--cream);
+  }
+  .student-card-horizontal{
+    display: block;
+  }
+  .student-photo{
+    width: 150px;
+    height: 150px;
+  }
+  .student-name{
+    font-size: 2rem;
+  }
+  .student-program{
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1366px){
+  .student-details {
+    width: 90%;
+  }
+  .student-photo{
+    width: 150px;
+    height: 150px;
+  }
+  .student-name{
+    font-size: 2rem;
+  }
+  .student-program{
+    font-size: 1rem;
+  }
 }

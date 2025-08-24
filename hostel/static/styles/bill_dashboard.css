@@ -12,11 +12,27 @@
   --warning: #E07A5F;          
   --danger: #8B0000;           
   --card-shadow: 0 4px 20px rgba(111, 78, 55, 0.15); 
+
+  --cream: #F5F5DC;
+  --amber: #b45309;
 }
 
 
 body {
-  background: linear-gradient(135deg, var(--beige) 50%, var(--coffee) 50%);
+  background: linear-gradient(135deg, var(--cream) 50%, var(--amber) 50%);
+}
+
+.navbar{
+    background: none;
+}
+
+.navbar button{
+  background: var(--cream);
+  color: var(--coffee);
+}
+
+.navbar button:hover{
+  background: var(--beige-dark);
 }
 
 /* Base Styles */

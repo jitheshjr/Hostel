@@ -17,19 +17,28 @@
   --blue-mid: #8AAEE0;       
   --blue: #628ECB;           
   --blue-dark: #395886;
+
+  --cream: #F5F5DC;
+  --green: #047857;
+  --green-light: #A1FFCE; 
+
 }
 
 body{
-  background: linear-gradient(135deg, var(--blue-lightest) 50%, var(--blue-dark) 50%);
+  background: linear-gradient(135deg, var(--cream) 50%, var(--green) 50%);
 }
 
-.footer{
-  background: linear-gradient(135deg, #0a0a0a 0%, #0f0f1f 100%);
-  color: #F0EBE3; 
-  border-top: 1px solid #1a1a2e; 
-  padding: 20px 0;
-  text-align: center;
-  font-size: 14px;
+.navbar{
+    background: none;
+}
+
+.navbar button{
+  background: var(--cream);
+  color: var(--green);
+}
+
+.navbar button:hover{
+  background: var(--green-light);
 }
 
 .modern-dashboard::before {
