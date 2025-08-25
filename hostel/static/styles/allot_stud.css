@@ -1,32 +1,37 @@
 :root {
-    --bg: #ffffff;
-    --text: #111111;
-    --muted: #6b7280;
-    --surface: #f6f7f9;
-    --border: #d8dadd;
-    --primary: #302b63; 
-    --primary-ink: #4A00E0;
-    --ring: #8f94fb;
-    --shadow: 0 1px 2px rgba(16,24,40,.05), 0 8px 20px rgba(16,24,40,.08);
-    --error: #ef4444;
-    --success: #10b981;
-    --denim: #6F8FA9;
-    --cream: #F5F5DC;    
+  --danger: #dd1818;
+  --success: #10b981;
+  --dark: #1b263b;
+  --gray: #6b7280;
+  --primary-light: #60a5fa; 
+  --transition: all 0.3s ease;
+  --denim: #1e3a8a;
+  --denim-medium:#5D8AA8;
+  --cream: #F5F5DC;
+  --denim-rgb: 108, 117, 125;
+  --denim-light: #A9C3D6;
+  --bg: white;
+  --surface: #f6f7f9;
+  --border: #d8dadd;
 }
 
 body{
   background: linear-gradient(135deg, var(--cream) 50%, var(--denim) 50%);
 }
 
-.footer{
-    background: linear-gradient(135deg, #0a0a0a 0%, #0f0f1f 100%);
-    color: #F0EBE3; 
-    border-top: 1px solid #1a1a2e; 
-    padding: 20px 0;
-    text-align: center;
-    font-size: 14px;
-
+.navbar{
+    background: none;
 }
+
+.navbar button{
+  background: var(--cream);
+  color: var(--denim);
+}
+
+.navbar button:hover{
+  background: var(--primary-light);
+}
+
 
 .main {
     max-width: 920px;
@@ -44,9 +49,10 @@ body{
     border: 1px solid #e5e7eb; 
     border-radius: 1.25rem; 
     box-shadow: 
-        0 4px 6px rgba(0, 0, 0, 0.1),
-        0 10px 15px rgba(0, 0, 0, 0.1),
-        0 20px 40px rgba(0, 0, 0, 0.15);
+        0 4px 8px rgba(0, 0, 0, 0.1),   
+        0 8px 20px rgba(0, 0, 0, 0.08),
+        0 0 0 1px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
     position: relative;
     padding: 1.5rem;
     backdrop-filter: blur(8px); 
@@ -75,7 +81,7 @@ body{
 .card-title {
     font-size: 2.5rem;
     text-align: center;
-    color: #1E3A8A; 
+    color: var(--denim); 
     margin: 0 auto;
     font-weight: 900;
     position: relative;
@@ -83,7 +89,7 @@ body{
     width: 100%;
     text-transform: uppercase;
     font-family: 'Segoe UI', system-ui, sans-serif;
-    background: linear-gradient(90deg, var(--denim) 0%, #4b6cb7 50%, var(--denim) 100%);
+    background: var(--primary-light);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -105,31 +111,30 @@ body{
     position: absolute;
     right: 0;
     top: 0;
-    color: var(--text);
+    color: var(--dark);
     font-size: 1.5rem;
     transition: color 0.2s;
 }
 
 .icon-close:hover {
-    color: var(--error);
+    color: var(--danger);
 }
 
 .messages {
     list-style: none;
     padding: 0;
-    margin: 1rem 0;
+    margin: 0.5rem 0;
 }
 
 .messages li {
     padding: 0.75rem 1rem;
     border-radius: 0.5rem;
-    margin-bottom: 0.5rem;
 }
 
 .messages .error {
     background: rgba(239, 68, 68, 0.1);
     color: var(--error);
-    border-left: 3px solid var(--error);
+    border-left: 3px solid var(--danger);
 }
 
 .messages .success {
@@ -157,7 +162,7 @@ body{
 label {
     font-weight: 600;
     font-size: 1.5rem;
-    color: var(--text);
+    color: var(--dark);
 }
 
 select {
@@ -195,7 +200,7 @@ select {
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, #387299 0%, var(--denim) 100%);
+    background: linear-gradient(135deg, var(--denim-medium) 0%, var(--denim) 100%);
     box-shadow: 0 4px 6px rgba(30, 58, 138, 0.2);
     position: relative;
     overflow: hidden;
@@ -234,13 +239,50 @@ select {
     top: 100%;
 }
 
-@media (max-width: 640px) {
-    .card-title {
-        font-size: 1.5rem;
-    }
-    
-    .main {
-        margin: 2rem auto;
-        padding: 1rem;
-    }
+
+/* Responsive */
+@media (max-width: 400px) {
+  .card {
+    width: 90%;
+  }
+  .navbar{
+    background: var(--cream);
+  }
+  .navbar button{
+    background: var(--denim);
+    color: var(--cream);
+  }
+  body{
+    background: var(--cream);
+  }
+  .card::before{
+    display: none;
+  }
+  .card-title{
+    font-size: 1.8rem;
+  }
+}
+
+
+@media (max-width: 1024px){
+  .student-form-container {
+    width: 90%;
+  }
+  .navbar{
+    background: var(--cream);
+  }
+  .navbar button{
+    background: var(--denim);
+    color: var(--cream);
+  }
+  body{
+    background: var(--cream);
+  }
+
+}
+
+@media (min-width: 1025px) and (max-width: 1366px){
+  .student-form-container {
+    width: 90%;
+  }
 }
