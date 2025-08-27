@@ -29,5 +29,4 @@ urlpatterns = [
     path('totalbill',views.total_bill,name='total_bill'),
     path('deletebill/<int:pk>/',views.delete_bill,name='delete_bill'),
     path('monthlybills/<str:month>/<int:year>/',views.view_monthly_bill,name='view_monthly_bill'),
-    path('edit_allocation/<str:student_name>/',views.edit_allocation,name='edit_allocation'),
 ]

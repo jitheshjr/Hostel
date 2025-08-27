@@ -10,38 +10,58 @@ Hostel | Details
 {% endblock %}
 
 {% block content %}
-<div class="main">
+<section class="main">
     <div class="student-details">
         <div class="header-links">
-            <a href="{% url 'inactive_student' %}"><img src="{% static 'redclose.png' %}" alt="Close" id="close"></a>
+            <a href="{% url 'inactive_student' %}" class="back-link" title="Back">
+                <i class="fas fa-arrow-left"></i>
+            </a>
         </div>
-        <div class="image-container">
-            {% if student_image_url %}
-                <img src="{{ student_image_url }}" alt="Student Image" class="student-photo">
-            {% else %}
-                <p>No image available</p>
-            {% endif %}
-        </div>
-        <p class="name-pgm"><strong>{{student.name}}</strong></p>
-        <p class="name-pgm">{{student.pgm}}</p>
-        <div class="other-details">
-            <p><strong>ADMISSION NUMBER: </strong>{{student.admn_no}}</p><br>
-            <p><strong>DOB: </strong>{{student.dob}}</p><br>
-            <p><strong>PHONE: </strong>{{student.contact}}</p><br>
-            <p><strong>DATE JOINED: </strong>{{student.date_joined}}</p><br>
-            <p><strong>DATE EXITED: </strong>{{student.date_exited}}</p><br>
-            <p><strong>ALLOCATED ROOM: </strong>{{student.room_no}}</p><br>
+        
+        <div class="student-card-horizontal">
+            <div class="photo-section">
+                {% if student_image_url %}
+                    <img src="{{ student_image_url }}" alt="Student Image" class="student-photo">
+                {% else %}
+                    <div class="no-image">No image available</div>
+                {% endif %}
+            </div>
+            
+            <div class="details-section">
+                <div class="student-info">
+                    <h2 class="student-name">{{student.name}}</h2>
+                    <p class="student-program">{{student.pgm}}</p>
+                </div>
+                
+                <div class="student-details-grid">
+                    <div class="detail-item">
+                        <span class="detail-label">ADMISSION NUMBER:</span>
+                        <span class="detail-value">{{student.admn_no}}</span>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <span class="detail-label">DOB:</span>
+                        <span class="detail-value">{{student.dob}}</span>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <span class="detail-label">PHONE:</span>
+                        <span class="detail-value">{{student.contact}}</span>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <span class="detail-label">ALLOCATED ROOM:</span>
+                        <span class="detail-value">
+                            {% if room %}
+                                {{room.room_number}} ( {{room.room_number.floor}} )
+                            {% else %}
+                                Currently not allocated any room
+                            {% endif %}
+                        </span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <script>
-    function confirmDelete() {
-        return confirm("Are you sure you want to delete this student?");
-    }
-
-    document.getElementById('closeBtn').addEventListener('click', function(event){
-        event.preventDefault();
-        window.history.back();
-    });
-    </script>
-</div>  
+</section>
 {% endblock %}

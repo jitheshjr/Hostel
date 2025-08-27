@@ -62,9 +62,7 @@ def add_student(request):
                 if form.is_valid():
                     form.save()
                     return redirect('student_dashboard')
-
                 else:
-                    # Debugging: Print form errors
                     messages.error(request, "Something went wrong...")
         else:
             form = StudentForm()
@@ -74,54 +72,75 @@ def add_student(request):
 
 @group_required('warden', login_url='access_denied')  #new
 def view_students(request):
-    stud = Student.objects.select_related('pgm').order_by('id')
+    try:
+        stud = Student.objects.select_related('pgm').order_by('id')
 
-    # Apply filters
-    students_filter = studentFilter(request.GET, queryset=stud)
-    filtered_students = students_filter.qs
+        students_filter = studentFilter(request.GET, queryset=stud)
+        filtered_students = students_filter.qs
 
-    # Custom search by name
-    search_query = request.GET.get('search', '')
-    if search_query:
-        filtered_students = filtered_students.filter(name__icontains=search_query)
+        search_query = request.GET.get('search', '')
+        if search_query:
+            filtered_students = filtered_students.filter(name__icontains=search_query)
 
-    # Count total
-    total_students = filtered_students.count()
+        total_students = filtered_students.count()
 
-    # Pagination AFTER search
-    paginator = Paginator(filtered_students, 10)
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
+        paginator = Paginator(filtered_students, 10)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
 
-    if not filtered_students.exists():
-        messages.error(request, "Currently there are no students")
+        if not filtered_students.exists():
+            messages.error(request, "Currently there are no students")
 
-    return render(request, 'hostel/students.html', {
-        'filter': students_filter,
-        'page_obj': page_obj,
-        'total_students': total_students,
-        'search_query': search_query,
-        'student':stud
-    })
+        return render(request, 'hostel/students.html', {
+            'filter': students_filter,
+            'page_obj': page_obj,
+            'total_students': total_students,
+            'search_query': search_query,
+            'student':stud
+        })
+    except Exception:
+        return render(request,'hostel/error.html')
 
 
 @group_required('warden', login_url='access_denied')
 def view_details(request, student_id):
-    student = Student.objects.filter(id=student_id).select_related('pgm').first()
-    room = Allotment.objects.filter(name_id=student_id).select_related('room_number').first()
-    student_image_url = None
-    if student and student.photo:
-        student_image_url = settings.MEDIA_URL + str(student.photo)
-    return render(request, "hostel/details.html", {'student': student, 'student_image_url': student_image_url,'room':room})
-
-
-def inactive_students(request, login_url='access_denied'):
     try:
-        stud = Trash.objects.all().select_related('pgm').all().order_by('id')
+        student = Student.objects.filter(id=student_id).select_related('pgm').first()
+        room = Allotment.objects.filter(name_id=student_id).select_related('room_number').first()
+        student_image_url = None
+        if student and student.photo:
+            student_image_url = settings.MEDIA_URL + str(student.photo)
+        return render(request, "hostel/details.html", {'student': student, 'student_image_url': student_image_url,'room':room})
+    except Exception:
+        return render(request,'hostel/error.html')
+
+@group_required('warden', login_url='access_denied')
+def inactive_students(request):
+    try:
+        stud = Trash.objects.select_related('pgm').order_by('id')
         students_filter = studentFilter(request.GET, queryset=stud)
-        if not stud.exists():
-            messages.error(request,"Trash is empty")
-        return render(request,'hostel/inact_students.html',{'filter':students_filter})
+        filtered_students = students_filter.qs
+
+        search_query = request.GET.get('search', '')
+        if search_query:
+            filtered_students = filtered_students.filter(name__icontains=search_query)
+
+        total_students = filtered_students.count()
+
+        paginator = Paginator(filtered_students, 10)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+
+        if not filtered_students.exists():
+            messages.error(request, "Currently there are no students")
+
+        return render(request, 'hostel/inact_students.html', {
+            'filter': students_filter,
+            'page_obj': page_obj,
+            'total_students': total_students,
+            'search_query': search_query,
+            'student':stud
+        })
     except Exception:
         return render(request,'hostel/error.html')
 
@@ -253,25 +272,6 @@ def allot_student(request):
         return render(request,'hostel/allot_stud.html',{'form':form})
     except Exception:
         return render(request,'hostel/error.html')
-
-
-@group_required('warden', login_url='access_denied')
-def edit_allocation(request,student_name):
-    try:
-        Alloted_object = Allotment.objects.get(name__name=student_name)
-        # name is a OneToOneField to the Student model. The double underscore is used to access fields within related models.
-        alloc_form = AllotementForm(instance=Alloted_object)
-
-        if request.method == "POST":
-            alloc_form = AllotementForm(request.POST,instance=Alloted_object)
-            if alloc_form.is_valid():
-                alloc_form.save()
-                messages.success(request, "Room allocation edited successfully.")
-
-        return render(request,'hostel/edit_allocation.html',{'form':alloc_form})
-    except Exception:
-        return render(request,'hostel/error.html')
-
 
 @group_required('warden', login_url='access_denied')
 def delete_allocation(request,student_name):
@@ -674,7 +674,7 @@ def streak(request):
         streak_filter = streakFilter(request.GET, queryset=ContinuousAbsence.objects.all().select_related('name').order_by('-id'))
         streak_list = streak_filter.qs
 
-        paginator = Paginator(streak_list, 10)
+        paginator = Paginator(streak_list, 6)
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
 
