@@ -1,37 +1,36 @@
-:root {
-    --bg: #ffffff;
-    --text: #111111;
-    --muted: #6b7280;
-    --surface: #f6f7f9;
+:root{
+    --dark: #1b263b;
+    --gray: #6c757d;
+    --light: #f8f9fa; 
+    --primary-light: #4895ef;
+    --success: #23ce5c;
+    --warning: #f8961e;
+    --danger: #f10c0c;
+    --cream: #F5F5DC;
+    --cream-dark: #E6E6C4;
+    --green: #047857;
+    --green-light: #34D399;
+    --green-dark: #065F46;
     --border: #d8dadd;
-    --primary: #10b981;
-    --primary-ink: #054b35;
-    --ring: #34d399;
-    --shadow: 0 1px 2px rgba(16,24,40,.05), 0 8px 20px rgba(16,24,40,.08);
-    --error: #ef4444;
-    --success: #10b981;
-    --secondary-rgb: 108, 117, 125;
-    --blue-lightest: #F0F3FA;  
-    --blue-lighter: #D5DEEF;   
-    --blue-light: #B1C9EF;     
-    --blue-mid: #8AAEE0;       
-    --blue: #628ECB;           
-    --blue-dark: #395886;
+    --surface: #f6f7f9;
 }
 
 body{
-  background: linear-gradient(135deg, var(--blue-lightest) 50%, var(--blue-dark) 50%);
+  background: linear-gradient(135deg, var(--cream) 50%, var(--green) 50%);
 }
 
-.footer{
-  background: linear-gradient(135deg, #0a0a0a 0%, #0f0f1f 100%);
-  color: #F0EBE3; 
-  border-top: 1px solid #1a1a2e; 
-  padding: 20px 0;
-  text-align: center;
-  font-size: 14px;
+.navbar{
+    background: none;
 }
 
+.navbar button{
+  background: var(--cream);
+  color: var(--green);
+}
+
+.navbar button:hover{
+  background: var(--green-light);
+}
 
 .main {
     min-height: 85vh;
@@ -44,19 +43,21 @@ body{
     position: relative;
     width: 100%;
     max-width: 1200px; 
-    padding: 20px 50px; 
-    background: var(--bg);
+    padding: 20px 40px; 
+    background: white;
     border-radius: 1.25rem;
     border: 1px solid rgba(255, 255, 255, 0.3);
     box-shadow: 
-        0 4px 6px rgba(0, 0, 0, 0.1),
-        0 10px 15px rgba(0, 0, 0, 0.1),
-        0 20px 40px rgba(0, 0, 0, 0.15);
+        0 4px 8px rgba(0, 0, 0, 0.1),   
+        0 8px 20px rgba(0, 0, 0, 0.08),
+        0 0 0 1px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
     display: flex;
     flex-direction: column;
     gap: 30px;
     margin: 0 auto;
     overflow: hidden;
+    margin: 1rem 0 3rem;
 }
 
 .form-card::before {
@@ -66,8 +67,8 @@ body{
     left: 0;
     width: 25px;
     height: 100%;
-    background: var(--blue-dark);
-    box-shadow: 0 2px 8px rgba(67, 97, 238, 0.3);
+    background: var(--green);
+    box-shadow: 0 2px 8px rgba(67, 238, 144, 0.3);
 }
 
 .form-card::after {
@@ -86,22 +87,37 @@ body{
 }
 
 .close-btn {
-    position: absolute;
-    right: 0;
-    top: 0;
-    color: var(--text);
     font-size: 1.5rem;
-    transition: color 0.2s;
+    color: var(--dark);
+    text-decoration: none;
+    padding: 0.625rem;
+    border-radius: 8px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: color-mix(in oklab, var(--green), transparent 70%);
+    border: 1px solid var(--green);
+    margin-left: auto;
 }
 
 .close-btn:hover {
-    color: var(--error);
+    background-color: rgba(18, 212, 99, 0.15);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.close-btn:active{
+    transform: translateY(0);
+    transition-duration: 0.1s;
 }
 
 .form-title {
     font-size: 2rem;
     text-align: center;
-    color: #1E3A8A; 
+    color: var(--green); 
     margin: 1rem 0;
     font-weight: 900;
     position: relative;
@@ -109,7 +125,7 @@ body{
     width: 100%;
     text-transform: uppercase;
     font-family: 'Segoe UI', system-ui, sans-serif;
-    background: linear-gradient(90deg, #628ECB 0%, #4b6cb7 50%, #628ECB 100%);
+    background: var(--green-light);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -127,17 +143,17 @@ body{
     left: 15px;
     top: 50%;
     transform: translateY(-50%);
-    color: #718096; /* Gray color */
+    color: #718096; 
     z-index: 2;
 }
 
 #studentSearch {
     padding-left: 45px;
-    background: rgba(0, 123, 255, 0.08);
+    background: color-mix(in oklab, var(--green), transparent 70%);
 }
 
 .search-bar input{
-    width: 14%;
+    width: 20%;
     padding: 10px;
     border: 2px solid var(--border);
     border-radius: 10px;
@@ -148,14 +164,14 @@ body{
 }
 
 .search-bar input::placeholder {
-    color: var(--text);
+    color: var(--dark);
     font-style: italic;
 }
 
 .search-bar input:focus{
     outline: none;
-    border-color: #007bff;
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+    border-color: #23ce5c;
+    box-shadow: 0 0 0 3px rgba(0, 255, 115, 0.25);
     background: white;
 }
 
@@ -172,14 +188,14 @@ body{
 }
 
 .form-section:hover {
-    border-color: #00B4DB;
+    border-color: var(--green-light);
     box-shadow: 0 4px 12px rgba(0, 180, 219, 0.1);
 }
 
 .form-section legend {
     padding: 0 0.75rem; 
     font-weight: 600;
-    color: #00B4DB;
+    color: var(--green-light);
     font-size: 0.95rem;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -189,8 +205,8 @@ body{
 }
 
 .form-section #id_date {
-    width: 80%;
-    padding: 0.85rem;
+    width: 100%;
+    padding: 1rem;
     border: 1px solid var(--border);
     border-radius: 0.65rem;
     font-size: 1rem;
@@ -200,7 +216,7 @@ body{
 
 .form-section #id_date:focus {
     outline: none;
-    border-color: #00B4DB;
+    border-color: #28a745;
     box-shadow: 0 0 0 3px rgba(0, 180, 219, 0.2);
 }
 
@@ -231,29 +247,29 @@ body{
 .select-all-button span {
     display: inline-block;
     padding: 10px 20px;
-    background: #e3f2fd;
-    color: #1976d2;
-    border: 2px solid #bbdefb;
+    background: color-mix(in oklab, var(--green), transparent 70%);
+    color: var(--green);
+    border: 2px solid var(--green-light);
     border-radius: 6px;
     font-weight: 600;
     transition: all 0.2s;
 }
 
 .select-all-button:hover span {
-    background: #bbdefb;
+    background: var(--green);
+    color: white;
 }
 
 .select-all-button input:checked + span {
-    background: #1976d2;
+    background: var(--green);
     color: white;
-    border-color: #1976d2;
+    border-color: var(--green-dark);
 }
 
 .select-all-button input:focus + span {
     box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.3);
 }
 
-/* Student Grid - exactly 4 per row */
 #student-container {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -279,7 +295,7 @@ body{
 }
 
 #student-container::-webkit-scrollbar-thumb {
-    background-color: #007bff;
+    background-color: var(--green-light);
     border-radius: 10px;
 }
 
@@ -298,14 +314,14 @@ body{
 .student-item:hover {
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-    border-color: #007bff;
+    border-color: var(--green-dark);
 }
 
 .student-item input[type="checkbox"] {
     margin-right: 12px;
     width: 18px;
     height: 18px;
-    accent-color: #007bff;
+    accent-color: var(--green);
     cursor: pointer;
 }
 
@@ -318,39 +334,59 @@ body{
 }
 
 .submit-btn {
-    background: linear-gradient(135deg, var(--blue-dark),var(--blue)); 
-    box-shadow: var(--shadow);
-    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 0.65rem;
     font-weight: 600;
-    font-size: 1rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    padding: 14px 0; 
-    width: 300px; 
-    max-width: 100%; 
-    border: none;
-    border-radius: 8px;
-    box-shadow: var(--shadow);
     cursor: pointer;
-    transition: all 0.3s ease;
-    text-align: center;
+    transition: all 0.2s ease;
+    width: 90%; 
+    max-width: 300px; 
+    margin: 0 auto; 
     display: block; 
+    text-align: center;
+    border: none;
+    color: white;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+}
+
+.submit-btn {
+    background: linear-gradient(135deg, var(--green),var(--green-dark)); 
+    box-shadow: 0 4px 12px rgba(12, 194, 51, 0.1);
+    position: relative;
+    overflow: hidden;
 }
 
 .submit-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
+    box-shadow: 0 4px 12px rgba(12, 194, 94, 0.3);
     filter: brightness(1.05);
 }
 
 .submit-btn:active {
     transform: translateY(0);
-    box-shadow: 0 2px 6px rgba(5, 150, 105, 0.3);
+    box-shadow: 0 4px 12px rgba(12, 194, 133, 0.3);
 }
 
-.submit-btn:focus {
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(16, 111, 236, 0.4);
+.submit-btn::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        to bottom right,
+        rgba(255, 255, 255, 0.3) 0%,
+        rgba(255, 255, 255, 0) 60%
+    );
+    transform: rotate(30deg);
+    transition: all 0.3s;
+}
+
+.submit-btn:hover::after {
+    left: 100%;
+    top: 100%;
 }
 
 /* Messages */
@@ -358,8 +394,8 @@ body{
     padding: 15px;
     margin-bottom: 20px;
     border-radius: 10px;
-    background: rgba(0, 123, 255, 0.1);
-    border-left: 4px solid #007bff;
+    background: rgba(0, 255, 106, 0.1);
+    border-left: 4px solid var(--green);
 }
 
 .messages li {
@@ -379,4 +415,81 @@ body{
     color: #dc3545;
     background: rgba(220, 53, 69, 0.1);
     border-left-color: #dc3545;
+}
+
+/* Responsive */
+@media (max-width: 400px) {
+  .form-card {
+    width: 90%;
+    padding: 1rem;
+  }
+  .navbar{
+    background: var(--cream);
+  }
+  .navbar button{
+    background: var(--green);
+    color: var(--cream);
+  }
+  body{
+    background: var(--cream);
+  }
+  .form-card::before,
+  .form-card::after{
+    display: none;
+  }
+  .form-title{
+    font-size: 2rem;
+  }
+  #studentSearch{
+    width: 100%;
+  }
+  .form-section{
+    margin: 1.5rem 0;
+    width: 100%;
+  }
+  #student-container{
+    display: block;
+    max-height: 100%;
+  }
+}
+
+
+@media (max-width: 1024px){
+  .form-card {
+    width: 90%;
+  }
+  .navbar{
+    background: var(--cream);
+  }
+  .navbar button{
+    background: var(--green);
+    color: var(--cream);
+  }
+  body{
+    background: var(--cream);
+  }
+  .form-card::before,
+  .form-card::after{
+    display: none;
+  }
+  .form-title{
+    font-size: 2rem;
+  }
+  #studentSearch{
+    width: 100%;
+  }
+  .form-section{
+    margin: 1.5rem 0;
+    width: 100%;
+  }
+  #student-container{
+    display: block;
+    max-height: 100%;
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1366px){
+  .form-card {
+    width: 90%;
+  }
 }

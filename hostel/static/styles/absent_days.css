@@ -1,17 +1,4 @@
 :root {
-  --blue-dark: #395886;     
-  --blue-lightest: #F0F3FA;  
-  --blue-lighter: #D5DEEF;   
-  --blue-light: #B1C9EF;     
-  --blue-mid: #8AAEE0;       
-  --blue: #628ECB;           
-  
-  --text-dark: #2C2C2C;
-  --text-light: #FFFFFF;
-  --border: #A7B8D8; 
-}
-
-:root {
   --danger: #dd1818;
   --border: #d8dadd;
   --text: #1b263b;

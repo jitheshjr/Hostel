@@ -84,16 +84,32 @@ body{
 }
 
 .close-btn {
-    position: absolute;
-    right: 0;
-    top: 0;
-    color: var(--text);
-    font-size: 1.5rem;
-    transition: color 0.2s;
+  font-size: 1.5rem;
+  color: var(--dark);
+  text-decoration: none;
+  padding: 0.625rem;
+  border-radius: 8px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: color-mix(in oklab, var(--wine), transparent 70%);
+  border: 1px solid var(--wine);
+  margin-left: auto;
 }
 
 .close-btn:hover {
-    color: var(--danger);
+    background: var(--wine);
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.close-btn:active{
+    transform: translateY(0);
+    transition-duration: 0.1s;
 }
 
 .form-title {

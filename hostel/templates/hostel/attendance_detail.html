@@ -14,7 +14,7 @@ Hostel | Absentees
 <section class="main">
     <div class="main-body">
         <div class="header-links">
-            <a href="{% url 'view_attendance' %}" class="icon-close">
+            <a href="#" class="icon-close" title="close" id="close">
                 <i class="fas fa-arrow-left"></i> Back
             </a>
         </div>
@@ -49,8 +49,14 @@ Hostel | Absentees
                 {% endif %}
             </div>
         {% else %}
-            <p class="no-absentees">No absent students 🎉</p>
+            <p class="no-absentees">No absent students.</p>
         {% endif %}
     </div>
 </section>
+<script>
+    document.getElementById('close').addEventListener('click', function(event){
+    event.preventDefault();
+    window.history.back();
+});
+</script>
 {% endblock %}

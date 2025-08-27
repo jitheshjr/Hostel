@@ -394,7 +394,7 @@ def mark_attendance(request):
 
 @login_required()
 def view_attendance(request):
-    filter = attendanceFilter(request.GET, queryset=AttendanceDate.objects.all().order_by('date'))
+    filter = attendanceFilter(request.GET, queryset=AttendanceDate.objects.all().order_by('-date'))
     attendance_list = filter.qs
 
     # Pagination

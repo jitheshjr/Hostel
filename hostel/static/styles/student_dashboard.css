@@ -207,7 +207,7 @@ body{
   align-items: center;
   gap: 1.5rem;
   text-decoration: none;
-  color: inherit;
+  color: var(--wine);
   position: relative;
   overflow: hidden;
   border-left: 4px solid var(--wine);

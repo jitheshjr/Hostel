@@ -12,18 +12,37 @@
   --border: #A7B8D8; 
 }
 
-body {
-  background: linear-gradient(135deg, var(--blue-lightest) 50%, var(--blue-dark) 50%);
+:root{
+    --dark: #1b263b;
+    --gray: #6c757d;
+    --light: #f8f9fa; 
+    --accent: #1d4ed8; 
+    --success: #23ce5c;
+    --danger: #f10c0c;
+    --cream: #F5F5DC;
+    --cream-dark: #E6E6C4;
+    --green: #047857;
+    --green-light: #34D399;
+    --green-dark: #065F46;
+    --border: #d8dadd;
+    --surface: #f6f7f9;
 }
 
-/* Footer */
-.footer {
-  background: linear-gradient(135deg, #0a0a0a 0%, #0f0f1f 100%);
-  color: #F0EBE3; 
-  border-top: 1px solid #1a1a2e; 
-  padding: 20px 0;
-  text-align: center;
-  font-size: 14px;
+body{
+  background: linear-gradient(135deg, var(--cream) 50%, var(--green) 50%);
+}
+
+.navbar{
+    background: none;
+}
+
+.navbar button{
+  background: var(--cream);
+  color: var(--green);
+}
+
+.navbar button:hover{
+  background: var(--green-light);
 }
 
 /* Main container */
@@ -38,10 +57,14 @@ body {
   background: #fff;
   padding: 2rem;
   border-radius: 16px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-  width: 100%;
+  box-shadow: 
+          0 4px 8px rgba(0, 0, 0, 0.1),   
+          0 8px 20px rgba(0, 0, 0, 0.08),
+          0 0 0 1px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;  width: 100%;
   max-width: 700px;
   position: relative;
+  margin: 0 0 2rem;
 }
 
 /* Header & back button */
@@ -57,27 +80,27 @@ body {
   gap: 0.5rem;
   padding: 0.6rem 1rem;
   border-radius: 12px;
-  background-color: var(--blue-light);
-  color: var(--blue-dark);
+  background: color-mix(in oklab, var(--green-light), transparent 50%);
+  color: var(--green-dark);
   text-decoration: none;
-  border: 1px solid var(--blue-lighter);
+  border: 1px solid var(--green-light);
   font-weight: 500;
   transition: all 0.3s ease;
 }
 
 .icon-close:hover {
-  background-color: var(--blue-dark);
-  color: var(--blue-lighter);
+  background-color: var(--green);
+  color: white;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 12px rgba(92, 233, 27, 0.2);
 }
 
 /* Headings */
 h1 {
   font-size: 1.8rem;
   margin: 0 0 0.5rem;
-  color: #1e3a8a;
-  border-bottom: 2px solid var(--blue);
+  color: var(--green-light);
+  border-bottom: 2px solid var(--green);
   padding-bottom: 0.5rem;
   text-align: center;
 }
@@ -85,7 +108,7 @@ h1 {
 .date-text {
   text-align: center;
   font-size: 1.1rem;
-  color: #6b7280;
+  color: var(--dark);
   margin-bottom: 1rem;
 }
 
@@ -94,7 +117,7 @@ h1 {
   text-align: center;
   font-size: 1rem;
   font-weight: 600;
-  color: var(--blue-dark);
+  color: var(--dark);
   margin-bottom: 1.5rem;
   padding: 0.5rem 1rem;
   background: var(--blue-lightest);
@@ -110,22 +133,23 @@ h1 {
 }
 
 .absent-item {
-  background: color-mix(in oklab, var(--danger), transparent 70%);
-  border: 1px solid color-mix(in oklab, var(--danger), #fff 70%);
   margin-bottom: 0.75rem;
   padding: 0.9rem 1.2rem;
   border-radius: 10px;
   font-size: 1rem;
   display: flex;
   align-items: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
   justify-content: space-between;
+  background: color-mix(in oklab, var(--green-light), transparent 80%);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .absent-item:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  background: var(--blue-lightest);
+  background: color-mix(in oklab, var(--danger), transparent 70%);
+  border: 1px solid color-mix(in oklab, var(--danger), #fff 70%);
 }
 
 .absent-item .status {
@@ -138,10 +162,10 @@ h1 {
   text-align: center;
   padding: 1.2rem;
   font-size: 1rem;
-  background: color-mix(in oklab, var(--success), transparent 85%);
-  border: 1px solid color-mix(in oklab, var(--success), #fff 70%);
+  background: color-mix(in oklab, var(--green-light), transparent 85%);
+  border: 1px solid color-mix(in oklab, var(--green), #fff 70%);
   border-radius: 8px;
-  color: var(--success);
+  color: var(--dark);
   font-weight: 500;
 }
 
@@ -158,20 +182,115 @@ h1 {
   padding: 0.5rem 1rem;
   border: 1px solid;
   border-radius: 8px;
-  border-color: color-mix(in oklab, #1e3a8a, #e5e7eb 40%);
-  background: color-mix(in oklab, #1e3a8a, transparent 70%);  color: var(--blue-dark);
+  border-color: color-mix(in oklab, var(--green), #e5e7eb 40%);
+  background: color-mix(in oklab, var(--green-light), transparent 70%);
+  color: var(--green-dark);
   font-weight: 500;
   text-decoration: none;
   transition: all 0.2s ease;
 }
 
 .pagination .page-link:hover {
-  background: var(--blue-mid);
-  color: var(--text-light);
+  background: var(--green-light);
+  color: var(--dark);
 }
 
 .pagination .page-info {
   font-size: 0.9rem;
-  color: var(--blue-dark);
+  color: var(--dark);
   font-weight: 500;
+}
+
+
+/* Responsive */
+@media (max-width: 400px) {
+  .main{
+    padding: 0;
+  }
+  .main-body{
+    width: 90%;
+    padding: 1rem;
+    margin: 3rem 0;
+  }
+  .navbar{
+    background: var(--cream);
+  }
+  .navbar button{
+    background: var(--green);
+    color: var(--cream);
+  }
+  body{
+    background: var(--cream);
+  }
+  .icon-close{
+    padding: 0.3rem 0.8rem;
+  }
+  h1{
+    font-size: 1.5rem;
+  }
+  .filter-form{
+    display: none;
+  }
+  .page-info{
+    display: none;
+  }
+  .pagination{
+    gap: 0.25rem;
+    overflow-x: auto;
+    white-space: nowrap;
+    justify-content: flex-start;
+    padding: 0.3rem 0;
+  }
+}
+
+
+@media (max-width: 1024px){
+  .main{
+    margin: 1rem auto;
+  }
+  .wrap{
+    width: 100%;
+    margin: 1rem auto;
+  }
+  .card {
+    width: 100%;
+    padding: 2rem 1rem;
+  }
+  .navbar{
+    background: var(--cream);
+  }
+  .navbar button{
+    background: var(--green);
+    color: var(--cream);
+  }
+  body{
+    background: var(--cream);
+  }
+  .filter-controls{
+    justify-content: space-evenly;
+  }
+  .muted-small{
+    display: none;
+  }
+  .pagination{
+    gap: 0.25rem;
+    overflow-x: auto;
+    white-space: nowrap;
+    justify-content: flex-start;
+    padding: 0.3rem 0;
+  }
+  .table-wrap{
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1366px){
+  .main{
+    margin: 1rem auto;
+  }
+  .wrap{
+    width: 90%;
+    margin: 1rem auto;
+  }
 }
