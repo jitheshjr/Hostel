@@ -1,15 +1,35 @@
 :root {
-    --bg: #ffffff;
-    --text: #111111;
-    --muted: #6b7280;
-    --surface: #f6f7f9;
-    --border: #d8dadd;
-    --primary: #10b981;
-    --primary-ink: #054b35;
-    --ring: #34d399;
-    --shadow: 0 1px 2px rgba(16,24,40,.05), 0 8px 20px rgba(16,24,40,.08);
-    --error: #ef4444;
-    --success: #10b981;
+  --danger: #dd1818;
+  --success: #10b981;
+  --border: #d8dadd;
+  --text: #1b263b;
+  --gray: #6b7280;
+  --transition: all 0.3s ease;
+  --wine:#800000;
+  --rich-wine: #722F37;
+  --wine-lighter: #d88998;
+  --cream: #F5F5DC;
+  --wine-rgb: 114, 47, 55;
+  --muted: #6b7280;
+  --surface: #f6f7f9;
+}
+
+body{
+  background: linear-gradient(135deg, var(--cream) 50%, var(--wine) 50%);
+}
+
+.navbar{
+    background: none;
+
+}
+
+.navbar button{
+  background: var(--cream);
+  color: var(--wine);
+}
+
+.navbar button:hover{
+  background: var(--danger);
 }
 
 /* Base Styles */
@@ -20,13 +40,13 @@
 }
 
 .form-card {
-    background: rgba(255, 255, 255, 0.95); 
-    border: 1px solid #e5e7eb; 
+    background: white; 
     border-radius: 1.25rem; 
     box-shadow: 
-        0 4px 6px rgba(0, 0, 0, 0.1),
-        0 10px 15px rgba(0, 0, 0, 0.1),
-        0 20px 40px rgba(0, 0, 0, 0.15);
+        0 4px 8px rgba(0, 0, 0, 0.1),   
+        0 8px 20px rgba(0, 0, 0, 0.08),
+        0 0 0 1px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
     position: relative;
     padding: 2rem 2.5rem;
     backdrop-filter: blur(8px); 
@@ -43,8 +63,8 @@
     left: 0;
     width: 25px;
     height: 100%;
-    background: #ED213A;
-    box-shadow: 2px 0 10px rgba(252, 39, 1, 0.3);
+    background: var(--wine);
+    box-shadow: 0 2px 8px rgba(114, 47, 55, 0.4); 
 }
 
 .form-card::after {
@@ -54,7 +74,7 @@
     left: 25px;
     width: 2px;
     height: 100%;
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(114, 47, 55, 0.3);
     z-index: 2;
 }
 
@@ -64,22 +84,38 @@
 }
 
 .close-btn {
-    position: absolute;
-    right: 0;
-    top: 0;
-    color: var(--text);
-    font-size: 1.5rem;
-    transition: color 0.2s;
+  font-size: 1.5rem;
+  color: var(--dark);
+  text-decoration: none;
+  padding: 0.625rem;
+  border-radius: 8px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: color-mix(in oklab, var(--wine), transparent 70%);
+  border: 1px solid var(--wine);
+  margin-left: auto;
 }
 
 .close-btn:hover {
-    color: var(--error);
+    background: var(--wine);
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.close-btn:active{
+    transform: translateY(0);
+    transition-duration: 0.1s;
 }
 
 .form-title {
     font-size: 2.5rem;
     text-align: center;
-    color: #1E3A8A; 
+    color: var(--wine); 
     margin: 1.5rem 0 2rem;
     font-weight: 900;
     position: relative;
@@ -87,7 +123,7 @@
     width: 100%;
     text-transform: uppercase;
     font-family: 'Segoe UI', system-ui, sans-serif;
-    background: linear-gradient(90deg, #ED213A 0%, #ED213A 50%, #ef4444 100%);
+    background: var(--wine-lighter);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -107,7 +143,7 @@
 .form-section legend {
     padding: 0 0.5rem;
     font-weight: 600;
-    color: #ED213A;
+    color: var(--wine-lighter);
 }
 
 .form-grid {
@@ -129,7 +165,7 @@
 }
 
 .required {
-    color: var(--primary);
+    color: var(--text);
     margin-left: 0.25rem;
 }
 
@@ -146,7 +182,7 @@ input, select, textarea {
 }
 
 input:focus, select:focus, textarea:focus {
-    outline: 1px solid #FF416C;
+    outline: 1px solid #2555da;
     outline-offset: 2px;
     border-color: transparent;
     background: var(--bg);
@@ -185,21 +221,21 @@ input:focus, select:focus, textarea:focus {
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, #FF416C,#ED213A); 
-    box-shadow: var(--shadow);
+    background: linear-gradient(135deg, var(--wine),var(--rich-wine)); 
+    box-shadow: 0 4px 12px rgba(194, 12, 12, 0.1);
     position: relative;
     overflow: hidden;
 }
 
 .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
+    box-shadow: 0 4px 12px rgba(194, 12, 12, 0.3);
     filter: brightness(1.05);
 }
 
 .btn-primary:active {
     transform: translateY(0);
-    box-shadow: 0 2px 6px rgba(5, 150, 105, 0.3);
+    box-shadow: 0 4px 12px rgba(194, 12, 12, 0.3);
 }
 
 .btn-primary::after {
@@ -238,8 +274,8 @@ input:focus, select:focus, textarea:focus {
 
 .messages .error {
     background: rgba(239, 68, 68, 0.1);
-    color: var(--error);
-    border-left: 3px solid var(--error);
+    color: var(--danger);
+    border-left: 3px solid var(--danger);
 }
 
 .messages .success {
@@ -248,13 +284,54 @@ input:focus, select:focus, textarea:focus {
     border-left: 3px solid var(--success);
 }
 
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-    .form-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .form-card {
-        padding: 1.25rem;
-    }
+/* Responsive */
+@media (max-width: 400px) {
+  .student-form-container {
+    width: 90%;
+  }
+  .navbar{
+    background: var(--cream);
+  }
+  .navbar button{
+    background: var(--wine);
+    color: var(--cream);
+  }
+  body{
+    background: var(--cream);
+  }
+  .form-card::before,
+  .form-card::after{
+    display: none;
+  }
+  .form-title{
+    font-size: 2rem;
+  }
+
+  .form-grid{
+    display: block;
+  }
+}
+
+
+@media (max-width: 1024px){
+  .student-form-container {
+    width: 90%;
+  }
+  .navbar{
+    background: var(--cream);
+  }
+  .navbar button{
+    background: var(--wine);
+    color: var(--cream);
+  }
+  body{
+    background: var(--cream);
+  }
+
+}
+
+@media (min-width: 1025px) and (max-width: 1366px){
+  .student-form-container {
+    width: 90%;
+  }
 }

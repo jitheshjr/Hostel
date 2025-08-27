@@ -13,24 +13,50 @@ Hostel | Absentees
 {% block content %}
 <section class="main">
     <div class="main-body">
-        <div class="main-block">
-            <div class="header-links">
-                <a href="{% url 'view_attendance' %}" class="back-link" id="closeBtn">&#10006;</a>
-            </div>
-            <h5>Datewise Report</h5>
-            <h3>Attendance report for {{ date.date }}</h3>
-            {% if absentees %}
-                <ul class="absent-list">
-                    {% for absentee in absentees %}
-                        <li class="list-items">{{ absentee.name }}</li>
-                    {% endfor %}
-                </ul>
-            {% else %}
-                <p id="null">No absent students</p>
-            {% endif %}
-
+        <div class="header-links">
+            <a href="#" class="icon-close" title="close" id="close">
+                <i class="fas fa-arrow-left"></i> Back
+            </a>
         </div>
+
+        <h1>Attendance Report</h1>
+        <h3 class="date-text">{{ date.date }}</h3>
+
+        {% if absentees %}
+            <p class="total-count">Total Absentees: {{ total_absentees }}</p>
+
+            <ul class="absent-list">
+                {% for absentee in absentees %}
+                    <li class="absent-item">
+                        <span class="name">{{ absentee.name }}</span>
+                        <span class="status">Absent</span>
+                    </li>
+                {% endfor %}
+            </ul>
+
+            <!-- Pagination controls -->
+            <div class="pagination">
+                {% if absentees.has_previous %}
+                    <a href="?page={{ absentees.previous_page_number }}" class="page-link">Previous</a>
+                {% endif %}
+
+                <span class="page-info">
+                    Page {{ absentees.number }} of {{ absentees.paginator.num_pages }}
+                </span>
+
+                {% if absentees.has_next %}
+                    <a href="?page={{ absentees.next_page_number }}" class="page-link">Next</a>
+                {% endif %}
+            </div>
+        {% else %}
+            <p class="no-absentees">No absent students.</p>
+        {% endif %}
     </div>
 </section>
+<script>
+    document.getElementById('close').addEventListener('click', function(event){
+    event.preventDefault();
+    window.history.back();
+});
+</script>
 {% endblock %}
-

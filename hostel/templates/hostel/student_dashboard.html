@@ -1,0 +1,103 @@
+{% extends 'hostel/base.html' %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'styles/student_dashboard.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+{% endblock %}
+
+{% block content %}
+<div class="modern-dashboard">
+  <!-- Dashboard Header -->
+  <header class="dashboard-header">
+    <a href="{% url 'home' %}" class="back-button">
+        <i class="fas fa-chevron-left"></i> Home
+    </a>
+    <div class="header-content">
+      <div class="header-title">
+        <div class="icon-wrapper">
+          <img src="{% static 'images/student-icon.svg' %}" alt="Students" class="header-icon">
+        </div>
+        <h1>Student Management</h1>
+      </div>
+      <p class="header-description">Manage all student records</p>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="dashboard-content">
+    <!-- Quick Actions -->
+    <section class="quick-actions-section">
+      <h2 class="section-title">
+        <span>Quick Actions</span>
+        <div class="title-decoration"></div>
+      </h2>
+      
+      <div class="action-grid">
+        <a href="{% url 'add_student' %}" class="action-card add-action">
+          <div class="card-icon">
+            <i class="fas fa-user-plus"></i>
+          </div>
+          <div class="card-content">
+            <h3>Register Student</h3>
+            <p>Add new student to hostel database</p>
+          </div>
+          <div class="action-arrow">
+            <i class="fas fa-arrow-right"></i>
+          </div>
+        </a>
+
+        <a href="{% url 'view_student' %}" class="action-card view-action">
+          <div class="card-icon">
+            <i class="fas fa-users"></i>
+          </div>
+          <div class="card-content">
+            <h3>Student Directory</h3>
+            <p>View and manage all students</p>
+          </div>
+          <div class="action-arrow">
+            <i class="fas fa-arrow-right"></i>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Stats Overview -->
+    <section class="stats-section">
+      <div class="section-header">
+        <h2 class="section-title">
+          <span>Statistics Overview</span>
+          <div class="title-decoration"></div>
+        </h2>
+        <span class="update-info">Updated just now</span>
+      </div>
+      
+      <div class="stats-grid">
+        <div class="stat-card total-card">
+          <div class="stat-icon">
+            <i class="fas fa-user-graduate"></i>
+          </div>
+          <div class="stat-info">
+            <div class="stat-value">{{ total_students }}</div>
+          </div>
+          <div class="stat-label">Total Students</div>
+        </div>
+
+        <div class="stat-card new-card">
+          <div class="stat-icon">
+            <i class="fas fa-user-clock"></i>
+          </div>
+          <div class="stat-info">
+            {% if last_student_name %}
+              {{ last_student_name }}
+            {% else %}
+              No students yet
+            {% endif %}
+          </div>
+          <div class="stat-label">Last Student</div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+{% endblock %}

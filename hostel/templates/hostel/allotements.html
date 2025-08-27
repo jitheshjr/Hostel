@@ -12,16 +12,23 @@ Hostel | Allocations
 
 {% block content %}
 <section class="main">
-    <div class="wrap">
+    <div class="wrap"> 
         <div class="card">
             <div class="card-header">
                 <div class="title-wrap">
                     <div class="header-links">
-                        <a href="{% url 'room_list' %}" class="icon-close" title="Back to Rooms">
+                        <a href="{% url 'room_dashboard' %}" class="icon-close" title="Back to Rooms">
                             <i class="fas fa-times"></i>
                         </a>
                     </div>
                     <h1 class="card-title">Room Allocation Details</h1>
+                    {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
                 </div>
             </div>
 

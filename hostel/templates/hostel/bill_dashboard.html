@@ -1,0 +1,129 @@
+{% extends 'hostel/base.html' %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'styles/bill_dashboard.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+{% endblock %}
+
+{% block content %}
+<div class="messbill-dashboard">
+  <!-- Dashboard Header -->
+  <header class="dashboard-header">
+    <a href="{% url 'home' %}" class="back-button">
+        <i class="fas fa-chevron-left"></i> Home
+    </a>
+    <div class="header-content">
+      <div class="header-title">
+        <div class="icon-wrapper">
+          <img src="{% static 'images/bill-icon.svg' %}" alt="Mess Bills" class="header-icon">
+        </div>
+        <h1>Mess Bill Management</h1>
+      </div>
+      <p class="header-description">
+        Easily generate, track, and manage hostel mess bills for each month.  
+      </p>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="dashboard-content">
+    <!-- Bill Generation Section -->
+    <section class="bill-generation">
+      <h2 class="section-title">
+        <span>Mess Operations</span>
+        <div class="title-decoration"></div>
+      </h2>
+
+      <div class="action-grid">
+        <a href="{% url 'generate_mess_bill' %}" class="action-card allocate-action">
+          <div class="card-icon">
+            <i class="fas fa-file-invoice-dollar"></i>
+          </div>
+          <div class="card-content">
+            <h3>Generate Mess Bill</h3>
+            <p>Create monthly mess bills</p>
+          </div>
+          <div class="action-arrow">
+            <i class="fas fa-arrow-right"></i>
+          </div>
+        </a>
+        <a href="{% url 'total_bill' %}" class="action-card allocate-action">
+          <div class="card-icon">
+            <i class="fas fa-list"></i>
+          </div>
+          <div class="card-content">
+            <h3>View Mess Bills</h3>
+            <p>View monthly mess bills</p>
+          </div>
+          <div class="action-arrow">
+            <i class="fas fa-arrow-right"></i>
+          </div>
+        </a>
+        <a href="{% url 'streak' %}" class="action-card allocate-action">
+          <div class="card-icon">
+            <i class="fas fa-fire"></i>
+          </div>
+          <div class="card-content">
+            <h3>View Streaks</h3>
+            <p>View continuous absence lists</p>
+          </div>
+          <div class="action-arrow">
+            <i class="fas fa-arrow-right"></i>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Monthly Bills Summary Section -->
+    <section class="bills-summary">
+      
+      <!-- Section Header with Filter -->
+      <div class="section-header">
+        <h2 class="section-title">
+          <span class="responsive">Recent Hostel Bill</span>
+          <div class="title-decoration" id="responsive"></div>
+        </h2>
+
+      <!-- Table -->
+      <div class="summary-table-container">
+        <table class="summary-table">
+          <thead>
+            <tr>
+              <th>Month / Year</th>
+              <th>Total Students</th>
+              <th>Mess Days</th>
+              <th>Mess Charges</th>
+              <th>Room Rent</th>
+              <th>Electricity Charges</th>
+              <th>Staff Salary</th>
+              <th>Grand Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% if bill %}
+            <tr>
+              <td>{{ bill.month }} / {{ bill.year }}</td>
+              <td>{{ bill.no_of_students }}</td>
+              <td>{{ bill.mess_days }}</td>
+              <td>₹{{ bill.mess_amount }}</td>
+              <td>₹{{ bill.room_rent }}</td>
+              <td>₹{{ bill.electricity_bill }}</td>
+              <td>₹{{ bill.staff_salary }}</td>
+              <td class="total-amount">₹{{ bill.total }}</td>
+            </tr>
+            {% else %}
+            <tr>
+              <td colspan="10" class="empty-message">
+                <i class="fas fa-info-circle"></i> No bills found matching your criteria
+              </td>
+            </tr>
+            {% endif %}
+
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</div>
+{% endblock %}

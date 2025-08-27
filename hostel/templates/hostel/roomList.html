@@ -16,14 +16,14 @@ Hostel | Allocations
         <div class="card">
             <div class="card-header">
                 <div class="title-wrap">
+                    <div class="header-links">
+                        <a href="{% url 'room_dashboard' %}" class="icon-close" title="Back to Rooms">
+                            <i class="fas fa-times"></i>
+                        </a>
+                    </div>
                     <h1 class="card-title">Room Details</h1>
                 </div>
             </div>
-
-            <header class="actions">
-                <a href="{% url 'allot_student' %}" class="btn btn-primary">Allocate Room</a>
-                <a href="{% url 'view_allotement' %}" class="btn btn-primary">View Allocations</a>
-            </header>
 
             <div class="table-wrap">
                 <table aria-describedby="page-title">

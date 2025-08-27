@@ -46,46 +46,53 @@ class Student(models.Model):
     ]
     E_Grantz = models.BooleanField(choices=EGRANTZ_CHOICES)
     
-    def save(self,*args,**kwargs):
+    def save(self, *args, **kwargs):
+        # Keep reference of uploaded photo
         original_photo = self.photo
 
-        # Initially saving the photo
-        super().save(*args,**kwargs)
+        # Save first to make sure file exists on disk
+        super().save(*args, **kwargs)
 
-        if original_photo:
-            img = Image.open(self.photo.path)
+        if original_photo and self.photo:  
+            photo_path = self.photo.path
+            if os.path.exists(photo_path):   
+                img = Image.open(photo_path)
 
-            if img.mode != 'RGB':
-                img = img.convert('RGB')
+                if img.mode != 'RGB':
+                    img = img.convert('RGB')
 
-            desired_ratio = 1 / 1
-            width,height = img.size
-            current_ratio = width / height
+                # Maintain 3:4 ratio
+                desired_ratio = 3 / 4
+                width, height = img.size
+                current_ratio = width / height
 
-            if current_ratio > desired_ratio:
-                new_width = int(height * desired_ratio)
-                left = (width - new_width) / 2
-                right = left + new_width
-                img = img.crop((left, 0, right, height))
-            elif current_ratio < desired_ratio:
-                new_height = int(width / desired_ratio)
-                top = (height - new_height) / 2
-                bottom = top + new_height
-                img = img.crop((0, top, width, bottom))
+                if current_ratio > desired_ratio:
+                    new_width = int(height * desired_ratio)
+                    left = (width - new_width) / 2
+                    right = left + new_width
+                    img = img.crop((left, 0, right, height))
+                elif current_ratio < desired_ratio:
+                    new_height = int(width / desired_ratio)
+                    top = (height - new_height) / 2
+                    bottom = top + new_height
+                    img = img.crop((0, top, width, bottom))
 
-            buffer = BytesIO()
-            img.save(buffer, format='WEBP', quality=85)
-            webp_filename = os.path.splitext(original_photo.name)[0] + ".webp"
+                # Save as WebP
+                buffer = BytesIO()
+                img.save(buffer, format='WEBP', quality=85)
+                webp_filename = os.path.splitext(original_photo.name)[0] + ".webp"
 
-            self.photo.save(webp_filename, ContentFile(buffer.getvalue()), save=False)
+                # Replace file in DB
+                self.photo.save(webp_filename, ContentFile(buffer.getvalue()), save=False)
 
-            # Delete original image file (non-WebP) if different
-            original_path = original_photo.path
-            if os.path.exists(original_path):
-                os.remove(original_path)
+                # Delete original (non-WebP) file if still exists
+                original_path = original_photo.path
+                if os.path.exists(original_path) and not original_path.endswith(".webp"):
+                    os.remove(original_path)
 
-            # Final save to update DB with WebP image
-            super().save(*args, **kwargs)
+                # Final save to update DB with WebP image
+                super().save(*args, **kwargs)
+
 
 
     def __str__(self):

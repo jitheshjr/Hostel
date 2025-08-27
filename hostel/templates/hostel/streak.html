@@ -1,9 +1,8 @@
 {% extends 'hostel/base.html' %}
-
 {% load static %}
 
 {% block title %}
-Hostel | Streak
+Hostel | Days
 {% endblock %}
 
 {% block style %}
@@ -12,72 +11,72 @@ Hostel | Streak
 
 {% block content %}
 <section class="main">
-    <div class="main-body">
-        <form method="get" class="filter-form">
-            <table id="filter-table">
-                <tr>
-                    <td class="filter-td">
-                        <label for="id_name">Name:</label>
-                        {{ filter.form.name }}
-                    </td>
-                    <td class="filter-td">
-                        <label for="id_month">Month:</label>
-                        {{ filter.form.month }}
-                    </td>
-                    <td class="filter-td">
-                        <label for="id_year">Year:</label>
-                        {{ filter.form.year }}
-                    </td>
-                    <td class="filter-td" style="text-align: right;">
-                        <button type="submit" class="search">Search</button>
-                    </td>
-                    <td class="filter-td" style="text-align: right;">
-                        <button type="reset" class="search" onclick="resetFilters()">Reset</button>
-                    </td>
-                </tr>
-            </table>
-        </form>
-
-        <div class="main-block">
-            <h5>Continuous Absence Details</h5>
-            <div class="streak">
-                <ul class="streak-list">
-                    {% for streak in page_obj %}
-                        <li class="streak-items">{{ streak.name }} : {{ streak.streak }} days in {{ streak.month }},{{ streak.year }}</li>
-                    {% endfor %}
-                </ul>
-            </div>
-
-            <!-- Pagination Controls -->
-            <div class="pagination">
-                <span class="step-links">
-                    {% if page_obj.has_previous %}
-                        <a href="?page=1&{{ query_params.urlencode }}">&laquo; first</a>
-                        <a href="?page={{ page_obj.previous_page_number }}&{{ query_params.urlencode }}">previous</a>
-                    {% endif %}
-
-                    <span class="current">
-                        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-                    </span>
-
-                    {% if page_obj.has_next %}
-                        <a href="?page={{ page_obj.next_page_number }}&{{ query_params.urlencode }}">next</a>
-                        <a href="?page={{ page_obj.paginator.num_pages }}&{{ query_params.urlencode }}">last &raquo;</a>
-                    {% endif %}
-                </span>
-            </div>
-        </div>
+  <div class="main-body">
+    <div class="header-links">
+      <a href="{% url 'bill_dashboard' %}" class="icon-close" title="Close">
+        <i class="fas fa-times"></i>
+      </a>
     </div>
+
+    <h1>Continuous Absence Details</h1>
+
+    <div class="filter-wrapper">
+      <form method="get" class="filter-form">
+        <div class="filter-container">
+          <div class="filter-group">
+            <label for="id_month">Month:</label>
+            {{ filter.form.month }}
+          </div>
+          <div class="filter-group">
+            <label for="id_year">Year:</label>
+            {{ filter.form.year }}
+          </div>
+          <div class="filter-actions">
+            <button type="submit" class="btn primary">Search</button>
+            <button type="reset" class="btn secondary" onclick="resetFilters()">Reset</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    {% if page_obj %}
+    <div class="streak-container">
+      <ul class="streak-list">
+      {% for streak in page_obj %}
+        <li class="streak-item">{{ streak.name}} - {{ streak.streak }} days in {{ streak.month }}, {{ streak.year }} </li>
+      {% endfor %}
+      </ul>
+    </div>
+    {% else %}
+    <div class="no-results">
+      <p>No continuous absence records found.</p>
+    </div>
+    {% endif %}
+
+    {% if page_obj.paginator.num_pages > 1 %}
+      <nav class="pagination-nav" aria-label="Pagination Navigation">
+        <div class="pagination-controls">
+          {% if page_obj.has_previous %}
+            <a href="?page=1&{{ query_params.urlencode }}" class="pagination-link">&laquo; First</a>
+            <a href="?page={{ page_obj.previous_page_number }}&{{ query_params.urlencode }}" class="pagination-link">Previous</a>
+          {% endif %}
+          <span class="pagination-info">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+          {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}&{{ query_params.urlencode }}" class="pagination-link">Next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}&{{ query_params.urlencode }}" class="pagination-link">Last &raquo;</a>
+          {% endif %}
+        </div>
+      </nav>
+    {% endif %}
+  </div>
 </section>
 <script>
-    function resetFilters() {
-        const form = document.querySelector('.filter-form');
-        form.querySelectorAll('select, input').forEach(input => {
-            if (input.type !== 'hidden') {
-                input.value = '';
-            }
-        });
-        form.submit();
-    }
+function resetFilters() {
+  const form = document.querySelector('.filter-form');
+  form.querySelectorAll('select, input').forEach(input => {
+    if (input.type !== 'hidden') input.value = '';
+  });
+  form.submit();
+}
 </script>
 {% endblock %}

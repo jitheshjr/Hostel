@@ -17,7 +17,7 @@ Hostel | Monthly Bills
             <div class="card-header">
                 <div class="title-wrap">
                     <div class="header-links">
-                        <a href="{% url 'home' %}" class="icon-close" title="Back to Rooms">
+                        <a href="{% url 'bill_dashboard' %}" class="icon-close" title="Back to Rooms">
                             <i class="fas fa-times"></i>
                         </a>
                     </div>
@@ -49,6 +49,7 @@ Hostel | Monthly Bills
                 </div>
             </form>
 
+            <div class="hidden-text">This page is too long. Cannot be displayed in mobile screen.</div>
             <div class="table-wrap">
                 <table aria-describedby="page-title">
                     <thead>
@@ -78,7 +79,7 @@ Hostel | Monthly Bills
                             <td data-label="Total">{{ bill.total }}</td>
                             <td data-label="More">
                                 <a href="{% url 'view_monthly_bill' bill.month bill.year %}" class="view-link">
-                                    <i class="fas fa-file-invoice"></i>
+                                    View More 
                                 </a>
                             </td>
                             <td data-label="Action" class="action-cell">

@@ -1,23 +1,104 @@
 {% extends 'hostel/base.html' %}
 {% load static %}
 
-{% block title %}
-Hostel | Home
-{% endblock %}
+{% block title %}Hostel Management System | Home{% endblock %}
 
 {% block style %}
 <link rel="stylesheet" href="{% static 'styles/home.css' %}">
 {% endblock %}
 
 {% block content %}
-<div class="home-container">
-    <h1 class="hostel-title">K.V. KUNHAMBU MEMORIAL<br>WOMEN’S HOSTEL</h1>
-    <div class="home-buttons">
-        <a href="{% url 'mark_attendance' %}">Add attendance</a>
-        {% if is_warden_group %}
-        <a href="{% url 'generate_mess_bill' %}">Generate messbill</a>
-        {% endif %}
+<main class="home">
+  <div class="hero-container">
+    <div class="brand-section">
+      <div class="brand">
+        <img src="{% static 'images/logo.png' %}" alt="" class="brand-icon" aria-hidden="true">
+        <h1 class="brand-title">H M S</h1>
+        <p class="brand-tagline">Track. Manage. Simplify.</p>
+      </div>
     </div>
-</div>
+    
+    <div class="content-section">
+      <div class="hostel-info">
+        <h1 class="hostel-name">K. V. Kunhambu Memorial Womens Hostel</h1>
+        <p class="college-name">Nehru Arts and Science College, Kanhangad</p>
+      </div>
+      <div class="quick-stats">
+        <div class="stat-card">
+          <span class="stat-number">{{students}}</span>
+          <span class="stat-label">Students</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">{{rooms}}</span>
+          <span class="stat-label">Rooms</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">{{ date|date:"d F Y" }}</span>
+          <span class="stat-label">Today</span>
+        </div>
+      </div>
+    </div>
+  </div>
 
+  <section id="modules" class="modules" aria-labelledby="modules-title">
+    <div class="section-header">
+      <h2 id="modules-title">Hostel Management System</h2>
+      <p class="section-subtitle">Manage all hostel operations from one dashboard</p>
+    </div>
+
+    <div class="modules-grid">
+      <!-- Students Card -->
+        <article class="module-card student-card">
+            <div class="card-header">
+                <div class="card-icon">
+                    <img src="{% static 'images/student-icon.svg' %}" alt="Student Management Icon" aria-hidden="true">
+                </div>
+                <h3 class="card-title">Student Management</h3>
+            </div>
+            <div class="card-actions">
+                <a href="{% url 'student_dashboard' %}" class="btn btn-student">Enter Module</a>
+            </div>
+        </article>
+
+      <!-- Rooms Card -->
+        <article class="module-card room-card">
+            <div class="card-header">
+                <div class="card-icon">
+                    <img src="{% static 'images/room-icon.svg' %}" alt="" aria-hidden="true">
+                </div>
+                <h3 class="card-title">Room Management</h3>
+            </div>
+            <div class="card-actions">
+                <a href="{% url 'room_dashboard' %}" class="btn btn-room">Enter Module</a>
+            </div>
+        </article>
+
+      <!-- Attendance Card -->
+        <article class="module-card attendance-card">
+            <div class="card-header">
+                <div class="card-icon">
+                    <img src="{% static 'images/attendance-icon.svg' %}" alt="" aria-hidden="true">
+                </div>
+                <h3 class="card-title">Attendance Tracking</h3>
+            </div>
+            <div class="card-actions">
+                <a href="{% url 'attendance_dashboard' %}" class="btn btn-attendance">Enter Module</a>
+            </div>
+        </article>
+
+      <!-- Mess Bill Card -->
+        <article class="module-card mess-card">
+            <div class="card-header">
+                <div class="card-icon">
+                    <img src="{% static 'images/bill-icon.svg' %}" alt="" aria-hidden="true">
+                </div>
+            <h3 class="card-title">Hostel Bill Generation</h3>
+            </div>
+            <div class="card-actions">
+                <a href="{% url 'bill_dashboard' %}" class="btn btn-mess">Enter Module</a>
+            </div>
+        </article>
+    </div>
+  </section>
+</main>
 {% endblock %}

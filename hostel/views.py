@@ -12,7 +12,7 @@ from .decorators import group_required
 from .filters import *
 from django.utils import timezone
 from django.core.paginator import Paginator
-# Create your views here..
+from django.utils.timezone import localtime
 
 
 def access_denied(request):
@@ -20,10 +20,34 @@ def access_denied(request):
 
 @login_required()
 def home(request):
-    return render(request,'hostel/home.html')
+    total_student = Student.objects.count()
+    total_room = Room.objects.count()
+    date_today = timezone.now().date()
+    context = {
+        'students':total_student,
+        'rooms':total_room,
+        'date':date_today
+    }
+    return render(request,'hostel/home.html',context)
 
 
 # Student manipulating functions
+
+@group_required('warden', login_url='access_denied')
+def student_dashboard(request):
+    try:
+        total_students = Student.objects.count()
+        last_student = Student.objects.last()  # Returns the last created student object
+
+        context = {
+            'total_students': total_students,
+            'last_student_name': last_student.name if last_student else None
+        }
+
+        return render(request, 'hostel/student_dashboard.html', context)
+    except Exception:
+        return render(request,'hostel/error.html')
+
 
 @group_required('warden', login_url='access_denied')
 def add_student(request):
@@ -37,10 +61,8 @@ def add_student(request):
             else:
                 if form.is_valid():
                     form.save()
-                    return redirect('view_student')
-
+                    return redirect('student_dashboard')
                 else:
-                    # Debugging: Print form errors
                     messages.error(request, "Something went wrong...")
         else:
             form = StudentForm()
@@ -48,34 +70,77 @@ def add_student(request):
     except Exception:
         return render(request,'hostel/error.html')
 
-@group_required('warden', login_url='access_denied')
+@group_required('warden', login_url='access_denied')  #new
 def view_students(request):
     try:
-        stud = Student.objects.all().select_related('pgm').all().order_by('id')
+        stud = Student.objects.select_related('pgm').order_by('id')
+
         students_filter = studentFilter(request.GET, queryset=stud)
-        if not stud.exists():
-            messages.error(request,"Currently there are no students")
-        return render(request,'hostel/students.html',{'filter':students_filter})
+        filtered_students = students_filter.qs
+
+        search_query = request.GET.get('search', '')
+        if search_query:
+            filtered_students = filtered_students.filter(name__icontains=search_query)
+
+        total_students = filtered_students.count()
+
+        paginator = Paginator(filtered_students, 10)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+
+        if not filtered_students.exists():
+            messages.error(request, "Currently there are no students")
+
+        return render(request, 'hostel/students.html', {
+            'filter': students_filter,
+            'page_obj': page_obj,
+            'total_students': total_students,
+            'search_query': search_query,
+            'student':stud
+        })
+    except Exception:
+        return render(request,'hostel/error.html')
+
+
+@group_required('warden', login_url='access_denied')
+def view_details(request, student_id):
+    try:
+        student = Student.objects.filter(id=student_id).select_related('pgm').first()
+        room = Allotment.objects.filter(name_id=student_id).select_related('room_number').first()
+        student_image_url = None
+        if student and student.photo:
+            student_image_url = settings.MEDIA_URL + str(student.photo)
+        return render(request, "hostel/details.html", {'student': student, 'student_image_url': student_image_url,'room':room})
     except Exception:
         return render(request,'hostel/error.html')
 
 @group_required('warden', login_url='access_denied')
-def view_details(request, student_id):
-    student = Student.objects.filter(id=student_id).select_related('pgm').first()
-    room = Allotment.objects.filter(name_id=student_id).select_related('room_number').first()
-    student_image_url = None
-    if student and student.photo:
-        student_image_url = settings.MEDIA_URL + str(student.photo)
-    return render(request, "hostel/details.html", {'student': student, 'student_image_url': student_image_url,'room':room})
-
-
-def inactive_students(request, login_url='access_denied'):
+def inactive_students(request):
     try:
-        stud = Trash.objects.all().select_related('pgm').all().order_by('id')
+        stud = Trash.objects.select_related('pgm').order_by('id')
         students_filter = studentFilter(request.GET, queryset=stud)
-        if not stud.exists():
-            messages.error(request,"Trash is empty")
-        return render(request,'hostel/inact_students.html',{'filter':students_filter})
+        filtered_students = students_filter.qs
+
+        search_query = request.GET.get('search', '')
+        if search_query:
+            filtered_students = filtered_students.filter(name__icontains=search_query)
+
+        total_students = filtered_students.count()
+
+        paginator = Paginator(filtered_students, 10)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+
+        if not filtered_students.exists():
+            messages.error(request, "Currently there are no students")
+
+        return render(request, 'hostel/inact_students.html', {
+            'filter': students_filter,
+            'page_obj': page_obj,
+            'total_students': total_students,
+            'search_query': search_query,
+            'student':stud
+        })
     except Exception:
         return render(request,'hostel/error.html')
 
@@ -104,14 +169,14 @@ def edit_student(request, student_id):
             new_admn_no = request.POST.get('admn_no')
             if int(prev_admn_no) == int(new_admn_no):
                 if form.is_valid():
-                    if 'image' in form.changed_data:
-                    # Delete old image file if it exists
-                        if student.image:
-                            default_storage.delete(student.image.path)
-                
-                    # Save form data including the image field
+                    if 'photo' in form.changed_data:  
+                        # Delete old photo file if it exists
+                        if student.photo and default_storage.exists(student.photo.path):
+                            default_storage.delete(student.photo.path)
+
+                    # Save form data (new photo if uploaded, otherwise keeps old one)
                     student = form.save()
-                    messages.success(request, "Student details edited successfully.")
+                    return redirect('view_student')
 
             else:
                 if Student.objects.filter(admn_no=new_admn_no).exists():
@@ -125,10 +190,10 @@ def edit_student(request, student_id):
                         
                         # Save form data including the image field
                         student = form.save()
-                        messages.success(request, "Student details edited successfully.")
+                        return redirect('view_students')
         return render(request, 'hostel/edit.html', {'form': form})
     except Exception:
-        return render(request,'hostel/error.html') 
+        return render(request,'hostel/error.html')
 
 
 @group_required('warden', login_url='access_denied')
@@ -138,10 +203,10 @@ def delete_student(request,student_id):
         student = get_object_or_404(Student, id=student_id)
 
         # Get room number if allotted
-        room_no = None
+        #room_no = None
         allotment = Allotment.objects.filter(name=student).first()
         if allotment:
-            room_no = allotment.room_number.room_number
+            #room_no = allotment.room_number.room_number
             allotment.delete()
 
         # Move student data to Trash
@@ -155,7 +220,7 @@ def delete_student(request,student_id):
             contact=student.contact,
             date_joined=student.date_joined,
             date_exited=timezone.now(),
-            room_no=room_no,
+            #room_no=room_no,
             category=student.category,
             E_Grantz=student.E_Grantz,
         )
@@ -168,6 +233,24 @@ def delete_student(request,student_id):
 
 
 # Room allocation functions
+
+@group_required('warden', login_url='access_denied')
+def room_dashboard(request):
+    try:
+        total_rooms = Room.objects.count()
+        total_capacity = Room.objects.aggregate(total_capacity=models.Sum('capacity'))['total_capacity'] or 0
+        current_allotted = Allotment.objects.count()
+        available_slots = total_capacity - current_allotted
+
+        context = {
+            'total_rooms': total_rooms,
+            'available_slots': available_slots
+        }
+
+        return render(request, 'hostel/room_dashboard.html', context)
+
+    except Exception:
+        return render(request, 'hostel/error.html')
 
 @group_required('warden', login_url='access_denied')
 def allot_student(request):
@@ -190,25 +273,6 @@ def allot_student(request):
     except Exception:
         return render(request,'hostel/error.html')
 
-
-@group_required('warden', login_url='access_denied')
-def edit_allocation(request,student_name):
-    try:
-        Alloted_object = Allotment.objects.get(name__name=student_name)
-        # name is a OneToOneField to the Student model. The double underscore is used to access fields within related models.
-        alloc_form = AllotementForm(instance=Alloted_object)
-
-        if request.method == "POST":
-            alloc_form = AllotementForm(request.POST,instance=Alloted_object)
-            if alloc_form.is_valid():
-                alloc_form.save()
-                messages.success(request, "Room allocation edited successfully.")
-
-        return render(request,'hostel/edit_allocation.html',{'form':alloc_form})
-    except Exception:
-        return render(request,'hostel/error.html')
-
-
 @group_required('warden', login_url='access_denied')
 def delete_allocation(request,student_name):
     try:
@@ -228,7 +292,7 @@ def view_allotement(request):
         filter = roomFilter(request.GET, queryset=Allotment.objects.select_related('room_number', 'name').order_by('room_number'))
         alloted_list = filter.qs
 
-        paginator = Paginator(alloted_list, 10)
+        paginator = Paginator(alloted_list, 6)
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
 
@@ -256,7 +320,7 @@ def room_list(request):
             'floor': room.floor
         })
 
-    paginator = Paginator(room_data, 10)  # Show 10 rooms per page
+    paginator = Paginator(room_data, 8)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
@@ -264,6 +328,39 @@ def room_list(request):
     return render(request, "hostel/roomList.html", context)
 
 # Attendance functions
+@login_required()
+def attendance_dashboard(request):
+    today = localtime().date()
+    total_students = Student.objects.count()
+
+    last_attendance = AttendanceDate.objects.last()
+    last_date = last_attendance.date
+    date_id = last_attendance.id
+    recent_absent = Attendance.objects.filter(date=date_id).count()
+
+    # Check today's attendance
+    attendance_date = AttendanceDate.objects.filter(date=today).first()
+
+    if attendance_date:
+        attendance_taken = True
+        absent_count = Attendance.objects.filter(date=attendance_date).count()
+        present_count = total_students - absent_count
+        attendance_percentage = round((present_count / total_students) * 100, 2) if total_students > 0 else 0
+    else:
+        attendance_taken = False
+        present_count = absent_count = attendance_percentage = None
+
+    context = {
+        'attendance_taken': attendance_taken,
+        'present_count': present_count,
+        'absent_count': absent_count,
+        'attendance_percentage': attendance_percentage,
+        'recent_absent': recent_absent, 
+        'last_date':last_date
+    }
+    return render(request, 'hostel/attendance_dashboard.html', context)
+
+
 
 @login_required()
 def mark_attendance(request):
@@ -297,11 +394,11 @@ def mark_attendance(request):
 
 @login_required()
 def view_attendance(request):
-    filter = attendanceFilter(request.GET, queryset=AttendanceDate.objects.all().order_by('date'))
+    filter = attendanceFilter(request.GET, queryset=AttendanceDate.objects.all().order_by('-date'))
     attendance_list = filter.qs
 
     # Pagination
-    paginator = Paginator(attendance_list, 10)
+    paginator = Paginator(attendance_list, 8)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
@@ -315,12 +412,23 @@ def view_attendance(request):
 @login_required()
 def detailed_attendance(request, date_id):
     try:
-        attendance_date = get_object_or_404(AttendanceDate, id=date_id)
+        attendance_date = get_object_or_404(AttendanceDate, id=date_id)        
         absentees = Attendance.objects.filter(date=attendance_date)
-        return render(request, "hostel/attendance_detail.html", {'date': attendance_date, 'absentees': absentees})
-    except Exception:
-        return render(request,'hostel/error.html')
+        total_absentees = absentees.count()
 
+        paginator = Paginator(absentees, 7)  
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+
+        context = {
+            'date': attendance_date,
+            'absentees': page_obj,
+            'total_absentees': total_absentees,
+        }
+        return render(request, "hostel/attendance_detail.html", context)
+
+    except Exception:
+        return render(request, 'hostel/error.html')
 
 @login_required()
 def delete_attendance(request, date_id):
@@ -341,13 +449,19 @@ def absent_records(request, student_id):
     student = get_object_or_404(Student,id=student_id)
     absences = Attendance.objects.filter(name=student).select_related('date').order_by('date__date')
 
-    paginator = Paginator(absences,20)
+    paginator = Paginator(absences,5)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
     return render(request,"hostel/absent_days.html",{'student':student,'page_obj':page_obj})
 
 # mess bill functions
+
+@group_required('warden', login_url='access_denied')
+def bill_dashboard(request):
+        last_bill = MessBill.objects.last()
+        return render(request, "hostel/bill_dashboard.html", {'bill':last_bill})
+
 
 #function to find continuous absences
 def find_continuous_absences(start_date, end_date):
@@ -508,6 +622,17 @@ def generate_mess_bill(request):
     return render(request, "hostel/billform.html", {'form': form})
 
 @group_required('warden', login_url='access_denied')
+def delete_bill(request, pk):
+    bill_obj = get_object_or_404(MessBill,pk=pk)
+    print(bill_obj)
+    if request.method == "GET":
+        bill_obj.delete()
+        messages.success(request,f"Deleted Successfully.")
+        return redirect('total_bill')
+    else:
+        messages.error(request,f"Something went wrong.")
+
+@group_required('warden', login_url='access_denied')
 def total_bill(request):
     try:
         bill_filter = monthbillFilter(request.GET, queryset=MessBill.objects.all().order_by('-id'))
@@ -524,17 +649,6 @@ def total_bill(request):
         return render(request, "hostel/totalbill.html", {'filter': bill_filter, 'page_obj': page_obj, 'query_params': query_params})
     except Exception:
         return render(request, 'hostel/error.html')
-
-@group_required('warden', login_url='access_denied')
-def delete_bill(request, pk):
-    bill_obj = get_object_or_404(MessBill,pk=pk)
-    print(bill_obj)
-    if request.method == "GET":
-        bill_obj.delete()
-        messages.success(request,f"Deleted Successfully.")
-        return redirect('total_bill')
-    else:
-        messages.error(request,f"Something went wrong.")
 
 @group_required('warden', login_url='access_denied')
 def view_monthly_bill(request,month,year):
@@ -560,7 +674,7 @@ def streak(request):
         streak_filter = streakFilter(request.GET, queryset=ContinuousAbsence.objects.all().select_related('name').order_by('-id'))
         streak_list = streak_filter.qs
 
-        paginator = Paginator(streak_list, 10)
+        paginator = Paginator(streak_list, 6)
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
 

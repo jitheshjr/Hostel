@@ -12,79 +12,107 @@ Hostel | Students
 
 {% block content %}
 <section class="main">
-    <div class="main-block">
-        <form method="get" action="{% url 'view_student' %}" class="filter-form">
-                <table id="filter-table">
-                    <tr>
-                        
-        
-                        <td class="filter-td">
-                            <label for="id_pgm">Programme:</label>
-                            {{ filter.form.pgm }}
-                        </td>
-        
-                        <td class="filter-td">
-                            <label for="id_category">Category:</label>
-                            {{ filter.form.category }}
-                        </td>
-        
-                        <td class="filter-td">
-                            <label for="id_E_Grantz">E-Grantz:</label>
-                            {{ filter.form.E_Grantz }}
-                        </td>
-        
-                        <td class="filter-td">
-                            <button type="submit" class="search">Search</button>
-                        </td>
-                        <td class="filter-td" style="text-align: right;">
-                            <button type="reset" class="search" onclick="resetFilters()">Reset</button>
-                        </td>
-                    </tr>
-                </table>   
-        </form>
-
-        <h5></h5>
-
-        {% if messages %}
-            <ul class="messages">
-                {% for message in messages %}
-                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-        
-        <div class="student-boxes">
-            <a href="{% url 'add_student' %}" class="link">
-                <div class="student-layout glass-card" id="add-bg">
-                    <div class="add-user-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="white" viewBox="0 0 24 24">
-                            <path d="M15 14c2.761 0 5-2.239 5-5s-2.239-5-5-5-5 
-                                     2.239-5 5 2.239 5 5 5zm0 2c-3.314 
-                                     0-10 1.657-10 5v3h20v-3c0-3.343-6.686-5-10-5zM4 
-                                     12h2v-2h2V8H6V6H4v2H2v2h2v2z"/>
-                        </svg>
+    <div class="wrap">
+        <div class="card">
+            <div class="card-header">
+                <div class="title-wrap">
+                    <div class="header-links">
+                        <a href="{% url 'student_dashboard' %}" class="icon-close" title="Back to Dashboard">
+                            <i class="fas fa-times"></i>
+                        </a>
                     </div>
-                    <div class="add-student">Add Student</div>
+                    <h1 class="card-title">Student Directory</h1>
                 </div>
-            </a>
-            
-            {% for student in filter.qs %}
-            <a href="{% url 'view_details' student.id %}" class="link">
-                <div class="student-layout glass-card">
-                    <div class="image-container">   
-                        {% if student.photo %}
-                            <img src="{{student.photo.url}}" alt="No image" class="img-stud">
-                        {% else %}
-                            <span>No photo available</span>
-                        {% endif %}
+            </div>
+
+            <div class="student-header">
+                <h1>Hostel Students</h1>
+                <p class="student-count">Total Students: {{ total_students }}</p>
+            </div>
+
+           <form method="get" class="search-bar">
+                <input type="text" name="search" placeholder="Search by name..." value="{{ search_query }}">
+                <button type="submit">Search</button>
+            </form>
+
+
+            <form method="get" action="{% url 'view_student' %}" class="filter-form">
+                <div class="filter-controls">
+                    
+                    <div class="filter-group">
+                        <label for="id_pgm">Programme:</label>
+                        {{ filter.form.pgm }}
                     </div>
-                    <div class="student-name">{{student.name}}</div>
+
+                    <div class="filter-group">
+                        <label for="id_category">Category:</label>
+                        {{ filter.form.category }}
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="id_E_Grantz">E-Grantz:</label>
+                        {{ filter.form.E_Grantz }}
+                    </div>
+
+                    <div class="filter-actions">
+                        <button type="submit" class="btn btn-primary">Filter</button>
+                        <button type="reset" class="btn btn-secondary" onclick="resetFilters()">Reset</button>
+                    </div>
+
                 </div>
-            </a>
+            </form>
+
+
+            <div class="students-grid">
+            {% for student in page_obj %}
+                <a href="{% url 'view_details' student.id %}" class="student-card">
+                <div class="student-photo-container">
+                    {% if student.photo %}
+                    <img src="{{ student.photo.url }}" alt="{{ student.name }}" class="student-photo">
+                    {% else %}
+                    <span>No photo available</span>
+                    {% endif %}
+                </div>
+                <div class="student-name">{{ student.name }}</div>
+                </a>
+            {% empty %}
+                <div class="no-students">
+                No students found.
+                </div>
             {% endfor %}
-            
+            </div>
+
+            <nav class="pagination" role="navigation" aria-label="Pagination">
+                <div class="muted-small">
+                    <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+                </div>
+                <div class="pager">
+                    {% if page_obj.has_previous %}
+                        <a href="?page=1" class="page-btn" aria-label="First page">«</a>
+                        <a href="?page={{ page_obj.previous_page_number }}" class="page-btn" aria-label="Previous page">‹</a>
+                    {% else %}
+                        <span class="page-btn" disabled>«</span>
+                        <span class="page-btn" disabled>‹</span>
+                    {% endif %}
+
+                    {% for num in page_obj.paginator.page_range %}
+                        {% if page_obj.number == num %}
+                            <span class="page-btn current" aria-current="page">{{ num }}</span>
+                        {% else %}
+                            <a href="?page={{ num }}" class="page-btn" aria-label="Page {{ num }}">{{ num }}</a>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if page_obj.has_next %}
+                        <a href="?page={{ page_obj.next_page_number }}" class="page-btn" aria-label="Next page">›</a>
+                        <a href="?page={{ page_obj.paginator.num_pages }}" class="page-btn" aria-label="Last page">»</a>
+                    {% else %}
+                        <span class="page-btn" disabled>›</span>
+                        <span class="page-btn" disabled>»</span>
+                    {% endif %}
+                </div>
+            </nav>
         </div>
-        
     </div>
 </section>
 <script>
@@ -97,5 +125,6 @@ Hostel | Students
         });
         form.submit();
     }
+
 </script>
 {% endblock %}

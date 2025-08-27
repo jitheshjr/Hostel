@@ -1,0 +1,107 @@
+{% extends 'hostel/base.html' %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'styles/room_dashboard.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+{% endblock %}
+
+{% block content %}
+<div class="modern-dashboard">
+  <!-- Dashboard Header -->
+  <header class="dashboard-header">
+     <a href="{% url 'home' %}" class="back-button">
+        <i class="fas fa-chevron-left"></i> Home
+      </a>
+    <div class="header-content">
+      <div class="header-title">
+        <div class="icon-wrapper">
+          <img src="{% static 'images/room-icon.svg' %}" alt="Rooms" class="header-icon">
+        </div>
+        <h1>Hostel Room Management</h1>
+      </div>
+      <p class="header-description">Manage room allocations and availability</p>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="dashboard-content">
+    <!-- Quick Actions -->
+    <section class="quick-actions-section">
+      <h2 class="section-title">
+        <span>Room Operations</span>
+        <div class="title-decoration"></div>
+      </h2>
+      
+      <div class="action-grid">
+        <a href="{% url 'allot_student' %}" class="action-card allocate-action">
+          <div class="card-icon">
+            <i class="fas fa-bed"></i>
+          </div>
+          <div class="card-content">
+            <h3>Allocate Room</h3>
+            <p>Assign students to available rooms</p>
+          </div>
+          <div class="action-arrow">
+            <i class="fas fa-arrow-right"></i>
+          </div>
+        </a>
+
+        <a href="{% url 'view_allotement' %}" class="action-card view-action">
+          <div class="card-icon">
+            <i class="fas fa-list-ol"></i>
+          </div>
+          <div class="card-content">
+            <h3>View Allocations</h3>
+            <p>See current room assignments</p>
+          </div>
+          <div class="action-arrow">
+            <i class="fas fa-arrow-right"></i>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Room Availability -->
+    <section class="availability-section">
+      <div class="section-header">
+        <h2 class="section-title">
+          <span>Room Availability</span>
+          <div class="title-decoration"></div>
+        </h2>
+      </div>
+      
+      <div class="availability-grid">
+        <!-- Available Rooms -->
+        <div class="availability-card available">
+          <div class="availability-icon">
+            <i class="fas fa-door-closed"></i>
+          </div>
+          <div class="availability-info">
+            <div class="availability-value">{{ total_rooms}}</div>
+            <div class="availability-label">Total Rooms</div>
+          </div>
+          <div class="header-actions">
+          <a href="{% url 'room_list' %}" class="view-more-link">
+            <span class="responsive-text">View All Rooms</span> <i class="fas fa-chevron-right"></i>
+          </a>
+        </div>
+        </div>
+        
+        <!-- Occupied Rooms -->
+        <div class="availability-card occupied">
+          <div class="availability-icon">
+            <i class="fas fa-door-open"></i>
+          </div>
+          <div class="availability-info">
+            <div class="availability-value">{{ available_slots }}</div>
+            <div class="availability-label">Available Slots</div>
+          </div>
+          <div class="occupancy-rate">
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+{% endblock %}

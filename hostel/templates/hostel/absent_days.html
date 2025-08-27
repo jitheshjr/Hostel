@@ -14,40 +14,53 @@ Hostel | Days
     <div class="main-body">
         <div class="header-links">
             <!-- Back/Close Icon -->
-            <a href="#" class="icon-close" title="Close">
-            <i class="fas fa-times"></i>
+            <a href="#" class="icon-close" title="Close" id="close">
+                <i class="fas fa-times"></i>
             </a>
 
         </div>
-        <h1>Absent Records for {{ student.name }}</h1>
+        <h1>Absent Records of {{ student.name }}</h1>
         <ul>
             {% for absence in page_obj %}
                 <li>{{ absence.date.date }}</li>
             {% endfor %}
         </ul>
-        <div class="pagination">
-            <span class="step-links">
+        <nav class="pagination" role="navigation" aria-label="Pagination">
+            <div class="muted-small">
+                <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+            </div>
+            <div class="pager">
                 {% if page_obj.has_previous %}
-                    <a href="?page=1">&laquo; first</a>
-                    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                    <a href="?page=1&{{ query_params.urlencode }}" class="page-btn" aria-label="First page">«</a>
+                    <a href="?page={{ page_obj.previous_page_number }}&{{ query_params.urlencode }}" class="page-btn" aria-label="Previous page">‹</a>
+                {% else %}
+                    <span class="page-btn" disabled>«</span>
+                    <span class="page-btn" disabled>‹</span>
                 {% endif %}
-    
-                <span class="current">
-                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-                </span>
-    
+
+                {% for num in page_obj.paginator.page_range %}
+                    {% if page_obj.number == num %}
+                        <span class="page-btn current" aria-current="page">{{ num }}</span>
+                    {% else %}
+                        <a href="?page={{ num }}&{{ query_params.urlencode }}" class="page-btn" aria-label="Page {{ num }}">{{ num }}</a>
+                    {% endif %}
+                {% endfor %}
+
                 {% if page_obj.has_next %}
-                    <a href="?page={{ page_obj.next_page_number }}">next</a>
-                    <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                    <a href="?page={{ page_obj.next_page_number }}&{{ query_params.urlencode }}" class="page-btn" aria-label="Next page">›</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}&{{ query_params.urlencode }}" class="page-btn" aria-label="Last page">»</a>
+                {% else %}
+                    <span class="page-btn" disabled>›</span>
+                    <span class="page-btn" disabled>»</span>
                 {% endif %}
-            </span>
-        </div>
+            </div>
+        </nav>
     </div>
 </section>
 <script>
     document.getElementById('close').addEventListener('click', function(event){
-        event.preventDefault();
-        window.history.back();
-    });
+    event.preventDefault();
+    window.location.href = `/view/{{ student.id }}/`;
+});
 </script>
 {% endblock %}
